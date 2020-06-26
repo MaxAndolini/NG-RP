@@ -1,4 +1,4 @@
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 ClearDoorSaleVariables(playerid)
 {
@@ -80,9 +80,6 @@ timer DDSaleTimerEx[30000](playerid)
 	}
 	return 1;
 }
-
-CMD:ad(playerid, params[]) return cmd_approvedoorsale(playerid, params);
-CMD:ds(playerid, params[]) return cmd_denydoorsale(playerid, params);
 
 CMD:doorsalehelp(playerid, params[])
 {
@@ -266,6 +263,7 @@ CMD:approvedoorsale(playerid, params[])
 	}
 	return 1;
 }
+alias:approvedoorsale("ad")
 
 CMD:denydoorsale(playerid, params[])
 {
@@ -287,6 +285,7 @@ CMD:denydoorsale(playerid, params[])
 	Log("logs/admin.log", string);
 	return 1;
 }
+alias:denydoorsale("ds")
 
 hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 

@@ -20,10 +20,10 @@
 #define FILTERSCRIPT
 
 #include <a_samp>
-#include <zcmd>
 #include <sscanf2>
-#include <foreach>
 #include <streamer>
+#include <YSI_Data\y_iterate>
+#include <Pawn.CMD>
 
 #define COLOR_GREY 0xAFAFAFAA
 #define COLOR_WHITE 0xFFFFFFAA
@@ -122,7 +122,7 @@ CMD:placefw(playerid, params[])
 		format(string, sizeof(string), "%s has placed a special firework.", GetPlayerNameEx(playerid));
 	    new Float:x, Float:y, Float:z, Float:a;
 	    GetPlayerPos(playerid, x, y, z);
-	    foreach(Player, i)
+	    foreach(new i : Player)
 		{
 			if(IsPlayerInRangeOfPoint(i, 30, x, y, z)) {
 				SendClientMessage(i, COLOR_YELLOW, string);

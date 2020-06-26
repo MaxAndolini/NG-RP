@@ -1,16 +1,3 @@
-#if defined _inc_y_text
-	#undef _inc_y_text
-#endif
-
-// Multiple includes!
-#include "..\YSI_Internal\y_unique"
-
-// Need an include guard here.
-#if defined _INC_y_text
-	#endinput
-#endif
-#define _INC_y_text
-
 /**
  * <library name="y_text">
  * <section>
@@ -174,209 +161,47 @@ Optional plugins:
 	Me - sscanf2, fixes2, Whirlpool.
 */
 
-#include <a_samp>
-
-#include "..\YSI_Internal\y_version"
-
-// Make sure this is included early.
-#include "..\YSI_Data\y_playerset"
-
-// Apparently I'd already written the internal code to support this and forgot!
-#define Y_TEXT_UNIQUE
-
-#if !defined Y_TEXT_MAX_SETS
-	#define Y_TEXT_MAX_SETS             (16)
+#if defined _inc_y_text
+	#undef _inc_y_text
 #endif
 
-#if !defined Y_TEXT_PER_SET
-	#define Y_TEXT_PER_SET              (64)
+#if !defined _Y_UNIQUE_INCLUDED
+	#tryinclude "..\YSI_Coding\y_unique\y_unique_entry"
+#endif
+#if !defined _Y_UNIQUE_INCLUDED
+	#tryinclude "YSI_Coding\y_unique\y_unique_entry"
+#endif
+#if !defined _Y_UNIQUE_INCLUDED
+	#tryinclude "YSI\YSI_Coding\y_unique\y_unique_entry"
+#endif
+#if !defined _Y_UNIQUE_INCLUDED
+	#tryinclude <YSI_Coding\y_unique\y_unique_entry>
+#endif
+#if !defined _Y_UNIQUE_INCLUDED
+	#tryinclude <YSI\YSI_Coding\y_unique\y_unique_entry>
+#endif
+#if defined _Y_UNIQUE_INCLUDED
+	#undef _Y_UNIQUE_INCLUDED
+#else
+	#error Did you use `YSI/y_text` instead of `YSI\y_text`?
 #endif
 
-#if !defined MAX_TEXT_ENTRIES
-	#define MAX_TEXT_ENTRIES (Y_TEXT_PER_SET * Y_TEXT_MAX_SETS)
+#if !defined _INC_y_text
+	#tryinclude "y_text\y_text_entry"
 #endif
-
-#include "..\YSI_Internal\y_version"
-
-#include "..\YSI_Storage\y_xml"
-#include "..\YSI_Server\y_td"
-#include "..\YSI_Server\y_colours"
-
-//#include "..\y_hooks"
-
-#include "..\YSI_Internal\y_natives"
-
-#include "y_text/styles"
-
-// This is a horribly eclectic collection of libraries from all over the place
-// and written at different times with different aims - frankly I'll be AMAZED
-// if it all comes together and works.
-
-
-#include <a_samp>
-#include "..\YSI_Core\y_debug"
-#include "..\YSI_Server\y_colours"
-
-#include "y_text/load"
-
-#include "..\YSI_Core\y_utils"
-#include "..\YSI_Internal\y_shortfunc"
-#include "..\YSI_Internal\y_natives"
-#include "..\YSI_Coding\y_va"
-
-#include "y_text/render"
-
-#include "..\YSI_Storage\y_amx"
-#include "..\YSI_Storage\y_ini"
-#include "..\YSI_Data\y_iterate"
-#include "..\YSI_Server\y_scriptinit"
-#include "..\YSI_Players\y_languages"
-#include "..\YSI_Visual\y_dialog"
-#include "..\YSI_Coding\y_inline"
-#include "..\YSI_Coding\y_hooks"
-
-#include "y_text/impl"
-
-#define UNDO_MOVE|||
-#define DO_MOVE|||%0``` %0DO_MOVE|||
-
-#define Text_Send(%0,%1) PSF:_Text_Send(%0,DO_TEXT_SET:%1 UNDO_MOVE|||)
-#define Text_Render(%0,%1) _Text_Render(%0,DO_TEXT_SET:%1 UNDO_MOVE|||)
-#define Text_Format(%0,%1,%2,%3,%4) _Text_Format(%0,%1,%2,%3,DO_TEXT_SET:%4 UNDO_MOVE|||)
-
-#define Text_Format_GT_0(%0,%1,%2,%3) Text_Format(%0,%1,%2, e_STYLE_TYPE_GT_0,%3)
-#define Text_Format_GT_1(%0,%1,%2,%3) Text_Format(%0,%1,%2, e_STYLE_TYPE_GT_1,%3)
-#define Text_Format_GT_2(%0,%1,%2,%3) Text_Format(%0,%1,%2, e_STYLE_TYPE_GT_2,%3)
-#define Text_Format_GT_3(%0,%1,%2,%3) Text_Format(%0,%1,%2, e_STYLE_TYPE_GT_3,%3)
-#define Text_Format_GT_4(%0,%1,%2,%3) Text_Format(%0,%1,%2, e_STYLE_TYPE_GT_4,%3)
-#define Text_Format_GT_5(%0,%1,%2,%3) Text_Format(%0,%1,%2, e_STYLE_TYPE_GT_5,%3)
-#define Text_Format_GT_6(%0,%1,%2,%3) Text_Format(%0,%1,%2, e_STYLE_TYPE_GT_6,%3)
-#define Text_Format_TD(%0,%1,%2,%3) Text_Format(%0,%1,%2, e_STYLE_TYPE_TD,%3)
-#define Text_Format_3D(%0,%1,%2,%3 Text_Format(%0,%1,%2, e_STYLE_TYPE_3D,%3)
-#define Text_Format_Client(%0,%1,%2,%3) Text_Format(%0,%1,%2, e_STYLE_TYPE_CLIENT,%3)
-#define Text_Format_Player(%0,%1,%2,%3) Text_Format(%0,%1,%2, e_STYLE_TYPE_PLAYER,%3)
-#define Text_Format_Other(%0,%1,%2,%3) Text_Format(%0,%1,%2, e_STYLE_TYPE_OTHER,%3)
-#define Text_Format_Dialog(%0,%1,%2,%3) Text_Format(%0,%1,%2, e_STYLE_TYPE_DIALOG,%3)
-
-//#define _Text_Send(%0YCMD:%1) _Text_Send(%0_:YCMD_REP_0:YCMD_REP_1:%1)
-
-//#define YCMD_REP_0:YCMD_REP_1:%0, Command_GetID(%0),
-//#define YCMD_REP_1:%0) Command_GetID(%0))
-
-// This code allows "DEFAULT_TEXT_SET" to propogate through the text one section
-// at a time without detecting later matches too early.  The design of "DO_MOVE"
-// and "UNDO_MOVE" means that the compiler will correctly detect the end of the
-// code, regardless of the length, and end.
-#define Text_MessageBox(%0,%1,%2,%3,%4,%5) PSF:_Text_DialogBox(%0,DIALOG_STYLE_MSGBOX,%1,DO_TEXT_SET:%2 DO_MOVE|||,DO_TEXT_SET:%3 ```,DO_TEXT_SET:%4 ```,DO_TEXT_SET:%5 UN```)
-#define Text_InputBox(%0,%1,%2,%3,%4,%5) PSF:_Text_DialogBox(%0,DIALOG_STYLE_INPUT,%1,DO_TEXT_SET:%2 DO_MOVE|||,DO_TEXT_SET:%3 ```,DO_TEXT_SET:%4 ```,DO_TEXT_SET:%5 UN```)
-#define Text_ListBox(%0,%1,%2,%3,%4,%5) PSF:_Text_DialogBox(%0,DIALOG_STYLE_LIST,%1,DO_TEXT_SET:%2 DO_MOVE|||,DO_TEXT_SET:%3 ```,DO_TEXT_SET:%4 ```,DO_TEXT_SET:%5 UN```)
-#define Text_PasswordBox(%0,%1,%2,%3,%4,%5) PSF:_Text_DialogBox(%0,DIALOG_STYLE_PASSWORD,%1,DO_TEXT_SET:%2 DO_MOVE|||,DO_TEXT_SET:%3 ```,DO_TEXT_SET:%4 ```,DO_TEXT_SET:%5 UN```)
-#define Text_DialogBox(%0,%9,%1,%2,%3,%4,%5) PSF:_Text_DialogBox(%0,%9,%1,DO_TEXT_SET:%2 DO_MOVE|||,DO_TEXT_SET:%3 ```,DO_TEXT_SET:%4 ```,DO_TEXT_SET:%5 UN```)
-//#define Text_MessageBox(%0,%1,%2,%3) PSF:_Text_MessageBox(%0,%1,DEFAULT_TEXT_SET,#%2 DO_MOVE|||,DEFAULT_TEXT_SET,#%3 $$$,DEFAULT_TEXT_SET,#%4 $$$,DEFAULT_TEXT_SET,#%5 UN$$$)
-
-//#define _Text_MessageBox(%0YCMD:%1) _Text_MessageBox(%0_:YCMD_REP_0:YCMD_REP_1:%1)
-
-//stock Text_GetAllIDs(
-
-stock formatex(output[], len, const format[], GLOBAL_TAG_TYPES:...)
-{
-	static
-		sFormat[1024],
-		sTemp[1024];
-	// "Format_Standardise" modifies "input" repeatedly.
-	//strcpy(sTemp, format);
-	strcpy(sFormat, format);
-	Format_Standardise(sFormat, sTemp);
-	new
-		n = (numargs() - 3) * 4;
-	if (n)
-	{
-		// Push all passed parameters.
-		new
-			arg_start,
-			arg_end;
-		// Load the real address of the last static parameter.  Do this by
-		// loading the address of the parameter and then adding the value of
-		// [FRM] (frame pointer).
-		#emit CONST.alt                 format
-		#emit LCTRL                     5
-		#emit ADD
-		#emit STOR.S.pri                arg_start
-		// Load the address of the last variable parameter.  Do this by adding
-		// the number of variables on the value just loaded.
-		#emit LOAD.S.alt                n
-		#emit ADD
-		#emit STOR.S.pri                arg_end
-		new
-			arg_cur = arg_end;
-		do
-		{
-			#emit LOAD.S.pri            arg_cur
-			#emit LOAD.I
-			#emit PUSH.pri
-			arg_cur -= 4;
-		}
-		while (arg_cur > arg_start);
-		Format_Render(INVALID_PLAYER_ID, NO_LANGUAGE, output, len - 1, 0, e_FORMAT_FLAGS_NONE, sTemp, n / 4);
-		#emit LCTRL                     4
-		#emit LOAD.S.alt                n
-		#emit ADD
-		#emit SCTRL                     4
-	}
-	else
-	{
-		Format_Render(INVALID_PLAYER_ID, NO_LANGUAGE, output, len - 1, 0, e_FORMAT_FLAGS_NONE, sTemp, 0);
-	}
-}
-
-stock printfex(const format[], GLOBAL_TAG_TYPES:...)
-{
-	static
-		sFormat[1024],
-		sTemp[1024];
-	// "Format_Standardise" modifies "input" repeatedly.
-	strcpy(sFormat, format);
-	Format_Standardise(sFormat, sTemp);
-	new
-		n = (numargs() - 1) * 4;
-	if (n)
-	{
-		// Push all passed parameters.
-		new
-			arg_start,
-			arg_end;
-		// Load the real address of the last static parameter.  Do this by
-		// loading the address of the parameter and then adding the value of
-		// [FRM] (frame pointer).
-		#emit CONST.alt                 format
-		#emit LCTRL                     5
-		#emit ADD
-		#emit STOR.S.pri                arg_start
-		// Load the address of the last variable parameter.  Do this by adding
-		// the number of variables on the value just loaded.
-		#emit LOAD.S.alt                n
-		#emit ADD
-		#emit STOR.S.pri                arg_end
-		new
-			arg_cur = arg_end;
-		do
-		{
-			#emit LOAD.S.pri            arg_cur
-			#emit LOAD.I
-			#emit PUSH.pri
-			arg_cur -= 4;
-		}
-		while (arg_cur > arg_start);
-		Format_Render(INVALID_PLAYER_ID, NO_LANGUAGE, sFormat, sizeof (sFormat) - 1, 0, e_FORMAT_FLAGS_NONE, sTemp, n / 4);
-		#emit LCTRL                     4
-		#emit LOAD.S.alt                n
-		#emit ADD
-		#emit SCTRL                     4
-	}
-	else
-	{
-		Format_Render(INVALID_PLAYER_ID, NO_LANGUAGE, sFormat, sizeof (sFormat) - 1, 0, e_FORMAT_FLAGS_NONE, sTemp, 0);
-	}
-	print(sFormat);
-}
+#if !defined _INC_y_text
+	#tryinclude "YSI_Players\y_text\y_text_entry"
+#endif
+#if !defined _INC_y_text
+	#tryinclude "YSI\YSI_Players\y_text\y_text_entry"
+#endif
+#if !defined _INC_y_text
+	#tryinclude <YSI_Players\y_text\y_text_entry>
+#endif
+#if !defined _INC_y_text
+	#tryinclude <YSI\YSI_Players\y_text\y_text_entry>
+#endif
+#if !defined _INC_y_text
+	#error Could not find y_text
+#endif
 

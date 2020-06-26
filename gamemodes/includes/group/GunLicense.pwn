@@ -1,4 +1,4 @@
-#include <YSI\y_hooks> 
+#include <YSI_Coding\y_hooks> 
 
 /*CMD:gunlicenseapply(playerid, params[]) {
 
@@ -19,7 +19,6 @@
 	return 1;
 }*/
 
-CMD:issuegl(playerid, params[]) return cmd_issuegunlicense(playerid, params);
 CMD:issuegunlicense(playerid, params[])
 {
 	if((0 <= PlayerInfo[playerid][pLeader] < MAX_GROUPS) && arrGroupData[PlayerInfo[playerid][pLeader]][g_iGroupType] == GROUP_TYPE_GOV)
@@ -44,6 +43,7 @@ CMD:issuegunlicense(playerid, params[])
 	else SendClientMessageEx(playerid, COLOR_WHITE, "You are not authorized to use this command!");
 	return 1;
 }
+alias:issuegunlicense("issuegl")
 
 hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 

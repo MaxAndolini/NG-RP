@@ -69,8 +69,6 @@ Optional plugins:
 	Incognito - Streamer.
 	Me - sscanf2, fixes2, Whirlpool.
 */
-#if defined _inc_y_dialog
-	#undef _inc_y_dialog
-#endif
 
-#include "..\YSI_Visual\y_dialog"
+#error Use `#include <YSI_Visual\y_dialog>`
+

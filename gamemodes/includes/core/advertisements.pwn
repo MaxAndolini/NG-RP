@@ -35,7 +35,7 @@
 	* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 stock ShowAdMuteFine(playerid)
 {
@@ -147,7 +147,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 						return ShowPlayerDialogEx(playerid, DIALOG_ADCATEGORYPLACEP, DIALOG_STYLE_LIST, "Select a category", "Real Estate\nAutomobile\nBuying\nSelling\nMiscellaneous", "Select", "Cancel");
 				}
 			}
-			case 4: cmd_houselistings(playerid, "");
+			case 4: PC_EmulateCommand(playerid, "/houselistings");
 		}
 		case DIALOG_ADCATEGORYPLACE: {
 			if(response) switch(listitem) {
@@ -335,10 +335,10 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 		}
 		case DIALOG_ADFINAL: {
 			if(response) {
-				new params[32];
-				format(params, sizeof(params), "%d", GetPVarInt(playerid, "advertContact"));
+				new params[48];
+				format(params, sizeof(params), "/call %d", GetPVarInt(playerid, "advertContact"));
 				DeletePVar(playerid, "adverContact");
-				return cmd_call(playerid, params);
+				return PC_EmulateCommand(playerid, params);
 			}
 		}		
 		case DIALOG_ADLIST: {
@@ -373,10 +373,6 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 	return 0;
 }
 
-CMD:ads(playerid, params[]) {
-	return cmd_advertisements(playerid, params);
-}
-
 CMD:advertisements(playerid, params[]) {
 	if(gPlayerLogged{playerid} == 0) {
 		SendClientMessageEx(playerid, COLOR_GREY, "You're not logged in.");
@@ -393,6 +389,7 @@ CMD:advertisements(playerid, params[]) {
 	else ShowMainAdvertMenu(playerid);
 	return 1;
 }
+alias:advertisements("ads")
 
 CMD:adunmute(playerid, params[])
 {

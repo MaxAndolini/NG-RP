@@ -1,7 +1,7 @@
 #include <a_samp>
-#include <YSI\y_iterate>
+#include <YSI_Data\y_iterate>
 #include <streamer>
-#include <zcmd>
+#include <Pawn.CMD>
 
 new gocarts[5];
 new musicarea;

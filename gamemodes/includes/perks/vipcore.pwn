@@ -83,7 +83,7 @@ stock GetVIPRankName(i)
 	return string;
 }
 
-stock SendVIPMessage(color, string[])
+stock SendVIPMessage(color, const string[])
 {
 	foreach(new i : Player)
 	{
@@ -1187,14 +1187,14 @@ CMD:vipplate(playerid, params[])
 			{
 				PlayerVehicleInfo[playerid][d][pvPlate] = 0;
 				SendClientMessageEx(playerid, COLOR_YELLOW, "Your vehicle will now appear with the default plate, parking your vehicle momentarily...");
-				cmd_park(playerid, params); //Save a few lines of code here xD
+				PC_EmulateCommand(playerid, "/park"); //Save a few lines of code here xD
 			}
 			else if(strcmp(params, "use", true) == 0)
 			{
 				format(string, sizeof(string), "{800080}PVIP");
 				format(PlayerVehicleInfo[playerid][d][pvPlate], 32, "%s", string);
 				SendClientMessageEx(playerid, COLOR_YELLOW, "Your vehicle will now appear with the PVIP Plate, parking your vehicle momentarily...");
-				cmd_park(playerid, params); //Save a few lines of code here xD
+				PC_EmulateCommand(playerid, "/park"); //Save a few lines of code here xD
 			}
 			else
 			{

@@ -34,7 +34,7 @@
 	* NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 	* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 #define DMV_MAIN 10026
 #define DMVRELEASE_TARGET 10027
@@ -340,11 +340,6 @@ CMD:licenses(playerid, params[])
 	return 1;
 }
 
-CMD:showid(playerid, params[])
-{
-	return cmd_showlicenses(playerid, params);
-}
-
 CMD:showlicenses(playerid, params[])
 {
 	new string[128], giveplayerid;
@@ -403,6 +398,7 @@ CMD:showlicenses(playerid, params[])
 	}
 	return 1;
 }
+alias:showlicenses("showid")
 
 ShowDMVMenu(playerid, menu = 0, iTargetID = INVALID_PLAYER_ID) {
 

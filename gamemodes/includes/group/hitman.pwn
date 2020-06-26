@@ -35,7 +35,7 @@
     * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 // The new proposed Hitman Agency system. Approved by Rizi & Chapman on 07/08/16.
 // Relevant Documentation: https://docs.google.com/document/d/1rJzSK7MiNKJQOVSdhtc6RXgUr_X5ixkMYaG6nDvgTFc/
@@ -205,10 +205,6 @@ CMD:hg(playerid, params[])
 	return 1;
 }
 
-CMD:plantcarbomb(playerid, params[]) {
-	return cmd_pcb(playerid, params);
-}
-
 CMD:pcb(playerid, params[])
 {
 	if (IsAHitman(playerid))
@@ -259,6 +255,7 @@ CMD:pcb(playerid, params[])
 	}
 	return 1;
 }
+alias:pcb("plantcarbomb")
 
 CMD:gotohmasafe(playerid, params[])
 {
@@ -1549,10 +1546,6 @@ CMD:resetheadshot(playerid, params[])
     return 1;
 }
 
-CMD:plantbomb(playerid, params[]) {
-    return cmd_pb(playerid, params);
-}
-
 CMD:pb(playerid, params[])
 {
     if (IsAHitman(playerid))
@@ -1591,6 +1584,7 @@ CMD:pb(playerid, params[])
     }
     return 1;
 }
+alias:pb("plantbomb")
 
 CMD:order(playerid, params[])
 {
@@ -1616,10 +1610,6 @@ CMD:order(playerid, params[])
 		return 1;
 	}
 	return 1;
-}
-
-CMD:pub(playerid, params[]) {
-    return cmd_pickupbomb(playerid, params);
 }
 
 CMD:pickupbomb(playerid, params[])
@@ -1658,6 +1648,7 @@ CMD:pickupbomb(playerid, params[])
     }
     return 1;
 }
+alias:pickupbomb("pub")
 
 CMD:myc4(playerid, params[])
 {

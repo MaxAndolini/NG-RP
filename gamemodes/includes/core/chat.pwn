@@ -35,7 +35,7 @@
 	* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 
 hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
@@ -114,7 +114,7 @@ stock SendClientMessageEx(playerid, color, string[])
 */
 
 // Test with SendClientMessageEx
-stock SendClientMessageEx(playerid, color, msg[], va_args<>)
+stock SendClientMessageEx(playerid, color, const msg[], va_args<>)
 {
         new string[128];
         if(InsideMainMenu{playerid} == 1 || InsideTut{playerid} == 1 || ActiveChatbox[playerid] == 0)
@@ -125,7 +125,7 @@ stock SendClientMessageEx(playerid, color, msg[], va_args<>)
         }
         return 1;
 }
-stock SendClientMessageToAllEx(color, string[])
+stock SendClientMessageToAllEx(color, const string[])
 {
 	foreach(new i : Player)
 	{
@@ -155,7 +155,7 @@ CMD:togchatbox2(playerid, params[]) {
 }
 */
 
-stock SendClientMessageWrap(playerid, color, width, string[])
+stock SendClientMessageWrap(playerid, color, width, const string[])
 {
 	if(strlen(string) > width)
 	{
@@ -178,7 +178,7 @@ stock ClearChatbox(playerid)
 	return 1;
 }
 
-stock OOCOff(color,string[])
+stock OOCOff(color, const string[])
 {
 	foreach(new i : Player)
 	{
@@ -226,10 +226,6 @@ CMD:me(playerid, params[])
 	if(PlayerInfo[playerid][pIsolated] != 0) ProxDetector(5.0, playerid, string, COLOR_PURPLE, COLOR_PURPLE, COLOR_PURPLE, COLOR_PURPLE, COLOR_PURPLE);
 	else ProxDetector(30.0, playerid, string, COLOR_PURPLE, COLOR_PURPLE, COLOR_PURPLE, COLOR_PURPLE, COLOR_PURPLE);
 	return 1;
-}
-
-CMD:whisper(playerid, params[]) {
-	return cmd_w(playerid, params);
 }
 
 CMD:w(playerid, params[])
@@ -298,6 +294,7 @@ CMD:w(playerid, params[])
 	}
 	return 1;
 }
+alias:w("whisper")
 
 CMD:do(playerid, params[])
 {
@@ -381,10 +378,6 @@ CMD:o(playerid, params[])
 	return SendClientMessageEx(playerid, COLOR_GRAD1, "/o has been renamed to /ooc to prevent typos.");
 }
 
-CMD:shout(playerid, params[]) {
-	return cmd_s(playerid, params);
-}
-
 CMD:s(playerid, params[])
 {
 	if(PlayerInfo[playerid][pJailTime] && strfind(PlayerInfo[playerid][pPrisonReason], "[OOC]", true) != -1) return SendClientMessageEx(playerid, COLOR_GREY, "OOC prisoners are restricted to only speak in /b");
@@ -404,10 +397,7 @@ CMD:s(playerid, params[])
 	else ProxDetector(30.0, playerid, string,COLOR_WHITE,COLOR_WHITE,COLOR_WHITE,COLOR_FADE1,COLOR_FADE2, 1);
 	return 1;
 }
-
-CMD:low(playerid, params[]) {
-	return cmd_l(playerid, params);
-}
+alias:s("shout")
 
 CMD:l(playerid, params[])
 {
@@ -426,6 +416,7 @@ CMD:l(playerid, params[])
 	SetPlayerChatBubble(playerid,string,COLOR_WHITE,5.0,5000);
 	return 1;
 }
+alias:l("low")
 
 CMD:b(playerid, params[])
 {
@@ -682,7 +673,7 @@ CMD:setfreq(playerid, params[])
 }
 
 
-ChatTrafficProcess(playerid, color, szString[], chattype) {
+ChatTrafficProcess(playerid, color, const szString[], chattype) {
 
 	if(PlayerInfo[playerid][pToggledChats][chattype] == 0) SendClientMessageEx(playerid, color, szString);
 	return 1;
@@ -817,8 +808,8 @@ CMD:resetexamine(playerid, params[])
 	return SendClientMessageEx(playerid, COLOR_GREY, "You have successfully reset their examine description.");
 }
 
-CMD:se(playerid, params[]) return cmd_setexamine(playerid, params);
 CMD:setexamine(playerid, params[]) return ShowPlayerDialogEx(playerid, DIALOG_SETEXAMINE, DIALOG_STYLE_INPUT, "Examine Description", "Please enter a description of yourself.\nExample: appears to be a white male, 6' 3 ..etc", "Set", "Cancel");
+alias:setexamine("se")
 
 CMD:examine(playerid, params[])
 {

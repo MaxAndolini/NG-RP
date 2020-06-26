@@ -1,8 +1,3 @@
-#if defined _INC_y_jaggedarray
-	#endinput
-#endif
-#define _INC_y_jaggedarray
-
 /**
  * <library name="y_jaggedarray">
  * <section>
@@ -86,14 +81,22 @@ Optional plugins:
 	Me - sscanf2, fixes2, Whirlpool.
 */
 
-#include "..\YSI_Internal\y_version"
-#include "..\YSI_Core\y_utils"
-#include "..\YSI_Core\y_debug"
-
-#include "y_jaggedarray/impl"
-
-#if defined YSI_TESTS
-	#include "..\YSI_Core\y_testing"
-	#include "y_jaggedarray/tests"
+#if !defined _INC_y_jaggedarray
+	#tryinclude "y_jaggedarray\y_jaggedarray_entry"
+#endif
+#if !defined _INC_y_jaggedarray
+	#tryinclude "YSI_Data\y_jaggedarray\y_jaggedarray_entry"
+#endif
+#if !defined _INC_y_jaggedarray
+	#tryinclude "YSI\YSI_Data\y_jaggedarray\y_jaggedarray_entry"
+#endif
+#if !defined _INC_y_jaggedarray
+	#tryinclude <YSI_Data\y_jaggedarray\y_jaggedarray_entry>
+#endif
+#if !defined _INC_y_jaggedarray
+	#tryinclude <YSI\YSI_Data\y_jaggedarray\y_jaggedarray_entry>
+#endif
+#if !defined _INC_y_jaggedarray
+	#error Could not find y_jaggedarray
 #endif
 

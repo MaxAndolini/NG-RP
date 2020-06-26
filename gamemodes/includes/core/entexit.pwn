@@ -1,4 +1,4 @@
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 /* 	Jingles:
 
@@ -588,7 +588,7 @@ House_Exit(playerid, i) {
 
 	if(GetPVarType(playerid, "StreamPrep")) return SendClientMessageEx(playerid, COLOR_WHITE, "You can't do this right now. Wait for streaming to finish.");
 	if(gettime() < DoorTimer[playerid]) return SendClientMessageEx(playerid, COLOR_GREY, "You must wait %d seconds before being able to exit this door.", DoorTimer[playerid]-gettime());
-	if(GetPVarType(playerid, PVAR_FURNITURE)) cmd_furniture(playerid, "");
+	if(GetPVarType(playerid, PVAR_FURNITURE)) PC_EmulateCommand(playerid, "/furniture");
 	House_VistorCheck(i);
 	SetPlayerInterior(playerid,0);
 	PlayerInfo[playerid][pInt] = 0;

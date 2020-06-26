@@ -108,7 +108,7 @@ public EndAuction(auction)
 
 			new string[128];
 		    format( string, sizeof( string ), "{AA3333}AdmWarning{FFFF00}: %s has won the auction for %s with the amount of $%d", Auctions[auction][Wining], Auctions[auction][BiddingFor], Auctions[auction][Bid]);
-			ABroadCast( COLOR_YELLOW, string, 2 );
+			ABroadCast(COLOR_YELLOW, string, 2);
 
 			format(string, sizeof(string), "%s(%d) has won the auction for item %s(%i) and has paid $%d", Auctions[auction][Wining], Auctions[auction][Bidder], Auctions[auction][BiddingFor], auction, Auctions[auction][Bid]);
 			Log("logs/auction.log", string);

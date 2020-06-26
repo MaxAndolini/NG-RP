@@ -34,7 +34,7 @@
  
  //--------------------------------[ INITIATE/EXIT ]---------------------------
 
-stock SendDiscordMessage(channel, message[])
+stock SendDiscordMessage(channel, const message[])
 {
     #if defined DISCORD
 	if(betaserver == 0) {

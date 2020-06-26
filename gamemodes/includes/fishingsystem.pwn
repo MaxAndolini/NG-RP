@@ -37,7 +37,7 @@
 
 // WINTERFIELD: VERSION .278 FISHING SYSTEM
 
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 hook OnPlayerEnterCheckpoint(playerid) {
 
@@ -712,7 +712,7 @@ CMD:sellfish(playerid, params[]) {
 		}
 		else
 		{
-            if(CheckPointCheck(playerid)) cmd_killcheckpoint(playerid, params);
+            if(CheckPointCheck(playerid)) PC_EmulateCommand(playerid, "/killcheckpoint");
 
 		    GameTextForPlayer(playerid, "~g~CHECKPOINT ~r~SET", 5000, 4);
             SetPVarInt(playerid, "pSellingFish", 1);

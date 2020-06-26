@@ -35,7 +35,7 @@
 	* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 CMD:gate(playerid, params[])
 {
@@ -111,11 +111,6 @@ CMD:gsave(playerid, params[])
     return 1;
 }
 
-CMD:hgate(playerid, params[])
-{
-	return cmd_movegate(playerid, params);
-}
-
 CMD:movegate(playerid, params[])
 {
 	if(isnull(params)) return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /movegate [pass]");
@@ -154,6 +149,7 @@ CMD:movegate(playerid, params[])
 	}
 	return 1;
 }
+alias:movegate("hgate")
 
 CMD:admingatepw(playerid, params[])
 {

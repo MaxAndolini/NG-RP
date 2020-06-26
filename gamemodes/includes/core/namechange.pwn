@@ -45,9 +45,7 @@ stock IsAtNameChange(playerid)
 	return 0;
 }
 
-/*CMD:nchange(playerid, params[]) return cmd_namechanges(playerid, params);
-
-CMD:namechanges(playerid, params[])
+/*CMD:namechanges(playerid, params[])
 {
 	if(PlayerInfo[playerid][pAdmin] >= 3)
  	{
@@ -69,7 +67,8 @@ CMD:namechanges(playerid, params[])
 		SendClientMessageEx(playerid, COLOR_GREEN, "_____________________________________________________");
 	}
 	return 1;
-} */
+} 
+alias:namechanges("nchange")*/
 
 /*CMD:changename(playerid, params[])
 {

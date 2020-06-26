@@ -6,7 +6,7 @@ GangTag_Load();
 	Gangtag System by Jingles
 */
 
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 /* 
 Personally feel this is too much.
@@ -98,7 +98,7 @@ GangTag_FinishTag(playerid, fontid)
 	}*/
 }
 
-GangTag_Save(iPlayerID, i, text[], fontid)
+GangTag_Save(iPlayerID, i, const text[], fontid)
 {
 	SetDynamicObjectMaterialText(arrGangTags[i][gt_iObjectID], 0, text, OBJECT_MATERIAL_SIZE_512x512, szFonts[fontid], 1000 / strlen(text), 1, GangTag_IntColor(arrGroupData[PlayerInfo[iPlayerID][pMember]][g_hDutyColour]), 0, 1);
 	mysql_format(MainPipeline, szMiscArray, sizeof(szMiscArray), "UPDATE `gangtags` SET `gangid` = '%d', `text` = '%e', `fontid` = '%d', `pdbid` = '%d', `pname` = '%s', `color` = '%d' WHERE `id` = '%d'", PlayerInfo[iPlayerID][pMember], text, fontid, GetPlayerSQLId(iPlayerID), GetPlayerNameExt(iPlayerID), arrGroupData[PlayerInfo[iPlayerID][pMember]][g_hDutyColour], i);
@@ -226,7 +226,7 @@ public GangTag_OnAdmSave(iPlayerID, i)
 }
 
 
-GangTag_AdmProcess(i, Float:X, Float:Y, Float:Z, Float:RX, Float:RY, Float:RZ, text[], fontid, color)
+GangTag_AdmProcess(i, Float:X, Float:Y, Float:Z, Float:RX, Float:RY, Float:RZ, const text[], fontid, color)
 {
 	Iter_Add(GangTags, i);
 	if(IsValidDynamicObject(arrGangTags[i][gt_iObjectID])) DestroyDynamicObject(arrGangTags[i][gt_iObjectID]);

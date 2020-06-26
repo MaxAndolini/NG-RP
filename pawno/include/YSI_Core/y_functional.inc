@@ -1,20 +1,4 @@
-#if defined _INC_y_functional
-	#endinput
-#endif
-#define _INC_y_functional
-
-/**
- * <library name="y_functional">
- * <section>
- *  Description
- * </section>
- *  Lambda functions and functional program functions - map, fold, etc.
- * <section>
- *  Version
- * </section>
- *  1.0
- * </library>
- *//** *//*
+/*
 Legal:
 	Version: MPL 1.1
 	
@@ -86,17 +70,5 @@ Optional plugins:
 	Me - sscanf2, fixes2, Whirlpool.
 */
 
-#include "y_utils"
-#include y_debug
-#include "..\YSI_Storage\y_amx"
-#include "..\YSI_Coding\y_inline"
-
-#include "..\YSI_Internal\y_thirdpartyinclude"
-#include "y_functional/impl"
-#include "y_functional/rewrite"
-
-#if defined YSI_TESTS
-	#include "..\YSI_Core\y_testing"
-	#include "y_functional/tests"
-#endif
+#error Please use <YSI_Coding\y_functional>
 

@@ -69,8 +69,6 @@ Optional plugins:
 	Incognito - Streamer.
 	Me - sscanf2, fixes2, Whirlpool.
 */
-#if defined _inc_y_bit
-	#undef _inc_y_bit
-#endif
 
-#include "..\YSI_Data\y_bit"
+#error Use `#include <YSI_Data\y_bit>`
+

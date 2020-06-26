@@ -1,8 +1,7 @@
 // Kareemtastics Change
 #include <a_samp>
-#include <foreach>
-
-#define dcmd(%1,%2,%3) if ((strcmp((%3)[1], #%1, true, (%2)) == 0) && ((((%3)[(%2) + 1] == 0) && (dcmd_%1(playerid, "")))||(((%3)[(%2) + 1] == 32) && (dcmd_%1(playerid, (%3)[(%2) + 2])))))return 1
+#include <YSI_Data\y_iterate>
+#include <Pawn.CMD>
 
 forward IsPlayerInInvalidNosVehicle(playerid,vehicleid);
 
@@ -16,7 +15,6 @@ public OnFilterScriptInit()
 
 public OnPlayerCommandText(playerid, cmdtext[])
 {
-	dcmd(crank, 5, cmdtext);
 	return 0;
 }
 
@@ -28,9 +26,8 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 	}
 }
 
-dcmd_crank(playerid, params[])
+CMD:crank(playerid, params[])
 {
-	#pragma unused params
 	if(IsPlayerInInvalidNosVehicle(playerid, GetPlayerVehicleID(playerid))==1){SendClientMessage(playerid,0xAAAAAAAA, "You can't crank this.");return 1;}
 	AddVehicleComponent(GetPlayerVehicleID(playerid),1087);
 	AddVehicleComponent(GetPlayerVehicleID(playerid),1075);
@@ -63,7 +60,7 @@ public IsPlayerInInvalidNosVehicle(playerid,vehicleid)
 
 public CrankTick()
 {
-	foreach(Player, i)
+	foreach(new i : Player)
 	{
 		if(!cranked[i]) continue;
 		{

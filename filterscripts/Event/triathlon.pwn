@@ -1,7 +1,7 @@
 #include <a_samp>
-#include <YSI\y_iterate>
 #include <streamer>
-#include <zcmd>
+#include <YSI_Data\y_iterate>
+#include <Pawn.CMD>
 
 #define COLOR_GREY 0xAFAFAFAA
 #define COLOR_WHITE 0xFFFFFFAA

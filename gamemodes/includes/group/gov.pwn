@@ -99,7 +99,7 @@ CMD:taxwithdraw(playerid, params[])
 			format( string, sizeof( string ), "You have withdrawn $%s from the vault.", number_format(amount) );
 			SendClientMessageEx( playerid, COLOR_WHITE, string );
 			format(string,sizeof(string),"{AA3333}AdmWarning{FFFF00}: %s has withdrawn $%s of the SA tax money from the vault, reason: %s.",GetPlayerNameEx(playerid),number_format(amount),reason);
-			ABroadCast( COLOR_YELLOW, string, 2);
+			ABroadCast(COLOR_YELLOW, string, 2);
 			format(string,sizeof(string),"AdmWarning: %s(%d) has withdrawn $%s of the SA tax money from the vault, reason: %s.",GetPlayerNameEx(playerid), GetPlayerSQLId(playerid), number_format(amount),reason);
 			Log("logs/rpspecial.log", string);
 			format(string,sizeof(string),"%s has withdrawn $%s of the SA tax money from the vault, reason: %s.",GetPlayerNameEx(playerid), number_format(amount),reason);
@@ -133,7 +133,7 @@ CMD:taxwithdraw(playerid, params[])
 			format( string, sizeof( string ), "You have withdrawn $%s from the vault.", number_format(amount) );
 			SendClientMessageEx( playerid, COLOR_WHITE, string );
 			format(string,sizeof(string),"{AA3333}AdmWarning{FFFF00}: %s has withdrawn $%s of the NE tax money from the vault, reason: %s.",GetPlayerNameEx(playerid),number_format(amount),reason);
-			ABroadCast( COLOR_YELLOW, string, 2);
+			ABroadCast(COLOR_YELLOW, string, 2);
 			format(string,sizeof(string),"AdmWarning: %s(%d) has withdrawn $%s of the NE tax money from the vault, reason: %s.",GetPlayerNameEx(playerid), GetPlayerSQLId(playerid), number_format(amount),reason);
 			Log("logs/rpspecial.log", string);
 		}

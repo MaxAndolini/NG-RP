@@ -1,4 +1,4 @@
-ini_GetInt(szParse[], szValueName[], &iValue) {
+ini_GetInt(const szParse[], const szValueName[], &iValue) {
 
 	new
 		iPos = strfind(szParse, "=", false);
@@ -10,7 +10,7 @@ ini_GetInt(szParse[], szValueName[], &iValue) {
 	return 0;
 }
 
-/*ini_GetFloat(szParse[], szValueName[], & Float: iValue) {
+/*ini_GetFloat(const szParse[], const szValueName[], & Float: iValue) {
 
 	new
 		iPos = strfind(szParse, "=", false);
@@ -22,7 +22,7 @@ ini_GetInt(szParse[], szValueName[], &iValue) {
 	return 0;
 }
 
-ini_GetString(szParse[], szValueName[], szDest[], iLength = sizeof(szDest)) {
+ini_GetString(const szParse[], const szValueName[], szDest[], iLength = sizeof(szDest)) {
 
 	new
 		iPos = strfind(szParse, "=", false);
@@ -34,7 +34,7 @@ ini_GetString(szParse[], szValueName[], szDest[], iLength = sizeof(szDest)) {
 	return 0;
 }*/
 
-ini_GetValue(szParse[], szValueName[], szDest[], iDestLen) { // brian!!1
+ini_GetValue(szParse[], const szValueName[], szDest[], iDestLen) { // brian!!1
 
 	new
 		iPos = strfind(szParse, "=", false),
@@ -51,7 +51,7 @@ ini_GetValue(szParse[], szValueName[], szDest[], iDestLen) { // brian!!1
 	return 0;
 }
 
-Log(sz_fileName[], sz_input[]) {
+Log(const sz_fileName[], const sz_input[]) {
 
 	new
 		sz_logEntry[256],

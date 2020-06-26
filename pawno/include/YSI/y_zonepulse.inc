@@ -69,8 +69,6 @@ Optional plugins:
 	Incognito - Streamer.
 	Me - sscanf2, fixes2, Whirlpool.
 */
-#if defined _inc_y_zonepulse
-	#undef _inc_y_zonepulse
-#endif
 
-#include "..\YSI_Visual\y_zonepulse"
+#error Use `#include <YSI_Visual\y_zonepulse>`
+

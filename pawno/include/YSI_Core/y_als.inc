@@ -1,4 +1,4 @@
-/*                                                                                              *
+/*                                                                                             *
  *                                                                                             *
  *     _____ ______ ______   ____  ______ _      ______          __  ______ ____  _____        *
  *    / ____|  ____|  ____| |  _ \|  ____| |    / __ \ \        / / |  ____/ __ \|  __ \       *
@@ -88,40 +88,25 @@ Optional plugins:
 	Incognito - Streamer.
 	Me - sscanf2, fixes2, Whirlpool.
 */
-#if !defined _INC_y_als
-	#include "..\YSI_Internal\y_version"
-	#include "y_utils"
-	#include "..\YSI_Server\y_scriptinit"
-	#include "..\YSI_Data\y_bit"
-	#include "..\YSI_Internal\y_shortfunc"
-	
-	#include "y_als/impl"
-	
-	#if defined YSI_TESTS
-		#include "..\YSI_Coding\y_va"
-		
-		#include "y_testing"
-		#include "y_als/tests"
-	#endif
-#endif
 
-// Allow multiple inclusions.
-#if defined _inc_y_als
-	#undef _inc_y_als
+#if !defined _INC_y_utils
+	#tryinclude "y_core\y_core_entry"
 #endif
-
-#if !defined ALS_MAKE
-	#if defined ALS_PREFIX
-		#error Use ALS_MAKE not ALS_PREFIX
-	#endif
-	//&&&
-	#define ALS_MAKE<%0...%1> %0Mode_%1
+#if !defined _INC_y_core
+	#tryinclude "YSI_Core\y_core\y_core_entry"
 #endif
-
-#if defined _INC_y_als
-	#endinput
+#if !defined _INC_y_core
+	#tryinclude "YSI\YSI_Core\y_core\y_core_entry"
 #endif
-#define _INC_y_als
+#if !defined _INC_y_core
+	#tryinclude <YSI_Core\y_core\y_core_entry>
+#endif
+#if !defined _INC_y_core
+	#tryinclude <YSI\YSI_Core\y_core\y_core_entry>
+#endif
+#if !defined _INC_y_core
+	#error Could not find y_utils
+#endif
 
 /**
  * <library name="y_als">
@@ -136,4 +121,17 @@ Optional plugins:
  *  1.0
  * </library>
  *//** */
+
+// Allow multiple inclusions.
+#if defined _inc_y_als
+	#undef _inc_y_als
+#endif
+
+#if !defined ALS_MAKE
+	#if defined ALS_PREFIX
+		#error Use ALS_MAKE not ALS_PREFIX
+	#endif
+	//&&&
+	#define ALS_MAKE<%0...%1> %0Mode_%1
+#endif
 

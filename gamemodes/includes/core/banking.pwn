@@ -582,8 +582,8 @@ PayDay(i) {
 	return 1;
 }
 
-forward GiveHtoy(giveplayerid, toyid, name[]);
-public GiveHtoy(giveplayerid, toyid, name[]) {
+forward GiveHtoy(giveplayerid, toyid, const name[]);
+public GiveHtoy(giveplayerid, toyid, const name[]) {
 	new icount = GetPlayerToySlots(giveplayerid), success = 0, string[128];
 	for(new v = 0; v < icount; v++)
 	{

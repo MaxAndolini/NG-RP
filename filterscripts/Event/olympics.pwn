@@ -40,9 +40,9 @@
 
 #include <a_samp>
 #include <sscanf2>
-#include <YSI\y_iterate>
 #include <streamer>
-#include <zcmd>
+#include <YSI_Data\y_iterate>
+#include <Pawn.CMD>
 
 /* Configuration */
 enum playerEnum
@@ -550,7 +550,7 @@ public EndOlympics()
 	{
 		if(pEnum[i][startPos][0] != 0.0 && pEnum[i][startPos][1] != 0.0 && pEnum[i][startPos][2] != 0.0)
 		{
-			cmd_exitolympics(i, " ");
+			PC_EmulateCommand(i, "/exitolympics");
 		}
 	}
 	for(new i = 0; i < 16; i++)

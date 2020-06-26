@@ -323,7 +323,8 @@ public OnPlayerLeaveDynamicArea(playerid, areaid)
 public OnPlayerUpdate(playerid)
 {
 	// Do not put heavy cpu checks in here. Use the 1 second timer.
-	new Float:health = GetHealth(playerid, health);
+	new Float:health;
+	GetHealth(playerid, health);
 	if(health <= 0)
 	{
 		OnPlayerDeath(playerid, INVALID_PLAYER_ID, 0);
@@ -2233,12 +2234,12 @@ public OnPlayerDisconnect(playerid, reason)
 		if(EventKernel[EventRequest] == playerid)
 		{
 			EventKernel[EventRequest] = INVALID_PLAYER_ID;
-			ABroadCast( COLOR_YELLOW, "{AA3333}AdmWarning{FFFF00}: The player that was requesting an event has disconnected/crashed.", 4 );
+			ABroadCast(COLOR_YELLOW, "{AA3333}AdmWarning{FFFF00}: The player that was requesting an event has disconnected/crashed.", 4);
 		}
 		if(EventKernel[EventCreator] == playerid)
 		{
 			EventKernel[EventCreator] = INVALID_PLAYER_ID;
-			ABroadCast( COLOR_YELLOW, "{AA3333}AdmWarning{FFFF00}: The player that was creating an event has disconnected/crashed.", 4 );
+			ABroadCast(COLOR_YELLOW, "{AA3333}AdmWarning{FFFF00}: The player that was creating an event has disconnected/crashed.", 4);
 		}
 		for(new x; x < sizeof(EventKernel[EventStaff]); x++) {
 			if(EventKernel[EventStaff][x] == playerid) {
@@ -3220,7 +3221,7 @@ public OnPlayerEnterCheckpoint(playerid)
 		{
   			new string[128];
 			format(string, sizeof(string), "{AA3333}AdmWarning{FFFF00}: %s (ID %d) is possibly teleport truck/boat running.", GetPlayerNameEx(playerid), playerid);
-  			ABroadCast( COLOR_YELLOW, string, 2 );
+  			ABroadCast(COLOR_YELLOW, string, 2);
     		// format(string, sizeof(string), "%s (ID %d) is possibly teleport truckrunning.", GetPlayerNameEx(playerid), playerid);
 	    	// Log("logs/hack.log", string);
 		}
@@ -3297,7 +3298,7 @@ public OnPlayerEnterCheckpoint(playerid)
 		{
   			new string[128];
 			format(string, sizeof(string), "{AA3333}AdmWarning{FFFF00}: %s (ID %d) is possibly teleport truck/boat running.", GetPlayerNameEx(playerid), playerid);
-  			ABroadCast( COLOR_YELLOW, string, 2 );
+  			ABroadCast(COLOR_YELLOW, string, 2);
     		// format(string, sizeof(string), "%s (ID %d) is possibly teleport truckrunning.", GetPlayerNameEx(playerid), playerid);
 	    	// Log("logs/hack.log", string);
 		}
@@ -3352,7 +3353,7 @@ public OnPlayerEnterCheckpoint(playerid)
 		if (GetPVarInt(playerid, "tpPizzaTimer") != 0)
 		{
 			format(string, sizeof(string), "{AA3333}AdmWarning{FFFF00}: %s (ID %d) is possibly teleport pizzarunning.", GetPlayerNameEx(playerid), playerid);
-  			ABroadCast( COLOR_YELLOW, string, 2 );
+  			ABroadCast(COLOR_YELLOW, string, 2);
     		// format(string, sizeof(string), "%s (ID %d) is possibly teleport pizzarunning.", GetPlayerNameEx(playerid), playerid);
 	    	// Log("logs/hack.log", string);
 		}
@@ -3463,7 +3464,7 @@ public OnPlayerEnterCheckpoint(playerid)
 				{
   					new string[128];
 					format(string, sizeof(string), "{AA3333}AdmWarning{FFFF00}: %s (ID %d) is possibly teleport truck/boat running.", GetPlayerNameEx(playerid), playerid);
-  					ABroadCast( COLOR_YELLOW, string, 2 );
+  					ABroadCast(COLOR_YELLOW, string, 2);
     				// format(string, sizeof(string), "%s (ID %d) is possibly teleport truckrunning.", GetPlayerNameEx(playerid), playerid);
 	    			// Log("logs/hack.log", string);
 				}
@@ -4878,15 +4879,17 @@ public OnPlayerRequestClass(playerid, classid)
 	return 1;
 }
 
-public OnPlayerCommandPerformed(playerid, cmdtext[], success)
+public OnPlayerCommandPerformed(playerid, cmd[], params[], result, flags)
 {
 	// if(!success) SendClientMessageEx(playerid, COLOR_WHITE, "SERVER: Unknown command. Please use /help to list all available commands.");
-	if(!success) {
-
+    if (result == -1)
+    {
 		TextDrawShowForPlayer(playerid, TD_ServerError);
 		defer HideServerError(playerid);
-	}
-	return 1;
+        return 0;
+    }
+
+    return 1;
 }
 
 timer HideServerError[5000](playerid) {
@@ -4895,7 +4898,7 @@ timer HideServerError[5000](playerid) {
 	return 1;
 }
 
-public OnPlayerCommandReceived(playerid, cmdtext[]) {
+public OnPlayerCommandReceived(playerid, cmd[], params[], flags) {
 
 	if(gPlayerLogged{playerid} != 1) {
 		SendClientMessageEx(playerid, COLOR_RED, "You are not logged in.");
@@ -4912,7 +4915,7 @@ public OnPlayerCommandReceived(playerid, cmdtext[]) {
 	}*/
 
 	playerLastTyped[playerid] = 0;
-	printf("[zcmd] [%s]: %s", GetPlayerNameEx(playerid), (strfind(cmdtext, "/changepass", true) == 0 ? ("/changepass") : cmdtext));
+	printf("[Pawn.CMD] [%s]: %s", GetPlayerNameEx(playerid), (strfind(cmd, "/changepass", true) == 0 ? ("/changepass") : cmd));
 	if(PlayerInfo[playerid][pForcePasswordChange] == 1) return ShowLoginDialogs(playerid, 0), 0;
 	if(PlayerInfo[playerid][pMuted] == 1) {
 		SendClientMessageEx(playerid, COLOR_GREY, "You cannot speak, you have been silenced!");
@@ -4945,26 +4948,26 @@ public OnPlayerCommandReceived(playerid, cmdtext[]) {
 		}
 	}
 
-	if(strfind(cmdtext, "|") != -1 || strfind(cmdtext, "\n") != -1 || strfind(cmdtext, "\r") != -1) {
+	if(strfind(cmd, "|") != -1 || strfind(cmd, "\n") != -1 || strfind(cmd, "\r") != -1) {
 	    SendClientMessageEx(playerid, COLOR_GREY, "You cannot use non-standard characters in commands.");
 		return 0;
 	}
 
-    if (strcmp(GiftCode, "off") != 0 && strfind(cmdtext, "/giftcode") == -1)
+    if (strcmp(GiftCode, "off") != 0 && strfind(cmd, "/giftcode") == -1)
     {
-		if(strfind(cmdtext, GiftCode) != -1)
+		if(strfind(cmd, GiftCode) != -1)
 		{
 		    SendClientMessageEx(playerid, COLOR_GREY, "You can't tell other people the gift code.");
 		    return 0;
 		}
 	}
 
-	if(PlayerInfo[playerid][pAdmin] < 2 && CheckServerAd(cmdtext))
+	if(PlayerInfo[playerid][pAdmin] < 2 && CheckServerAd(cmd))
 	{
 		new string[128];
-		format(string,sizeof(string),"{AA3333}AdmWarning{FFFF00}: %s (ID: %d) may be server advertising: '{AA3333}%s{FFFF00}'.", GetPlayerNameEx(playerid), playerid, cmdtext);
+		format(string,sizeof(string),"{AA3333}AdmWarning{FFFF00}: %s (ID: %d) may be server advertising: '{AA3333}%s{FFFF00}'.", GetPlayerNameEx(playerid), playerid, cmd);
 		ABroadCast(COLOR_YELLOW, string, 2);
-		format(string,sizeof(string),"%s(%d) (IP: %s) may be server advertising: '%s'.", GetPlayerNameEx(playerid), GetPlayerSQLId(playerid), GetPlayerIpEx(playerid), cmdtext);
+		format(string,sizeof(string),"%s(%d) (IP: %s) may be server advertising: '%s'.", GetPlayerNameEx(playerid), GetPlayerSQLId(playerid), GetPlayerIpEx(playerid), cmd);
 		Log("logs/hack.log", string);
 		return 0;
 	}
@@ -4995,7 +4998,7 @@ public OnPlayerText(playerid, text[])
 	new string[128];
 	playerLastTyped[playerid] = 0;
 
-	//if(strcmp("lol", text, true) == 0) return cmd_me(playerid, "laughs out loud."), 0;
+	//if(strcmp("lol", text, true) == 0) return PC_EmulateCommand(playerid, "/me laughs out loud."), 0;
 
 	if(TextSpamUnmute[playerid] != 0)
 	{

@@ -35,7 +35,7 @@
 	* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 
@@ -327,18 +327,11 @@ Calls_Business(playerid) {
 
 CMD:calls(playerid, params[])
 {
-	
 	if(PlayerInfo[playerid][pBusiness] == INVALID_BUSINESS_ID && PlayerInfo[playerid][pMember] == INVALID_GROUP_ID) return SendClientMessageEx(playerid, COLOR_GRAD1, "You cannot use this feature.");
 	SetPVarInt(playerid, "Calls", 1);
 	ShowPlayerDialogEx(playerid, DIALOG_CALLS_MENU, DIALOG_STYLE_LIST, "Landline Calls", "Group\nBusiness", "Select", "Cancel");
 	return 1;
 }
-
-CMD:ac(playerid, params[])
-{
-	return cmd_acceptcall(playerid, params);
-}
-
 
 AcceptCall_Group(playerid, callid) {
 
@@ -603,11 +596,7 @@ CMD:acceptcall(playerid, params[])
 	ShowPlayerDialogEx(playerid, DIALOG_CALLS_MENU, DIALOG_STYLE_LIST, "Landline Calls", "Group\nBusiness", "Select", "Cancel");
 	return 1;
 }
-
-CMD:ic(playerid, params[])
-{
-	return cmd_ignorecall(playerid, params);
-}
+alias:acceptcall("ac")
 
 CMD:ignorecall(playerid, params[])
 {
@@ -616,6 +605,7 @@ CMD:ignorecall(playerid, params[])
 	ShowPlayerDialogEx(playerid, DIALOG_CALLS_MENU, DIALOG_STYLE_LIST, "Landline Calls", "Group\nBusiness", "Select", "Cancel");
 	return 1;
 }
+alias:ignorecall("ic")
 
 CMD:cancelcall(playerid, params[])
 {

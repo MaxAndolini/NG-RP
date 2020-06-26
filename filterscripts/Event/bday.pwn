@@ -1,8 +1,8 @@
 #include <a_samp>
 #include <sscanf2>
 #include <streamer>
-#include <YSI\y_iterate>
-#include <zcmd>
+#include <YSI_Data\y_iterate>
+#include <Pawn.CMD>
 
 new musicarea;
 new startcount = 3,

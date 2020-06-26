@@ -171,7 +171,7 @@ PlayDeathAnimation(playerid) {
 	}
 }
 
-Medic_GetPatient(playerid, params[]) {
+Medic_GetPatient(playerid, const params[]) {
 
 	if(IsAMedic(playerid) || IsFirstAid(playerid))
 	{

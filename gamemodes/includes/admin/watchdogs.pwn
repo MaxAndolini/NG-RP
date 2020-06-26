@@ -40,7 +40,7 @@ CMD:nextwatch(playerid, params[])
 	if(PlayerInfo[playerid][pAdmin] >= 2) return SendClientMessageEx(playerid, COLOR_GRAD1, "Please use /spec to avoid issues.");
 	if(PlayerInfo[playerid][pWatchdog] >= 1)
 	{
-		if(GetPVarInt(playerid, "StartedWatching") == 0) return cmd_startwatch(playerid, params);
+		if(GetPVarInt(playerid, "StartedWatching") == 0) return PC_EmulateCommand(playerid, "/startwatch");
 		
 		if(gettime() >= GetPVarInt(playerid, "NextWatch")) return mysql_tquery(MainPipeline, "SELECT * FROM `nonrppoints` WHERE `active` = '1' ORDER BY `point` DESC", "WatchWatchlist", "i", playerid);
 		else if(PlayerInfo[playerid][pWatchdog] >= 2) return mysql_tquery(MainPipeline, "SELECT * FROM `nonrppoints` WHERE `active` = '1' ORDER BY `point` DESC", "WatchWatchlist", "i", playerid);

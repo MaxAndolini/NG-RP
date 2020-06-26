@@ -6,7 +6,7 @@
 
 // add autocbug
 
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 new PLoss; // Temp. var to toggle packet loss function.
 
@@ -597,7 +597,7 @@ hook OnPlayerLeaveDynamicArea(playerid, areaid) {
 */
 
 /*
-hook OnPlayerCommandReceived(playerid, cmdtext[]) {
+hook OnPlayerCommandReceived(playerid, cmd[], params[], flags) {
 
 	arrAntiCheat[playerid][ac_iCommandCount]++;
 	switch(arrAntiCheat[playerid][ac_iCommandCount]) {

@@ -1,4 +1,4 @@
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 new DB:db_iHandle;
 
@@ -80,7 +80,7 @@ hook OnGameModeExit() {
 
 */		
 //DBLog(iPlayerID, iTargetID = INVALID_PLAYER_ID, szLogTable[], szLogText[]) {
-DBLog(iPlayerID, iTargetID = INVALID_PLAYER_ID, szLogTable[], szLogText[]) {
+DBLog(iPlayerID, iTargetID = INVALID_PLAYER_ID, const szLogTable[], const szLogText[]) {
 
 	format(szMiscArray, sizeof(szMiscArray), "INSERT INTO `%s` (`Timestamp`,`PlayerID`,`TargetID`,`LogText`,`PlayerIP`,`TargetIP`) VALUES ('%d','%d','%d','%s','%s','%s')", szLogTable, gettime(), PlayerInfo[iPlayerID][pId], PlayerInfo[iTargetID][pId], szLogText, PlayerInfo[iPlayerID][pIP], PlayerInfo[iTargetID][pIP]);
 	db_free_result(db_query(db_iHandle, szMiscArray));
@@ -89,7 +89,7 @@ DBLog(iPlayerID, iTargetID = INVALID_PLAYER_ID, szLogTable[], szLogText[]) {
 	return 1;
 }
 
-ChatDBLog(iPlayerID, szLogTable[], szLogText[]) {
+ChatDBLog(iPlayerID, const szLogTable[], const szLogText[]) {
 
 	format(szMiscArray, sizeof(szMiscArray), "INSERT INTO `%s` (`Timestamp`,`PlayerID`,`LogText`,`PlayerIP`) VALUES ('%d','%d','%s','%s')", szLogTable, gettime(), PlayerInfo[iPlayerID][pId], szLogText, PlayerInfo[iPlayerID][pIP]);
 	db_free_result(db_query(db_iHandle, szMiscArray));
@@ -98,7 +98,7 @@ ChatDBLog(iPlayerID, szLogTable[], szLogText[]) {
 	return 1;
 }
 
-CasinoDBLog(iPlayerID, game[], amount, prize, num1, num2, num3) {
+CasinoDBLog(iPlayerID, const game[], amount, prize, num1, num2, num3) {
 
 	format(szMiscArray, sizeof(szMiscArray), "INSERT INTO `cp_casino_log` (`Timestamp`, `PlayerID`, `game`, `amount`,`prize`,`num1`,`num2`,`num3`,`PlayerIP`) VALUES ('%d','%d','%s','%d','%d','%d','%d','%d','%s')", gettime(), PlayerInfo[iPlayerID][pId], game, amount, prize, num1, num2, num3, PlayerInfo[iPlayerID][pIP]);
 	db_free_result(db_query(db_iHandle, szMiscArray));

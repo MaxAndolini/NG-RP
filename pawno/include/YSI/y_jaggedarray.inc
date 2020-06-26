@@ -69,8 +69,6 @@ Optional plugins:
 	Incognito - Streamer.
 	Me - sscanf2, fixes2, Whirlpool.
 */
-#if defined _inc_y_jaggedarray
-	#undef _inc_y_jaggedarray
-#endif
 
-#include "..\YSI_Data\y_jaggedarray"
+#error Use `#include <YSI_Data\y_jaggedarray>`
+

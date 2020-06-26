@@ -1,12 +1,9 @@
 /*
 	easyDialog.inc - Dialogs made easier!
-
 	With this useful include, scripters can easily create
 	dialogs and show them to players.
-
 	This include will prevent dialog spoofing, ID collision
 	and a lot more.
-
 	Created by Emmet on Friday, January 24, 2014.
 */
 
@@ -49,7 +46,7 @@ stock Dialog_Close(playerid)
 	return ShowPlayerDialog(playerid, -1, DIALOG_STYLE_MSGBOX, " ", " ", " ", "");
 }
 
-stock Dialog_Open(playerid, function[], style, caption[], info[], button1[], button2[], {Float,_}:...)
+stock Dialog_Open(playerid, const function[], style, const caption[], const info[], const button1[], const button2[], {Float,_}:...)
 {
 	static
 	    string[4096],

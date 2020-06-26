@@ -1,6 +1,6 @@
 #include <a_samp>
 #include <streamer>
-#include <zcmd>
+#include <Pawn.CMD>
 
 new FallingSnowObject[MAX_PLAYERS];
 new bool:value[MAX_PLAYERS];

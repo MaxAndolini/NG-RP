@@ -35,7 +35,7 @@
 	* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 
 	if(arrAntiCheat[playerid][ac_iFlags][AC_DIALOGSPOOFING] > 0) return 1;
@@ -1384,10 +1384,7 @@ CMD:houseinvite(playerid, params[])
 	else return SendClientMessageEx(playerid, COLOR_GREY, "You don't own a house.");
 	return 1;
 }
-
-CMD:hinvite(playerid, params[]) {
-	return cmd_houseinvite(playerid, params);
-}
+alias:houseinvite("hinvite")
 
 CMD:setrentable(playerid, params[])
 {

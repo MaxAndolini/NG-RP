@@ -1,8 +1,3 @@
-#if defined _INC_y_malloc
-	#endinput
-#endif
-#define _INC_y_malloc
-
 /**
  * <library name="y_malloc">
  * <section>
@@ -154,145 +149,22 @@ Optional plugins:
 	Me - sscanf2, fixes2, Whirlpool.
 */
 
-#include "..\YSI_Internal\y_compilerdata"
-
-#if defined YSI_MALLOC_SECURE
-	#error YSI_MALLOC_SECURE has been removed.
+#if !defined _INC_y_malloc
+	#tryinclude "y_malloc\y_malloc_entry"
 #endif
-
-#include "..\YSI_Internal\y_version"
-#include "..\YSI_Internal\y_funcinc"
-#include "..\YSI_Core\y_debug"
-#include "..\YSI_Storage\y_amx"
-#include "..\YSI_Core\y_als"
-#include "..\YSI_Core\y_utils"
-
-#include "..\YSI_Internal\y_thirdpartyinclude"
-
-#define GB_TO_MB(%0) ((%0) * 1024)
-
-#define MB_TO_KB(%0) ((%0) * 1024)
-#define GB_TO_KB(%0) ((%0) * 1024 * 1024)
-
-#define KB_TO_BYTE(%0) ((%0) * 1024)
-#define MB_TO_BYTE(%0) ((%0) * 1024 * 1024)
-#define GB_TO_BYTE(%0) ((%0) * 1024 * 1024 * 1024)
-
-#define BYTE_TO_CELL(%0) ((%0) * 8 / cellbits)
-#define KB_TO_CELL(%0)   BYTE_TO_CELL(KB_TO_BYTE(%0))
-#define MB_TO_CELL(%0)   BYTE_TO_CELL(MB_TO_BYTE(%0))
-#define GB_TO_CELL(%0)   BYTE_TO_CELL(GB_TO_BYTE(%0))
-
-#define NO_ALLOC (Alloc:0)
-
-#if !defined MALLOC_MEMORY
-	#if defined MALLOC_MEMORY_GB
-		#define MALLOC_MEMORY GB_TO_CELL(MALLOC_MEMORY_GB)
-	#elseif defined MALLOC_MEMORY_MB
-		#define MALLOC_MEMORY MB_TO_CELL(MALLOC_MEMORY_MB)
-	#elseif defined MALLOC_MEMORY_KB
-		#define MALLOC_MEMORY KB_TO_CELL(MALLOC_MEMORY_KB)
-	#elseif defined MALLOC_MEMORY_B
-		#define MALLOC_MEMORY BYTE_TO_CELL(MALLOC_MEMORY_B)
-	#else
-		#define MALLOC_MEMORY MB_TO_CELL(16)
-	#endif
+#if !defined _INC_y_malloc
+	#tryinclude "YSI_Coding\y_malloc\y_malloc_entry"
 #endif
-
-#if defined YSI_NO_HEAP_MALLOC
-	#if defined DYNAMIC_MEMORY
-		#pragma dynamic DYNAMIC_MEMORY
-		#define dynamic dynamic_is_now_DYNAMIC_MEMORY_ // See below...
-	#endif
-#else
-	// Allocate extra memory for the normal stack and heap (64k, 16 times the
-	// size of the default stack)!
-	#if !defined DYNAMIC_MEMORY
-		#define DYNAMIC_MEMORY (65536)
-	#endif
-	#pragma dynamic MALLOC_MEMORY + DYNAMIC_MEMORY
-	
-	// ====================================================================== //
-	//                                                                        //
-	//                                 IMPORTANT!                             //
-	//                                                                        //
-	// ====================================================================== //
-	#define dynamic dynamic_is_now_DYNAMIC_MEMORY_                            //
-	// ====================================================================== //
-	//                                                                        //
-	// dynamic_is_now_DYNAMIC_MEMORY_                                         //
-	//                                                                        //
-	// If you get a warning or error about "dynamic_is_now_DYNAMIC_MEMORY_",  //
-	// hopefully (though doubtfully) you searched for something related to it //
-	// and found this.  If you are slightly confused, just remember that any  //
-	// reference to that variable is actually a reference to a variable       //
-	// called "dynamic", and so the error/warning refers to that.             //
-	//                                                                        //
-	// _is_now_DYNAMIC_MEMORY_                                                //
-	//                                                                        //
-	// If you get an error or warning about "_is_now_DYNAMIC_MEMORY_", it is  //
-	// because you have tried to use "#pragma dynamic <number>" after         //
-	// including "y_malloc" (or another library that eventually includes      //
-	// "y_malloc").  Because that library allocates memory from the heap, it  //
-	// needs control over how much memory is in the heap to begin with.  You  //
-	// do this with "#pragma dynamic <number>", which that library does.      //
-	// Because using that a second time somewhere in your mode will break     //
-	// "y_malloc", it disables the pragma, and instead outputs that error.    //
-	// If you need to increase your stack or heap size (due to a stack/heap   //
-	// collision), add this to the very top of your mode:                     //
-	//                                                                        //
-	//   #define DYNAMIC_MEMORY <number>                                      //
-	//                                                                        //
-	// ====================================================================== //
+#if !defined _INC_y_malloc
+	#tryinclude "YSI\YSI_Coding\y_malloc\y_malloc_entry"
 #endif
-
-// Sort of "module local" variables.
-stock
-	__YSI_g_sHeapStart = 0,
-	__YSI_g_sUnusedStart = 0;
-
-#define YSI_g_sHeapStart __YSI_g_sHeapStart
-#define YSI_g_sUnusedStart __YSI_g_sUnusedStart
-
-forward Alloc:Malloc_Allocate(size, const bool:clear = true);
-forward Alloc:calloc(size);
-
-#if defined YSI_NO_HEAP_MALLOC
-	new
-		YSI_gMallocMemory[MALLOC_MEMORY];
-	
-	public OnScriptInit()
-	{
-		YSI_g_sHeapStart = 0;
-		YSI_gMallocMemory[0] = MALLOC_MEMORY - 1;
-		YSI_g_sUnusedStart = 1;
-		memset(YSI_gMallocMemory[1], 0, MALLOC_MEMORY - 1);
-		#if defined Malloc_OnScriptInit
-			Malloc_OnScriptInit();
-		#endif
-		return 1;
-	}
-	
-	#undef OnScriptInit
-	#define OnScriptInit Malloc_OnScriptInit
-	#if defined Malloc_OnScriptInit
-		forward Malloc_OnScriptInit();
-	#endif
-#else
-	new
-		YSI_gMallocMemory[1];
-	
-	// Allocate space on the heap permanently.
-	#include "y_malloc/heapalloc"
+#if !defined _INC_y_malloc
+	#tryinclude <YSI_Coding\y_malloc\y_malloc_entry>
 #endif
-
-// Functions to access the data on the heap.
-#include "y_malloc/funcs"
-#if defined YSI_TESTS
-	#include "..\YSI_Core\y_testing"
-	#include "y_malloc/tests"
+#if !defined _INC_y_malloc
+	#tryinclude <YSI\YSI_Coding\y_malloc\y_malloc_entry>
 #endif
-
-#undef YSI_g_sHeapStart
-#undef YSI_g_sUnusedStart
+#if !defined _INC_y_malloc
+	#error Could not find y_malloc
+#endif
 

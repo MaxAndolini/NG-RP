@@ -1,8 +1,8 @@
 #include <a_samp>
 #include <sscanf2>
 #include <streamer>
-#include <YSI\y_iterate>
-#include <zcmd>
+#include <YSI_Data\y_iterate>
+#include <Pawn.CMD>
 
 //new musicarea;
 new festivalarea;
@@ -673,7 +673,7 @@ CMD:exitmaze(playerid, params[])
 {
 	if(GetPVarInt(playerid, "pMaze"))
 	{
-		return cmd_joinmaze(playerid, params);
+		return PC_EmulateCommand(playerid, "/joinmaze");
 	}
 	else if(IsPlayerInRangeOfPoint(playerid, 10, 1473.045898, 1429.182617, 11.050000) || IsPlayerInRangeOfPoint(playerid, 10, 1546.592828, 1261.259155, 11.069601))
 	{

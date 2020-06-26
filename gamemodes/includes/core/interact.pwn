@@ -36,7 +36,7 @@
 	* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 CMD:interact(playerid, params[])
 {
@@ -125,15 +125,17 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				{
 					new id[3];
 					valstr(id, GetPVarInt(playerid, "pInteract"));
+					format(szMiscArray, sizeof(szMiscArray), "/frisk %s", id);
 
-					cmd_frisk(playerid, id);
+					PC_EmulateCommand(playerid, szMiscArray);
 				}
 				case 4: // Show License
 				{
 					new id[3];
 					valstr(id, GetPVarInt(playerid, "pInteract"));
+					format(szMiscArray, sizeof(szMiscArray), "/showlicenses %s", id);
 
-					cmd_showlicenses(playerid, id);
+					PC_EmulateCommand(playerid, szMiscArray);
 				}
 			}
 
@@ -159,11 +161,11 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 			if(!IsPlayerConnected(GetPVarInt(playerid, "pInteract"))) return SendClientMessage(playerid, COLOR_GRAD1, "The player you were interacting with has disconnected!");
 			if(!ProxDetectorS(8.0, playerid, GetPVarInt(playerid, "pInteract"))) return SendClientMessageEx(playerid, COLOR_GREY, "The player you have tried to interact with is not near you.");
 
-			new id[3], realstring[50];
+			new id[3], realstring[64];
 			valstr(id, GetPVarInt(playerid, "pInteract"));
-			format(realstring, 50, "%s %s", id, inputtext);
+			format(realstring, sizeof(realstring), "/pay %s %s", id, inputtext);
 
-			cmd_pay(playerid, realstring);
+			PC_EmulateCommand(playerid, realstring);
 		}
 		case DIALOG_INTERACT_GIVEITEM:
 		{
@@ -207,23 +209,25 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				{
 					new id[3];
 					valstr(id, GetPVarInt(playerid, "pInteract"));
-
-					if(PlayerCuffed[GetPVarInt(playerid, "pInteract")] > 1) cmd_uncuff(playerid, id);
-					else cmd_cuff(playerid, id);
+					format(szMiscArray, sizeof(szMiscArray), "/%s %s", (PlayerCuffed[GetPVarInt(playerid, "pInteract")] > 1) ? ("uncuff") : ("cuff"), id);
+					
+					PC_EmulateCommand(playerid, szMiscArray);
 				}
 				case 1: // Jailcuff
 				{
 					new id[3];
 					valstr(id, GetPVarInt(playerid, "pInteract"));
-
-					cmd_jailcuff(playerid, id);
+					format(szMiscArray, sizeof(szMiscArray), "/jailcuff %s", id);
+					
+					PC_EmulateCommand(playerid, szMiscArray);
 				}
 				case 2: // Drag
 				{
 					new id[3];
 					valstr(id, GetPVarInt(playerid, "pInteract"));
-
-					cmd_drag(playerid, id);
+					format(szMiscArray, sizeof(szMiscArray), "/drag %s", id);
+					
+					PC_EmulateCommand(playerid, szMiscArray);
 				}
 				case 3: ShowPlayerDialogEx(playerid, DIALOG_INTERACT_DETAIN, DIALOG_STYLE_INPUT, "Interaction Menu - Detain", "Please choose the number of seat you'd like to detain the suspect in. (1-3)", "Select", "Cancel");
 				case 4: ShowPlayerDialogEx(playerid, DIALOG_INTERACT_TICKET, DIALOG_STYLE_INPUT, "Interaction Menu - Ticket", "Please choose how much you would like to ticket the suspect.", "Select", "Cancel");
@@ -242,12 +246,13 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				{
 					new id[3];
 					valstr(id, GetPVarInt(playerid, "pInteract"));
-
-					cmd_movept(playerid, id);
+					format(szMiscArray, sizeof(szMiscArray), "/movept %s", id);
+					
+					PC_EmulateCommand(playerid, szMiscArray);
 				}
 				case 1: // Load Patient
 				{
-					new id[3], seat = -1, realstring[50];
+					new id[3], seat = -1, realstring[64];
 					valstr(id, GetPVarInt(playerid, "pInteract"));
 
 					new carid = gLastCar[playerid];
@@ -257,23 +262,25 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
                         if(!IsVehicleOccupied(carid, i)) { seat = i; break; } 
 					}
 					else return 1;
-					format(realstring, 50, "%s %d", id, seat);
+					format(realstring, sizeof(realstring), "/loadpt %s %d", id, seat);
 
-					if(seat != -1) cmd_loadpt(playerid, realstring);
+					if(seat != -1) PC_EmulateCommand(playerid, realstring);
 				}
 				case 2: // Jailcuff
 				{
 					new id[3];
 					valstr(id, GetPVarInt(playerid, "pInteract"));
-
-					cmd_jailcuff(playerid, id);
+					format(szMiscArray, sizeof(szMiscArray), "/jailcuff %s", id);
+					
+					PC_EmulateCommand(playerid, szMiscArray);
 				}
 				case 3: // Triage
 				{
 					new id[3];
 					valstr(id, GetPVarInt(playerid, "pInteract"));
-
-					cmd_triage(playerid, id);
+					format(szMiscArray, sizeof(szMiscArray), "/triage %s", id);
+					
+					PC_EmulateCommand(playerid, szMiscArray);
 				}
 				case 4: ShowPlayerDialogEx(playerid, DIALOG_INTERACT_HEAL, DIALOG_STYLE_INPUT, "Interaction Menu - Heal", "How much would you like to heal the patient for? ($200 - $1,000)", "Select", "Cancel");
 			}
@@ -290,23 +297,25 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				{
 					new id[3];
 					valstr(id, GetPVarInt(playerid, "pInteract"));
-
-					if(PlayerCuffed[GetPVarInt(playerid, "pInteract")] > 1) cmd_uncuff(playerid, id);
-					else cmd_cuff(playerid, id);
+					format(szMiscArray, sizeof(szMiscArray), "/%s %s", (PlayerCuffed[GetPVarInt(playerid, "pInteract")] > 1) ? ("uncuff") : ("cuff"), id);
+					
+					PC_EmulateCommand(playerid, szMiscArray);
 				}
 				case 1: // Jailcuff
 				{
 					new id[3];
 					valstr(id, GetPVarInt(playerid, "pInteract"));
-
-					cmd_jailcuff(playerid, id);
+					format(szMiscArray, sizeof(szMiscArray), "/jailcuff %s", id);
+					
+					PC_EmulateCommand(playerid, szMiscArray);
 				}
 				case 2: // Drag
 				{
 					new id[3];
 					valstr(id, GetPVarInt(playerid, "pInteract"));
-
-					cmd_drag(playerid, id);
+					format(szMiscArray, sizeof(szMiscArray), "/drag %s", id);
+					
+					PC_EmulateCommand(playerid, szMiscArray);
 				}
 				case 3: ShowPlayerDialogEx(playerid, DIALOG_INTERACT_DETAIN, DIALOG_STYLE_INPUT, "Interaction Menu - Detain", "Please choose the number of seat you'd like to detain the suspect in. (1-3)", "Select", "Cancel");
 				case 4: ShowPlayerDialogEx(playerid, DIALOG_INTERACT_CONFISCATE, DIALOG_STYLE_LIST, "Interaction Menu - Confiscate", "Weapons\nPot\nCrack\nMeth\nEcstasy\nMaterials\nRadio\nHeroin\nRawopium\nSyringes\nPotSeeds\nOpiumSeeds\nDrugCrates", "Select", "Cancel");

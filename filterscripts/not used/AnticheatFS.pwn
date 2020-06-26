@@ -8,7 +8,7 @@
 */
 
 #include 		<a_samp>
-#include 		<foreach>
+#include 		<YSI_Data\y_iterate>
 
 #define 		LIGHTRED 						0xFF8080FF
 #define     	WEAPON_HACKER_WARNINGS     		3
@@ -134,7 +134,7 @@ public AntiWeaponSpawnTimer()
 {
 	new PlayerWeapon;
 	
-	foreach(Player, i)
+	foreach(new i : Player)
 	{
 	    PlayerWeapon = GetPlayerWeapon( i );
 	    if( PlayerWeapon >= 1)

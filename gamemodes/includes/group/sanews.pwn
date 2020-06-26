@@ -11,7 +11,7 @@
 	-- DEFINITIONS / VARIABLES (new)
 */
 
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 #define			MAX_SANCHANNELS			8
 #define			MAX_SANCAMERAS			10
@@ -193,7 +193,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 					UpdateSANewsBroadcast(channel);
 					SAN_SendRadioMessage(playerid, RADIO, szMiscArray);
 					DeletePVar(playerid, "DirectorChannelID");
-					cmd_bdirector(playerid, "");
+					PC_EmulateCommand(playerid, "/bdirector");
 				}
 				else if(GetPVarType(playerid, "CameramanChannelID"))
 				{
@@ -201,7 +201,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 					format(szMiscArray, sizeof(szMiscArray), "** [CH. %i] Cameraman %s signed in to Channel %i. **", GetPVarInt(playerid, "ChannelID_FMEM"), GetPlayerNameEx(playerid), GetPVarInt(playerid, "ChannelID_FMEM"));
 					SAN_SendRadioMessage(playerid, RADIO, szMiscArray);
 					DeletePVar(playerid, "CameramanChannelID");
-					cmd_cameraman(playerid, "");
+					PC_EmulateCommand(playerid, "/cameraman");
 				}
 				else if(GetPVarType(playerid, "LoginChannelID"))
 				{
@@ -369,7 +369,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				{
 					case 0:
 					{
-						cmd_cameraman(playerid, "");
+						PC_EmulateCommand(playerid, "/cameraman");
 					}
 					case 1:
 					{
@@ -437,7 +437,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				{
 					case 0:
 					{
-						cmd_cameraman(playerid, "");
+						PC_EmulateCommand(playerid, "/cameraman");
 					}
 					case 1:
 					{
@@ -482,7 +482,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				{
 					case 0:
 					{
-						cmd_bdirector(playerid, "");
+						PC_EmulateCommand(playerid, "/bdirector");
 					}
 					case 1:
 					{
@@ -511,7 +511,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 					}
 					case 7:
 					{
-						cmd_bdirector(playerid, "");
+						PC_EmulateCommand(playerid, "/bdirector");
 					}
 					case 8:
 					{
@@ -535,7 +535,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 					}					
 					case 13:
 					{
-						cmd_bdirector(playerid, "");
+						PC_EmulateCommand(playerid, "/bdirector");
 					}
 					case 14:
 					{
@@ -547,7 +547,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 					}
 					case 16:
 					{
-						cmd_bdirector(playerid, "");
+						PC_EmulateCommand(playerid, "/bdirector");
 					}
 					case 17:
 					{
@@ -570,7 +570,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 			else 
 			{
 				DeletePVar(playerid, "ListItemID_Cameras");
-				cmd_bdirector(playerid, "");
+				PC_EmulateCommand(playerid, "/bdirector");
 			}
 		}
 		case DIALOG_SAN_CAMLIST2:
@@ -624,7 +624,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				SendClientMessage(playerid, COLOR_LIGHTBLUE, "Press 'N' to stop previewing the stream.");
 				SetPVarInt(playerid, "SAN_PreviewingStream", 1);
 			}
-			cmd_bdirector(playerid, "");
+			PC_EmulateCommand(playerid, "/bdirector");
 		}
 		case DIALOG_SAN_BSTREAM:
 		{
@@ -642,7 +642,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 					}
 				}
 			}
-			cmd_bdirector(playerid, "");
+			PC_EmulateCommand(playerid, "/bdirector");
 		}
 		
 	}
@@ -1937,7 +1937,7 @@ CMD:broadcast(playerid, params[])
 	if(IsAReporter(playerid))
 	{
 		if(!SAN_RankCheck(playerid, 2)) return 1;
-		if(!GetPVarType(playerid, "ChannelID_FMEM")) return cmd_setchannel(playerid, "");
+		if(!GetPVarType(playerid, "ChannelID_FMEM")) return PC_EmulateCommand(playerid, "/setchannel");
 		if(broadcasting == 0)
 		{
 			broadcasting = 1;
@@ -2015,23 +2015,10 @@ CMD:setchannel(playerid, params[])
 
 
 // WARNING: Please make sure that people can only use /watchtv in any interior (and mayby at some TV hotspots).
-CMD:watchtv(playerid, params[])
-{
-	cmd_shows(playerid, "");
-	return 1;
-}
-
 CMD:viewers(playerid, params[])
 {
 	if(IsAReporter(playerid)) SAN_Viewers(playerid);
 	else SendClientMessage(playerid, COLOR_GREY, "     You are not a News Reporter.");	
-	return 1;
-}
-
-
-CMD:sh(playerid, params[])
-{
-	cmd_mic(playerid, "");
 	return 1;
 }
 
@@ -2054,8 +2041,7 @@ CMD:shows(playerid, params[])
 	}
 	return 1;
 }
-
-
+alias:shows("watchtv")
 
 CMD:mic(playerid, params[])
 {
@@ -2111,7 +2097,7 @@ CMD:mic(playerid, params[])
 	if(IsAReporter(playerid) && !GetPVarInt(playerid, "ChannelID_FMEM"))
 	{
 		SendClientMessage(playerid, COLOR_GRAD1, "You are not logged in to a channel. Please login now."); 
-		return cmd_setchannel(playerid, "");
+		return PC_EmulateCommand(playerid, "/setchannel");
 	}
 	if(GetPVarInt(playerid, "ChannelID"))
 	{
@@ -2164,6 +2150,7 @@ CMD:mic(playerid, params[])
 	}
 	return 1;
 }
+alias:mic("sh")
 
 // The TV show invite: People of SA News can invite people to this 'chat channel'.
 CMD:showinvite(playerid, params[])
@@ -2317,7 +2304,7 @@ CMD:cameraman(playerid, params[])
 	}
 	return 1;
 }
-
+alias:cameraman("cm")
 
 CMD:bdirector(playerid, params[])
 {
@@ -2400,14 +2387,6 @@ CMD:channeldesc(playerid, params[])
 	{
 		SendClientMessage(playerid, COLOR_GRAD1, "     You are not a News Reporter.");
 	}
-	return 1;
-}
-
-
-
-CMD:cm(playerid, params[])
-{
-	cmd_cameraman(playerid, "");
 	return 1;
 }
 

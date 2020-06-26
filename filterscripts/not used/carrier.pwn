@@ -1,6 +1,6 @@
 #include <a_samp>
 #include <streamer>
-#include <foreach>
+#include <YSI_Data\y_iterate>
 
 #define COLOR_WHITE 0xFFFFFFAA
 #define COLOR_YELLOW 0xFFFF00AA
@@ -13,7 +13,7 @@ new backhatch;
 new Carrier[17];
 new CarrierS[14];
 new NGVehicles[21];
-new Range;
+new RangeControl;
 new RangeGuy[6];
 
 new control[MAX_PLAYERS];
@@ -181,15 +181,17 @@ public OnFilterScriptExit()
 	{
 		DestroyVehicle(NGVehicles[x]);
 	}
+	return 1;
 }
 
-public OnPlayerDisconnect(playerid)
+public OnPlayerDisconnect(playerid, reason)
 {
 	if(control[playerid] == 1)
 	{
 		control[playerid] = 0;
 		KillTimer(ControlTimer[playerid]);
 	}
+	return 1;
 }
 
 public OnDynamicObjectMoved(objectid)
@@ -487,12 +489,12 @@ public OnPlayerCommandText(playerid, cmdtext[])
 	
 	if(strcmp(cmdtext, "/range1", true) == 0)
 	{
-		if(Range == 0)
+		if(RangeControl == 0)
 		{
 		   	if (IsPlayerInRangeOfPoint(playerid, 6.0, 300.1054,-164.4170,999.6105))
 		   	{
 			   	ShowPlayerDialog(playerid,999999,DIALOG_STYLE_MSGBOX,"Objective","Shooting Range: When the targets pop up, shoot them.\nTo stop the range type: /stoprange. ","OK","");
-				Range = 1;
+				RangeControl = 1;
 				SetTimer("RedoRange", 1000, 0);
 			}
 			else
@@ -508,11 +510,11 @@ public OnPlayerCommandText(playerid, cmdtext[])
 	}
 	if(strcmp(cmdtext, "/stoprange1", true) == 0)
 	{
-		if(Range == 1)
+		if(RangeControl == 1)
 		{
 		   	if (IsPlayerInRangeOfPoint(playerid, 6.0,300.1054,-164.4170,999.6105))
 		   	{
-				Range = 0;
+				RangeControl = 0;
 				for(new x;x<sizeof(RangeGuy);x++)
 				{
 				    if(IsValidObject(RangeGuy[x])) DestroyObject(RangeGuy[x]);
@@ -535,15 +537,15 @@ public OnPlayerCommandText(playerid, cmdtext[])
 
 public RedoRange()
 {
-	if(Range == 1)
+	if(RangeControl == 1)
 	{
 	    new rand[6], model[6], Float:rand2[6], Float:rand3[6];
-		rand[0] = Random(0,100); rand2[0] = Random(0,20); rand3[0] = Random(0,11);
-	    rand[1] = Random(0,100); rand2[1] = Random(0,20); rand3[1] = Random(0,11);
-	    rand[2] = Random(0,100); rand2[2] = Random(0,20); rand3[2] = Random(0,11);
-   		rand[3] = Random(0,100); rand2[3] = Random(0,20); rand3[3] = Random(0,11);
-	    rand[4] = Random(0,100); rand2[4] = Random(0,20); rand3[4] = Random(0,11);
-	    rand[5] = Random(0,100); rand2[5] = Random(0,20); rand3[5] = Random(0,11);
+		rand[0] = RandomEx(0,100); rand2[0] = RandomEx(0,20); rand3[0] = RandomEx(0,11);
+	    rand[1] = RandomEx(0,100); rand2[1] = RandomEx(0,20); rand3[1] = RandomEx(0,11);
+	    rand[2] = RandomEx(0,100); rand2[2] = RandomEx(0,20); rand3[2] = RandomEx(0,11);
+   		rand[3] = RandomEx(0,100); rand2[3] = RandomEx(0,20); rand3[3] = RandomEx(0,11);
+	    rand[4] = RandomEx(0,100); rand2[4] = RandomEx(0,20); rand3[4] = RandomEx(0,11);
+	    rand[5] = RandomEx(0,100); rand2[5] = RandomEx(0,20); rand3[5] = RandomEx(0,11);
 
 		for(new x;x<sizeof(rand);x++)
 		{
@@ -568,11 +570,11 @@ public RedoRange2()
 	{
  		if(IsValidObject(RangeGuy[x])) DestroyObject(RangeGuy[x]);
 	}
-    new rand = Random(2000,5000);
+    new rand = RandomEx(2000,5000);
 	SetTimer("RedoRange", rand, 0);
 }
 
-stock Random(min, max)
+stock RandomEx(min, max)
 {
     new a = random(max - min) + min;
     return a;

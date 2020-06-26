@@ -35,7 +35,7 @@
 	* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 stock IsBackpackAvailable(playerid)
 {
@@ -65,7 +65,7 @@ stock GetBackpackFreeSlotGun(playerid) {
 	return slot;
 }
 
-ShowBackpackMenu(playerid, dialogid, extramsg[]) {
+ShowBackpackMenu(playerid, dialogid, const extramsg[]) {
 	new dgTitle[128],
 		string[15];
 

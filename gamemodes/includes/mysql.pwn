@@ -32,7 +32,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-stock SQLUpdateBuild(query[], table[], sqlplayerid)
+stock SQLUpdateBuild(const query[], const table[], sqlplayerid)
 {
 	new querylen = strlen(query);
 	if (!query[0]) {
@@ -50,7 +50,7 @@ stock SQLUpdateBuild(query[], table[], sqlplayerid)
 	return 1;
 }
 
-stock SQLUpdateFinish(query[], table[], sqlplayerid)
+stock SQLUpdateFinish(const query[], const table[], sqlplayerid)
 {
 	if (strcmp(query, "WHERE id=", false) == 0) mysql_tquery(MainPipeline, query, "OnQueryFinish", "i", SENDDATA_THREAD);
 	else
@@ -64,7 +64,7 @@ stock SQLUpdateFinish(query[], table[], sqlplayerid)
 	return 1;
 }
 
-stock SaveInteger(query[], table[], sqlid, Value[], Integer)
+stock SaveInteger(const query[], const table[], sqlid, const Value[], Integer)
 {
 	SQLUpdateBuild(query, table, sqlid);
 	new updval[64];
@@ -74,7 +74,7 @@ stock SaveInteger(query[], table[], sqlid, Value[], Integer)
 }
 
 
-stock SaveString(query[], table[], sqlid, Value[], String[])
+stock SaveString(const query[], const table[], sqlid, const Value[], const String[])
 {
 	SQLUpdateBuild(query, table, sqlid);
 	new escapedstring[160], string[160];
@@ -84,7 +84,7 @@ stock SaveString(query[], table[], sqlid, Value[], String[])
 	return 1;
 }
 
-stock SaveFloat(query[], table[], sqlid, Value[], Float:Number)
+stock SaveFloat(const query[], const table[], sqlid, const Value[], Float:Number)
 {
 	new flotostr[32];
 	format(flotostr, sizeof(flotostr), "%0.2f", Number);
@@ -881,9 +881,11 @@ public OnQueryFinish(resultid, extraid, handleid)
 		{
 			if(IsPlayerConnected(extraid))
 			{
+				new country[MAX_COUNTRY_LENGTH];
 				AdvanceTutorial(extraid);
 				g_mysql_AccountLoginCheck(extraid);
-				format(szMiscArray, sizeof(szMiscArray), "WARNING: %s (ID: %d) has registered from %s", GetPlayerNameEx(extraid), extraid, GetPlayerCountry(extraid));
+				GetPlayerCountry(extraid, country, MAX_COUNTRY_LENGTH);
+				format(szMiscArray, sizeof(szMiscArray), "WARNING: %s (ID: %d) has registered from %s", GetPlayerNameEx(extraid), extraid, country);
 				ABroadCast(COLOR_LIGHTRED, szMiscArray, 2);
 				TotalRegister++;
 			}
@@ -1364,7 +1366,7 @@ public OnQueryError(errorid, const error[], const callback[], const query[], MyS
 
 // g_mysql_ReturnEscaped(string unEscapedString)
 // Description: Takes a unescaped string and returns an escaped one.
-stock g_mysql_ReturnEscaped(unEscapedString[])
+stock g_mysql_ReturnEscaped(const unEscapedString[])
 {
 	new EscapedString[256];
 	mysql_escape_string(unEscapedString, EscapedString);
@@ -1677,7 +1679,7 @@ stock CheckBanEx(playerid)
 	return 1;
 }
 
-stock AddBan(Admin, Player, Reason[])
+stock AddBan(Admin, Player, const Reason[])
 {
     new string[128];
 	SetPVarInt(Admin, "BanningPlayer", Player);
@@ -1688,7 +1690,7 @@ stock AddBan(Admin, Player, Reason[])
 }
 
 
-stock SystemBan(Player, Reason[])
+stock SystemBan(Player, const Reason[])
 {
 	new string[256];
     mysql_format(MainPipeline, string, sizeof(string), "INSERT INTO `ip_bans` (`ip`, `date`, `reason`, `admin`) VALUES ('%s', NOW(), '%e', 'System')", GetPlayerIpEx(Player), Reason);
@@ -1697,7 +1699,7 @@ stock SystemBan(Player, Reason[])
 }
 
 
-stock MySQLBan(userid,ip[],reason[],status,admin[])
+stock MySQLBan(userid, const ip[], const reason[], status, const admin[])
 {
 	new string[256];
     mysql_format(MainPipeline, string, sizeof(string), "INSERT INTO `bans` (`user_id`, `ip_address`, `reason`, `date_added`, `status`, `admin`) VALUES ('%d','%s','%e', NOW(), '%d','%e')", userid, ip, reason, status, admin);
@@ -1799,7 +1801,7 @@ stock CountFlags(playerid)
 	return 1;
 }
 
-stock AddFlag(playerid, adminid, flag[], type = 1)
+stock AddFlag(playerid, adminid, const flag[], type = 1)
 {
 	new query[300];
 	new admin[24];
@@ -2093,7 +2095,7 @@ stock IsAdminSpawnedVehicle(vehicleid)
 }
 
 // credits to Luk0r
-stock MySQLUpdateBuild(query[], sqlplayerid)
+stock MySQLUpdateBuild(const query[], sqlplayerid)
 {
 	new querylen = strlen(query);
 	if (!query[0]) {
@@ -2111,7 +2113,7 @@ stock MySQLUpdateBuild(query[], sqlplayerid)
 	return 1;
 }
 
-stock MySQLUpdateFinish(query[], sqlplayerid)
+stock MySQLUpdateFinish(const query[], sqlplayerid)
 {
 	if (strcmp(query, "WHERE id=", false) == 0) mysql_tquery(MainPipeline, query, "OnQueryFinish", "i", SENDDATA_THREAD);
 	else
@@ -2125,7 +2127,7 @@ stock MySQLUpdateFinish(query[], sqlplayerid)
 	return 1;
 }
 
-stock SavePlayerInteger(query[], sqlid, Value[], Integer)
+stock SavePlayerInteger(const query[], sqlid, const Value[], Integer)
 {
 	MySQLUpdateBuild(query, sqlid);
 	new updval[64];
@@ -2135,7 +2137,7 @@ stock SavePlayerInteger(query[], sqlid, Value[], Integer)
 }
 
 
-stock SavePlayerString(query[], sqlid, Value[], String[])
+stock SavePlayerString(const query[], sqlid, const Value[], const String[])
 {
 	MySQLUpdateBuild(query, sqlid);
 	new escapedstring[160], string[160];
@@ -2145,7 +2147,7 @@ stock SavePlayerString(query[], sqlid, Value[], String[])
 	return 1;
 }
 
-stock SavePlayerFloat(query[], sqlid, Value[], Float:Number)
+stock SavePlayerFloat(const query[], sqlid, const Value[], Float:Number)
 {
 	new flotostr[32];
 	mysql_format(MainPipeline, flotostr, sizeof(flotostr), "%0.2f", Number);
@@ -5130,8 +5132,8 @@ public OnPinCheck2(index)
 						case 7: ShowModelSelectionMenu(index, PlaneList, "Plane Shop");
 						case 8: ShowModelSelectionMenu(index, BoatList, "Boat Shop");
 						case 9: ShowModelSelectionMenu(index, CarList3, "Restricted Car Shop");
-						case 10: cmd_changename(index, "");
-						case 11: cmd_microshop(index, "");
+						case 10: PC_EmulateCommand(index, "/changename");
+						case 11: PC_EmulateCommand(index, "/microshop");
 					}
 					DeletePVar(index, "OpenShop");
 				}
@@ -6296,7 +6298,7 @@ stock SavePaintballArenas()
 	}
 }
 
-stock AddNonRPPoint(playerid, point, expiration, reason[], issuerid, manual)
+stock AddNonRPPoint(playerid, point, expiration, const reason[], issuerid, manual)
 {
 	new szQuery[512], escapedstring[128];
 	mysql_escape_string(reason, escapedstring);

@@ -1,5 +1,5 @@
 #include a_samp
-#include <YSI\y_iterate>
+#include <YSI_Data\y_iterate>
 
 new Points[MAX_PLAYERS];
 new PlayerTick[MAX_PLAYERS];
@@ -18,6 +18,7 @@ public OnFilterScriptInit()
 
 public OnFilterScriptExit()
 {
+	return 1;
 }
 
 public OnPlayerConnect(playerid)
@@ -53,7 +54,7 @@ public OnPlayerUpdate(playerid)
 
 public watcher()
 {
-	foreach(Player, i)
+	foreach(new i : Player)
 	{
 		if(PlayerTickOld[i]==PlayerTick[i])
 		{

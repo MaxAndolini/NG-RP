@@ -1,4 +1,4 @@
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 #define 	ITEM_DRUG			(0)
 #define 	ITEM_MATS			(1)
@@ -1097,7 +1097,7 @@ Interact_DetainPlayer(playerid, giveplayerid, seatid = -1) {
 	return 1;
 }
 
-Interact_GiveTicket(playerid, giveplayerid, reason[], amount = -1) {
+Interact_GiveTicket(playerid, giveplayerid, const reason[], amount = -1) {
 	if(amount == -1) {
 		format(szMiscArray, sizeof(szMiscArray), "Please enter an amount to fine %s", GetPlayerNameEx(giveplayerid));
 		return ShowPlayerDialogEx(playerid, GIVE_TICKET, DIALOG_STYLE_INPUT, "Ticket Player", szMiscArray, "Next", "");

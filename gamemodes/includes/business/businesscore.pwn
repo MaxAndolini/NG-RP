@@ -35,14 +35,14 @@
 	* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 
 	if(newkeys & KEY_YES && InBusiness(playerid) != INVALID_BUSINESS_ID) {
-		if(IsAt247(playerid)) return cmd_buy(playerid, "");
-		else if(IsAtRestaurant(playerid)) return cmd_buyfood(playerid, "");
-		else if(IsAtClothingStore(playerid)) return cmd_buyclothes(playerid, "");
+		if(IsAt247(playerid)) return PC_EmulateCommand(playerid, "/buy");
+		else if(IsAtRestaurant(playerid)) return PC_EmulateCommand(playerid, "/buyfood");
+		else if(IsAtClothingStore(playerid)) return PC_EmulateCommand(playerid, "/buyclothes");
 	}
 	return 1;
 }
@@ -799,10 +799,7 @@ CMD:businesshelp(playerid, params[])
 	}
     return 1;
 }
-
-CMD:bhelp(playerid, params[]) {
-	return cmd_businesshelp(playerid, params);
-}
+alias:businesshelp("bhelp")
 
 CMD:bonline(playerid, params[]) {
 	new iBusinessID = PlayerInfo[playerid][pBusiness];
@@ -2555,10 +2552,6 @@ CMD:deletegaspump(playerid, params[])
 	return 1;
 }
 
-CMD:addmats(playerid, params[]) {
-	return cmd_addmaterials(playerid, params);
-}
-
 CMD:addmaterials(playerid, params[])
 {
     new	string[128], amount;
@@ -2589,6 +2582,7 @@ CMD:addmaterials(playerid, params[])
 	SendClientMessageEx(playerid, COLOR_WHITE, string);
 	return 1;
 }
+alias:addmaterials("addmats")
 
 /*CMD:offergun(playerid, params[])
 {
@@ -2900,7 +2894,7 @@ CMD:resupply(playerid, params[])
 
 	format(Businesses[iBusiness][bOrderBy], MAX_PLAYER_NAME, "%s", GetPlayerNameEx(playerid));
 	getdate(year, month, day);
-	format(Businesses[iBusiness][bOrderDate], 30, "%d-%02d-%02d %02d:%02d:%02d", year, month, day, hour, minuite, second);
+	format(Businesses[iBusiness][bOrderDate], 30, "%d-%02d-%02d %02d:%02d:%02d", year, month, day, hour, minuite, seconid);
 	Businesses[iBusiness][bSafeBalance] -= floatround(amount * BUSINESS_ITEMS_COST);
 	Businesses[iBusiness][bOrderAmount] = amount;
 	Businesses[iBusiness][bOrderState] = 1;
@@ -2987,12 +2981,12 @@ CMD:cancelresupply(playerid, params[])
 
 CMD:minrank(playerid, params[])
 {
-	new rank, command[32];
+	new rank, cmd[32];
 	if (PlayerInfo[playerid][pBusiness] == INVALID_BUSINESS_ID || PlayerInfo[playerid][pBusinessRank] < 5)
 	{
 		return SendClientMessageEx(playerid, COLOR_GREY, "Only business owners can use this command.");
 	}
-	if (sscanf(params, "ds[32]", rank, command))
+	if (sscanf(params, "ds[32]", rank, cmd))
 	{
 		return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /minrank [rank] [invite/giverank/supply]");
 	}
@@ -3000,21 +2994,16 @@ CMD:minrank(playerid, params[])
 	{
 		SendClientMessageEx(playerid, COLOR_GREY, "Don't go below number 0 or above number 5!");
 	}
-	if (strcmp(command, "invite", true) == 0) Businesses[PlayerInfo[playerid][pBusiness]][bMinInviteRank] = rank, SaveBusiness(PlayerInfo[playerid][pBusiness]);
-	else if (strcmp(command, "giverank", true) == 0) Businesses[PlayerInfo[playerid][pBusiness]][bMinGiveRankRank] = rank, SaveBusiness(PlayerInfo[playerid][pBusiness]);
-	else if (strcmp(command, "supply", true) == 0) Businesses[PlayerInfo[playerid][pBusiness]][bMinSupplyRank] = rank, SaveBusiness(PlayerInfo[playerid][pBusiness]);
+	if (strcmp(cmd, "invite", true) == 0) Businesses[PlayerInfo[playerid][pBusiness]][bMinInviteRank] = rank, SaveBusiness(PlayerInfo[playerid][pBusiness]);
+	else if (strcmp(cmd, "giverank", true) == 0) Businesses[PlayerInfo[playerid][pBusiness]][bMinGiveRankRank] = rank, SaveBusiness(PlayerInfo[playerid][pBusiness]);
+	else if (strcmp(cmd, "supply", true) == 0) Businesses[PlayerInfo[playerid][pBusiness]][bMinSupplyRank] = rank, SaveBusiness(PlayerInfo[playerid][pBusiness]);
 	else return SendClientMessageEx(playerid, COLOR_GRAD2, "Invalid Permission Name");
 
 	new string[128];
-	format(string, sizeof(string), "You have set the minimum rank for %s to %d (%s)", command, rank, GetBusinessRankName(rank));
+	format(string, sizeof(string), "You have set the minimum rank for %s to %d (%s)", cmd, rank, GetBusinessRankName(rank));
 	SendClientMessageEx(playerid, COLOR_GREY, string);
 
 	return 1;
-}
-
-CMD:br(playerid, params[])
-{
-	return cmd_bizradio(playerid, params);
 }
 
 CMD:bizradio(playerid, params[])
@@ -3043,6 +3032,7 @@ CMD:bizradio(playerid, params[])
 
 	return 1;
 }
+alias:bizradio("br")
 
 CMD:employeepayset(playerid, params[])
 {

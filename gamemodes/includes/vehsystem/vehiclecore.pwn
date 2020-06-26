@@ -1865,8 +1865,8 @@ CMD:car(playerid, params[])
 	{
 		new engine,lights,alarm,doors,bonnet,boot,objective,vehicleid;
 		vehicleid = GetPlayerVehicleID(playerid);
-		if(GetVehicleModel(vehicleid) == 481 || GetVehicleModel(vehicleid) == 509 || GetVehicleModel(vehicleid) == 510 || DynVeh[vehicleid] != -1 && DynVehicleInfo[DynVeh[vehicleid]][gv_iType] == 1 && GetVehicleModel(vehicleid) == 592) return SendClientMessageEx(playerid,COLOR_WHITE,"This command can't be used in this vehicle.");
-		if(WheelClamp{vehicleid}) return SendClientMessageEx(playerid,COLOR_WHITE,"(( This vehicle has a wheel camp on its front tire, you will not be able to drive away with it. ))");
+		if(GetVehicleModel(vehicleid) == 481 || GetVehicleModel(vehicleid) == 509 || GetVehicleModel(vehicleid) == 510 || DynVeh[vehicleid] != -1 && DynVehicleInfo[DynVeh[vehicleid]][gv_iType] == 1 && GetVehicleModel(vehicleid) == 592) return SendClientMessageEx(playerid, COLOR_WHITE, "This command can't be used in this vehicle.");
+		if(WheelClamp{vehicleid}) return SendClientMessageEx(playerid, COLOR_WHITE, "(( This vehicle has a wheel camp on its front tire, you will not be able to drive away with it. ))");
 
 		GetVehicleParamsEx(vehicleid,engine,lights,alarm,doors,bonnet,boot,objective);
 		if(engine == VEHICLE_PARAMS_ON)
@@ -1889,7 +1889,7 @@ CMD:car(playerid, params[])
 	else if(strcmp(choice, "lights", true) == 0 && IsPlayerInAnyVehicle(playerid) && GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
 	{
 		new vehicleid = GetPlayerVehicleID(playerid);
-		if(GetVehicleModel(vehicleid) == 481 || GetVehicleModel(vehicleid) == 509 || GetVehicleModel(vehicleid) == 510) return SendClientMessageEx(playerid,COLOR_WHITE,"This command can't be used in this vehicle.");
+		if(GetVehicleModel(vehicleid) == 481 || GetVehicleModel(vehicleid) == 509 || GetVehicleModel(vehicleid) == 510) return SendClientMessageEx(playerid, COLOR_WHITE, "This command can't be used in this vehicle.");
 		SetVehicleLights(vehicleid, playerid);
 	}
 	else if(strcmp(choice, "hood", true) == 0)
@@ -1899,7 +1899,7 @@ CMD:car(playerid, params[])
 			new vehicleid = GetPlayerVehicleID(playerid);
 			if(GetVehicleModel(vehicleid) == 481 || GetVehicleModel(vehicleid) == 509 || GetVehicleModel(vehicleid) == 510 || IsAPlane(vehicleid) || IsABike(vehicleid))
 			{
-				return SendClientMessageEx(playerid,COLOR_WHITE,"This command can't be used in this vehicle.");
+				return SendClientMessageEx(playerid, COLOR_WHITE, "This command can't be used in this vehicle.");
 			}
 			SetVehicleHood(vehicleid, playerid);
 		}
@@ -1910,7 +1910,7 @@ CMD:car(playerid, params[])
 			{
 				if(GetVehicleModel(closestcar) == 481 || GetVehicleModel(closestcar) == 509 || GetVehicleModel(closestcar) == 510 || IsAPlane(closestcar) || IsABike(closestcar))
 				{
-					return SendClientMessageEx(playerid,COLOR_WHITE,"This command can't be used on this vehicle.");
+					return SendClientMessageEx(playerid, COLOR_WHITE, "This command can't be used on this vehicle.");
 				}
 				SetVehicleHood(closestcar, playerid);
 			}
@@ -1923,9 +1923,9 @@ CMD:car(playerid, params[])
 			new vehicleid = GetPlayerVehicleID(playerid);
 			if(GetVehicleModel(vehicleid) == 481 || GetVehicleModel(vehicleid) == 509 || GetVehicleModel(vehicleid) == 510)
 			{
-				return SendClientMessageEx(playerid,COLOR_WHITE,"This command can't be used in this vehicle.");
+				return SendClientMessageEx(playerid, COLOR_WHITE, "This command can't be used in this vehicle.");
 			}
-			if(CarryCrate[playerid] != -1) return SendClientMessageEx(playerid,COLOR_WHITE,"You need both hands to open the car trunk!"); 
+			if(CarryCrate[playerid] != -1) return SendClientMessageEx(playerid, COLOR_WHITE, "You need both hands to open the car trunk!"); 
 			SetVehicleTrunk(vehicleid, playerid);
 		}
 		else if(!IsPlayerInAnyVehicle(playerid))
@@ -1935,9 +1935,9 @@ CMD:car(playerid, params[])
 			{
 				if(GetVehicleModel(closestcar) == 481 || GetVehicleModel(closestcar) == 509 || GetVehicleModel(closestcar) == 510)
 				{
-					return SendClientMessageEx(playerid,COLOR_WHITE,"This command can't be used on this vehicle.");
+					return SendClientMessageEx(playerid, COLOR_WHITE, "This command can't be used on this vehicle.");
 				}
-				if(CarryCrate[playerid] != -1) return SendClientMessageEx(playerid,COLOR_WHITE,"You need both hands to open the car trunk!"); 
+				if(CarryCrate[playerid] != -1) return SendClientMessageEx(playerid, COLOR_WHITE, "You need both hands to open the car trunk!"); 
 				SetVehicleTrunk(closestcar, playerid);
 			}
 		}
@@ -2421,8 +2421,6 @@ CMD:carkeys(playerid, params[])
 	return 1;
 }
 
-CMD:sb(playerid, params[]) return cmd_seatbelt(playerid, params);
-
 CMD:seatbelt(playerid, params[])
 {
     if(IsPlayerInAnyVehicle(playerid) == 0)
@@ -2461,8 +2459,7 @@ CMD:seatbelt(playerid, params[])
     // ProxDetector(30.0, playerid, szMiscArray, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
     return 1;
 }
-
-CMD:cb(playerid, params[]) return cmd_checkbelt(playerid, params);
+alias:seatbelt("sb")
 
 CMD:checkbelt(playerid, params[])
 {
@@ -2497,6 +2494,7 @@ CMD:checkbelt(playerid, params[])
     else { SendClientMessageEx(playerid, COLOR_GREY, "You are not around that player!"); }
     return 1;
 }
+alias:checkbelt("cb")
 
 CMD:givekeys(playerid, params[])
 {
@@ -2783,8 +2781,6 @@ CMD:rc(playerid, params[])
 	return 1;
 }
 
-CMD:lastcar(playerid, params[]) return cmd_oldcar(playerid, params);
-
 CMD:oldcar(playerid, params[])
 {
 	new string[128];
@@ -2793,6 +2789,7 @@ CMD:oldcar(playerid, params[])
 	SendClientMessageEx(playerid, COLOR_GREY, string);
 	return 1;
 }
+alias:oldcar("lastcar")
 
 CMD:userimkit(playerid, params[])
 {

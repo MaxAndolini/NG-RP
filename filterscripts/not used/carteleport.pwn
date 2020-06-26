@@ -1,9 +1,11 @@
 //#define FILTERSCRIPT
 
+#define YSI_NO_HEAP_MALLOC
+
 #include <a_samp>
-#include <YSI\y_timers>
-#include <foreach>
-#include <zcmd>
+#include <YSI_Coding\y_timers>
+#include <YSI_Data\y_iterate>
+#include <Pawn.CMD>
 
 #define MAX_CAR_TELEPORT_WARNINGS 5 // Define how many warnings you want to show up
 
@@ -35,9 +37,9 @@ public OnPlayerConnect(playerid)
     return 1;
 }
 
-stock SendWarningMessage(message[])
+stock SendWarningMessage(const message[])
 {
-	foreach(Player, playerid)
+	foreach(new playerid : Player)
 	{
 	    new tog = GetPVarInt(playerid, "TPWarnings");
 	    if(tog) SendClientMessage(playerid, COLOR_YELLOW, message);
@@ -69,7 +71,7 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 
 task Timer2[500]()
 {
-    foreach(Player, i)
+    foreach(new i : Player)
     {
         if(IsPlayerInAnyVehicle(i))
         {
@@ -89,7 +91,7 @@ task Timer2[500]()
 
 task Timer[1000]()
 {
-    foreach(Player, i)
+    foreach(new i : Player)
     {
         if(PlayerEnterTime[i][0] == 1)
         {

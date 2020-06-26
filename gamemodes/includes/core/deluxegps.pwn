@@ -37,7 +37,7 @@
 	* NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 	* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 #define		DIALOG_GPS_ONE				9800
 #define		DIALOG_GPS_TWO				9801
@@ -177,7 +177,7 @@ new gpsZoneName[50][] = {
 	"Pershing Square Apartments"
 };
 
-GetEntity3DZone(entityID, type, zone[], len, Float:x2 = 0.0, Float:y2 = 0.0, Float:z2 = 0.0) //Credits to Cueball, Betamaster, Mabako, and Simon.
+GetEntity3DZone(entityID, type, const zone[], len, Float:x2 = 0.0, Float:y2 = 0.0, Float:z2 = 0.0) //Credits to Cueball, Betamaster, Mabako, and Simon.
 {
 	new Float:x, Float:y, Float:z;
 	switch(type) {

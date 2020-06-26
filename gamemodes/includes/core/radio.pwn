@@ -35,7 +35,7 @@
 	* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 stock SendAudioURLToRange(url[], Float:x, Float:y, Float:z, Float:range)
 {
@@ -94,7 +94,7 @@ public PlayerFixRadio2()
 	}	
 }
 
-stock PlayAudioStreamForPlayerEx(playerid, url[], Float:posX = 0.0, Float:posY = 0.0, Float:posZ = 0.0, Float:distance = 50.0, usepos = 0)
+stock PlayAudioStreamForPlayerEx(playerid, const url[], Float:posX = 0.0, Float:posY = 0.0, Float:posZ = 0.0, Float:distance = 50.0, usepos = 0)
 {
 	if(GetPVarType(playerid, "pAudioStream"))
 	{
@@ -232,7 +232,7 @@ public StationSelectHTTP(index, response_code, data[])
 	return 1;
 }
 
-stock ShowSetStation(playerid, title[] = "Radio Menu")
+stock ShowSetStation(playerid, const title[] = "Radio Menu")
 {
 	new string[256];
 	format(string, sizeof(string), "Favorite Station\nGenres\nTop 50 Stations\nSearch\nK-LSR\nRadio New Robada\nNick's Radio\nCustom Audio URL\n%sTurn radio off", ((!isnull(PlayerInfo[playerid][pFavStation])) ? ("Favorite Station Settings\n") : ("")));

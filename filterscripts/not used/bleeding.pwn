@@ -7,7 +7,7 @@ D) Sets checkpoint for any player in an ambulance when the call comes through
 
 #include <a_samp>
 //#include <Seifader>
-#include <foreach>
+#include <YSI_Data\y_iterate>
 
 forward BleedingTick();
 forward SummonMedics(forplayer);
@@ -42,6 +42,7 @@ public OnFilterScriptInit()
 public OnFilterScriptExit()
 {
 	//Seifader_OnExit();
+	return 1;
 }
 
 public OnPlayerConnect(playerid)
@@ -188,7 +189,7 @@ public SummonMedics(forplayer)
 	//OnPlayerCommandText(forplayer, "/service medic");
 	new Float:forx, Float:fory, Float:forz;
 	GetPlayerPos(forplayer, forx, fory, forz);
-	foreach(Player, i)
+	foreach(new i : Player)
 	{
 		if(IsPlayerInAnyVehicle(i))
 		{
@@ -205,7 +206,7 @@ public SummonMedics(forplayer)
 
 public CancelMedics(forplayer)
 {
-	foreach(Player, i)
+	foreach(new i : Player)
 	{
 		if(pOnCall[i]==true)
 		{
@@ -222,7 +223,7 @@ public CancelMedics(forplayer)
 
 public BleedingTick()
 {
-	foreach(Player, i)
+	foreach(new i : Player)
 	{
 		if(!pSpawned[i]) continue;
 		{
@@ -328,9 +329,9 @@ public BleedingTick()
 	}
 }
 
-PreloadAnimLib(playerid, animlib[])
+PreloadAnimLib(playerid, const animlib[])
 {
-	ApplyAnimation(playerid,animlib,"null",0.0,0,0,0,0,0);
+	ApplyAnimation(playerid, animlib, "null", 0.0, 0, 0, 0, 0, 0);
 }
 
 /*public OnPlayerScreenFade(playerid, color, speed)

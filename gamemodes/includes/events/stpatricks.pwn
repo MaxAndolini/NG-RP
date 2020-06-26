@@ -22,7 +22,7 @@ CMD:stpatricksshop(playerid, params[])
 	return 1;
 }
 
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 
 	if(arrAntiCheat[playerid][ac_iFlags][AC_DIALOGSPOOFING] > 0) return 1;

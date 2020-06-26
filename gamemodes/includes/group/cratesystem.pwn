@@ -35,7 +35,7 @@
 	* NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 	* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 new 
 	CrateBeingProcessed[MAX_CRATE_FACILITY],
@@ -1457,7 +1457,7 @@ CMD:cfedit(playerid, params[]) {
 	return 1;
 }
 
-stock DeleteOrder(facility, reason[]) {
+stock DeleteOrder(facility, const reason[]) {
 	szMiscArray[0] = 0;
 	for(new g = 0; g < MAX_GROUPS; g++) {
 		if(CrateOrder[g][coFacility] == facility) {

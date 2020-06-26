@@ -34,7 +34,7 @@
 	* NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 	* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-stock SendTaxiMessage(color, string[])
+stock SendTaxiMessage(color, const string[])
 {
 	foreach(new i : Player)
 	{
@@ -102,12 +102,6 @@ CMD:fare(playerid, params[])
 	return 1;
 }
 
-CMD:eba(playerid, params[]) {
-	return cmd_emergencybutton(playerid, params);
-}
-
-
-
 CMD:emergencybutton(playerid, params[]) {
 
 	if(arrGroupData[PlayerInfo[playerid][pMember]][g_iGroupType] == 7 || arrGroupData[PlayerInfo[playerid][pLeader]][g_iGroupType] == 7 || IsAReporter(playerid)) {
@@ -159,8 +153,8 @@ CMD:emergencybutton(playerid, params[]) {
 	}
 	return 1;
 }
+alias:emergencybutton("eba")
 
-CMD:abus(playerid, params[]) return cmd_ataxi(playerid, params);
 CMD:ataxi(playerid, params[])
 {
 	if(!IsATaxiDriver(playerid)) 
@@ -207,3 +201,4 @@ CMD:ataxi(playerid, params[])
 	PlayerInfo[playerid][pCallsAccepted]++;
 	return 1;
 }
+alias:ataxi("abus")

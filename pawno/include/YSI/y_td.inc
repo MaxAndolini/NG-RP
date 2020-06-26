@@ -69,8 +69,6 @@ Optional plugins:
 	Incognito - Streamer.
 	Me - sscanf2, fixes2, Whirlpool.
 */
-#if defined _inc_y_td
-	#undef _inc_y_td
-#endif
 
-#include "..\YSI_Server\y_td"
+#error Use `#include <YSI_Server\y_td>`
+

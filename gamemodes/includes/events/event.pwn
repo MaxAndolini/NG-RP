@@ -392,7 +392,7 @@ CMD:eventreset(playerid, params[])
             EventKernel[EventAdvisor] = 0;
             KillTimer( EventTimerHandle );
             format( string, sizeof(string), "{AA3333}AdmWarning{FFFF00}: %s has reset the event timer.", GetPlayerNameEx( playerid ) );
-            ABroadCast( COLOR_YELLOW, string, 4 );
+            ABroadCast(COLOR_YELLOW, string, 4);
         }
         else {
             SendClientMessageEx( playerid, COLOR_GREY, "The timeout expired before you attempted to use this command. You can set-up an event." );
@@ -418,7 +418,7 @@ CMD:requestevent(playerid, params[])
                 EventKernel[ EventRequest ] = playerid;
                 SendClientMessageEx( playerid, COLOR_GRAD2, "You have requested to set up an event, please wait until a Senior Admin approves it." );
                 format( string, sizeof( string ), "{AA3333}AdmWarning{FFFF00}: %s would like to set up an event, do you approve? /acceptevent or /denyevent.", GetPlayerNameEx(playerid) );
-                ABroadCast( COLOR_YELLOW, string, 4 );
+                ABroadCast(COLOR_YELLOW, string, 4);
                 EventKernel[EventAdvisor] = 1;
                 EventTimerHandle = SetTimer("ERequested", 9600000, false);
             }
@@ -451,7 +451,7 @@ CMD:vipparty(playerid, params[])
                 EventKernel[ EventRequest ] = playerid;
                 SendClientMessageEx( playerid, COLOR_GRAD2, "You have requested to set up an event, please wait until a Senior Admin approves it." );
                 format( string, sizeof( string ), "{AA3333}AdmWarning{FFFF00}: VIP Mod %s would like to set up a VIP event - /acceptevent or /denyevent", GetPlayerNameEx(playerid) );
-                ABroadCast( COLOR_YELLOW, string, 4 );
+                ABroadCast(COLOR_YELLOW, string, 4);
                 EventKernel[EventAdvisor] = 1;
                 EventKernel[VipOnly] = 1;
                 EventTimerHandle = SetTimer("ERequested", 9600000, false);
@@ -473,7 +473,7 @@ CMD:denyevent(playerid, params[])
         EventKernel[EventRequest] = INVALID_PLAYER_ID;
         EventKernel[EventCreator] = INVALID_PLAYER_ID;
         format( string, sizeof( string ), "{AA3333}AdmWarning{FFFF00}: %s has denied the event request.", GetPlayerNameEx(playerid) );
-        ABroadCast( COLOR_YELLOW, string, 4 );
+        ABroadCast(COLOR_YELLOW, string, 4);
         for(new i; i < sizeof(EventKernel[EventStaff]); i++) {
             if(EventKernel[EventStaff][i] != INVALID_PLAYER_ID) {
                 SetPlayerWeapons(EventKernel[EventStaff][i]);
@@ -532,7 +532,7 @@ CMD:acceptevent(playerid, params[])
                         SendClientMessageEx( EventKernel[EventCreator], COLOR_GRAD2, "You now have temporary access to (/o)oc and /goto." );
                     }
                     format( string, sizeof( string ), "{AA3333}AdmWarning{FFFF00}: %s has approved the event request from %s.", GetPlayerNameEx(playerid), GetPlayerNameEx(EventKernel[EventCreator]) );
-                    ABroadCast( COLOR_YELLOW, string, 4 );
+                    ABroadCast(COLOR_YELLOW, string, 4);
                     return 1;
                 }
             }
@@ -550,7 +550,7 @@ CMD:approveevent(playerid, params[])
             EventKernel[EventStartRequest] = 0;
             SendClientMessageEx( EventKernel[EventCreator], COLOR_GRAD2, "Your event start request has been accepted, you can now use /announceevent to announce it to the server." );
             format( string, sizeof( string ), "{AA3333}AdmWarning{FFFF00}: %s has approved the event start request from %s.", GetPlayerNameEx(playerid), GetPlayerNameEx(EventKernel[EventCreator]) );
-            ABroadCast( COLOR_YELLOW, string, 4 );
+            ABroadCast(COLOR_YELLOW, string, 4);
             foreach(new i : Player)
 			{
 				if(PlayerInfo[i][pDonateRank] >= 3) {
@@ -1254,57 +1254,57 @@ CMD:startevent(playerid, params[])
 				if(EventKernel[EventType] != 3)
 				{
 					format( string, sizeof( string ), "Event Position: x:%f y:%f z:%f.", EventKernel[EventPositionX], EventKernel[EventPositionY], EventKernel[EventPositionZ] );
-					ABroadCast( COLOR_GRAD2, string, 4 );
+					ABroadCast(COLOR_GRAD2, string, 4);
 					format( string, sizeof( string ), "Event Jointext: %s EventLimit: %d.", EventKernel[EventInfo], EventKernel[EventLimit] );
-					ABroadCast( COLOR_GRAD2, string, 4 );
+					ABroadCast(COLOR_GRAD2, string, 4);
 					format( string, sizeof( string ), "Event Health: %f Event Armor: %f.", EventKernel[EventHealth], EventKernel[EventArmor] );
-					ABroadCast( COLOR_GRAD2, string, 4 );
+					ABroadCast(COLOR_GRAD2, string, 4);
 					if(EventKernel[EventWeapons][0] != 0)
 					{
 						format( string, sizeof( string ), "Event Gun1: %d.", EventKernel[EventWeapons][0] );
-						ABroadCast( COLOR_GRAD2, string, 4 );
+						ABroadCast(COLOR_GRAD2, string, 4);
 					}
 					if(EventKernel[EventWeapons][1] != 0)
 					{
 						format( string, sizeof( string ), "Event Gun2: %d.", EventKernel[EventWeapons][1] );
-						ABroadCast( COLOR_GRAD2, string, 4 );
+						ABroadCast(COLOR_GRAD2, string, 4);
 					}
 					if(EventKernel[EventWeapons][2] != 0)
 					{
 						format( string, sizeof( string ), "Event Gun3: %d.", EventKernel[EventWeapons][2] );
-						ABroadCast( COLOR_GRAD2, string, 4 );
+						ABroadCast(COLOR_GRAD2, string, 4);
 					}
 					if(EventKernel[EventWeapons][3] != 0)
 					{
 						format( string, sizeof( string ), "Event Gun4: %d.", EventKernel[EventWeapons][3] );
-						ABroadCast( COLOR_GRAD2, string, 4 );
+						ABroadCast(COLOR_GRAD2, string, 4);
 					}
 					if(EventKernel[EventWeapons][4] != 0)
 					{
       					format( string, sizeof( string ), "Event Gun5: %d.", EventKernel[EventWeapons][4] );
-						ABroadCast( COLOR_GRAD2, string, 4 );
+						ABroadCast(COLOR_GRAD2, string, 4);
 					}
 					if(EventKernel[EventType] == 2)
 					{
 						format( string, sizeof( string ), "Event Team 1 Color: %d Event Team 1 Skin: %d.", EventKernel[EventTeamColor][0], EventKernel[EventTeamSkin][0] );
-						ABroadCast( COLOR_GRAD2, string, 4 );
+						ABroadCast(COLOR_GRAD2, string, 4);
 						format( string, sizeof( string ), "Event Team 2 Color: %d Event Team 2 Skin: %d.", EventKernel[EventTeamColor][1], EventKernel[EventTeamSkin][1] );
-						ABroadCast( COLOR_GRAD2, string, 4 );
+						ABroadCast(COLOR_GRAD2, string, 4);
 					}
 				}
 				else {
 				    if(EventKernel[EventTime] != 0) {
 				    	format( string, sizeof( string ), "Event Jointext: %s EventTimeLimit: %d.", EventKernel[EventInfo], EventKernel[EventTime] );
-						ABroadCast( COLOR_GRAD2, string, 4 );
+						ABroadCast(COLOR_GRAD2, string, 4);
 					}
 					else {
 						format( string, sizeof( string ), "Event Jointext: %s EventLimit: %d.", EventKernel[EventInfo], EventKernel[EventLimit] );
-						ABroadCast( COLOR_GRAD2, string, 4 );
+						ABroadCast(COLOR_GRAD2, string, 4);
 					}
-					ABroadCast( COLOR_GRAD2, "This is a race type event, to view the race checkpoints use /edit checkpoints", 4 );
+					ABroadCast(COLOR_GRAD2, "This is a race type event, to view the race checkpoints use /edit checkpoints", 4);
 				}
 				format( string, sizeof( string ), "{AA3333}AdmWarning{FFFF00}: %s would like to start the event, do you approve? /approveevent or /denyevent.", GetPlayerNameEx(playerid) );
-				ABroadCast( COLOR_YELLOW, string, 4 );
+				ABroadCast(COLOR_YELLOW, string, 4);
 			}
 		}
 		else

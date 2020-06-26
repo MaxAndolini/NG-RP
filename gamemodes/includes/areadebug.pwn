@@ -1,5 +1,5 @@
 // Area debugging
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 
@@ -15,7 +15,7 @@ hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 			for(new i; i < MAX_GROUP_LOCKERS; ++i) {
 				
 				if(szAreas[0] == arrGroupLockers[PlayerInfo[playerid][pMember]][i][g_iLockerAreaID]) {
-					cmd_locker(playerid, "");
+					PC_EmulateCommand(playerid, "/locker");
 					format(szMiscArray, sizeof(szMiscArray), "AreaID: %d, Locker Area ID: %d", szAreas[0], arrGroupLockers[PlayerInfo[playerid][pMember]][i][g_iLockerAreaID]);
 					SendClientMessage(playerid, COLOR_GRAD1, szMiscArray);
 				}

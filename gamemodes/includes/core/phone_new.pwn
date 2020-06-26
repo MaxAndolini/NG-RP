@@ -1,4 +1,4 @@
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 #define 			PHONE_NAME					"jPhone"
 
@@ -262,12 +262,14 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 		{
 			if(!response) return 1;
 			if(isnull(inputtext)) return 1;
-			cmd_call(playerid, inputtext);
+			format(szMiscArray, sizeof(szMiscArray), "/call %s", inputtext);
+			PC_EmulateCommand(playerid, szMiscArray);
 			return 1;
 		}
-		case DIALOG_PHONE_PAYPHONES: {
-
-			cmd_call(playerid, arrPayPhoneData[ListItemTrackId[playerid][listitem]][pp_iNumber]);
+		case DIALOG_PHONE_PAYPHONES: 
+		{
+			format(szMiscArray, sizeof(szMiscArray), "/call %d", arrPayPhoneData[ListItemTrackId[playerid][listitem]][pp_iNumber]);
+			PC_EmulateCommand(playerid, szMiscArray);
 			return 1;
 		}
 		case DIALOG_PHONE_CONTACTS:
@@ -339,13 +341,13 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 						Car Dealerships\n\
 						Clubs", "Select", "Back");
 				}
-				case 1: cmd_call(playerid, "18004444");
-				case 2: cmd_call(playerid, "18001800");
-				case 3: cmd_call(playerid, "1738");
-				case 4: cmd_call(playerid, "18008080");
-				case 5: cmd_call(playerid, "18001111");
-				case 6: cmd_call(playerid, "18001020");
-				case 7: cmd_service(playerid, "mechanic");
+				case 1: PC_EmulateCommand(playerid, "/call 18004444");
+				case 2: PC_EmulateCommand(playerid, "/call 18001800");
+				case 3: PC_EmulateCommand(playerid, "/call 1738");
+				case 4: PC_EmulateCommand(playerid, "/call 18008080");
+				case 5: PC_EmulateCommand(playerid, "/call 18001111");
+				case 6: PC_EmulateCommand(playerid, "/call 18001020");
+				case 7: PC_EmulateCommand(playerid, "/service mechanic");
 			}
 
 		}
@@ -386,14 +388,14 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 			new id = ListItemTrackId[playerid][listitem];
 
 			SetPVarInt(playerid, "BUSICALL", id);
-			cmd_call(playerid, "000000");
+			PC_EmulateCommand(playerid, "/call 000000");
 			return 1;
 		}
 		case DIALOG_PHONE_CONTACTLIST:
 		{
 			if(!response) return DeletePVar(playerid, PVAR_PHONEDELCONTACT), Phone_Contacts(playerid), 1;
-			format(szMiscArray, sizeof(szMiscArray), "%d", ListItemTrackId[playerid][listitem]);
-			cmd_call(playerid, szMiscArray);
+			format(szMiscArray, sizeof(szMiscArray), "/call %d", ListItemTrackId[playerid][listitem]);
+			PC_EmulateCommand(playerid, szMiscArray);
 			return 1;
 		}
 		case DIALOG_PHONE_ADDCONTACT:
@@ -434,9 +436,9 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 			if(!response) return 1;
 			switch(listitem)
 			{
-				case 0: cmd_picture(playerid, "");
-				case 1: cmd_selfie(playerid, "");
-				case 2: cmd_selfie(playerid, "");
+				case 0: PC_EmulateCommand(playerid, "/picture");
+				case 1: PC_EmulateCommand(playerid, "/selfie");
+				case 2: PC_EmulateCommand(playerid, "/selfie");
 			}
 		}
 		case DIALOG_PHONE_SETTINGS:
@@ -968,7 +970,7 @@ Phone_Contacts(iPlayerID)
 
 Phone_Ads(iPlayerID)
 {
-	cmd_ads(iPlayerID, "");
+	PC_EmulateCommand(iPlayerID, "/ads");
 }
 
 Phone_Camera(iPlayerID)
@@ -983,35 +985,35 @@ Phone_Settings(iPlayerID)
 
 Phone_Music(iPlayerID)
 {
-	cmd_mp3(iPlayerID, "");
+	PC_EmulateCommand(iPlayerID, "/mp3");
 }
 
 Phone_Map(iPlayerID)
 {
 	
 	DisablePlayerCheckpoint(iPlayerID);
-	cmd_mygps(iPlayerID, "");
+	PC_EmulateCommand(iPlayerID, "/mygps");
 }
 
 Phone_SAN(iPlayerID)
 {
-	cmd_shows(iPlayerID, "");
+	PC_EmulateCommand(iPlayerID, "/shows");
 }
 
 /*
 Phone_House(iPlayerID) {
 
-	cmd_houselistings(iPlayerID, "");
+	PC_EmulateCommand(iPlayerID, "/houselistings");
 }
 
 Phone_Medic(iPlayerID)
 {
-	cmd_call(iPlayerID, "911");
+	PC_EmulateCommand(iPlayerID, "/call 911");
 }
 
 Phone_MDC(iPlayerID)
 {
-	cmd_mdc(iPlayerID, "");
+	PC_EmulateCommand(iPlayerID, "/mdc");
 }
 */
 
@@ -1272,6 +1274,8 @@ CMD:fpm(playerid, params[]) {
 	}
 	return 1;
 }
+alias:fpm("firstperson", "picture")
+
 /*
 hook OnPlayerStateChange(playerid, newstate, oldstate) {
 
@@ -1296,16 +1300,6 @@ hook OnPlayerStateChange(playerid, newstate, oldstate) {
     return 1;
 }
 */
-
-CMD:firstperson(playerid, params[]) {
-	return cmd_fpm(playerid, "");
-}
-
-CMD:picture(playerid, params[]) {
-
-	return cmd_fpm(playerid, "");
-}
-
 
 CMD:selfie(playerid, params[]) {
 

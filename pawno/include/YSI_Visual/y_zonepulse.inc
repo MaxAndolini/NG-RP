@@ -1,8 +1,3 @@
-#if defined _INC_y_zonepulse
-	#endinput
-#endif
-#define _INC_y_zonepulse
-
 /**
  * <library name="y_zonepulse">
  * <section>
@@ -105,27 +100,22 @@ Optional plugins:
 	Me - sscanf2, fixes2, Whirlpool.
 */
 
-/*
-native GangZonePulse(@PlayerSet:ps, zone, from, to, time, delay = ZONE_PULSE_STAGE_TIME);
-native GangZonePulseForPlayer(playerid, zone, from, to, time, delay = ZONE_PULSE_STAGE_TIME);
-native GangZonePulseForAll(zone, from, to, time, delay = ZONE_PULSE_STAGE_TIME);
-native GangZoneStopPulse(@PlayerSet:ps, zone);
-native GangZoneStopPulseForPlayer(playerid, zone);
-native GangZoneStopPulseForAll(zone);
-*/
-
-#include <a_samp>
-#include "..\YSI_Internal\y_version"
-#include "..\YSI_Data\y_playerset"
-#include "..\YSI_Data\y_iterate"
-#include "..\YSI_Core\y_debug"
-
-#if !defined ZONE_PULSE_STAGE_TIME
-	#define ZONE_PULSE_STAGE_TIME (50)
+#if !defined _INC_y_zonepulse
+	#tryinclude "y_zonepulse\y_zonepulse_entry"
+#endif
+#if !defined _INC_y_zonepulse
+	#tryinclude "YSI_Visual\y_zonepulse\y_zonepulse_entry"
+#endif
+#if !defined _INC_y_zonepulse
+	#tryinclude "YSI\YSI_Visual\y_zonepulse\y_zonepulse_entry"
+#endif
+#if !defined _INC_y_zonepulse
+	#tryinclude <YSI_Visual\y_zonepulse\y_zonepulse_entry>
+#endif
+#if !defined _INC_y_zonepulse
+	#tryinclude <YSI\YSI_Visual\y_zonepulse\y_zonepulse_entry>
+#endif
+#if !defined _INC_y_zonepulse
+	#error Could not find y_zonepulse
 #endif
 
-#include "y_zonepulse/impl"
-#if defined YSI_TESTS
-	#include "..\YSI_Core\y_testing"
-	#include "y_zonepulse/tests"
-#endif

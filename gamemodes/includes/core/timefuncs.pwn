@@ -246,7 +246,7 @@ public SyncPlayerTime(playerid)
 	{
 		new
 		iTempHour = CalculateWorldGameTime(hour, minuite),
-		iTempMinute = CalculateGameMinute(minuite, second);
+		iTempMinute = CalculateGameMinute(minuite, seconid);
 
 		SetPlayerTime(playerid, iTempHour, iTempMinute);
 	}
@@ -268,7 +268,7 @@ public SyncMinTime(i)
 		{
 			new
 			iTempHour = CalculateWorldGameTime(hour, minuite),
-			iTempMinute = CalculateGameMinute(minuite, second);
+			iTempMinute = CalculateGameMinute(minuite, seconid);
 
 			SetPlayerTime(i, iTempHour, iTempMinute);
 		}
@@ -282,7 +282,7 @@ public SyncPlayerTime(playerid)
 {
 	new
 		iTempHour = CalculateWorldGameTime(hour, minuite),
-		iTempMinute = CalculateGameMinute(minuite, second);
+		iTempMinute = CalculateGameMinute(minuite, seconid);
 
 	SetPlayerTime(playerid, iTempHour, iTempMinute);
 	return 1;
@@ -293,7 +293,7 @@ public SyncMinTime(i)
 {
 	new
 		iTempHour = CalculateWorldGameTime(hour, minuite),
-		iTempMinute = CalculateGameMinute(minuite, second);
+		iTempMinute = CalculateGameMinute(minuite, seconid);
 
 	if(GetPlayerVirtualWorld(i) == 133769)
 	{

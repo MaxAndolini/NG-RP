@@ -6,7 +6,7 @@
 	Integrated the Texture Studio by Pottus.
 */
 
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 #define 		MAX_CATALOG 					1000
 #define 		MAX_TILES 						16
@@ -91,9 +91,9 @@ hook OnPlayerClickTextDraw(playerid, Text:clickedid) {
 	if(clickedid == Furniture_TD[18] || clickedid == Furniture_TD[18]) FurnitureMenu(playerid, 2); // Build Mode.
 	if(clickedid == Furniture_TD[8]) FurnitureMenu(playerid, 3); // Sell Mode.
 	if(clickedid == Furniture_TD[9]) FurnitureMenu(playerid, 1); // Buy Mode.
-	if(clickedid == Furniture_TD[13]) cmd_furniture(playerid, "");	
-	if(clickedid == Furniture_TD[14]) cmd_furniturehelp(playerid, "");
-	if(clickedid == Furniture_TD[16]) cmd_furnitureresetpos(playerid, "");
+	if(clickedid == Furniture_TD[13]) PC_EmulateCommand(playerid, "/furniture");	
+	if(clickedid == Furniture_TD[14]) PC_EmulateCommand(playerid, "/furniturehelp");
+	if(clickedid == Furniture_TD[16]) PC_EmulateCommand(playerid, "/furnitureresetpos");
 	if(clickedid == Furniture_TD[10]) FurniturePermit(playerid);
 	return 1;
 }
@@ -855,11 +855,11 @@ FurnitureMenu(playerid, menu = 0) {
 	new iHouseID = GetHouseID(playerid);
 	if(iHouseID == INVALID_HOUSE_ID) {
 
-		cmd_furniture(playerid, "");
+		PC_EmulateCommand(playerid, "/furniture");
 		return SendClientMessageEx(playerid, COLOR_GRAD1, "You are not in a house anymore.");
 	}
 	if(!HousePermissionCheck(playerid, iHouseID)) {
-		cmd_furniture(playerid, "");
+		PC_EmulateCommand(playerid, "/furniture");
 		return SendClientMessageEx(playerid, COLOR_GRAD1, "You are not allowed to modify this house's furniture.");
 	}
 	switch(menu) {
@@ -2329,7 +2329,7 @@ CMD:furnitureresetpos(playerid, params[]) {
 		new i = GetHouseID(playerid);
 		if(i == INVALID_HOUSE_ID) {
 
-			cmd_furniture(playerid, "");
+			PC_EmulateCommand(playerid, "/furniture");
 			return SendClientMessageEx(playerid, COLOR_GRAD1, "You must be in a house.");
 		}
 
@@ -2494,7 +2494,7 @@ Create3DTextureMenu(playerid, Float:X, Float:Y, Float:Z, Float:R, tiles) {
 	return -1;
 }
 
-Set3DTextureMenuTile(i, tile, index, model, txd[], texture[], selectcolor, unselectcolor) {
+Set3DTextureMenuTile(i, tile, index, model, const txd[], const texture[], selectcolor, unselectcolor) {
 
 	if(!TextureMenuInfo[i][textm_bExists]) return 0;
 	if(!(0 < tile <= TextureMenuInfo[i][textm_iTiles])) return 0;

@@ -1,4 +1,4 @@
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 
@@ -11,8 +11,8 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 
 					new szIP[16];
 					GetPVarString(playerid, "MF_IP", szIP, sizeof(szIP));
-					format(szMiscArray, sizeof(szMiscArray), "%s 90 Moneyfarming", szIP);
-					cmd_banip(playerid, szMiscArray);
+					format(szMiscArray, sizeof(szMiscArray), "/banip %s 90 Moneyfarming", szIP);
+					PC_EmulateCommand(playerid, szMiscArray);
 				}
 			}
 		}
@@ -21,7 +21,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 }
 
 
-CreateBan(iBanCreator, iBanned, iPlayerID, szIPAddress[], szReason[], iLength, iSilentBan = 0, iPermBan = 0) {
+CreateBan(iBanCreator, iBanned, iPlayerID, const szIPAddress[], const szReason[], iLength, iSilentBan = 0, iPermBan = 0) {
 
 	// SPECIFY INVALID ID for iBanCreator for System Bans
 	// SPECIFY INVALID ID for iBanned when banning IP Addresses
@@ -44,8 +44,8 @@ CreateBan(iBanCreator, iBanned, iPlayerID, szIPAddress[], szReason[], iLength, i
 	return 1;
 }
 
-forward OnCreateBan(iBanCreator, iPlayerID, szIPAddress[], iBanned, szReason[], iLength, iSilentBan, iPermBan);
-public OnCreateBan(iBanCreator, iPlayerID, szIPAddress[], iBanned, szReason[], iLength, iSilentBan, iPermBan) {
+forward OnCreateBan(iBanCreator, iPlayerID, const szIPAddress[], iBanned, const szReason[], iLength, iSilentBan, iPermBan);
+public OnCreateBan(iBanCreator, iPlayerID, const szIPAddress[], iBanned, const szReason[], iLength, iSilentBan, iPermBan) {
  
 	new
 		string[128];

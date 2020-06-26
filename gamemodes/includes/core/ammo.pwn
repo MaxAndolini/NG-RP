@@ -4,7 +4,7 @@
 
 */
 
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 GetAmmoType(iWeaponID)
 {
@@ -354,7 +354,6 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 	return 0;
 }
 
-CMD:issuegl(playerid, params[]) return cmd_issuegunlicense(playerid, params);
 CMD:issuegunlicense(playerid, params[])
 {
 	if((0 <= PlayerInfo[playerid][pLeader] < MAX_GROUPS) && arrGroupData[PlayerInfo[playerid][pLeader]][g_iGroupType] == GROUP_TYPE_GOV)
@@ -379,6 +378,7 @@ CMD:issuegunlicense(playerid, params[])
 	else SendClientMessageEx(playerid, COLOR_WHITE, "You are not authorized to use this command!");
 	return 1;
 }
+alias:issuegunlicense("issuegl")
 
 CMD:buygun(playerid, params[])
 {
@@ -609,15 +609,17 @@ CMD:ammohelp(playerid, params[]) {
 }
 */
 
-/*CMD:oissuegl(playerid, params[]) return cmd_oissuegunlicense(playerid, params);
-CMD:oissuegunlicense(playerid, params[])
+/*CMD:oissuegunlicense(playerid, params[])
 {
 	if((0 <= PlayerInfo[playerid][pLeader] < MAX_GROUPS) && arrGroupData[PlayerInfo[playerid][pLeader]][g_iGroupType] == GROUP_TYPE_GOV)
 	{
 		szMiscArray[0] = 0;
-		new TargetName[MAX_PLAYERS];
+		new TargetName[MAX_PLAYERS], String[48];
 		if(sscanf(params, "s[24]", TargetName)) return SendClientMessageEx(playerid, COLOR_GRAD2, "USAGE: /oissuegunlicense [playerid]");
-		if(IsPlayerConnected(ReturnUser(TargetName))) return cmd_issuegunlicense(playerid, params);
+		if(IsPlayerConnected(ReturnUser(TargetName))) {
+			format(String, sizeof(String), "/issuegunlicense %s", params);
+			return PC_EmulateCommand(playerid, String);
+		}
 
 		new PlayerName[MAX_PLAYERS];
 		mysql_escape_string(TargetName, PlayerName);
@@ -631,17 +633,20 @@ CMD:oissuegunlicense(playerid, params[])
 	}
 	else SendClientMessageEx(playerid, COLOR_WHITE, "You are not authorized to use this command!");
 	return 1;
-}*/
+}
+alias:oissuegunlicense("oissuegl")*/
 
-CMD:orevokegl(playerid, params[]) return cmd_orevokegunlicense(playerid, params);
 CMD:orevokegunlicense(playerid, params[])
 {
 	if((0 <= PlayerInfo[playerid][pLeader] < MAX_GROUPS) && arrGroupData[PlayerInfo[playerid][pLeader]][g_iGroupType] == GROUP_TYPE_GOV || PlayerInfo[playerid][pLeader] == 1)
 	{
 		szMiscArray[0] = 0;
-		new TargetName[MAX_PLAYERS];
+		new TargetName[MAX_PLAYERS], String[48];
 		if(sscanf(params, "s[24]", TargetName)) return SendClientMessageEx(playerid, COLOR_GRAD2, "USAGE: /orevokegunlicense [playerid]");
-		if(IsPlayerConnected(ReturnUser(TargetName))) return cmd_issuegunlicense(playerid, params);
+		if(IsPlayerConnected(ReturnUser(TargetName))) {
+			format(String, sizeof(String), "/issuegunlicense %s", params);
+			return PC_EmulateCommand(playerid, String);
+		}
 
 		new PlayerName[MAX_PLAYERS];
 		mysql_escape_string(TargetName, PlayerName);
@@ -656,6 +661,7 @@ CMD:orevokegunlicense(playerid, params[])
 	else SendClientMessageEx(playerid, COLOR_WHITE, "You are not authorized to use this command!");
 	return 1;
 }
+alias:orevokegunlicense("orevokegl")
 
 /*forward OnOfflineGunLicense(playerid, task, name[]);
 public OnOfflineGunLicense(playerid, task, name[])

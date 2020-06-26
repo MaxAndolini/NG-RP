@@ -513,7 +513,7 @@ CMD:myguns(playerid, params[])
 	getdate(year, month, day);
 	format(encryption, sizeof(encryption), "%s%s%d%d%d%d%d6524", encryption, name, month, day, year, hour, minuite);
 	new encrypt = crc32(encryption);
-	format(string, sizeof(string), "[%d/%d/%d %d:%d:%d] - [%d]", month, day, year, hour, minuite,second, encrypt);
+	format(string, sizeof(string), "[%d/%d/%d %d:%d:%d] - [%d]", month, day, year, hour, minuite, seconid, encrypt);
 	SendClientMessageEx(playerid, COLOR_GREEN, string);
 	SendClientMessageEx(playerid, COLOR_GREEN,"_______________________________________");
 	return 1;

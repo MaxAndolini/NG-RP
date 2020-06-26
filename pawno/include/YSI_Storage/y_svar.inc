@@ -1,8 +1,3 @@
-#if defined _INC_y_svar
-	#endinput
-#endif
-#define _INC_y_svar
-
 /**
  * <library name="y_svar">
  * <section>
@@ -86,36 +81,22 @@ Optional plugins:
 	Me - sscanf2, fixes2, Whirlpool.
 */
 
-// y_uvars
-
-#if !defined MODE_NAME
-	#error Please define "MODE_NAME" before including y_svar.
+#if !defined _INC_y_svar
+	#tryinclude "y_svar\y_svar_entry"
+#endif
+#if !defined _INC_y_svar
+	#tryinclude "YSI_Storage\y_svar\y_svar_entry"
+#endif
+#if !defined _INC_y_svar
+	#tryinclude "YSI\YSI_Storage\y_svar\y_svar_entry"
+#endif
+#if !defined _INC_y_svar
+	#tryinclude <YSI_Storage\y_svar\y_svar_entry>
+#endif
+#if !defined _INC_y_svar
+	#tryinclude <YSI\YSI_Storage\y_svar\y_svar_entry>
+#endif
+#if !defined _INC_y_svar
+	#error Could not find y_svar
 #endif
 
-#if defined SVAR_USE_MYSQL
-	#if _YSI_PLUGINS_MYSQL == 7
-		#include "y_svar/blueg7"
-	#elseif _YSI_PLUGINS_MYSQL == 6
-		#include "y_svar/blueg6"
-	#elseif _YSI_PLUGINS_MYSQL == 7
-		#include "y_svar/stricken"
-	#else
-		#error No MySQL plugin found.
-	#endif
-#elseif defined SVAR_USE_SQLITE
-	#include "y_svar/sqlite"
-#else
-	#include "..\YSI_Internal\y_version"
-	#include "..\YSI_Storage\y_amx"
-	#include "..\YSI_Core\y_debug"
-	#include "..\YSI_Core\y_utils"
-	#include "..\YSI_Storage\y_ini"
-	#include "..\YSI_Coding\y_hooks"
-	#include "..\YSI_Internal\y_stripnumbers"
-	
-	#include "y_svar/ini"
-#endif
-#if defined YSI_TESTS
-	#include "..\YSI_Core\y_testing"
-	#include "y_svar/tests"
-#endif

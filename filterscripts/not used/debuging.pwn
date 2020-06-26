@@ -5,7 +5,7 @@
 #include <a_samp>
 
 forward Tracker();
-forward DebugLog(string[]);
+forward DebugLog(const string[]);
 
 new Member[MAX_PLAYERS];
 new Float:GetLocation[MAX_PLAYERS][3];
@@ -143,7 +143,7 @@ public OnPlayerInteriorChange(playerid, newinteriorid, oldinteriorid)
 	return 1;
 }
 
-public DebugLog(string[])
+public DebugLog(const string[])
 {
 	new entry[256];
 	format(entry, sizeof(entry), "%s\n",string);

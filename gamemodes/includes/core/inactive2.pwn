@@ -134,7 +134,7 @@ CMD:inactivitycheck(playerid, params[]) {
 
 	if(!IsAdminLevel(playerid, ADMIN_EXECUTIVE)) return 1;
 	Inactive_ResourceCheck();
-	cmd_admin(playerid, "[INACTIVITY]: All server properties are checked for their inactivity.");
+	PC_EmulateCommand(playerid, "/admin [INACTIVITY]: All server properties are checked for their inactivity.");
 	return 1;
 }
 */

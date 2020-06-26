@@ -21,7 +21,7 @@
 */
 
 #include <a_samp>
-#include <zcmd>
+#include <Pawn.CMD>
 
 //-------------------------------------------------
 
@@ -31,7 +31,7 @@ public ClearAnims(playerid)
 	ClearAnimationsEx(playerid);
 }
 
-PlayAnim(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync)
+PlayAnim(playerid, const animlib[], const animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync)
 {
 	ApplyAnimation(playerid, animlib, animname, fDelta, loop, lockx, locky, freeze, time, forcesync);
 }
@@ -51,7 +51,7 @@ CMD:toganimhelper(playerid, params[])
 	return 1;
 }
 
-PlayAnimEx(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync)
+PlayAnimEx(playerid, const animlib[], const animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync)
 {
 	if(!IsPlayerIdle(playerid)) return SendClientMessageEx(playerid, COLOR_WHITE, "You must stop your current animation!");
 	gPlayerUsingLoopingAnim[playerid] = 1;
@@ -67,9 +67,9 @@ StopLoopingAnim(playerid)
     ApplyAnimation(playerid, "CARRY", "crry_prtial", 4.0, 0, 0, 0, 0, 0, 1);
 }
 
-PreloadAnimLib(playerid, animlib[])
+PreloadAnimLib(playerid, const animlib[])
 {
-	ApplyAnimation(playerid,animlib,"null",0.0,0,0,0,0,0,1);
+	ApplyAnimation(playerid, animlib, "null", 0.0, 0, 0, 0, 0, 0, 1);
 }
 
 IsAblePedAnimation(playerid)
@@ -172,6 +172,7 @@ CMD:animlist(playerid, params[])
 	SendClientMessage(playerid, COLOR_GREEN, "Use /toganimhelper to disable animation helper textdraw.");
 	return 1;
 }
+alias:animlist("oanimhelp")
 
 CMD:stopani(playerid, params[])
 {
@@ -302,11 +303,6 @@ CMD:animhelp(playerid, params[])
 	SetPVarInt(playerid, "HelpResultCat0", 1);
 	Help_ListCat(playerid, DIALOG_HELPCATOTHER1);
 	return 1;
-}
-
-CMD:oanimhelp(playerid, params[])
-{
-	return cmd_animlist(playerid, params);
 }
 
 /*CMD:stopani(playerid, params[])

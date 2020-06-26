@@ -35,7 +35,7 @@
 	* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 #if defined zombiemode
 stock SpawnZombie(playerid)
@@ -141,11 +141,6 @@ public ScrapMetal(playerid, vehicleid)
 }
 
 #if defined zombiemode
-CMD:zh(playerid, params[])
-{
-	return cmd_zombiehelp(playerid, params);
-}
-
 CMD:zombiehelp(playerid, params[])
 {
 	SendClientMessageEx(playerid, COLOR_GREY, "*** ZOMBIE HELP *** /buycure /bite /curevirus /getvials (For Medics)");
@@ -158,6 +153,7 @@ CMD:zombiehelp(playerid, params[])
 	}
 	return 1;
 }
+alias:zombiehelp("zh")
 
 CMD:buycure(playerid, params[])
 {

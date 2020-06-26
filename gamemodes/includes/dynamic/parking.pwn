@@ -1,4 +1,4 @@
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 LoadParkingMeters()
 {
@@ -63,7 +63,7 @@ GetNearestParkingMeter(playerid)
 	return meterid;
 }
 
-strmatch(string1[], string2[], bool:casesensitive = false)
+strmatch(const string1[], const string2[], bool:casesensitive = false)
 {
 	if((strcmp(string1, string2, casesensitive, strlen(string2)) == 0) && (strlen(string2) == strlen(string1))) return true;
 	return false;
@@ -178,8 +178,7 @@ CMD:parkingmeterhelp(playerid, params[])
 	}
 	return 1;
 }
-
-CMD:meterhelp(playerid, params[]) return cmd_parkingmeterhelp(playerid, params);
+alias:parkingmeterhelp("meterhelp")
 
 CMD:meterstatus(playerid, params[])
 {

@@ -161,7 +161,7 @@ native Cache:mysql_query_file(MySQL:handle, const file_path[], bool:use_cache = 
 native mysql_errno(MySQL:handle = MYSQL_DEFAULT_HANDLE);
 native mysql_error(destination[], max_len = sizeof(destination), MySQL:handle = MYSQL_DEFAULT_HANDLE);
 native mysql_escape_string(const source[], destination[], max_len = sizeof(destination), MySQL:handle = MYSQL_DEFAULT_HANDLE);
-native mysql_format(MySQL:handle, output[], max_len, const format[], {Float,_}:...);
+native mysql_format(MySQL:handle, const output[], max_len, const format[], {Float,_}:...);
 native mysql_set_charset(const charset[], MySQL:handle = MYSQL_DEFAULT_HANDLE);
 native mysql_get_charset(destination[], max_len = sizeof(destination), MySQL:handle = MYSQL_DEFAULT_HANDLE);
 native mysql_stat(destination[], max_len = sizeof(destination), MySQL:handle = MYSQL_DEFAULT_HANDLE);

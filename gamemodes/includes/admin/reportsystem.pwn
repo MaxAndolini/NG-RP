@@ -45,7 +45,7 @@ public ReplyTimer(reportid)
     Reports[reportid][CheckingReport] = INVALID_PLAYER_ID;
 }
 
-stock SendReportToQue(reportfrom, report[], reportlevel, reportpriority)
+stock SendReportToQue(reportfrom, const report[], reportlevel, reportpriority)
 {
     new newid = INVALID_REPORT_ID, string[128];
 
@@ -857,7 +857,7 @@ CMD:ar(playerid, params[])
 									SendClientMessageEx(i, COLOR_YELLOW, string);
 								}
 							}	
-							ABroadCast( COLOR_YELLOW, string, 2);
+							ABroadCast(COLOR_YELLOW, string, 2);
 							ShowPlayerDialogEx(giveplayerid, DIALOG_NAMECHANGE2, DIALOG_STYLE_INPUT, "Free name change","This is a roleplay server where you must have a name in this format: Firstname_Lastname.\nFor example: John_Smith or Jimmy_Johnson\n\nAn admin has offered you to change your name to the correct format for free. Please enter your desired name below.\n\nNote: If you press cancel you will be kicked from the server.", "Change", "Cancel" );
 						}
 						else

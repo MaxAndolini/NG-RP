@@ -1,24 +1,4 @@
-#if defined _INC_y_colors
-	#endinput
-#endif
-#define _INC_y_colors
-
-/**
- * <library name="y_colours">
- * <section>
- *  Description
- * </section>
- *  This holds the colour information that used to be part of the text system
- *  but which is far more useful than just for text.  This now supports the full
- *  set of X11 colours, both by name and by definition.  You can also define
- *  your own if you so choose (up to 32 - should be enough given that this
- *  includes the X11 colours).
- * <section>
- *  Version
- * </section>
- *  1.0
- * </library>
- *//** *//*
+/*
 Legal:
 	Version: MPL 1.1
 	
@@ -90,4 +70,26 @@ Optional plugins:
 	Me - sscanf2, fixes2, Whirlpool.
 */
 
-#include "..\YSI_Server\y_colours"
+#if defined _inc_y_colors
+	#undef _inc_y_colors
+#endif
+
+#if !defined _INC_y_colours
+	#tryinclude "y_colours\y_colours_entry"
+#endif
+#if !defined _INC_y_colours
+	#tryinclude "YSI_Server\y_colours\y_colours_entry"
+#endif
+#if !defined _INC_y_colours
+	#tryinclude "YSI\YSI_Server\y_colours\y_colours_entry"
+#endif
+#if !defined _INC_y_colours
+	#tryinclude <YSI_Server\y_colours\y_colours_entry>
+#endif
+#if !defined _INC_y_colours
+	#tryinclude <YSI\YSI_Server\y_colours\y_colours_entry>
+#endif
+#if !defined _INC_y_colours
+	#error Could not find y_colours
+#endif
+

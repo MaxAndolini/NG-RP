@@ -36,7 +36,7 @@
 	* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 CMD:getmats(playerid, params[])
 {
@@ -222,7 +222,7 @@ public ProgressTimer(id)
 			{
 			    SendClientMessageEx(DynPoints[id][poCapping], COLOR_LIGHTBLUE, "You failed to capture. You were alt-tabbed.");
 			    format(szMiscArray, sizeof(szMiscArray), "{AA3333}AdmWarning{FFFF00}: %s (ID %d) may have possibly alt tabbed to capture a point.", GetPlayerNameEx(DynPoints[id][poCapping]), DynPoints[id][poCapping]);
-				ABroadCast( COLOR_YELLOW, szMiscArray, 2 );
+				ABroadCast(COLOR_YELLOW, szMiscArray, 2);
    				DynPoints[id][poCapping] = INVALID_PLAYER_ID;
 				DynPoints[id][poTimeCapLeft] = 0;
 				UpdatePoint(id);
@@ -232,7 +232,7 @@ public ProgressTimer(id)
 			{
 			    SendClientMessageEx(DynPoints[id][poCapping], COLOR_LIGHTBLUE, "You failed to capture. You were not in the point virtual/interior world.");
 			    format(szMiscArray, sizeof(szMiscArray), "{AA3333}AdmWarning{FFFF00}: %s (ID %d) may have possibly desynced himself to capture a point.", GetPlayerNameEx(DynPoints[id][poCapping]), DynPoints[id][poCapping]);
-				ABroadCast( COLOR_YELLOW, szMiscArray, 2 );
+				ABroadCast(COLOR_YELLOW, szMiscArray, 2);
    				DynPoints[id][poCapping] = INVALID_PLAYER_ID;
 				DynPoints[id][poTimeCapLeft] = 0;
 				UpdatePoint(id);

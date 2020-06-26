@@ -69,8 +69,6 @@ Optional plugins:
 	Incognito - Streamer.
 	Me - sscanf2, fixes2, Whirlpool.
 */
-#if defined _inc_y_bintree
-	#undef _inc_y_bintree
-#endif
 
-#include "..\YSI_Data\y_bintree"
+#error Use `#include <YSI_Data\y_bintree>`
+

@@ -1,6 +1,6 @@
 /* Tutorial by Jingles */
 
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 
 #define 		TUTORIAL_STEPS_TIME				30 // in seconds

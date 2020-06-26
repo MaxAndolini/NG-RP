@@ -17,9 +17,9 @@
 
 */
 #include <a_samp>
-#include <zcmd>
 #include <sscanf2>
 #include <streamer>
+#include <Pawn.CMD>
 
 #define COLOR_WHITE 0xFFFFFFAA
 

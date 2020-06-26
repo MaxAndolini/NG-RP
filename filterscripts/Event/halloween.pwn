@@ -1,5 +1,6 @@
 #include <a_samp>
 #include <streamer>
+
 public OnFilterScriptInit()
 {
     //Halloween Objects.

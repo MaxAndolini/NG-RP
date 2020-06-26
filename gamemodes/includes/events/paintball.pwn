@@ -35,7 +35,7 @@
 	* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 IsPlayerInArea(playerid, Float:minx, Float:maxx, Float:miny, Float:maxy)
 {
@@ -556,7 +556,7 @@ stock SortWinnerPaintballScores(arenaid)
 	return winnerid;
 }
 
-stock SendPaintballArenaTextMessage(arenaid, style, message[])
+stock SendPaintballArenaTextMessage(arenaid, style, const message[])
 {
 	foreach(new p : Player)
 	{	
@@ -569,7 +569,7 @@ stock SendPaintballArenaTextMessage(arenaid, style, message[])
 	return 1;
 }
 
-stock SendPaintballArenaMessage(arenaid, color, message[])
+stock SendPaintballArenaMessage(arenaid, color, const message[])
 {
 	foreach(new p : Player)
 	{
@@ -910,7 +910,7 @@ stock SpawnPaintballArena(playerid, arenaid)
  	GivePlayerValidWeapon(playerid, PaintBallArena[arenaid][pbWeapons][2]);
 }
 
-stock JoinPaintballArena(playerid, arenaid, password[])
+stock JoinPaintballArena(playerid, arenaid, const password[])
 {
 	new name[MAX_PLAYER_NAME];
 	GetPlayerName(playerid,name,sizeof(name));
@@ -3402,11 +3402,11 @@ CMD:savehillpos(playerid, params[])
 CMD:switchteam(playerid, params[])
 {
     if(!GetPVarType(playerid, "IsInArena")) {
-        SendClientMessageEx(playerid,COLOR_WHITE,"You are not in an arena, you can not switch teams!");
+        SendClientMessageEx(playerid, COLOR_WHITE, "You are not in an arena, you can not switch teams!");
         return 1;
     }
     if(GetPVarInt(playerid, "AOSlotPaintballFlag") != -1) {
-        SendClientMessageEx(playerid,COLOR_WHITE,"You can not switch teams while holding the flag!");
+        SendClientMessageEx(playerid, COLOR_WHITE, "You can not switch teams while holding the flag!");
         return 1;
     }
 
@@ -3415,7 +3415,7 @@ CMD:switchteam(playerid, params[])
         PaintballSwitchTeam(playerid);
     }
     else {
-        SendClientMessageEx(playerid,COLOR_WHITE,"You can not switch teams in this gamemode!");
+        SendClientMessageEx(playerid, COLOR_WHITE, "You can not switch teams in this gamemode!");
     }
     return 1;
 }

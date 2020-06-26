@@ -32,6 +32,10 @@
 // -----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 
+#define YSI_NO_HEAP_MALLOC
+#define YSI_NO_MODE_CACHE
+#define YSI_NO_OPTIMISATION_MESSAGE
+#define YSI_NO_VERSION_CHECK
 
 // -----------------------------------------------------------------------------
 // Includes
@@ -39,7 +43,7 @@
 
 // SA-MP include
 #include <a_samp>
-#include <YSI\y_iterate>
+#include <YSI_Data\y_iterate>
 
 // For PlaySoundForPlayersInRange()
 #include "../include/gl_common.inc"

@@ -1,5 +1,5 @@
 #include <a_samp>
-#include <zcmd>
+#include <Pawn.CMD>
 
 CMD:load911(playerid, params[])
 {

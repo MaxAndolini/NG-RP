@@ -37,7 +37,7 @@
 */
 
 
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 new dr_iPlayerTimeStamp[MAX_PLAYERS];
 
@@ -363,15 +363,16 @@ GivePlayerDrugSideEffect(playerid, id, amount)
 
 GetDrugName(id)
 {
+	new name[24];
 	switch(id)
 	{
-		case 0: szMiscArray = "Pot";
-		case 1: szMiscArray = "Crack";
-		case 2: szMiscArray = "Meth";
-		case 3: szMiscArray = "Ecstasy";
-		case 4: szMiscArray = "Heroin";
+		case 0: name = "Pot";
+		case 1: name = "Crack";
+		case 2: name = "Meth";
+		case 3: name = "Ecstasy";
+		case 4: name = "Heroin";
 	}
-	return szMiscArray;
+	return name;
 }
 
 ListDrugs(playerid)
@@ -385,7 +386,7 @@ ListDrugs(playerid)
 	SendClientMessageEx(playerid, COLOR_GRAD1, szMiscArray);
 }
 
-GetDrugID(Drug[])
+GetDrugID(const Drug[])
 {
 	for(new i; i < sizeof(Drugs); ++i) {
 

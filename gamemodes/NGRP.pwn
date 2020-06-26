@@ -87,20 +87,26 @@
 //#define AREA_DEBUG
 //#define TEXTLABEL_DEBUG
 
+#define YSI_NO_HEAP_MALLOC
+#define YSI_NO_MODE_CACHE
+#define YSI_NO_OPTIMISATION_MESSAGE
+
+#define CGEN_MEMORY (20000)
+
 #undef  MAX_PLAYERS
 #define MAX_PLAYERS (500)
 #include <a_mysql>
 #include <crashdetect>
-#include <YSI\y_timers>
-#include <YSI\y_utils>
+#include <YSI_Coding\y_timers>
+#include <YSI_Core\y_utils>
 #include <streamer>
 #include <yom_buttons>
-#include <ZCMD>
+#include <Pawn.CMD>
 #include <sscanf2>
 #include <mSelection>
 #include <gvar>
 #include <discord-connector>
-#include <geo_ip>
+#include <geolite>
 #include <easyDialog>
 #include <callbacks>
 #include <attachments>
@@ -191,6 +197,7 @@
 #include "./includes/core/countrycheck.pwn"
 #include "./includes/core/countdown.pwn"
 #include "./includes/core/filehandle.pwn"
+#include "./includes/core/downloadmodel.pwn"
 #include "./includes/core/initgamemode.pwn"
 #include "./includes/core/login.pwn"
 #include "./includes/core/miscload.pwn"

@@ -35,7 +35,7 @@
 	* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 #define MAX_CRIMES				150
 
@@ -363,13 +363,13 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 	return 0;
 }
 
-CMD:clist(playerid, params[]) return cmd_crimelist(playerid, params);
 CMD:crimelist(playerid, params[])
 {
 	if(PlayerInfo[playerid][pAdmin] < 1337 && !PlayerInfo[playerid][pFactionModerator]) return SendClientMessageEx(playerid, COLOR_WHITE, "SERVER: You are not authorized to use this command.");
 	ShowCrimesList(playerid);
 	return 1;
 }
+alias:crimelist("clist")
 
 CMD:su(playerid, params[]) 
 {

@@ -1,4 +1,4 @@
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 #define 	STREAMER_AREATYPE_DOOR 			(500)
 #define 	STREAMER_AREATYPE_HOUSE 		(501)

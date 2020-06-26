@@ -3287,7 +3287,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 						format( String, sizeof( String ), "You have requested a namechange from %s to %s please wait until an admin approves it.", playername, inputtext);
 						SendClientMessageEx( playerid, COLOR_YELLOW, String );
 						// format( String, sizeof( String ), "{AA3333}AdmWarning{FFFF00}: %s (ID %d) requested a name change to %s for free (non-RP name) - /approvename %d (accept), or /denyname %d (deny).", playername, playerid, inputtext, playerid, playerid);
-						// ABroadCast( COLOR_YELLOW, String, 3 );
+						// ABroadCast(COLOR_YELLOW, String, 3);
 						SendReportToQue(playerid, "Name Change Request", 2, 4);
 						return 1;
 					}
@@ -4676,9 +4676,21 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 			case 7: ShowPlayerDialogEx(playerid, MDC_SMS, DIALOG_STYLE_INPUT, "MDC - Logged In | SMS", "Enter recipient's phone number.", "OK", "Cancel");
 		}
 	}
-	if(dialogid == MDC_SUSPECT) return cmd_su(playerid, inputtext);
-	if(dialogid == MDC_VEHICLE) return cmd_vmdc(playerid, inputtext);
-	if(dialogid == MDC_VLOOKUP) return cmd_vlookup(playerid, inputtext);
+	if(dialogid == MDC_SUSPECT)
+	{
+		format(szMiscArray, sizeof(szMiscArray), "/su %s", inputtext);
+		return PC_EmulateCommand(playerid, szMiscArray);
+	}
+	if(dialogid == MDC_VEHICLE)
+	{
+		format(szMiscArray, sizeof(szMiscArray), "/vmdc %s", inputtext);
+		return PC_EmulateCommand(playerid, szMiscArray);
+	}
+	if(dialogid == MDC_VLOOKUP)
+	{
+		format(szMiscArray, sizeof(szMiscArray), "/vlookup %s", inputtext);
+		return PC_EmulateCommand(playerid, szMiscArray);
+	}
 	if(dialogid == MDC_FIND && response)
 	{
 		new giveplayerid;
@@ -4998,7 +5010,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 			format(string, sizeof(string), "You have been fined $%s by %s, reason: %s", number_format(judgefine), GetPlayerNameEx(playerid), reason);
 			SendClientMessageEx(giveplayerid, COLOR_WHITE, string);
 			format(string, sizeof(string), "%s has been fined $%s by Judge %s.  Commission has been sent to %s.", GetPlayerNameEx(giveplayerid), number_format(judgefine), GetPlayerNameEx(playerid), arrGroupData[iGroupID][g_szGroupName]);
-			ABroadCast( COLOR_YELLOW, string, 2);
+			ABroadCast(COLOR_YELLOW, string, 2);
 			format(string, sizeof(string), "%s(%d) has been fined $%s by Judge %s(%d).  Commission has been sent to %s.", GetPlayerNameEx(giveplayerid), GetPlayerSQLId(giveplayerid), number_format(judgefine), GetPlayerNameEx(playerid), GetPlayerSQLId(playerid), arrGroupData[iGroupID][g_szGroupName]);
 			Log("logs/rpspecial.log", string);
 		}
@@ -6177,11 +6189,11 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 	{
 		if(response)
 		{
-			new params[24];
-			format(params, sizeof(params), "%d %d", GetPVarInt(playerid, "pInteractID"), strval(inputtext));
+			new params[48];
+			format(params, sizeof(params), "/pay %d %d", GetPVarInt(playerid, "pInteractID"), strval(inputtext));
 			DeletePVar(playerid, "pInteractName");
 			DeletePVar(playerid, "pInteractID");
-			return cmd_pay(playerid, params);
+			return PC_EmulateCommand(playerid, params);
 		}
 		else
 		{
@@ -6208,28 +6220,28 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 	{
 		if(response)
 		{
-			new params[24];
+			new params[48];
 			switch(GetPVarInt(playerid, "pInteractGiveType"))
 			{
-				case 0: format(params, sizeof(params), "%d pot %d", GetPVarInt(playerid, "pInteractID"), strval(inputtext));
-				case 1: format(params, sizeof(params), "%d crack %d", GetPVarInt(playerid, "pInteractID"), strval(inputtext));
-				case 2: format(params, sizeof(params), "%d materials %d", GetPVarInt(playerid, "pInteractID"), strval(inputtext));
-				case 3: format(params, sizeof(params), "%d firework %d", GetPVarInt(playerid, "pInteractID"), strval(inputtext));
-				case 4: format(params, sizeof(params), "%d heroin %d", GetPVarInt(playerid, "pInteractID"), strval(inputtext));
-				case 5: format(params, sizeof(params), "%d rawopium %d", GetPVarInt(playerid, "pInteractID"), strval(inputtext));
-				case 6: format(params, sizeof(params), "%d syringes %d", GetPVarInt(playerid, "pInteractID"), strval(inputtext));
-				case 7: format(params, sizeof(params), "%d opiumseeds %d", GetPVarInt(playerid, "pInteractID"), strval(inputtext));
-				case 8: format(params, sizeof(params), "%d sprunk %d", GetPVarInt(playerid, "pInteractID"), strval(inputtext));
-				case 9: format(params, sizeof(params), "%d ammo1 %d", GetPVarInt(playerid, "pInteractID"), strval(inputtext));
-				case 10: format(params, sizeof(params), "%d ammo2 %d", GetPVarInt(playerid, "pInteractID"), strval(inputtext));
-				case 11: format(params, sizeof(params), "%d ammo3 %d", GetPVarInt(playerid, "pInteractID"), strval(inputtext));
-				case 12: format(params, sizeof(params), "%d ammo4 %d", GetPVarInt(playerid, "pInteractID"), strval(inputtext));
-				case 13: format(params, sizeof(params), "%d ammo5 %d", GetPVarInt(playerid, "pInteractID"), strval(inputtext));
+				case 0: format(params, sizeof(params), "/give %d pot %d", GetPVarInt(playerid, "pInteractID"), strval(inputtext));
+				case 1: format(params, sizeof(params), "/give %d crack %d", GetPVarInt(playerid, "pInteractID"), strval(inputtext));
+				case 2: format(params, sizeof(params), "/give %d materials %d", GetPVarInt(playerid, "pInteractID"), strval(inputtext));
+				case 3: format(params, sizeof(params), "/give %d firework %d", GetPVarInt(playerid, "pInteractID"), strval(inputtext));
+				case 4: format(params, sizeof(params), "/give %d heroin %d", GetPVarInt(playerid, "pInteractID"), strval(inputtext));
+				case 5: format(params, sizeof(params), "/give %d rawopium %d", GetPVarInt(playerid, "pInteractID"), strval(inputtext));
+				case 6: format(params, sizeof(params), "/give %d syringes %d", GetPVarInt(playerid, "pInteractID"), strval(inputtext));
+				case 7: format(params, sizeof(params), "/give %d opiumseeds %d", GetPVarInt(playerid, "pInteractID"), strval(inputtext));
+				case 8: format(params, sizeof(params), "/give %d sprunk %d", GetPVarInt(playerid, "pInteractID"), strval(inputtext));
+				case 9: format(params, sizeof(params), "/give %d ammo1 %d", GetPVarInt(playerid, "pInteractID"), strval(inputtext));
+				case 10: format(params, sizeof(params), "/give %d ammo2 %d", GetPVarInt(playerid, "pInteractID"), strval(inputtext));
+				case 11: format(params, sizeof(params), "/give %d ammo3 %d", GetPVarInt(playerid, "pInteractID"), strval(inputtext));
+				case 12: format(params, sizeof(params), "/give %d ammo4 %d", GetPVarInt(playerid, "pInteractID"), strval(inputtext));
+				case 13: format(params, sizeof(params), "/give %d ammo5 %d", GetPVarInt(playerid, "pInteractID"), strval(inputtext));
 			}
 			DeletePVar(playerid, "pInteractName");
 			DeletePVar(playerid, "pInteractID");
 			DeletePVar(playerid, "pInteractGive");
-			return cmd_give(playerid, params);
+			return PC_EmulateCommand(playerid, params);
 		}
 		else
 		{
@@ -12166,7 +12178,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 			new playersz[5];
 			GetPVarString(playerid, "nrn", playersz, 5);
 			DeletePVar(playerid, "nrn");
-			cmd_nrn(playerid, playersz);
+			format(szMiscArray, sizeof(szMiscArray), "/nrn %s", playersz);
+			PC_EmulateCommand(playerid, szMiscArray);
 		}
 		else
 		{
@@ -12637,7 +12650,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 	}
 	if(dialogid == DIALOG_DGRAUTORESET)
 	{
-		if(!response && GetPVarType(playerid, "dgInputSel")) return cmd_dgedit(playerid, "autoreset");
+		if(!response && GetPVarType(playerid, "dgInputSel")) return PC_EmulateCommand(playerid, "/dgedit autoreset");
 		if(response)
 		{
 			if(listitem == 0)
@@ -12684,7 +12697,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				format(string, sizeof(string), "You have set the auto reset amount to: %d.", dgAmount);
 				SendClientMessageEx(playerid, -1, string);
 			}
-			return cmd_dgedit(playerid, "autoreset");
+			return PC_EmulateCommand(playerid, "/dgedit autoreset");
 		}
 	}
 	if(dialogid == DIALOG_MARRIAGE)
@@ -12810,7 +12823,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 	}
 	if(dialogid == DIALOG_MICROSHOP2)
 	{
-		if(!response) return cmd_microshop(playerid, "");
+		if(!response) return PC_EmulateCommand(playerid, "/microshop");
 		if(response)
 		{
 			new item;
@@ -12940,7 +12953,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				{
 					format(string, sizeof(string), "You have purchased this item 3 times in the past 24 hours, please wait %s to purchase it again.", ConvertTimeS(PlayerInfo[playerid][mCooldown][item]-gettime()));
 					SendClientMessageEx(playerid, COLOR_GRAD2, string);
-					return cmd_microshop(playerid, "");
+					return PC_EmulateCommand(playerid, "/microshop");
 				}
 				PlayerInfo[playerid][mCooldown][item] = 0;
 				return ShowPlayerDialogEx(playerid, 7484, DIALOG_STYLE_LIST, "Micro Shop: Job Center", "Detective\nLawyer\nWhore\nDrugs Dealer\nBodyguard\nMechanic\nArms Dealer\nBoxer\nDrugs Smuggler\nTaxi Driver\nCraftsman\nBartender\nShipment Contractor\nPizza Boy", "Proceed", "Cancel");
@@ -12951,7 +12964,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				{
 					format(string, sizeof(string), "You currently have a active job boost, please wait for it to expire in %d minute(s) to purchase again.", PlayerInfo[playerid][mCooldown][item]);
 					SendClientMessageEx(playerid, COLOR_GRAD2, string);
-					return cmd_microshop(playerid, "");
+					return PC_EmulateCommand(playerid, "/microshop");
 				}
 				return ShowPlayerDialogEx(playerid, 7484, DIALOG_STYLE_LIST, "Micro Shop: Job Boost", "Detective\nLawyer\nWhore\nDrugs Dealer\nMechanic\nArms Dealer\nBoxer\nShipment Contractor", "Proceed", "Cancel");
 			}
@@ -12963,7 +12976,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				{
 					format(string, sizeof(string), "You have purchased this item in the past 24 hours, please wait %s to purchase it again.", ConvertTimeS(PlayerInfo[playerid][mCooldown][item]-gettime()));
 					SendClientMessageEx(playerid, COLOR_GRAD2, string);
-					return cmd_microshop(playerid, "");
+					return PC_EmulateCommand(playerid, "/microshop");
 				}
 				PlayerInfo[playerid][mCooldown][item] = 0;
 			}
@@ -12974,7 +12987,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				{
 					format(string, sizeof(string), "You have purchased this item 3 times in the past 24 hours, please wait %s to purchase it again.", ConvertTimeS(PlayerInfo[playerid][mCooldown][item]-gettime()));
 					SendClientMessageEx(playerid, COLOR_GRAD2, string);
-					return cmd_microshop(playerid, "");
+					return PC_EmulateCommand(playerid, "/microshop");
 				}
 				PlayerInfo[playerid][mCooldown][item] = 0;
 			}
@@ -12996,7 +13009,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				{
 					format(string, sizeof(string), "You have purchased this item 2 times in the past 24 hours, please wait %s to purchase it again.", ConvertTimeS(PlayerInfo[playerid][mCooldown][item]-gettime()));
 					SendClientMessageEx(playerid, COLOR_GRAD2, string);
-					return cmd_microshop(playerid, "");
+					return PC_EmulateCommand(playerid, "/microshop");
 				}
 				PlayerInfo[playerid][mCooldown][item] = 0;
 			}
@@ -13006,7 +13019,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				{
 					format(string, sizeof(string), "You currently have a active Quick Bank Access, please wait for it to expire in %d minute(s) to purchase again.", PlayerInfo[playerid][mCooldown][item]);
 					SendClientMessageEx(playerid, COLOR_GRAD2, string);
-					return cmd_microshop(playerid, "");
+					return PC_EmulateCommand(playerid, "/microshop");
 				}
 			}
 			if(item == 13)//Restricted Skin
@@ -13015,7 +13028,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				{
 					format(string, sizeof(string), "You have purchased this item 3 times in the past 24 hours, please wait %s to purchase it again.", ConvertTimeS(PlayerInfo[playerid][mCooldown][item]-gettime()));
 					SendClientMessageEx(playerid, COLOR_GRAD2, string);
-					return cmd_microshop(playerid, "");
+					return PC_EmulateCommand(playerid, "/microshop");
 				}
 				PlayerInfo[playerid][mCooldown][item] = 0;
 			}
@@ -13025,7 +13038,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 	}
 	if(dialogid == DIALOG_MICROSHOP3)
 	{
-		if(!response) return cmd_microshop(playerid, "");
+		if(!response) return PC_EmulateCommand(playerid, "/microshop");
 		if(response)
 		{
 			new item = GetPVarInt(playerid, "m_Item");

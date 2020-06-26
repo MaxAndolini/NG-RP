@@ -115,7 +115,7 @@ stock GetFamedRankName(i)
 	return string;
 }
 
-stock SendFamedMessage(color, string[])
+stock SendFamedMessage(color, const string[])
 {
 	foreach(new i : Player)
 	{
@@ -309,10 +309,6 @@ CMD:osetfamed(playerid, params[])
  	return 1;
 }
 
-CMD:flocker(playerid, params[]) {
-	return cmd_famedlocker(playerid, params);
-}	
-
 CMD:famedlocker(playerid, params[]) {
     #if defined zombiemode
 	if(zombieevent == 1 && GetPVarType(playerid, "pIsZombie")) return SendClientMessageEx(playerid, COLOR_GREY, "Zombies can't use this.");
@@ -334,6 +330,7 @@ CMD:famedlocker(playerid, params[]) {
 	else return SendClientMessageEx(playerid, COLOR_GRAD1, "You're not at the famed locker!");
 	return 1;
 }
+alias:famedlocker("flocker")
 
 CMD:famedplate(playerid, params[])
 {
@@ -362,7 +359,7 @@ CMD:famedplate(playerid, params[])
     			    format(string, sizeof(string), "{29942B}OLD-SCHOOL");
    			    	format(PlayerVehicleInfo[playerid][d][pvPlate], 32, "%s", string);
     			    SendClientMessageEx(playerid, COLOR_FAMED, "Your vehicle will now appear with the Old-School Plate, parking your vehicle momentarily...");
-					cmd_park(playerid, params); //Save a few lines of code here xD
+					PC_EmulateCommand(playerid, "/park"); //Save a few lines of code here xD
 	            }
 	            else if(strcmp(params, "cos", true) == 0)
 	            {
@@ -370,7 +367,7 @@ CMD:famedplate(playerid, params[])
                     format(string, sizeof(string), "{F2B602}COS");
 					format(PlayerVehicleInfo[playerid][d][pvPlate], 32, "%s", string);
     			    SendClientMessageEx(playerid, COLOR_FAMED, "Your vehicle will now appear with the Chartered Old-School Plate, parking your vehicle momentarily...");
-					cmd_park(playerid, params); //Save a few lines of code here xD
+					PC_EmulateCommand(playerid, "/park"); //Save a few lines of code here xD
 	            }
 	            else if(strcmp(params, "famed", true) == 0)
 	            {
@@ -378,13 +375,13 @@ CMD:famedplate(playerid, params[])
                     format(string, sizeof(string), "{99FF00}FAMED");
 					format(PlayerVehicleInfo[playerid][d][pvPlate], 32, "%s", string);
     			    SendClientMessageEx(playerid, COLOR_FAMED, "Your vehicle will now appear with the Famed Plate, parking your vehicle momentarily...");
-					cmd_park(playerid, params); //Save a few lines of code here xD
+					PC_EmulateCommand(playerid, "/park"); //Save a few lines of code here xD
 	            }
 	            else if(strcmp(params, "remove", true) == 0)
 	            {
 					PlayerVehicleInfo[playerid][d][pvPlate] = 0;
     			    SendClientMessageEx(playerid, COLOR_FAMED, "Your vehicle will now appear with the default plate, parking your vehicle momentarily...");
-					cmd_park(playerid, params); //Save a few lines of code here xD
+					PC_EmulateCommand(playerid, "/park"); //Save a few lines of code here xD
 	            }
 	            else
 	                return SendClientMessageEx(playerid, COLOR_GREY, "Usage: /famedplate [os/cos/famed/remove]");

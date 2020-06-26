@@ -71,7 +71,7 @@ CheckPointCheck(iTargetID)  {
 	return 0;
 }
 
-IsNumeric(szInput[]) {
+IsNumeric(const szInput[]) {
 
 	new
 		iChar,
@@ -81,7 +81,7 @@ IsNumeric(szInput[]) {
 	return 1;
 }
 
-ReturnUserFromIP(szIP[]) {
+ReturnUserFromIP(const szIP[]) {
 
 	foreach(new i : Player) {
 		if(strcmp(szIP, GetPlayerIpEx(i), true) == 0) return i;
@@ -89,7 +89,7 @@ ReturnUserFromIP(szIP[]) {
 	return INVALID_PLAYER_ID;
 }
 
-ReturnUser(text[]) {
+ReturnUser(const text[]) {
 
 	new
 		strPos,
@@ -253,7 +253,7 @@ IsInRangeOfPoint(Float: fPosX, Float: fPosY, Float: fPosZ, Float: fPosX2, Float:
 	ApplyAnimation(playerid,animlib,"null",0.0,0,0,0,0,0,1);
 }*/
 
-IsValidName(szPlayerName[]) {
+IsValidName(const szPlayerName[]) {
 
 	new
 		iLength,
@@ -297,7 +297,7 @@ IsPlayerInRangeOfDynamicObject(iPlayerID, iObjectID, Float: fRadius) {
 	return IsPlayerInRangeOfPoint(iPlayerID, fRadius, fPos[0], fPos[1], fPos[2]);
 }
 
-Array_Count(arrCount[], iMax = sizeof arrCount) {
+Array_Count(const arrCount[], iMax = sizeof arrCount) {
 
 	new
 		iCount,
@@ -307,7 +307,7 @@ Array_Count(arrCount[], iMax = sizeof arrCount) {
 	return iCount;
 }
 
-String_Count(arrCount[][], iMax = sizeof arrCount) {
+String_Count(const arrCount[][], iMax = sizeof arrCount) {
 
 	new
 		iCount,
@@ -1426,7 +1426,7 @@ stock BadFloat(Float:x)
 	return false;
 }
 
-stock SendBugMessage(playerid, member, string[])
+stock SendBugMessage(playerid, member, const string[])
 {
     if(!(0 <= member < MAX_GROUPS))
         return 0;
@@ -1582,7 +1582,7 @@ stock GivePlayerEventWeapons( playerid )
 	return 1;
 }
 
-stock crc32(string[])
+stock crc32(const string[])
 {
 	new crc_table[256] = {
 			0x00000000, 0x77073096, 0xEE0E612C, 0x990951BA, 0x076DC419, 0x706AF48F, 0xE963A535,
@@ -1681,7 +1681,7 @@ stock GetPlayerIpEx(playerid)
 	return ip;
 }
 
-stock StripNewLine(string[])
+stock StripNewLine(const string[])
 {
   new len = strlen(string);
   if (string[0]==0) return ;
@@ -1693,7 +1693,7 @@ stock StripNewLine(string[])
     }
 }
 
-stock StripColorEmbedding(string[])
+stock StripColorEmbedding(const string[])
 {
  	new i, tmp[7];
   	while (i < strlen(string) - 7)
@@ -1712,7 +1712,7 @@ stock StripColorEmbedding(string[])
   	}
 }
 
-stock strtoupper(string[])
+stock strtoupper(const string[])
 {
         new retStr[128], i, j;
         while ((j = string[i])) retStr[i++] = chrtoupper(j);
@@ -1720,7 +1720,7 @@ stock strtoupper(string[])
         return retStr;
 }
 
-stock wordwrap(string[], width, seperator[] = "\n", dest[], size = sizeof(dest))
+stock wordwrap(const string[], width, const seperator[] = "\n", const dest[], size = sizeof(dest))
 {
     if (dest[0])
     {
@@ -1775,7 +1775,7 @@ stock wordwrap(string[], width, seperator[] = "\n", dest[], size = sizeof(dest))
     return 1;
 }
 
-stock fcreate(filename[])
+stock fcreate(const filename[])
 {
 	if (fexist(filename)) return false;
 	new File:fhnd;
@@ -2066,7 +2066,7 @@ stock abs(value)
     return ((value < 0 ) ? (-value) : (value));
 }
 
-stock str_replace(sSearch[], sReplace[], const sSubject[], &iCount = 0)
+stock str_replace(const sSearch[], const sReplace[], const sSubject[], &iCount = 0)
 {
 	new
 		iLengthTarget = strlen(sSearch),

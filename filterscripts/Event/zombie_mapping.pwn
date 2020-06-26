@@ -1,6 +1,6 @@
 #include <a_samp>
-#include <YSI\y_iterate>
 #include <streamer>
+#include <YSI_Data\y_iterate>
 
 public OnPlayerConnect(playerid)
 {

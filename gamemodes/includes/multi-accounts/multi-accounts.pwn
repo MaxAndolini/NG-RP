@@ -1,4 +1,4 @@
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 #define 	MAX_MULTIPLE_CHARACTERS		3
 #define 	PVAR_LOGIN_CHARCAM			"P_LCC"

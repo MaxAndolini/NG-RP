@@ -69,8 +69,6 @@ Optional plugins:
 	Incognito - Streamer.
 	Me - sscanf2, fixes2, Whirlpool.
 */
-#if defined _inc_y_malloc
-	#undef _inc_y_malloc
-#endif
 
-#include "..\YSI_Coding\y_malloc"
+#error Use `#include <YSI_Coding\y_malloc>`
+

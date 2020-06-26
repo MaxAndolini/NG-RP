@@ -34,7 +34,7 @@
 	* NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 	* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-stock CBroadCast(color,string[],level)
+stock CBroadCast(color, const string[], level)
 {
 	foreach(new i : Player)
 	{
@@ -69,7 +69,7 @@ stock ShowNMuteFine(playerid)
 	else if(PlayerInfo[playerid][pNMuteTotal] == 6) ShowPlayerDialogEx(playerid,NMUTE,DIALOG_STYLE_LIST,"Newbie Chat Unmute - Select your Punishment:","Prison for 1 Hour and 30 Minutes","Select","Cancel");
 }
 
-stock SendAdvisorMessage(color, string[])
+stock SendAdvisorMessage(color, const string[])
 {
 	foreach(new i : Player)
 	{
@@ -80,7 +80,7 @@ stock SendAdvisorMessage(color, string[])
 	}
 }
 
-stock SendDutyAdvisorMessage(color, string[])
+stock SendDutyAdvisorMessage(color, const string[])
 {
 	foreach(new i : Player)
 	{

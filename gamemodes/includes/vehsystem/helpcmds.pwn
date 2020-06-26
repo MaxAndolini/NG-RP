@@ -149,7 +149,7 @@
 		10) Voucher
 */
 
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 {
@@ -1508,66 +1508,66 @@ CMD:ohelp(playerid, params[])
 
 	switch(PlayerInfo[playerid][pJob])
 	{
-		case 1: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /trace");
-		case 2: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /lawyerduty /free /defend /wanted /offerappeal /finishappeal");
-		case 3: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /sex");
-		case 4: cmd_odrughelp(playerid, "");
-		case 5: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /dropcar");
-		case 7: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /fix /nos /hyd /repair /refill /mechduty");
-		case 8: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /guard /frisk");
-		case 9: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /getmats /sell /sellgun");
-		case 10: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /sellnewcar");
-		case 12: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /fight");
-		case 14: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /getcrate");
-		// case 15: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /papers /bring /deliver");
-		case 17: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /fare");
-		case 18: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /getmats /sell /craft");
-		case 19: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /selldrink");
-		case 20: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /loadshipment /checkcargo /hijackcargo");
-		case 21: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /getpizza*");
-		case 27: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /garbagerun");
+		case 1: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /trace");
+		case 2: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /lawyerduty /free /defend /wanted /offerappeal /finishappeal");
+		case 3: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /sex");
+		case 4: PC_EmulateCommand(playerid, "/odrughelp");
+		case 5: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /dropcar");
+		case 7: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /fix /nos /hyd /repair /refill /mechduty");
+		case 8: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /guard /frisk");
+		case 9: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /getmats /sell /sellgun");
+		case 10: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /sellnewcar");
+		case 12: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /fight");
+		case 14: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /getcrate");
+		// case 15: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /papers /bring /deliver");
+		case 17: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /fare");
+		case 18: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /getmats /sell /craft");
+		case 19: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /selldrink");
+		case 20: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /loadshipment /checkcargo /hijackcargo");
+		case 21: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /getpizza*");
+		case 27: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /garbagerun");
 	}
 	switch(PlayerInfo[playerid][pJob2])
 	{
-		case 1: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /trace");
-		case 2: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /lawyerduty /free /defend /wanted");
-		case 3: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /sex");
-		case 4: cmd_odrughelp(playerid, "");
-		case 5: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /dropcar");
-		case 7: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /fix /nos /hyd /repair /refill /mechduty");
-		case 8: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /guard /frisk");
-		case 9: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /getmats /sell /sellgun");
-		case 10: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /sellnewcar");
-		case 12: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /fight");
-		case 14: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /getcrate");
-		// case 15: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /papers /bring /deliver");
-		case 17: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /fare");
-		case 18: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /getmats /sell /craft");
-		case 19: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /selldrink");
-		case 20: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /loadshipment /checkcargo /hijackcargo");
-		case 21: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /getpizza");
-		case 27: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /garbagerun");
+		case 1: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /trace");
+		case 2: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /lawyerduty /free /defend /wanted");
+		case 3: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /sex");
+		case 4: PC_EmulateCommand(playerid, "/odrughelp");
+		case 5: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /dropcar");
+		case 7: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /fix /nos /hyd /repair /refill /mechduty");
+		case 8: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /guard /frisk");
+		case 9: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /getmats /sell /sellgun");
+		case 10: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /sellnewcar");
+		case 12: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /fight");
+		case 14: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /getcrate");
+		// case 15: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /papers /bring /deliver");
+		case 17: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /fare");
+		case 18: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /getmats /sell /craft");
+		case 19: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /selldrink");
+		case 20: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /loadshipment /checkcargo /hijackcargo");
+		case 21: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /getpizza");
+		case 27: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /garbagerun");
 	}
 	switch(PlayerInfo[playerid][pJob3])
 	{
-		case 1: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /trace");
-		case 2: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /lawyerduty /free /defend /wanted");
-		case 3: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /sex");
-		case 4: cmd_odrughelp(playerid, "");
-		case 5: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /dropcar");
-		case 7: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /fix /nos /hyd /repair /refill /mechduty");
-		case 8: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /guard /frisk");
-		case 9: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /getmats /sell /sellgun");
-		case 10: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /sellnewcar");
-		case 12: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /fight");
-		case 14: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /getcrate");
-		// case 15: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /papers /bring /deliver");
-		case 17: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /fare");
-		case 18: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /getmats /sell /craft");
-		case 19: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /selldrink");
-		case 20: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /loadshipment /checkcargo /hijackcargo");
-		case 21: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /getpizza");
-		case 27: SendClientMessageEx(playerid,COLOR_WHITE,"*** JOB *** /garbagerun");
+		case 1: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /trace");
+		case 2: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /lawyerduty /free /defend /wanted");
+		case 3: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /sex");
+		case 4: PC_EmulateCommand(playerid, "/odrughelp");
+		case 5: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /dropcar");
+		case 7: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /fix /nos /hyd /repair /refill /mechduty");
+		case 8: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /guard /frisk");
+		case 9: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /getmats /sell /sellgun");
+		case 10: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /sellnewcar");
+		case 12: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /fight");
+		case 14: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /getcrate");
+		// case 15: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /papers /bring /deliver");
+		case 17: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /fare");
+		case 18: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /getmats /sell /craft");
+		case 19: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /selldrink");
+		case 20: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /loadshipment /checkcargo /hijackcargo");
+		case 21: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /getpizza");
+		case 27: SendClientMessageEx(playerid, COLOR_WHITE, "*** JOB *** /garbagerun");
 	}
 	new iGroupID = PlayerInfo[playerid][pMember];
 	if(iGroupID != INVALID_GROUP_ID)

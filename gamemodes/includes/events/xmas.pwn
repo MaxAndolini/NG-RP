@@ -35,7 +35,7 @@
 	* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 CMD:carol(playerid, params[]) // Christmas Event
 {
@@ -121,7 +121,7 @@ CMD:xmas(playerid, params[])
   			XMASGifts = 0;
 			new string[128];
    			format( string, sizeof( string ), "AdmCmd: %s has disabled the /getgift command", GetPlayerNameEx(playerid));
-			ABroadCast( COLOR_LIGHTRED, string, 1337 );
+			ABroadCast(COLOR_LIGHTRED, string, 1337);
 			format(string, sizeof(string), "Pershing Square is no longer giving away free gifts. Thanks for coming!", VIPGiftsName, VIPGiftsTimeLeft);
 			SendClientMessageToAllEx(COLOR_LIGHTGREEN, string);
 		}

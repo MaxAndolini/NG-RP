@@ -10,8 +10,8 @@
 #include <a_samp>
 #include <streamer>
 
-#define SetPlayerHealthEx(%0,%1) (pHealth[%0]=(%1); & SetPlayerHealth(%0,%1))
-#define SetPlayerArmourEx(%0,%1) (pArmour[%0]=(%1); & SetPlayerArmour(%0,%1))
+#define SetPlayerHealthEx(%0,%1) pHealth[%0] = (%1), SetPlayerHealth(%0, (%1))
+#define SetPlayerArmourEx(%0,%1) pArmour[%0] = (%1), SetPlayerArmour(%0, (%1))
 
 new Float:pHealth[MAX_PLAYERS];
 new Float:pArmour[MAX_PLAYERS];

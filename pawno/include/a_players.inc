@@ -1,6 +1,6 @@
 /*  SA-MP Player Functions
  *
- *  (c) Copyright 2005-2015, SA-MP Team
+ *  (c) Copyright 2005-2017, SA-MP Team
  *
  */
 
@@ -89,6 +89,7 @@ native SetPlayerColor(playerid,color);
 native GetPlayerColor(playerid);
 native SetPlayerSkin(playerid, skinid);
 native GetPlayerSkin(playerid);
+native GetPlayerCustomSkin(playerid);
 native GivePlayerWeapon(playerid, weaponid, ammo);
 native ResetPlayerWeapons(playerid);
 native SetPlayerArmedWeapon(playerid, weaponid);
@@ -115,7 +116,7 @@ native GetPlayerFightingStyle(playerid);
 native SetPlayerVelocity(playerid, Float:X, Float:Y, Float:Z);
 native GetPlayerVelocity( playerid, &Float:X, &Float:Y, &Float:Z );
 native PlayCrimeReportForPlayer(playerid, suspectid, crime);
-native PlayAudioStreamForPlayer(playerid, url[], Float:posX = 0.0, Float:posY = 0.0, Float:posZ = 0.0, Float:distance = 50.0, usepos = 0);
+native PlayAudioStreamForPlayer(playerid, const url[], Float:posX = 0.0, Float:posY = 0.0, Float:posZ = 0.0, Float:distance = 50.0, usepos = 0);
 native StopAudioStreamForPlayer(playerid);
 native SetPlayerShopName(playerid, shopname[]);
 native SetPlayerSkillLevel(playerid, skill, level);
@@ -134,7 +135,7 @@ native IsPlayerAttachedObjectSlotUsed(playerid, index);
 native EditAttachedObject(playerid, index);
 
 // Per-player TextDraws
-native PlayerText:CreatePlayerTextDraw(playerid, Float:x, Float:y, text[]);
+native PlayerText:CreatePlayerTextDraw(playerid, Float:x, Float:y, const text[]);
 native PlayerTextDrawDestroy(playerid, PlayerText:text);
 native PlayerTextDrawLetterSize(playerid, PlayerText:text, Float:x, Float:y);
 native PlayerTextDrawTextSize(playerid, PlayerText:text, Float:x, Float:y);
@@ -150,19 +151,19 @@ native PlayerTextDrawSetProportional(playerid, PlayerText:text, set);
 native PlayerTextDrawSetSelectable(playerid, PlayerText:text, set);
 native PlayerTextDrawShow(playerid, PlayerText:text);
 native PlayerTextDrawHide(playerid, PlayerText:text);
-native PlayerTextDrawSetString(playerid, PlayerText:text, string[]);
+native PlayerTextDrawSetString(playerid, PlayerText:text, const string[]);
 native PlayerTextDrawSetPreviewModel(playerid, PlayerText:text, modelindex);
 native PlayerTextDrawSetPreviewRot(playerid, PlayerText:text, Float:fRotX, Float:fRotY, Float:fRotZ, Float:fZoom = 1.0);
 native PlayerTextDrawSetPreviewVehCol(playerid, PlayerText:text, color1, color2);
 
 // Per-player variable system (PVars)
-native SetPVarInt(playerid, varname[], int_value);
-native GetPVarInt(playerid, varname[]);
-native SetPVarString(playerid, varname[], string_value[]);
-native GetPVarString(playerid, varname[], string_return[], len);
-native SetPVarFloat(playerid, varname[], Float:float_value);
-native Float:GetPVarFloat(playerid, varname[]);
-native DeletePVar(playerid, varname[]);
+native SetPVarInt(playerid, const varname[], int_value);
+native GetPVarInt(playerid, const varname[]);
+native SetPVarString(playerid, const varname[], const string_value[]);
+native GetPVarString(playerid, const varname[], const string_return[], len);
+native SetPVarFloat(playerid, const varname[], Float:float_value);
+native Float:GetPVarFloat(playerid, const varname[]);
+native DeletePVar(playerid, const varname[]);
 
 // PVar enumeration
 #define PLAYER_VARTYPE_NONE			0
@@ -172,7 +173,7 @@ native DeletePVar(playerid, varname[]);
 
 native GetPVarsUpperIndex(playerid);
 native GetPVarNameAtIndex(playerid, index, ret_varname[], ret_len);
-native GetPVarType(playerid, varname[]);
+native GetPVarType(playerid, const varname[]);
 
 #define MAX_CHATBUBBLE_LENGTH 144
 native SetPlayerChatBubble(playerid, text[], color, Float:drawdistance, expiretime);
@@ -184,7 +185,7 @@ native GetPlayerVehicleSeat(playerid);
 native RemovePlayerFromVehicle(playerid);
 native TogglePlayerControllable(playerid, toggle);
 native PlayerPlaySound(playerid, soundid, Float:x, Float:y, Float:z);
-native ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0);
+native ApplyAnimation(playerid, const animlib[], const animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0);
 native ClearAnimations(playerid, forcesync = 0);
 native GetPlayerAnimationIndex(playerid); // return the index of any running applied animations (0 if none are running)
 native GetAnimationName(index, animlib[], len1, animname[], len2); // get the animation lib/name for the index

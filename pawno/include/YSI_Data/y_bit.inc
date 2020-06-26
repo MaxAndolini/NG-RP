@@ -1,8 +1,3 @@
-#if defined _INC_y_bit
-	#endinput
-#endif
-#define _INC_y_bit
-
 /**
  * <library name="y_bit">
  * <section>
@@ -118,16 +113,22 @@ Optional plugins:
 	Me - sscanf2, fixes2, Whirlpool.
 */
 
-#include "..\YSI_Internal\y_compilerdata"
-#include "..\YSI_Internal\y_version"
-#include "..\YSI_Core\y_debug"
-#include "..\YSI_Core\y_utils"
-#include "..\YSI_Core\y_cell"
-#include "y_bit/impl"
-
-#if defined YSI_TESTS
-	#include "..\YSI_Data\y_iterate"
-	#include "..\YSI_Core\y_testing"
-	#include "y_bit/tests"
+#if !defined _INC_y_bit
+	#tryinclude "y_bit\y_bit_entry"
+#endif
+#if !defined _INC_y_bit
+	#tryinclude "YSI_Data\y_bit\y_bit_entry"
+#endif
+#if !defined _INC_y_bit
+	#tryinclude "YSI\YSI_Data\y_bit\y_bit_entry"
+#endif
+#if !defined _INC_y_bit
+	#tryinclude <YSI_Data\y_bit\y_bit_entry>
+#endif
+#if !defined _INC_y_bit
+	#tryinclude <YSI\YSI_Data\y_bit\y_bit_entry>
+#endif
+#if !defined _INC_y_bit
+	#error Could not find y_bit
 #endif
 

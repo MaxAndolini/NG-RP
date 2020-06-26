@@ -40,7 +40,7 @@
 	If the vehicle has been impounded the payments can be made from the storage. (Nation will be taken into account for which GOV gets the payment).
 	Price will be determined down to the playing hours of said player and not level.
 */
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 new CrateVehTotal = 0;
 
@@ -152,8 +152,8 @@ hook OnVehicleSpawn(vehicleid) {
 	return 1;
 }
 
-forward AnnounceRespawn(group, type[], veh, amount);
-public AnnounceRespawn(group, type[], veh, amount) {
+forward AnnounceRespawn(group, const type[], veh, amount);
+public AnnounceRespawn(group, const type[], veh, amount) {
 	if(ValidGroup(group)) {
 		new string[128];
 		format(string, sizeof(string), "** Vehicle %s was %s %d crate(s) were destroyed. **", VehicleName[CrateVehicle[veh][cvModel] - 400], type, amount);

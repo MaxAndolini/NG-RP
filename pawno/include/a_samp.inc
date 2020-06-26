@@ -1,6 +1,6 @@
 /*  SA-MP Functions
  *
- *  (c) Copyright 2005-2015, SA-MP Team
+ *  (c) Copyright 2005-2017, SA-MP Team
  *
  */
 
@@ -35,7 +35,7 @@
 #define INVALID_VEHICLE_ID						(0xFFFF)
 #define INVALID_ACTOR_ID						(0xFFFF)
 #define NO_TEAM									(255)
-#define MAX_OBJECTS								(1000)
+#define MAX_OBJECTS								(2000)
 #define INVALID_OBJECT_ID						(0xFFFF)
 #define MAX_GANG_ZONES							(1024)
 #define MAX_TEXT_DRAWS							(2048)
@@ -56,7 +56,7 @@
 // Util
 native print(const string[]);
 native printf(const format[], {Float,_}:...);
-native format(output[], len, const format[], {Float,_}:...);
+native format(const output[], len, const format[], {Float,_}:...);
 native SendClientMessage(playerid, color, const message[]);
 native SendClientMessageToAll(color, const message[]);
 native SendPlayerMessageToPlayer(playerid, senderid, const message[]);
@@ -65,8 +65,8 @@ native SendDeathMessage(killer, killee, weapon);
 native SendDeathMessageToPlayer(playerid, killer, killee, weapon);
 native GameTextForAll(const string[],time,style);
 native GameTextForPlayer(playerid,const string[],time,style);
-native SetTimer(funcname[], interval, repeating);
-native SetTimerEx(funcname[], interval, repeating, const format[], {Float,_}:...);
+native SetTimer(const funcname[], interval, repeating);
+native SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...);
 native KillTimer(timerid);
 native GetTickCount();
 native GetMaxPlayers();
@@ -127,7 +127,7 @@ native AllowAdminTeleport(allow);
 native SetDeathDropAmount(amount);
 native CreateExplosion(Float:X, Float:Y, Float:Z, type, Float:Radius);
 native EnableZoneNames(enable);
-native UsePlayerPedAnims();		// Will cause the players to use CJ running/walking animations
+native UsePlayerPedAnims(); // Will cause the players to use CJ running/walking animations
 native DisableInteriorEnterExits();  // will disable all interior enter/exits in the game.
 native SetNameTagDrawDistance(Float:distance); // Distance at which nametags will start rendering on the client.
 native DisableNameTagLOS(); // Disables the nametag Line-Of-Sight checking
@@ -138,12 +138,24 @@ native LimitPlayerMarkerRadius(Float:marker_radius);
 native ConnectNPC(name[], script[]);
 native IsPlayerNPC(playerid);
 
+// Artwork/NetModels
+#define DOWNLOAD_REQUEST_EMPTY			0
+#define DOWNLOAD_REQUEST_MODEL_FILE		1
+#define DOWNLOAD_REQUEST_TEXTURE_FILE	2
+
+native AddCharModel(baseid, newid, dffname[], txdname[]);
+native AddSimpleModel(virtualworld, baseid, newid, dffname[], txdname[]);
+native AddSimpleModelTimed(virtualworld, baseid, newid, dffname[], txdname[], timeon, timeoff);
+native FindModelFileNameFromCRC(crc, retstr[], retstr_size);
+native FindTextureFileNameFromCRC(crc, retstr[], retstr_size);
+native RedirectDownload(playerid, url[]);
+
 // Admin
 native IsPlayerAdmin(playerid);
 native Kick(playerid);
 native Ban(playerid);
 native BanEx(playerid, const reason[]);
-native SendRconCommand(command[]);
+native SendRconCommand(const command[]);
 native GetPlayerNetworkStats(playerid, retstr[], retstr_size);
 native GetNetworkStats(retstr[], retstr_size);
 native GetPlayerVersion(playerid, const version[], len); // Returns the SA-MP client revision as reported by the player
@@ -187,7 +199,7 @@ native Menu:GetPlayerMenu(playerid);
 #define TEXT_DRAW_FONT_SPRITE_DRAW	 4
 #define TEXT_DRAW_FONT_MODEL_PREVIEW 5
 
-native Text:TextDrawCreate(Float:x, Float:y, text[]);
+native Text:TextDrawCreate(Float:x, Float:y, const text[]);
 native TextDrawDestroy(Text:text);
 native TextDrawLetterSize(Text:text, Float:x, Float:y);
 native TextDrawTextSize(Text:text, Float:x, Float:y);
@@ -205,7 +217,7 @@ native TextDrawShowForPlayer(playerid, Text:text);
 native TextDrawHideForPlayer(playerid, Text:text);
 native TextDrawShowForAll(Text:text);
 native TextDrawHideForAll(Text:text);
-native TextDrawSetString(Text:text, string[]);
+native TextDrawSetString(Text:text, const string[]);
 native TextDrawSetPreviewModel(Text:text, modelindex);
 native TextDrawSetPreviewRot(Text:text, Float:fRotX, Float:fRotY, Float:fRotZ, Float:fZoom = 1.0);
 native TextDrawSetPreviewVehCol(Text:text, color1, color2);
@@ -223,11 +235,11 @@ native GangZoneStopFlashForPlayer(playerid, zone);
 native GangZoneStopFlashForAll(zone);
 
 // Global 3D Text Labels
-native Text3D:Create3DTextLabel(text[], color, Float:X, Float:Y, Float:Z, Float:DrawDistance, virtualworld, testLOS=0);
+native Text3D:Create3DTextLabel(const text[], color, Float:X, Float:Y, Float:Z, Float:DrawDistance, virtualworld, testLOS=0);
 native Delete3DTextLabel(Text3D:id);
 native Attach3DTextLabelToPlayer(Text3D:id, playerid, Float:OffsetX, Float:OffsetY, Float:OffsetZ);
 native Attach3DTextLabelToVehicle(Text3D:id, vehicleid, Float:OffsetX, Float:OffsetY, Float:OffsetZ);
-native Update3DTextLabelText(Text3D:id, color, text[]);
+native Update3DTextLabelText(Text3D:id, color, const text[]);
 
 // Per-player 3D Text Labels
 native PlayerText3D:CreatePlayer3DTextLabel(playerid, text[], color, Float:X, Float:Y, Float:Z, Float:DrawDistance, attachedplayer=INVALID_PLAYER_ID, attachedvehicle=INVALID_VEHICLE_ID, testLOS=0);
@@ -242,7 +254,7 @@ native UpdatePlayer3DTextLabelText(playerid, PlayerText3D:id, color, text[]);
 #define DIALOG_STYLE_TABLIST			4
 #define DIALOG_STYLE_TABLIST_HEADERS	5
 
-native ShowPlayerDialog(playerid, dialogid, style, caption[], info[], button1[], button2[]);
+native ShowPlayerDialog(playerid, dialogid, style, const caption[], const info[], const button1[], const button2[]);
 
 // --------------------------------------------------
 // Defines
@@ -394,6 +406,8 @@ forward OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid);
 forward OnIncomingConnection(playerid, ip_address[], port);
 forward OnTrailerUpdate(playerid, vehicleid);
 forward OnVehicleSirenStateChange(playerid, vehicleid, newstate);
+forward OnPlayerFinishedDownloading(playerid, virtualworld);
+forward OnPlayerRequestDownload(playerid, type, crc);
 
 #define CLICK_SOURCE_SCOREBOARD		0
 forward OnPlayerClickPlayer(playerid, clickedplayerid, source);

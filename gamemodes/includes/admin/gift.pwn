@@ -3241,7 +3241,7 @@ stock GiftPlayer(playerid, giveplayerid, gtype = 2) // Default is the normal gif
 
 stock GetDynamicGiftBoxType(value)
 {
-	new string[128];
+	new string[48];
 	if(value == 0)
 		format(string, sizeof(string), "Less Common");
 	else if(value == 1)
@@ -3405,7 +3405,7 @@ CMD:gifts(playerid, params[])
 		    Gifts = 0;
 		   
 	   		format(szMiscArray, sizeof(szMiscArray), "AdmCmd: %s has disabled the /gift command.", GetPlayerNameEx(playerid));
-			ABroadCast( COLOR_LIGHTRED, szMiscArray, 1337 );
+			ABroadCast(COLOR_LIGHTRED, szMiscArray, 1337);
 		}
 	}
 	return 1;
@@ -3427,7 +3427,7 @@ CMD:vipgifts(playerid, params[])
 		{
 		    VIPGifts = 0;
 	   		format(szMiscArray, sizeof(szMiscArray), "AdmCmd: %s has disabled the /getgift command early", GetPlayerNameEx(playerid));
-			ABroadCast( COLOR_LIGHTRED, szMiscArray, 1337 );
+			ABroadCast(COLOR_LIGHTRED, szMiscArray, 1337);
 			format(szMiscArray, sizeof(szMiscArray), "Club VIP is no longer giving away free gifts. Thanks for coming!", VIPGiftsName, VIPGiftsTimeLeft);
 			SendVIPMessage(COLOR_LIGHTGREEN, szMiscArray);
 			VIPGiftsTimeLeft = 0;
@@ -3709,7 +3709,7 @@ CMD:dynamicgift(playerid, params[])
 				}
 				ShowPlayerDynamicGiftBox(playerid);
 			}
-			ABroadCast( COLOR_LIGHTRED, string, 1337);
+			ABroadCast(COLOR_LIGHTRED, string, 1337);
 		}
 		else
 		{
@@ -3717,7 +3717,7 @@ CMD:dynamicgift(playerid, params[])
 			dynamicgift = 0;
 			DestroyDynamic3DTextLabel( Text3D:dynamicgift3DText );
 			format(string, sizeof(string), "AdmCmd: %s has destroyed the dynamic gift.", GetPlayerNameEx(playerid));
-			ABroadCast( COLOR_LIGHTRED, string, 1337);
+			ABroadCast(COLOR_LIGHTRED, string, 1337);
 		}
 	}
 	else
@@ -3867,7 +3867,7 @@ CMD:dgedit(playerid, params[])
 	else if(strcmp(choice, "newbiemutereset", true) == 0) var = dgNewbieMuteReset;
 	else if(strcmp(choice, "restrictedcarvoucher", true) == 0) var = dgRestrictedCarVoucher;
 	else if(strcmp(choice, "platvipvoucher", true) == 0) var = dgPlatinumVIPVoucher;
-	else if(strcmp(choice, "autoreset", true) == 0) return cmd_dgedit(playerid, "autoreset");
+	else if(strcmp(choice, "autoreset", true) == 0) return PC_EmulateCommand(playerid, "/dgedit autoreset");
 	else if(strcmp(choice, "usegoldtokens", true) == 0)
 	{
 		if(dgGoldToken) dgGoldToken = 0, SendClientMessageEx(playerid, COLOR_WHITE, "You have disabled the use of a Gold Giftbox token to recieve a gift.");
@@ -3957,7 +3957,7 @@ CMD:giftbox(playerid, params[])
 	{
 		new Float: pos[3];
 		SendClientMessageEx(playerid, COLOR_YELLOW, "** There is currently a giftbox placed down and we have set a checkpoint to the location of the giftbox.");
-		if(CheckPointCheck(playerid)) cmd_killcheckpoint(playerid, params); //If they have a checkpoint, just remove it
+		if(CheckPointCheck(playerid)) PC_EmulateCommand(playerid, "/killcheckpoint"); //If they have a checkpoint, just remove it
 		DisablePlayerCheckpoint(playerid);
 		GetDynamicObjectPos(dynamicgift, pos[0], pos[1], pos[2]);
 		SetPlayerCheckpoint(playerid, pos[0], pos[1], pos[2], 5);

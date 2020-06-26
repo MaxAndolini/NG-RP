@@ -1,8 +1,3 @@
-#if defined _INC_y_files
-	#endinput
-#endif
-#define _INC_y_files
-
 /**
  * <library name="y_files">
  * <section>
@@ -86,17 +81,22 @@ Optional plugins:
 	Me - sscanf2, fixes2, Whirlpool.
 */
 
-/*-------------------------------------------------------------------------*//**<to_comment/>
-*					=================
-*					 y_ini Libraries
-*					=================
-*//*-------------------------------------------------------------------------**/
+#if !defined _INC_y_files
+	#tryinclude "y_files\y_files_entry"
+#endif
+#if !defined _INC_y_files
+	#tryinclude "YSI_Extra\y_files\y_files_entry"
+#endif
+#if !defined _INC_y_files
+	#tryinclude "YSI\YSI_Extra\y_files\y_files_entry"
+#endif
+#if !defined _INC_y_files
+	#tryinclude <YSI_Extra\y_files\y_files_entry>
+#endif
+#if !defined _INC_y_files
+	#tryinclude <YSI\YSI_Extra\y_files\y_files_entry>
+#endif
+#if !defined _INC_y_files
+	#error Could not find y_files
+#endif
 
-// File functions
-native ffind(const pattern[], filename[], len, &idx);
-native frename(const oldname[], const newname[]);
-
-// Directory functions
-native dfind(const pattern[], filename[], len, &idx);
-native dcreate(const name[]);
-native drename(const oldname[], const newname[]);

@@ -34,7 +34,7 @@
 	* NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 	* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 new LockerReq[MAX_PLAYERS][3];
 
@@ -100,7 +100,7 @@ Dialog:wep_option(playerid, response, listitem, inputtext[]) {
 			}
 		}
 	} else {
-		return cmd_locker(playerid, "");
+		return PC_EmulateCommand(playerid, "/locker");
 	}
 	return 1;
 }
@@ -257,7 +257,7 @@ Dialog:crate_tran_option(playerid, response, listitem, inputtext[]) {
 			}
 		}
 	} else {
-		return cmd_locker(playerid, "");
+		return PC_EmulateCommand(playerid, "/locker");
 	}
 	return 1;
 }

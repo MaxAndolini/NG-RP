@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 19 Nis 2018, 17:09:53
--- Sunucu sürümü: 10.1.21-MariaDB
--- PHP Sürümü: 5.6.30
+-- Üretim Zamanı: 26 Haz 2020, 22:38:25
+-- Sunucu sürümü: 10.4.13-MariaDB
+-- PHP Sürümü: 7.4.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -29,12 +30,12 @@ SET time_zone = "+00:00";
 CREATE TABLE `911calls` (
   `id` int(11) NOT NULL,
   `Caller` varchar(24) NOT NULL DEFAULT 'N/A',
-  `Phone` int(11) NOT NULL DEFAULT '0',
+  `Phone` int(11) NOT NULL DEFAULT 0,
   `Area` varchar(255) NOT NULL DEFAULT 'None',
   `MainZone` varchar(255) NOT NULL DEFAULT 'None',
   `Description` varchar(255) NOT NULL DEFAULT 'None',
-  `Type` int(11) NOT NULL DEFAULT '0',
-  `Time` int(11) NOT NULL DEFAULT '0'
+  `Type` int(11) NOT NULL DEFAULT 0,
+  `Time` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -45,8 +46,8 @@ CREATE TABLE `911calls` (
 
 CREATE TABLE `accounts` (
   `id` int(11) NOT NULL,
-  `Online` int(11) NOT NULL DEFAULT '0',
-  `UpdateDate` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `Online` int(11) NOT NULL DEFAULT 0,
+  `UpdateDate` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   `RegiDate` datetime DEFAULT NULL,
   `LastLogin` datetime DEFAULT NULL,
   `Username` varchar(32) NOT NULL DEFAULT '',
@@ -56,401 +57,401 @@ CREATE TABLE `accounts` (
   `Email` varchar(256) NOT NULL DEFAULT '',
   `IP` varchar(32) NOT NULL DEFAULT '0.0.0.0',
   `SecureIP` varchar(32) NOT NULL DEFAULT '0.0.0.0',
-  `Registered` int(11) NOT NULL DEFAULT '0',
-  `ConnectedTime` int(11) NOT NULL DEFAULT '0',
-  `Sex` int(11) NOT NULL DEFAULT '1',
+  `Registered` int(11) NOT NULL DEFAULT 0,
+  `ConnectedTime` int(11) NOT NULL DEFAULT 0,
+  `Sex` int(11) NOT NULL DEFAULT 1,
   `BirthDate` date DEFAULT '0000-00-00',
-  `Band` int(11) NOT NULL DEFAULT '0',
-  `PermBand` int(11) NOT NULL DEFAULT '0',
-  `Warnings` int(11) NOT NULL DEFAULT '0',
-  `Disabled` int(11) NOT NULL DEFAULT '0',
-  `Level` int(11) NOT NULL DEFAULT '1',
-  `AdminLevel` int(11) NOT NULL DEFAULT '0',
-  `ASM` int(11) NOT NULL DEFAULT '0',
-  `SeniorModerator` int(11) NOT NULL DEFAULT '0',
-  `Helper` int(11) NOT NULL DEFAULT '0',
-  `DonateRank` int(11) NOT NULL DEFAULT '0',
-  `Respect` int(11) NOT NULL DEFAULT '0',
-  `Money` bigint(11) NOT NULL DEFAULT '5000',
-  `Bank` bigint(11) NOT NULL DEFAULT '20000',
-  `pHealth` float(10,5) NOT NULL DEFAULT '50.00000',
-  `pArmor` float(10,5) NOT NULL DEFAULT '0.00000',
-  `pSHealth` float(10,5) NOT NULL DEFAULT '0.00000',
-  `Int` int(11) NOT NULL DEFAULT '0',
-  `VirtualWorld` int(11) NOT NULL DEFAULT '0',
-  `Model` int(11) NOT NULL DEFAULT '299',
-  `SPos_x` float(20,5) NOT NULL DEFAULT '0.00000',
-  `SPos_y` float(20,5) NOT NULL DEFAULT '0.00000',
-  `SPos_z` float(20,5) NOT NULL DEFAULT '0.00000',
-  `SPos_r` float(20,5) NOT NULL DEFAULT '0.00000',
-  `BanAppealer` int(11) NOT NULL DEFAULT '0',
-  `PR` int(11) NOT NULL DEFAULT '0',
-  `HR` int(11) NOT NULL DEFAULT '0',
-  `AP` int(11) NOT NULL DEFAULT '0',
-  `Security` int(11) NOT NULL DEFAULT '0',
-  `ShopTech` int(11) NOT NULL DEFAULT '0',
-  `FactionModerator` int(11) NOT NULL DEFAULT '0',
-  `GangModerator` int(11) NOT NULL DEFAULT '0',
-  `Undercover` int(11) NOT NULL DEFAULT '0',
-  `TogReports` int(11) NOT NULL DEFAULT '0',
-  `Radio` int(11) NOT NULL DEFAULT '0',
-  `RadioFreq` int(11) NOT NULL DEFAULT '0',
-  `UpgradePoints` int(11) NOT NULL DEFAULT '0',
-  `Origin` int(11) NOT NULL DEFAULT '0',
-  `Muted` int(11) NOT NULL DEFAULT '0',
-  `Crimes` int(11) NOT NULL DEFAULT '0',
-  `Accent` int(11) NOT NULL DEFAULT '0',
-  `CHits` int(11) NOT NULL DEFAULT '0',
-  `FHits` int(11) NOT NULL DEFAULT '0',
-  `Arrested` int(11) NOT NULL DEFAULT '0',
-  `Phonebook` int(11) NOT NULL DEFAULT '0',
-  `LottoNr` int(11) NOT NULL DEFAULT '0',
-  `Fishes` int(11) NOT NULL DEFAULT '0',
-  `BiggestFish` int(11) NOT NULL DEFAULT '0',
-  `Job` int(11) NOT NULL DEFAULT '0',
-  `Job2` int(11) NOT NULL DEFAULT '0',
-  `Job3` int(11) NOT NULL DEFAULT '0',
-  `Paycheck` int(11) NOT NULL DEFAULT '0',
-  `HeadValue` int(11) NOT NULL DEFAULT '0',
-  `JailTime` int(11) NOT NULL DEFAULT '0',
-  `WRestricted` int(11) NOT NULL DEFAULT '0',
-  `Materials` int(11) NOT NULL DEFAULT '0',
-  `Crates` int(11) NOT NULL DEFAULT '0',
-  `Nation` int(1) NOT NULL DEFAULT '0',
-  `Leader` int(11) NOT NULL DEFAULT '-1',
-  `Member` int(11) NOT NULL DEFAULT '-1',
-  `Division` int(11) NOT NULL DEFAULT '-1',
+  `Band` int(11) NOT NULL DEFAULT 0,
+  `PermBand` int(11) NOT NULL DEFAULT 0,
+  `Warnings` int(11) NOT NULL DEFAULT 0,
+  `Disabled` int(11) NOT NULL DEFAULT 0,
+  `Level` int(11) NOT NULL DEFAULT 1,
+  `AdminLevel` int(11) NOT NULL DEFAULT 0,
+  `ASM` int(11) NOT NULL DEFAULT 0,
+  `SeniorModerator` int(11) NOT NULL DEFAULT 0,
+  `Helper` int(11) NOT NULL DEFAULT 0,
+  `DonateRank` int(11) NOT NULL DEFAULT 0,
+  `Respect` int(11) NOT NULL DEFAULT 0,
+  `Money` bigint(11) NOT NULL DEFAULT 5000,
+  `Bank` bigint(11) NOT NULL DEFAULT 20000,
+  `pHealth` float(10,5) NOT NULL DEFAULT 50.00000,
+  `pArmor` float(10,5) NOT NULL DEFAULT 0.00000,
+  `pSHealth` float(10,5) NOT NULL DEFAULT 0.00000,
+  `Int` int(11) NOT NULL DEFAULT 0,
+  `VirtualWorld` int(11) NOT NULL DEFAULT 0,
+  `Model` int(11) NOT NULL DEFAULT 299,
+  `SPos_x` float(20,5) NOT NULL DEFAULT 0.00000,
+  `SPos_y` float(20,5) NOT NULL DEFAULT 0.00000,
+  `SPos_z` float(20,5) NOT NULL DEFAULT 0.00000,
+  `SPos_r` float(20,5) NOT NULL DEFAULT 0.00000,
+  `BanAppealer` int(11) NOT NULL DEFAULT 0,
+  `PR` int(11) NOT NULL DEFAULT 0,
+  `HR` int(11) NOT NULL DEFAULT 0,
+  `AP` int(11) NOT NULL DEFAULT 0,
+  `Security` int(11) NOT NULL DEFAULT 0,
+  `ShopTech` int(11) NOT NULL DEFAULT 0,
+  `FactionModerator` int(11) NOT NULL DEFAULT 0,
+  `GangModerator` int(11) NOT NULL DEFAULT 0,
+  `Undercover` int(11) NOT NULL DEFAULT 0,
+  `TogReports` int(11) NOT NULL DEFAULT 0,
+  `Radio` int(11) NOT NULL DEFAULT 0,
+  `RadioFreq` int(11) NOT NULL DEFAULT 0,
+  `UpgradePoints` int(11) NOT NULL DEFAULT 0,
+  `Origin` int(11) NOT NULL DEFAULT 0,
+  `Muted` int(11) NOT NULL DEFAULT 0,
+  `Crimes` int(11) NOT NULL DEFAULT 0,
+  `Accent` int(11) NOT NULL DEFAULT 0,
+  `CHits` int(11) NOT NULL DEFAULT 0,
+  `FHits` int(11) NOT NULL DEFAULT 0,
+  `Arrested` int(11) NOT NULL DEFAULT 0,
+  `Phonebook` int(11) NOT NULL DEFAULT 0,
+  `LottoNr` int(11) NOT NULL DEFAULT 0,
+  `Fishes` int(11) NOT NULL DEFAULT 0,
+  `BiggestFish` int(11) NOT NULL DEFAULT 0,
+  `Job` int(11) NOT NULL DEFAULT 0,
+  `Job2` int(11) NOT NULL DEFAULT 0,
+  `Job3` int(11) NOT NULL DEFAULT 0,
+  `Paycheck` int(11) NOT NULL DEFAULT 0,
+  `HeadValue` int(11) NOT NULL DEFAULT 0,
+  `JailTime` int(11) NOT NULL DEFAULT 0,
+  `WRestricted` int(11) NOT NULL DEFAULT 0,
+  `Materials` int(11) NOT NULL DEFAULT 0,
+  `Crates` int(11) NOT NULL DEFAULT 0,
+  `Nation` int(1) NOT NULL DEFAULT 0,
+  `Leader` int(11) NOT NULL DEFAULT -1,
+  `Member` int(11) NOT NULL DEFAULT -1,
+  `Division` int(11) NOT NULL DEFAULT -1,
   `Badge` varchar(8) NOT NULL DEFAULT 'None',
-  `Rank` int(11) NOT NULL DEFAULT '-1',
-  `DetSkill` int(11) NOT NULL DEFAULT '0',
-  `SexSkill` int(11) NOT NULL DEFAULT '0',
-  `BoxSkill` int(11) NOT NULL DEFAULT '0',
-  `LawSkill` int(11) NOT NULL DEFAULT '0',
-  `MechSkill` int(11) NOT NULL DEFAULT '0',
-  `TruckSkill` int(11) NOT NULL DEFAULT '0',
-  `ArmsSkill` int(11) NOT NULL DEFAULT '0',
-  `FishSkill` int(11) NOT NULL DEFAULT '0',
-  `FightingStyle` int(11) NOT NULL DEFAULT '0',
-  `PhoneNr` int(11) NOT NULL DEFAULT '0',
-  `Apartment` int(11) NOT NULL DEFAULT '-1',
-  `Apartment2` int(11) NOT NULL DEFAULT '-1',
-  `Apartment3` int(11) NOT NULL DEFAULT '-1',
-  `Renting` int(11) NOT NULL DEFAULT '-1',
-  `CarLic` int(11) NOT NULL DEFAULT '0',
-  `FlyLic` int(11) NOT NULL DEFAULT '0',
-  `BoatLic` int(11) NOT NULL DEFAULT '1',
-  `FishLic` int(11) NOT NULL DEFAULT '1',
-  `CheckCash` int(11) NOT NULL DEFAULT '0',
-  `Checks` int(11) NOT NULL DEFAULT '0',
-  `GunLic` int(11) NOT NULL DEFAULT '1',
-  `Gun0` int(11) NOT NULL DEFAULT '0',
-  `Gun1` int(11) NOT NULL DEFAULT '0',
-  `Gun2` int(11) NOT NULL DEFAULT '0',
-  `Gun3` int(11) NOT NULL DEFAULT '0',
-  `Gun4` int(11) NOT NULL DEFAULT '0',
-  `Gun5` int(11) NOT NULL DEFAULT '0',
-  `Gun6` int(11) NOT NULL DEFAULT '0',
-  `Gun7` int(11) NOT NULL DEFAULT '0',
-  `Gun8` int(11) NOT NULL DEFAULT '0',
-  `Gun9` int(11) NOT NULL DEFAULT '0',
-  `Gun10` int(11) NOT NULL DEFAULT '0',
-  `Gun11` int(11) NOT NULL DEFAULT '0',
-  `DrugsTime` int(11) NOT NULL DEFAULT '0',
-  `LawyerTime` int(11) NOT NULL DEFAULT '0',
-  `LawyerFreeTime` int(11) NOT NULL DEFAULT '0',
-  `MechTime` int(11) NOT NULL DEFAULT '0',
-  `SexTime` int(11) NOT NULL DEFAULT '0',
-  `PayDay` int(11) NOT NULL DEFAULT '0',
-  `PayDayHad` int(11) NOT NULL DEFAULT '0',
-  `CDPlayer` int(11) NOT NULL DEFAULT '0',
-  `Dice` int(11) NOT NULL DEFAULT '0',
-  `Spraycan` int(11) NOT NULL DEFAULT '0',
-  `Rope` int(11) NOT NULL DEFAULT '0',
-  `Cigars` int(11) NOT NULL DEFAULT '0',
-  `Sprunk` int(11) NOT NULL DEFAULT '0',
-  `Bombs` int(11) NOT NULL DEFAULT '0',
-  `Wins` int(11) NOT NULL DEFAULT '0',
-  `Loses` int(11) NOT NULL DEFAULT '0',
-  `Tutorial` int(11) NOT NULL DEFAULT '0',
-  `OnDuty` int(11) NOT NULL DEFAULT '0',
-  `Hospital` int(11) NOT NULL DEFAULT '0',
-  `MarriedID` int(11) NOT NULL DEFAULT '0',
+  `Rank` int(11) NOT NULL DEFAULT -1,
+  `DetSkill` int(11) NOT NULL DEFAULT 0,
+  `SexSkill` int(11) NOT NULL DEFAULT 0,
+  `BoxSkill` int(11) NOT NULL DEFAULT 0,
+  `LawSkill` int(11) NOT NULL DEFAULT 0,
+  `MechSkill` int(11) NOT NULL DEFAULT 0,
+  `TruckSkill` int(11) NOT NULL DEFAULT 0,
+  `ArmsSkill` int(11) NOT NULL DEFAULT 0,
+  `FishSkill` int(11) NOT NULL DEFAULT 0,
+  `FightingStyle` int(11) NOT NULL DEFAULT 0,
+  `PhoneNr` int(11) NOT NULL DEFAULT 0,
+  `Apartment` int(11) NOT NULL DEFAULT -1,
+  `Apartment2` int(11) NOT NULL DEFAULT -1,
+  `Apartment3` int(11) NOT NULL DEFAULT -1,
+  `Renting` int(11) NOT NULL DEFAULT -1,
+  `CarLic` int(11) NOT NULL DEFAULT 0,
+  `FlyLic` int(11) NOT NULL DEFAULT 0,
+  `BoatLic` int(11) NOT NULL DEFAULT 1,
+  `FishLic` int(11) NOT NULL DEFAULT 1,
+  `CheckCash` int(11) NOT NULL DEFAULT 0,
+  `Checks` int(11) NOT NULL DEFAULT 0,
+  `GunLic` int(11) NOT NULL DEFAULT 1,
+  `Gun0` int(11) NOT NULL DEFAULT 0,
+  `Gun1` int(11) NOT NULL DEFAULT 0,
+  `Gun2` int(11) NOT NULL DEFAULT 0,
+  `Gun3` int(11) NOT NULL DEFAULT 0,
+  `Gun4` int(11) NOT NULL DEFAULT 0,
+  `Gun5` int(11) NOT NULL DEFAULT 0,
+  `Gun6` int(11) NOT NULL DEFAULT 0,
+  `Gun7` int(11) NOT NULL DEFAULT 0,
+  `Gun8` int(11) NOT NULL DEFAULT 0,
+  `Gun9` int(11) NOT NULL DEFAULT 0,
+  `Gun10` int(11) NOT NULL DEFAULT 0,
+  `Gun11` int(11) NOT NULL DEFAULT 0,
+  `DrugsTime` int(11) NOT NULL DEFAULT 0,
+  `LawyerTime` int(11) NOT NULL DEFAULT 0,
+  `LawyerFreeTime` int(11) NOT NULL DEFAULT 0,
+  `MechTime` int(11) NOT NULL DEFAULT 0,
+  `SexTime` int(11) NOT NULL DEFAULT 0,
+  `PayDay` int(11) NOT NULL DEFAULT 0,
+  `PayDayHad` int(11) NOT NULL DEFAULT 0,
+  `CDPlayer` int(11) NOT NULL DEFAULT 0,
+  `Dice` int(11) NOT NULL DEFAULT 0,
+  `Spraycan` int(11) NOT NULL DEFAULT 0,
+  `Rope` int(11) NOT NULL DEFAULT 0,
+  `Cigars` int(11) NOT NULL DEFAULT 0,
+  `Sprunk` int(11) NOT NULL DEFAULT 0,
+  `Bombs` int(11) NOT NULL DEFAULT 0,
+  `Wins` int(11) NOT NULL DEFAULT 0,
+  `Loses` int(11) NOT NULL DEFAULT 0,
+  `Tutorial` int(11) NOT NULL DEFAULT 0,
+  `OnDuty` int(11) NOT NULL DEFAULT 0,
+  `Hospital` int(11) NOT NULL DEFAULT 0,
+  `MarriedID` int(11) NOT NULL DEFAULT 0,
   `ContractBy` varchar(32) NOT NULL DEFAULT 'Nobody',
   `ContractDetail` varchar(64) NOT NULL DEFAULT 'None',
-  `WantedLevel` int(11) NOT NULL DEFAULT '0',
-  `Insurance` int(11) NOT NULL DEFAULT '0',
-  `911Muted` int(1) NOT NULL DEFAULT '0',
-  `NewMuted` int(11) NOT NULL DEFAULT '0',
-  `NewMutedTotal` int(11) NOT NULL DEFAULT '0',
-  `AdMuted` int(11) NOT NULL DEFAULT '0',
-  `AdMutedTotal` int(11) NOT NULL DEFAULT '0',
-  `HelpMute` int(11) NOT NULL DEFAULT '0',
-  `ReportMuted` int(11) NOT NULL DEFAULT '0',
-  `ReportMutedTotal` int(11) NOT NULL DEFAULT '0',
-  `ReportMutedTime` int(11) NOT NULL DEFAULT '0',
-  `VIPMuted` int(11) NOT NULL DEFAULT '0',
-  `VIPMutedTime` int(11) NOT NULL DEFAULT '0',
-  `GiftTime` int(11) NOT NULL DEFAULT '0',
-  `AdvisorDutyHours` int(11) NOT NULL DEFAULT '0',
-  `AcceptedHelp` int(11) NOT NULL DEFAULT '0',
-  `AcceptReport` int(11) NOT NULL DEFAULT '0',
-  `ShopTechOrders` int(11) NOT NULL DEFAULT '0',
-  `TrashReport` int(11) NOT NULL DEFAULT '0',
-  `GangWarn` int(11) NOT NULL DEFAULT '0',
-  `CSFBanned` int(11) NOT NULL DEFAULT '0',
-  `VIPInviteDay` int(11) NOT NULL DEFAULT '0',
-  `TempVIP` int(11) NOT NULL DEFAULT '0',
-  `BuddyInvite` int(11) NOT NULL DEFAULT '0',
-  `Tokens` int(11) NOT NULL DEFAULT '0',
-  `PTokens` int(11) NOT NULL DEFAULT '0',
-  `TriageTime` int(11) NOT NULL DEFAULT '0',
+  `WantedLevel` int(11) NOT NULL DEFAULT 0,
+  `Insurance` int(11) NOT NULL DEFAULT 0,
+  `911Muted` int(1) NOT NULL DEFAULT 0,
+  `NewMuted` int(11) NOT NULL DEFAULT 0,
+  `NewMutedTotal` int(11) NOT NULL DEFAULT 0,
+  `AdMuted` int(11) NOT NULL DEFAULT 0,
+  `AdMutedTotal` int(11) NOT NULL DEFAULT 0,
+  `HelpMute` int(11) NOT NULL DEFAULT 0,
+  `ReportMuted` int(11) NOT NULL DEFAULT 0,
+  `ReportMutedTotal` int(11) NOT NULL DEFAULT 0,
+  `ReportMutedTime` int(11) NOT NULL DEFAULT 0,
+  `VIPMuted` int(11) NOT NULL DEFAULT 0,
+  `VIPMutedTime` int(11) NOT NULL DEFAULT 0,
+  `GiftTime` int(11) NOT NULL DEFAULT 0,
+  `AdvisorDutyHours` int(11) NOT NULL DEFAULT 0,
+  `AcceptedHelp` int(11) NOT NULL DEFAULT 0,
+  `AcceptReport` int(11) NOT NULL DEFAULT 0,
+  `ShopTechOrders` int(11) NOT NULL DEFAULT 0,
+  `TrashReport` int(11) NOT NULL DEFAULT 0,
+  `GangWarn` int(11) NOT NULL DEFAULT 0,
+  `CSFBanned` int(11) NOT NULL DEFAULT 0,
+  `VIPInviteDay` int(11) NOT NULL DEFAULT 0,
+  `TempVIP` int(11) NOT NULL DEFAULT 0,
+  `BuddyInvite` int(11) NOT NULL DEFAULT 0,
+  `Tokens` int(11) NOT NULL DEFAULT 0,
+  `PTokens` int(11) NOT NULL DEFAULT 0,
+  `TriageTime` int(11) NOT NULL DEFAULT 0,
   `PrisonedBy` varchar(32) NOT NULL DEFAULT 'Nobody',
   `PrisonReason` varchar(128) NOT NULL DEFAULT 'None',
-  `TaxiLicense` int(11) NOT NULL DEFAULT '0',
-  `TicketTime` int(11) NOT NULL DEFAULT '0',
-  `Screwdriver` int(11) NOT NULL DEFAULT '0',
-  `Smslog` int(11) NOT NULL DEFAULT '0',
-  `Wristwatch` int(11) NOT NULL DEFAULT '0',
-  `Surveillance` int(11) NOT NULL DEFAULT '0',
-  `Tire` int(11) NOT NULL DEFAULT '0',
-  `Firstaid` int(11) NOT NULL DEFAULT '0',
-  `Rccam` int(11) NOT NULL DEFAULT '0',
-  `Receiver` int(11) NOT NULL DEFAULT '0',
-  `GPS` int(11) NOT NULL DEFAULT '0',
-  `Sweep` int(11) NOT NULL DEFAULT '0',
-  `SweepLeft` int(11) NOT NULL DEFAULT '0',
-  `Bugged` int(11) NOT NULL DEFAULT '0',
-  `pWExists` int(11) NOT NULL DEFAULT '0',
-  `pWSeeds` int(11) NOT NULL DEFAULT '0',
+  `TaxiLicense` int(11) NOT NULL DEFAULT 0,
+  `TicketTime` int(11) NOT NULL DEFAULT 0,
+  `Screwdriver` int(11) NOT NULL DEFAULT 0,
+  `Smslog` int(11) NOT NULL DEFAULT 0,
+  `Wristwatch` int(11) NOT NULL DEFAULT 0,
+  `Surveillance` int(11) NOT NULL DEFAULT 0,
+  `Tire` int(11) NOT NULL DEFAULT 0,
+  `Firstaid` int(11) NOT NULL DEFAULT 0,
+  `Rccam` int(11) NOT NULL DEFAULT 0,
+  `Receiver` int(11) NOT NULL DEFAULT 0,
+  `GPS` int(11) NOT NULL DEFAULT 0,
+  `Sweep` int(11) NOT NULL DEFAULT 0,
+  `SweepLeft` int(11) NOT NULL DEFAULT 0,
+  `Bugged` int(11) NOT NULL DEFAULT 0,
+  `pWExists` int(11) NOT NULL DEFAULT 0,
+  `pWSeeds` int(11) NOT NULL DEFAULT 0,
   `Warrants` varchar(128) NOT NULL DEFAULT '',
-  `JudgeJailTime` int(11) NOT NULL DEFAULT '0',
-  `JudgeJailType` int(11) NOT NULL DEFAULT '0',
-  `BeingSentenced` int(11) NOT NULL DEFAULT '0',
-  `ProbationTime` int(11) NOT NULL DEFAULT '0',
-  `DMKills` int(11) NOT NULL DEFAULT '0',
+  `JudgeJailTime` int(11) NOT NULL DEFAULT 0,
+  `JudgeJailType` int(11) NOT NULL DEFAULT 0,
+  `BeingSentenced` int(11) NOT NULL DEFAULT 0,
+  `ProbationTime` int(11) NOT NULL DEFAULT 0,
+  `DMKills` int(11) NOT NULL DEFAULT 0,
   `Order` varchar(63) NOT NULL DEFAULT '',
-  `OrderConfirmed` int(11) NOT NULL DEFAULT '0',
-  `CallsAccepted` int(11) NOT NULL DEFAULT '0',
-  `PatientsDelivered` int(11) NOT NULL DEFAULT '0',
-  `LiveBanned` int(11) NOT NULL DEFAULT '0',
-  `FreezeBank` int(11) NOT NULL DEFAULT '0',
-  `FreezeHouse` int(11) NOT NULL DEFAULT '0',
-  `FreezeCar` int(11) NOT NULL DEFAULT '0',
-  `Hydration` int(11) NOT NULL DEFAULT '0',
-  `DoubleEXP` int(11) NOT NULL DEFAULT '0',
-  `EXPToken` int(11) NOT NULL DEFAULT '0',
-  `RacePlayerLaps` int(11) NOT NULL DEFAULT '0',
-  `Ringtone` int(11) NOT NULL DEFAULT '0',
-  `VIPM` int(11) NOT NULL DEFAULT '0',
-  `VIPMO` int(11) NOT NULL DEFAULT '0',
-  `VIPExpire` int(11) NOT NULL DEFAULT '0',
-  `VIPSold` int(11) NOT NULL DEFAULT '0',
-  `GVip` int(11) NOT NULL DEFAULT '0',
-  `Speedo` int(11) NOT NULL DEFAULT '0',
-  `Firework` int(11) NOT NULL DEFAULT '0',
-  `Boombox` int(11) NOT NULL DEFAULT '0',
-  `DrawChance` int(11) NOT NULL DEFAULT '0',
-  `GoldBoxTokens` int(11) NOT NULL DEFAULT '0',
-  `RewardHours` float(10,5) NOT NULL DEFAULT '0.00000',
-  `DMRMuted` int(11) UNSIGNED NOT NULL DEFAULT '0',
-  `Watchdog` int(11) UNSIGNED NOT NULL DEFAULT '0',
-  `CarsRestricted` tinyint(2) NOT NULL DEFAULT '0',
-  `Flagged` tinyint(2) NOT NULL DEFAULT '0',
-  `LastCarWarning` int(11) NOT NULL DEFAULT '0',
-  `CarWarns` int(11) NOT NULL DEFAULT '0',
-  `Hours` int(11) NOT NULL DEFAULT '0',
-  `Paper` int(11) NOT NULL DEFAULT '0',
-  `MailEnabled` int(11) NOT NULL DEFAULT '1',
-  `Mailbox` int(11) NOT NULL DEFAULT '0',
-  `TreasureSkill` int(5) NOT NULL DEFAULT '0',
-  `MetalDetector` int(5) NOT NULL DEFAULT '0',
-  `HelpedBefore` int(11) NOT NULL DEFAULT '0',
-  `Business` int(11) NOT NULL DEFAULT '-1',
-  `BusinessRank` int(11) NOT NULL DEFAULT '-1',
-  `pEventTokens` int(11) NOT NULL DEFAULT '0',
-  `RHMutes` int(1) NOT NULL DEFAULT '0',
-  `RHMuteTime` int(11) NOT NULL DEFAULT '0',
-  `GiftCode` int(11) NOT NULL DEFAULT '0',
-  `Table` int(11) NOT NULL DEFAULT '0',
-  `OpiumSeeds` int(11) NOT NULL DEFAULT '0',
-  `RawOpium` int(11) NOT NULL DEFAULT '0',
-  `Pot` int(11) NOT NULL DEFAULT '0',
-  `Crack` int(11) NOT NULL DEFAULT '0',
-  `Meth` int(11) NOT NULL DEFAULT '0',
-  `Ecstasy` int(11) NOT NULL DEFAULT '0',
-  `Heroin` int(11) NOT NULL DEFAULT '0',
-  `Syringe` int(11) NOT NULL DEFAULT '0',
-  `Skins` int(11) NOT NULL DEFAULT '0',
-  `Fitness` int(11) NOT NULL DEFAULT '0',
-  `LastCharmReceived` int(11) NOT NULL DEFAULT '0',
-  `ForcePasswordChange` int(11) NOT NULL DEFAULT '0',
-  `Credits` int(11) NOT NULL DEFAULT '0',
-  `ReceivedCredits` int(11) NOT NULL DEFAULT '0',
-  `TotalCredits` int(11) NOT NULL DEFAULT '0',
-  `HealthCare` int(11) NOT NULL DEFAULT '0',
+  `OrderConfirmed` int(11) NOT NULL DEFAULT 0,
+  `CallsAccepted` int(11) NOT NULL DEFAULT 0,
+  `PatientsDelivered` int(11) NOT NULL DEFAULT 0,
+  `LiveBanned` int(11) NOT NULL DEFAULT 0,
+  `FreezeBank` int(11) NOT NULL DEFAULT 0,
+  `FreezeHouse` int(11) NOT NULL DEFAULT 0,
+  `FreezeCar` int(11) NOT NULL DEFAULT 0,
+  `Hydration` int(11) NOT NULL DEFAULT 0,
+  `DoubleEXP` int(11) NOT NULL DEFAULT 0,
+  `EXPToken` int(11) NOT NULL DEFAULT 0,
+  `RacePlayerLaps` int(11) NOT NULL DEFAULT 0,
+  `Ringtone` int(11) NOT NULL DEFAULT 0,
+  `VIPM` int(11) NOT NULL DEFAULT 0,
+  `VIPMO` int(11) NOT NULL DEFAULT 0,
+  `VIPExpire` int(11) NOT NULL DEFAULT 0,
+  `VIPSold` int(11) NOT NULL DEFAULT 0,
+  `GVip` int(11) NOT NULL DEFAULT 0,
+  `Speedo` int(11) NOT NULL DEFAULT 0,
+  `Firework` int(11) NOT NULL DEFAULT 0,
+  `Boombox` int(11) NOT NULL DEFAULT 0,
+  `DrawChance` int(11) NOT NULL DEFAULT 0,
+  `GoldBoxTokens` int(11) NOT NULL DEFAULT 0,
+  `RewardHours` float(10,5) NOT NULL DEFAULT 0.00000,
+  `DMRMuted` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `Watchdog` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `CarsRestricted` tinyint(2) NOT NULL DEFAULT 0,
+  `Flagged` tinyint(2) NOT NULL DEFAULT 0,
+  `LastCarWarning` int(11) NOT NULL DEFAULT 0,
+  `CarWarns` int(11) NOT NULL DEFAULT 0,
+  `Hours` int(11) NOT NULL DEFAULT 0,
+  `Paper` int(11) NOT NULL DEFAULT 0,
+  `MailEnabled` int(11) NOT NULL DEFAULT 1,
+  `Mailbox` int(11) NOT NULL DEFAULT 0,
+  `TreasureSkill` int(5) NOT NULL DEFAULT 0,
+  `MetalDetector` int(5) NOT NULL DEFAULT 0,
+  `HelpedBefore` int(11) NOT NULL DEFAULT 0,
+  `Business` int(11) NOT NULL DEFAULT -1,
+  `BusinessRank` int(11) NOT NULL DEFAULT -1,
+  `pEventTokens` int(11) NOT NULL DEFAULT 0,
+  `RHMutes` int(1) NOT NULL DEFAULT 0,
+  `RHMuteTime` int(11) NOT NULL DEFAULT 0,
+  `GiftCode` int(11) NOT NULL DEFAULT 0,
+  `Table` int(11) NOT NULL DEFAULT 0,
+  `OpiumSeeds` int(11) NOT NULL DEFAULT 0,
+  `RawOpium` int(11) NOT NULL DEFAULT 0,
+  `Pot` int(11) NOT NULL DEFAULT 0,
+  `Crack` int(11) NOT NULL DEFAULT 0,
+  `Meth` int(11) NOT NULL DEFAULT 0,
+  `Ecstasy` int(11) NOT NULL DEFAULT 0,
+  `Heroin` int(11) NOT NULL DEFAULT 0,
+  `Syringe` int(11) NOT NULL DEFAULT 0,
+  `Skins` int(11) NOT NULL DEFAULT 0,
+  `Fitness` int(11) NOT NULL DEFAULT 0,
+  `LastCharmReceived` int(11) NOT NULL DEFAULT 0,
+  `ForcePasswordChange` int(11) NOT NULL DEFAULT 0,
+  `Credits` int(11) NOT NULL DEFAULT 0,
+  `ReceivedCredits` int(11) NOT NULL DEFAULT 0,
+  `TotalCredits` int(11) NOT NULL DEFAULT 0,
+  `HealthCare` int(11) NOT NULL DEFAULT 0,
   `Pin` varchar(256) NOT NULL DEFAULT '',
-  `RimMod` int(11) NOT NULL DEFAULT '0',
-  `Tazer` int(11) NOT NULL DEFAULT '0',
-  `Cuff` int(11) NOT NULL DEFAULT '0',
-  `CarVoucher` int(11) NOT NULL DEFAULT '0',
+  `RimMod` int(11) NOT NULL DEFAULT 0,
+  `Tazer` int(11) NOT NULL DEFAULT 0,
+  `Cuff` int(11) NOT NULL DEFAULT 0,
+  `CarVoucher` int(11) NOT NULL DEFAULT 0,
   `ReferredBy` varchar(32) NOT NULL DEFAULT 'Nobody',
-  `PendingRefReward` int(11) NOT NULL DEFAULT '0',
-  `Refers` int(11) NOT NULL DEFAULT '0',
-  `Famed` int(11) NOT NULL DEFAULT '0',
-  `FamedMuted` int(11) NOT NULL DEFAULT '0',
-  `DefendTime` int(11) NOT NULL DEFAULT '0',
-  `PVIPVoucher` int(11) NOT NULL DEFAULT '0',
-  `VehicleSlot` int(11) NOT NULL DEFAULT '0',
-  `ToySlot` int(11) NOT NULL DEFAULT '0',
-  `RFLTeam` int(11) NOT NULL DEFAULT '-1',
-  `RFLTeamL` int(11) NOT NULL DEFAULT '-1',
-  `GiftVoucher` int(11) NOT NULL DEFAULT '0',
-  `VehVoucher` int(11) NOT NULL DEFAULT '0',
-  `SVIPVoucher` int(11) NOT NULL DEFAULT '0',
-  `GVIPVoucher` int(11) NOT NULL DEFAULT '0',
-  `FallIntoFun` int(11) NOT NULL DEFAULT '0',
-  `HungerVoucher` int(11) NOT NULL DEFAULT '0',
-  `BoughtCure` int(11) NOT NULL DEFAULT '0',
-  `Vials` int(11) NOT NULL DEFAULT '0',
-  `ShopCounter` int(11) NOT NULL DEFAULT '0',
-  `ShopNotice` int(11) NOT NULL DEFAULT '0',
-  `AdvertVoucher` int(11) NOT NULL DEFAULT '0',
-  `SVIPExVoucher` int(11) NOT NULL DEFAULT '0',
-  `GVIPExVoucher` int(11) NOT NULL DEFAULT '0',
-  `VIPSellable` int(11) NOT NULL DEFAULT '0',
-  `ReceivedPrize` int(11) NOT NULL DEFAULT '0',
-  `VIPSpawn` int(11) NOT NULL DEFAULT '0',
-  `FreeAdsDay` int(11) NOT NULL DEFAULT '0',
-  `FreeAdsLeft` int(11) NOT NULL DEFAULT '0',
-  `BuddyInvites` int(11) NOT NULL DEFAULT '0',
-  `ReceivedBGift` int(11) NOT NULL DEFAULT '0',
-  `pVIPJob` int(11) NOT NULL DEFAULT '1',
-  `LastBirthday` int(11) NOT NULL DEFAULT '0',
-  `Backpack` int(11) NOT NULL DEFAULT '0',
-  `BEquipped` int(11) NOT NULL DEFAULT '0',
-  `BStoredH` int(11) NOT NULL DEFAULT '0',
-  `BStoredV` int(11) NOT NULL DEFAULT '0',
-  `BItem0` int(11) NOT NULL DEFAULT '0',
-  `BItem1` int(11) NOT NULL DEFAULT '0',
-  `BItem2` int(11) NOT NULL DEFAULT '0',
-  `BItem3` int(11) NOT NULL DEFAULT '0',
-  `BItem4` int(11) NOT NULL DEFAULT '0',
-  `BItem5` int(11) NOT NULL DEFAULT '0',
-  `BItem6` int(11) NOT NULL DEFAULT '0',
-  `BItem7` int(11) NOT NULL DEFAULT '0',
-  `BItem8` int(11) NOT NULL DEFAULT '0',
-  `BItem9` int(11) NOT NULL DEFAULT '0',
-  `BItem10` int(11) NOT NULL DEFAULT '0',
-  `BItem11` int(11) NOT NULL DEFAULT '0',
-  `AccountRestricted` int(11) NOT NULL DEFAULT '0',
-  `Watchlist` int(11) NOT NULL DEFAULT '0',
-  `WatchlistTime` int(11) NOT NULL DEFAULT '0',
-  `BRTimeout` int(11) NOT NULL DEFAULT '0',
-  `pDigCooldown` int(11) NOT NULL DEFAULT '0',
-  `ToolBox` int(11) NOT NULL DEFAULT '0',
-  `CrowBar` int(11) NOT NULL DEFAULT '0',
-  `CarLockPickSkill` int(11) NOT NULL DEFAULT '0',
-  `LockPickVehCount` int(11) NOT NULL DEFAULT '0',
-  `LockPickTime` int(11) NOT NULL DEFAULT '0',
-  `SEC` int(11) NOT NULL DEFAULT '0',
-  `BM` int(11) NOT NULL DEFAULT '0',
-  `Isolated` int(11) NOT NULL DEFAULT '0',
-  `WantedJailTime` int(11) NOT NULL DEFAULT '0',
-  `WantedJailFine` int(11) NOT NULL DEFAULT '0',
-  `NextNameChange` int(11) NOT NULL DEFAULT '0',
+  `PendingRefReward` int(11) NOT NULL DEFAULT 0,
+  `Refers` int(11) NOT NULL DEFAULT 0,
+  `Famed` int(11) NOT NULL DEFAULT 0,
+  `FamedMuted` int(11) NOT NULL DEFAULT 0,
+  `DefendTime` int(11) NOT NULL DEFAULT 0,
+  `PVIPVoucher` int(11) NOT NULL DEFAULT 0,
+  `VehicleSlot` int(11) NOT NULL DEFAULT 0,
+  `ToySlot` int(11) NOT NULL DEFAULT 0,
+  `RFLTeam` int(11) NOT NULL DEFAULT -1,
+  `RFLTeamL` int(11) NOT NULL DEFAULT -1,
+  `GiftVoucher` int(11) NOT NULL DEFAULT 0,
+  `VehVoucher` int(11) NOT NULL DEFAULT 0,
+  `SVIPVoucher` int(11) NOT NULL DEFAULT 0,
+  `GVIPVoucher` int(11) NOT NULL DEFAULT 0,
+  `FallIntoFun` int(11) NOT NULL DEFAULT 0,
+  `HungerVoucher` int(11) NOT NULL DEFAULT 0,
+  `BoughtCure` int(11) NOT NULL DEFAULT 0,
+  `Vials` int(11) NOT NULL DEFAULT 0,
+  `ShopCounter` int(11) NOT NULL DEFAULT 0,
+  `ShopNotice` int(11) NOT NULL DEFAULT 0,
+  `AdvertVoucher` int(11) NOT NULL DEFAULT 0,
+  `SVIPExVoucher` int(11) NOT NULL DEFAULT 0,
+  `GVIPExVoucher` int(11) NOT NULL DEFAULT 0,
+  `VIPSellable` int(11) NOT NULL DEFAULT 0,
+  `ReceivedPrize` int(11) NOT NULL DEFAULT 0,
+  `VIPSpawn` int(11) NOT NULL DEFAULT 0,
+  `FreeAdsDay` int(11) NOT NULL DEFAULT 0,
+  `FreeAdsLeft` int(11) NOT NULL DEFAULT 0,
+  `BuddyInvites` int(11) NOT NULL DEFAULT 0,
+  `ReceivedBGift` int(11) NOT NULL DEFAULT 0,
+  `pVIPJob` int(11) NOT NULL DEFAULT 1,
+  `LastBirthday` int(11) NOT NULL DEFAULT 0,
+  `Backpack` int(11) NOT NULL DEFAULT 0,
+  `BEquipped` int(11) NOT NULL DEFAULT 0,
+  `BStoredH` int(11) NOT NULL DEFAULT 0,
+  `BStoredV` int(11) NOT NULL DEFAULT 0,
+  `BItem0` int(11) NOT NULL DEFAULT 0,
+  `BItem1` int(11) NOT NULL DEFAULT 0,
+  `BItem2` int(11) NOT NULL DEFAULT 0,
+  `BItem3` int(11) NOT NULL DEFAULT 0,
+  `BItem4` int(11) NOT NULL DEFAULT 0,
+  `BItem5` int(11) NOT NULL DEFAULT 0,
+  `BItem6` int(11) NOT NULL DEFAULT 0,
+  `BItem7` int(11) NOT NULL DEFAULT 0,
+  `BItem8` int(11) NOT NULL DEFAULT 0,
+  `BItem9` int(11) NOT NULL DEFAULT 0,
+  `BItem10` int(11) NOT NULL DEFAULT 0,
+  `BItem11` int(11) NOT NULL DEFAULT 0,
+  `AccountRestricted` int(11) NOT NULL DEFAULT 0,
+  `Watchlist` int(11) NOT NULL DEFAULT 0,
+  `WatchlistTime` int(11) NOT NULL DEFAULT 0,
+  `BRTimeout` int(11) NOT NULL DEFAULT 0,
+  `pDigCooldown` int(11) NOT NULL DEFAULT 0,
+  `ToolBox` int(11) NOT NULL DEFAULT 0,
+  `CrowBar` int(11) NOT NULL DEFAULT 0,
+  `CarLockPickSkill` int(11) NOT NULL DEFAULT 0,
+  `LockPickVehCount` int(11) NOT NULL DEFAULT 0,
+  `LockPickTime` int(11) NOT NULL DEFAULT 0,
+  `SEC` int(11) NOT NULL DEFAULT 0,
+  `BM` int(11) NOT NULL DEFAULT 0,
+  `Isolated` int(11) NOT NULL DEFAULT 0,
+  `WantedJailTime` int(11) NOT NULL DEFAULT 0,
+  `WantedJailFine` int(11) NOT NULL DEFAULT 0,
+  `NextNameChange` int(11) NOT NULL DEFAULT 0,
   `pExamineDesc` varchar(256) NOT NULL DEFAULT 'None',
   `FavStation` varchar(255) NOT NULL DEFAULT '',
-  `pDedicatedPlayer` int(11) NOT NULL DEFAULT '0',
-  `pDedicatedEnabled` int(11) NOT NULL DEFAULT '0',
-  `pDedicatedMuted` int(11) NOT NULL DEFAULT '0',
-  `pDedicatedWarn` int(11) NOT NULL DEFAULT '0',
+  `pDedicatedPlayer` int(11) NOT NULL DEFAULT 0,
+  `pDedicatedEnabled` int(11) NOT NULL DEFAULT 0,
+  `pDedicatedMuted` int(11) NOT NULL DEFAULT 0,
+  `pDedicatedWarn` int(11) NOT NULL DEFAULT 0,
   `mInventory` varchar(255) NOT NULL DEFAULT '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0',
   `mPurchaseCounts` varchar(255) NOT NULL DEFAULT '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0',
   `mCooldowns` varchar(255) NOT NULL DEFAULT '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0',
   `mBoost` varchar(255) NOT NULL DEFAULT '0|0',
   `mShopNotice` varchar(255) NOT NULL DEFAULT '0|0',
-  `zFuelCan` int(11) NOT NULL DEFAULT '0',
-  `bTicket` int(11) NOT NULL DEFAULT '0',
+  `zFuelCan` int(11) NOT NULL DEFAULT 0,
+  `bTicket` int(11) NOT NULL DEFAULT 0,
   `JailedInfo` varchar(255) NOT NULL DEFAULT '0|0|0|0|0',
   `JailedWeapons` varchar(255) NOT NULL DEFAULT '0|0|0|0|0|0|0|0|0|0|0|0',
-  `pVIPMod` int(11) NOT NULL DEFAULT '0',
-  `EmailConfirmed` int(11) NOT NULL DEFAULT '0',
-  `EmailCount` int(11) NOT NULL DEFAULT '0',
-  `Trickortreat` int(11) NOT NULL DEFAULT '0',
-  `pBailPrice` int(11) NOT NULL DEFAULT '0',
-  `VIPGunsCount` int(11) NOT NULL DEFAULT '0',
-  `Wallpaper` int(11) NOT NULL DEFAULT '0',
+  `pVIPMod` int(11) NOT NULL DEFAULT 0,
+  `EmailConfirmed` int(11) NOT NULL DEFAULT 0,
+  `EmailCount` int(11) NOT NULL DEFAULT 0,
+  `Trickortreat` int(11) NOT NULL DEFAULT 0,
+  `pBailPrice` int(11) NOT NULL DEFAULT 0,
+  `VIPGunsCount` int(11) NOT NULL DEFAULT 0,
+  `Wallpaper` int(11) NOT NULL DEFAULT 0,
   `DrugQuality` varchar(255) NOT NULL DEFAULT '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0',
   `ToggledChats` varchar(255) NOT NULL DEFAULT '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0',
   `ChatboxSettings` varchar(255) NOT NULL DEFAULT '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0',
-  `ChatTog0` int(2) NOT NULL DEFAULT '0',
-  `ChatTog1` int(2) NOT NULL DEFAULT '0',
-  `ChatTog2` int(2) NOT NULL DEFAULT '0',
-  `ChatTog3` int(2) NOT NULL DEFAULT '0',
-  `ChatTog4` int(2) NOT NULL DEFAULT '0',
-  `ChatTog5` int(2) NOT NULL DEFAULT '0',
-  `ChatTog6` int(2) NOT NULL DEFAULT '0',
-  `ChatTog7` int(2) NOT NULL DEFAULT '0',
-  `ChatTog8` int(2) NOT NULL DEFAULT '0',
-  `ChatTog9` int(2) NOT NULL DEFAULT '0',
-  `ChatTog10` int(2) NOT NULL DEFAULT '0',
-  `ChatTog11` int(2) NOT NULL DEFAULT '0',
-  `ChatTog12` int(2) NOT NULL DEFAULT '0',
-  `ChatTog13` int(2) NOT NULL DEFAULT '0',
-  `ChatTog14` int(2) NOT NULL DEFAULT '0',
-  `ChatTog15` int(2) NOT NULL DEFAULT '0',
-  `ChatTog16` int(2) NOT NULL DEFAULT '0',
-  `ChatTog17` int(2) NOT NULL DEFAULT '0',
-  `ChatTog18` int(2) NOT NULL DEFAULT '0',
-  `ChatTog19` int(2) NOT NULL DEFAULT '0',
-  `ChatTog20` int(2) NOT NULL DEFAULT '0',
-  `ChatTog21` int(2) NOT NULL DEFAULT '0',
-  `ChatTog22` int(2) NOT NULL DEFAULT '0',
-  `ChatTog23` int(2) NOT NULL DEFAULT '0',
-  `GroupToy0` float NOT NULL DEFAULT '0',
-  `GroupToy1` float NOT NULL DEFAULT '0',
-  `GroupToy2` float NOT NULL DEFAULT '0',
-  `GroupToy3` float NOT NULL DEFAULT '0',
-  `GroupToy4` float NOT NULL DEFAULT '0',
-  `GroupToy5` float NOT NULL DEFAULT '0',
-  `GroupToy6` float NOT NULL DEFAULT '0',
-  `GroupToy7` float NOT NULL DEFAULT '1',
-  `GroupToy8` float NOT NULL DEFAULT '1',
-  `GroupToy9` float NOT NULL DEFAULT '1',
-  `GroupToyBone` int(4) NOT NULL DEFAULT '1',
-  `BDrug0` int(11) NOT NULL DEFAULT '0',
-  `BDrug1` int(11) NOT NULL DEFAULT '0',
-  `BDrug2` int(11) NOT NULL DEFAULT '0',
-  `BDrug3` int(11) NOT NULL DEFAULT '0',
-  `BDrug4` int(11) NOT NULL DEFAULT '0',
-  `BDrug5` int(11) NOT NULL DEFAULT '0',
-  `BDrug6` int(11) NOT NULL DEFAULT '0',
-  `BDrug7` int(11) NOT NULL DEFAULT '0',
-  `BDrug8` int(11) NOT NULL DEFAULT '0',
-  `BDrug9` int(11) NOT NULL DEFAULT '0',
-  `BDrug10` int(11) NOT NULL DEFAULT '0',
-  `BDrug11` int(11) NOT NULL DEFAULT '0',
-  `BDrug12` int(11) NOT NULL DEFAULT '0',
-  `BDrug13` int(11) NOT NULL DEFAULT '0',
-  `PrisonSoap` int(11) NOT NULL DEFAULT '0',
-  `PrisonSugar` int(11) NOT NULL DEFAULT '0',
-  `PrisonBread` int(11) NOT NULL DEFAULT '0',
-  `PrisonShank` int(11) NOT NULL DEFAULT '0',
-  `PrisonShankOut` int(11) NOT NULL DEFAULT '0',
-  `ShankUsages` int(11) NOT NULL DEFAULT '0',
-  `PrisonWine` int(11) NOT NULL DEFAULT '0',
-  `PrisonMWine` int(11) NOT NULL DEFAULT '0',
-  `PrisonChisel` int(11) NOT NULL DEFAULT '0',
-  `PrisonCellChisel` int(11) NOT NULL DEFAULT '0',
-  `FishingSkill` int(11) NOT NULL DEFAULT '0',
-  `FishWeight` int(11) NOT NULL DEFAULT '0',
-  `GarbageSkill` int(11) NOT NULL DEFAULT '0',
+  `ChatTog0` int(2) NOT NULL DEFAULT 0,
+  `ChatTog1` int(2) NOT NULL DEFAULT 0,
+  `ChatTog2` int(2) NOT NULL DEFAULT 0,
+  `ChatTog3` int(2) NOT NULL DEFAULT 0,
+  `ChatTog4` int(2) NOT NULL DEFAULT 0,
+  `ChatTog5` int(2) NOT NULL DEFAULT 0,
+  `ChatTog6` int(2) NOT NULL DEFAULT 0,
+  `ChatTog7` int(2) NOT NULL DEFAULT 0,
+  `ChatTog8` int(2) NOT NULL DEFAULT 0,
+  `ChatTog9` int(2) NOT NULL DEFAULT 0,
+  `ChatTog10` int(2) NOT NULL DEFAULT 0,
+  `ChatTog11` int(2) NOT NULL DEFAULT 0,
+  `ChatTog12` int(2) NOT NULL DEFAULT 0,
+  `ChatTog13` int(2) NOT NULL DEFAULT 0,
+  `ChatTog14` int(2) NOT NULL DEFAULT 0,
+  `ChatTog15` int(2) NOT NULL DEFAULT 0,
+  `ChatTog16` int(2) NOT NULL DEFAULT 0,
+  `ChatTog17` int(2) NOT NULL DEFAULT 0,
+  `ChatTog18` int(2) NOT NULL DEFAULT 0,
+  `ChatTog19` int(2) NOT NULL DEFAULT 0,
+  `ChatTog20` int(2) NOT NULL DEFAULT 0,
+  `ChatTog21` int(2) NOT NULL DEFAULT 0,
+  `ChatTog22` int(2) NOT NULL DEFAULT 0,
+  `ChatTog23` int(2) NOT NULL DEFAULT 0,
+  `GroupToy0` float NOT NULL DEFAULT 0,
+  `GroupToy1` float NOT NULL DEFAULT 0,
+  `GroupToy2` float NOT NULL DEFAULT 0,
+  `GroupToy3` float NOT NULL DEFAULT 0,
+  `GroupToy4` float NOT NULL DEFAULT 0,
+  `GroupToy5` float NOT NULL DEFAULT 0,
+  `GroupToy6` float NOT NULL DEFAULT 0,
+  `GroupToy7` float NOT NULL DEFAULT 1,
+  `GroupToy8` float NOT NULL DEFAULT 1,
+  `GroupToy9` float NOT NULL DEFAULT 1,
+  `GroupToyBone` int(4) NOT NULL DEFAULT 1,
+  `BDrug0` int(11) NOT NULL DEFAULT 0,
+  `BDrug1` int(11) NOT NULL DEFAULT 0,
+  `BDrug2` int(11) NOT NULL DEFAULT 0,
+  `BDrug3` int(11) NOT NULL DEFAULT 0,
+  `BDrug4` int(11) NOT NULL DEFAULT 0,
+  `BDrug5` int(11) NOT NULL DEFAULT 0,
+  `BDrug6` int(11) NOT NULL DEFAULT 0,
+  `BDrug7` int(11) NOT NULL DEFAULT 0,
+  `BDrug8` int(11) NOT NULL DEFAULT 0,
+  `BDrug9` int(11) NOT NULL DEFAULT 0,
+  `BDrug10` int(11) NOT NULL DEFAULT 0,
+  `BDrug11` int(11) NOT NULL DEFAULT 0,
+  `BDrug12` int(11) NOT NULL DEFAULT 0,
+  `BDrug13` int(11) NOT NULL DEFAULT 0,
+  `PrisonSoap` int(11) NOT NULL DEFAULT 0,
+  `PrisonSugar` int(11) NOT NULL DEFAULT 0,
+  `PrisonBread` int(11) NOT NULL DEFAULT 0,
+  `PrisonShank` int(11) NOT NULL DEFAULT 0,
+  `PrisonShankOut` int(11) NOT NULL DEFAULT 0,
+  `ShankUsages` int(11) NOT NULL DEFAULT 0,
+  `PrisonWine` int(11) NOT NULL DEFAULT 0,
+  `PrisonMWine` int(11) NOT NULL DEFAULT 0,
+  `PrisonChisel` int(11) NOT NULL DEFAULT 0,
+  `PrisonCellChisel` int(11) NOT NULL DEFAULT 0,
+  `FishingSkill` int(11) NOT NULL DEFAULT 0,
+  `FishWeight` int(11) NOT NULL DEFAULT 0,
+  `GarbageSkill` int(11) NOT NULL DEFAULT 0,
   `PrisonDrugs` varchar(255) NOT NULL DEFAULT '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0',
-  `PrisonCredits` int(11) NOT NULL DEFAULT '0',
+  `PrisonCredits` int(11) NOT NULL DEFAULT 0,
   `PrisonMaterials` int(11) NOT NULL,
   `PrisonCell` int(11) NOT NULL,
   `PrisonWineTime` int(11) NOT NULL,
-  `pLastPoll` int(11) NOT NULL DEFAULT '0',
+  `pLastPoll` int(11) NOT NULL DEFAULT 0,
   `DrugSmuggler` int(11) NOT NULL,
   `StaffBanned` int(11) NOT NULL,
   `PollKeyA` varchar(24) NOT NULL DEFAULT 'Invalid Key',
@@ -458,17 +459,17 @@ CREATE TABLE `accounts` (
   `PollKeyC` varchar(24) NOT NULL DEFAULT 'Invalid Key',
   `FurnitureSlots` int(11) NOT NULL,
   `Rags` int(11) NOT NULL,
-  `Hitman` int(11) NOT NULL DEFAULT '-1',
-  `HitmanLeader` int(11) NOT NULL DEFAULT '0',
+  `Hitman` int(11) NOT NULL DEFAULT -1,
+  `HitmanLeader` int(11) NOT NULL DEFAULT 0,
   `HitmanBlacklisted` int(11) NOT NULL,
   `BlacklistReason` varchar(64) NOT NULL,
-  `CopKit` int(11) NOT NULL DEFAULT '0',
-  `DedicatedHours` int(11) NOT NULL DEFAULT '0',
+  `CopKit` int(11) NOT NULL DEFAULT 0,
+  `DedicatedHours` int(11) NOT NULL DEFAULT 0,
   `DedicatedTimestamp` date NOT NULL DEFAULT '0000-00-00',
   `DedicatedDaymarker` date NOT NULL DEFAULT '0000-00-00',
-  `WalkStyle` int(11) NOT NULL DEFAULT '0',
-  `FlagCredits` int(11) NOT NULL DEFAULT '0',
-  `FlagClaimed` int(11) NOT NULL DEFAULT '0'
+  `WalkStyle` int(11) NOT NULL DEFAULT 0,
+  `FlagCredits` int(11) NOT NULL DEFAULT 0,
+  `FlagClaimed` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -476,7 +477,7 @@ CREATE TABLE `accounts` (
 --
 
 INSERT INTO `accounts` (`id`, `Online`, `UpdateDate`, `RegiDate`, `LastLogin`, `Username`, `Key`, `Salt`, `LastPassChange`, `Email`, `IP`, `SecureIP`, `Registered`, `ConnectedTime`, `Sex`, `BirthDate`, `Band`, `PermBand`, `Warnings`, `Disabled`, `Level`, `AdminLevel`, `ASM`, `SeniorModerator`, `Helper`, `DonateRank`, `Respect`, `Money`, `Bank`, `pHealth`, `pArmor`, `pSHealth`, `Int`, `VirtualWorld`, `Model`, `SPos_x`, `SPos_y`, `SPos_z`, `SPos_r`, `BanAppealer`, `PR`, `HR`, `AP`, `Security`, `ShopTech`, `FactionModerator`, `GangModerator`, `Undercover`, `TogReports`, `Radio`, `RadioFreq`, `UpgradePoints`, `Origin`, `Muted`, `Crimes`, `Accent`, `CHits`, `FHits`, `Arrested`, `Phonebook`, `LottoNr`, `Fishes`, `BiggestFish`, `Job`, `Job2`, `Job3`, `Paycheck`, `HeadValue`, `JailTime`, `WRestricted`, `Materials`, `Crates`, `Nation`, `Leader`, `Member`, `Division`, `Badge`, `Rank`, `DetSkill`, `SexSkill`, `BoxSkill`, `LawSkill`, `MechSkill`, `TruckSkill`, `ArmsSkill`, `FishSkill`, `FightingStyle`, `PhoneNr`, `Apartment`, `Apartment2`, `Apartment3`, `Renting`, `CarLic`, `FlyLic`, `BoatLic`, `FishLic`, `CheckCash`, `Checks`, `GunLic`, `Gun0`, `Gun1`, `Gun2`, `Gun3`, `Gun4`, `Gun5`, `Gun6`, `Gun7`, `Gun8`, `Gun9`, `Gun10`, `Gun11`, `DrugsTime`, `LawyerTime`, `LawyerFreeTime`, `MechTime`, `SexTime`, `PayDay`, `PayDayHad`, `CDPlayer`, `Dice`, `Spraycan`, `Rope`, `Cigars`, `Sprunk`, `Bombs`, `Wins`, `Loses`, `Tutorial`, `OnDuty`, `Hospital`, `MarriedID`, `ContractBy`, `ContractDetail`, `WantedLevel`, `Insurance`, `911Muted`, `NewMuted`, `NewMutedTotal`, `AdMuted`, `AdMutedTotal`, `HelpMute`, `ReportMuted`, `ReportMutedTotal`, `ReportMutedTime`, `VIPMuted`, `VIPMutedTime`, `GiftTime`, `AdvisorDutyHours`, `AcceptedHelp`, `AcceptReport`, `ShopTechOrders`, `TrashReport`, `GangWarn`, `CSFBanned`, `VIPInviteDay`, `TempVIP`, `BuddyInvite`, `Tokens`, `PTokens`, `TriageTime`, `PrisonedBy`, `PrisonReason`, `TaxiLicense`, `TicketTime`, `Screwdriver`, `Smslog`, `Wristwatch`, `Surveillance`, `Tire`, `Firstaid`, `Rccam`, `Receiver`, `GPS`, `Sweep`, `SweepLeft`, `Bugged`, `pWExists`, `pWSeeds`, `Warrants`, `JudgeJailTime`, `JudgeJailType`, `BeingSentenced`, `ProbationTime`, `DMKills`, `Order`, `OrderConfirmed`, `CallsAccepted`, `PatientsDelivered`, `LiveBanned`, `FreezeBank`, `FreezeHouse`, `FreezeCar`, `Hydration`, `DoubleEXP`, `EXPToken`, `RacePlayerLaps`, `Ringtone`, `VIPM`, `VIPMO`, `VIPExpire`, `VIPSold`, `GVip`, `Speedo`, `Firework`, `Boombox`, `DrawChance`, `GoldBoxTokens`, `RewardHours`, `DMRMuted`, `Watchdog`, `CarsRestricted`, `Flagged`, `LastCarWarning`, `CarWarns`, `Hours`, `Paper`, `MailEnabled`, `Mailbox`, `TreasureSkill`, `MetalDetector`, `HelpedBefore`, `Business`, `BusinessRank`, `pEventTokens`, `RHMutes`, `RHMuteTime`, `GiftCode`, `Table`, `OpiumSeeds`, `RawOpium`, `Pot`, `Crack`, `Meth`, `Ecstasy`, `Heroin`, `Syringe`, `Skins`, `Fitness`, `LastCharmReceived`, `ForcePasswordChange`, `Credits`, `ReceivedCredits`, `TotalCredits`, `HealthCare`, `Pin`, `RimMod`, `Tazer`, `Cuff`, `CarVoucher`, `ReferredBy`, `PendingRefReward`, `Refers`, `Famed`, `FamedMuted`, `DefendTime`, `PVIPVoucher`, `VehicleSlot`, `ToySlot`, `RFLTeam`, `RFLTeamL`, `GiftVoucher`, `VehVoucher`, `SVIPVoucher`, `GVIPVoucher`, `FallIntoFun`, `HungerVoucher`, `BoughtCure`, `Vials`, `ShopCounter`, `ShopNotice`, `AdvertVoucher`, `SVIPExVoucher`, `GVIPExVoucher`, `VIPSellable`, `ReceivedPrize`, `VIPSpawn`, `FreeAdsDay`, `FreeAdsLeft`, `BuddyInvites`, `ReceivedBGift`, `pVIPJob`, `LastBirthday`, `Backpack`, `BEquipped`, `BStoredH`, `BStoredV`, `BItem0`, `BItem1`, `BItem2`, `BItem3`, `BItem4`, `BItem5`, `BItem6`, `BItem7`, `BItem8`, `BItem9`, `BItem10`, `BItem11`, `AccountRestricted`, `Watchlist`, `WatchlistTime`, `BRTimeout`, `pDigCooldown`, `ToolBox`, `CrowBar`, `CarLockPickSkill`, `LockPickVehCount`, `LockPickTime`, `SEC`, `BM`, `Isolated`, `WantedJailTime`, `WantedJailFine`, `NextNameChange`, `pExamineDesc`, `FavStation`, `pDedicatedPlayer`, `pDedicatedEnabled`, `pDedicatedMuted`, `pDedicatedWarn`, `mInventory`, `mPurchaseCounts`, `mCooldowns`, `mBoost`, `mShopNotice`, `zFuelCan`, `bTicket`, `JailedInfo`, `JailedWeapons`, `pVIPMod`, `EmailConfirmed`, `EmailCount`, `Trickortreat`, `pBailPrice`, `VIPGunsCount`, `Wallpaper`, `DrugQuality`, `ToggledChats`, `ChatboxSettings`, `ChatTog0`, `ChatTog1`, `ChatTog2`, `ChatTog3`, `ChatTog4`, `ChatTog5`, `ChatTog6`, `ChatTog7`, `ChatTog8`, `ChatTog9`, `ChatTog10`, `ChatTog11`, `ChatTog12`, `ChatTog13`, `ChatTog14`, `ChatTog15`, `ChatTog16`, `ChatTog17`, `ChatTog18`, `ChatTog19`, `ChatTog20`, `ChatTog21`, `ChatTog22`, `ChatTog23`, `GroupToy0`, `GroupToy1`, `GroupToy2`, `GroupToy3`, `GroupToy4`, `GroupToy5`, `GroupToy6`, `GroupToy7`, `GroupToy8`, `GroupToy9`, `GroupToyBone`, `BDrug0`, `BDrug1`, `BDrug2`, `BDrug3`, `BDrug4`, `BDrug5`, `BDrug6`, `BDrug7`, `BDrug8`, `BDrug9`, `BDrug10`, `BDrug11`, `BDrug12`, `BDrug13`, `PrisonSoap`, `PrisonSugar`, `PrisonBread`, `PrisonShank`, `PrisonShankOut`, `ShankUsages`, `PrisonWine`, `PrisonMWine`, `PrisonChisel`, `PrisonCellChisel`, `FishingSkill`, `FishWeight`, `GarbageSkill`, `PrisonDrugs`, `PrisonCredits`, `PrisonMaterials`, `PrisonCell`, `PrisonWineTime`, `pLastPoll`, `DrugSmuggler`, `StaffBanned`, `PollKeyA`, `PollKeyB`, `PollKeyC`, `FurnitureSlots`, `Rags`, `Hitman`, `HitmanLeader`, `HitmanBlacklisted`, `BlacklistReason`, `CopKit`, `DedicatedHours`, `DedicatedTimestamp`, `DedicatedDaymarker`, `WalkStyle`, `FlagCredits`, `FlagClaimed`) VALUES
-(1, 0, '2018-04-19 15:09:18', '2018-04-19 17:51:39', '2018-04-19 18:09:03', 'Test_Character', '94D72FF39E39D250718D3779535C29B0E8D517C9A87BA05767C301E231B66D549E6EFA17397128F0E533FCCAF37A705BFDED9A557B353C1D37452251B8B66934', 'qo50T30546', '2018-07-09 05:06:42', '', '127.0.0.1', '127.0.0.1', 1, 0, 1, '1980-03-09', 0, 0, 0, 0, 1, 1337, 0, 0, 0, 3, 0, 500000000, 2000000000, 100.00000, 100.00000, 0.00000, 0, 0, 228, 1716.39001, -1904.46997, 13.57000, 359.79999, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 451, 0, 0, 0, 0, 0, 0, -1, -1, -1, 'None', 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 451, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'Nobody', 'None', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, '', 0, 0, 0, 0, 0, '0', 0, 0, 0, 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.00000, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 'Nobody', 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', 0, 0, 0, 0, '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0', '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0', '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0', '0|0', '0|0', 0, 0, '0|0|0|0|0', '0|0|0|0|0|0|0|0|0|0|0|0', 0, 0, 0, 0, 0, 0, 0, '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0', '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0', '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0', 0, 0, 0, 0, 0, 0, 0, 'Invalid Key', 'Invalid Key', 'Invalid Key', 0, 0, -1, 0, 0, '', 0, 0, '0000-00-00', '0000-00-00', 0, 0, 0);
+(1, 0, '2020-06-26 20:37:52', '2018-04-19 17:51:39', '2020-06-26 23:37:52', 'Test_Character', '94D72FF39E39D250718D3779535C29B0E8D517C9A87BA05767C301E231B66D549E6EFA17397128F0E533FCCAF37A705BFDED9A557B353C1D37452251B8B66934', 'qo50T30546', '2018-07-09 05:06:42', '', '127.0.0.1', '127.0.0.1', 1, 0, 1, '1980-03-09', 0, 0, 0, 0, 1, 1337, 0, 0, 0, 3, 0, 500000000, 2000000000, 95.05000, 100.00000, 0.00000, 0, 0, 228, 1689.00000, -1872.34998, 13.53000, 324.79999, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 612, 0, 0, 0, 0, 0, 0, -1, -1, -1, 'None', 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 612, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'Nobody', 'None', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, '', 0, 0, 0, 0, 0, '0', 0, 0, 0, 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.00000, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 'Nobody', 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', 0, 0, 0, 0, '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0', '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0', '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0', '0|0', '0|0', 0, 0, '0|0|0|0|0', '0|0|0|0|0|0|0|0|0|0|0|0', 0, 0, 0, 0, 0, 0, 0, '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0', '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0', '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0', 0, 0, 0, 0, 0, 0, 0, 'Invalid Key', 'Invalid Key', 'Invalid Key', 0, 0, -1, 0, 0, '', 0, 0, '0000-00-00', '0000-00-00', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -487,8 +488,8 @@ INSERT INTO `accounts` (`id`, `Online`, `UpdateDate`, `RegiDate`, `LastLogin`, `
 CREATE TABLE `arenas` (
   `id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL DEFAULT 'Name',
-  `vw` int(11) NOT NULL DEFAULT '0',
-  `interior` int(11) NOT NULL DEFAULT '0',
+  `vw` int(11) NOT NULL DEFAULT 0,
+  `interior` int(11) NOT NULL DEFAULT 0,
   `dm1` varchar(128) NOT NULL DEFAULT '0.0|0.0|0.0|0.0',
   `dm2` varchar(128) NOT NULL DEFAULT '0.0|0.0|0.0|0.0',
   `dm3` varchar(128) NOT NULL DEFAULT '0.0|0.0|0.0|0.0',
@@ -502,7 +503,7 @@ CREATE TABLE `arenas` (
   `flagred` varchar(128) NOT NULL DEFAULT '0.0|0.0|0.0',
   `flagblue` varchar(128) NOT NULL DEFAULT '0.0|0.0|0.0',
   `hill` varchar(128) NOT NULL DEFAULT '0.0|0.0|0.0',
-  `hillr` float(11,4) NOT NULL DEFAULT '0.0000',
+  `hillr` float(11,4) NOT NULL DEFAULT 0.0000,
   `veh1` varchar(128) NOT NULL DEFAULT '0|0.0|0.0|0.0|0.0',
   `veh2` varchar(128) NOT NULL DEFAULT '0|0.0|0.0|0.0|0.0',
   `veh3` varchar(128) NOT NULL DEFAULT '0|0.0|0.0|0.0|0.0',
@@ -519,20 +520,20 @@ CREATE TABLE `arenas` (
 
 CREATE TABLE `arrestpoints` (
   `id` int(2) NOT NULL,
-  `PosX` float(10,5) NOT NULL DEFAULT '0.00000',
-  `PosY` float(10,5) NOT NULL DEFAULT '0.00000',
-  `PosZ` float(10,5) NOT NULL DEFAULT '0.00000',
-  `VW` int(5) NOT NULL DEFAULT '0',
-  `Int` int(5) NOT NULL DEFAULT '0',
-  `Type` int(1) NOT NULL DEFAULT '0',
-  `jailVW` int(5) NOT NULL DEFAULT '0',
-  `jailInt` int(5) NOT NULL DEFAULT '0',
-  `jailpos1x` float(10,5) NOT NULL DEFAULT '0.00000',
-  `jailpos1y` float(10,5) NOT NULL DEFAULT '0.00000',
-  `jailpos1z` float(10,5) NOT NULL DEFAULT '0.00000',
-  `jailpos2x` float(10,5) NOT NULL DEFAULT '0.00000',
-  `jailpos2y` float(10,5) NOT NULL DEFAULT '0.00000',
-  `jailpos2z` float(10,5) NOT NULL DEFAULT '0.00000'
+  `PosX` float(10,5) NOT NULL DEFAULT 0.00000,
+  `PosY` float(10,5) NOT NULL DEFAULT 0.00000,
+  `PosZ` float(10,5) NOT NULL DEFAULT 0.00000,
+  `VW` int(5) NOT NULL DEFAULT 0,
+  `Int` int(5) NOT NULL DEFAULT 0,
+  `Type` int(1) NOT NULL DEFAULT 0,
+  `jailVW` int(5) NOT NULL DEFAULT 0,
+  `jailInt` int(5) NOT NULL DEFAULT 0,
+  `jailpos1x` float(10,5) NOT NULL DEFAULT 0.00000,
+  `jailpos1y` float(10,5) NOT NULL DEFAULT 0.00000,
+  `jailpos1z` float(10,5) NOT NULL DEFAULT 0.00000,
+  `jailpos2x` float(10,5) NOT NULL DEFAULT 0.00000,
+  `jailpos2y` float(10,5) NOT NULL DEFAULT 0.00000,
+  `jailpos2z` float(10,5) NOT NULL DEFAULT 0.00000
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -543,11 +544,11 @@ CREATE TABLE `arrestpoints` (
 
 CREATE TABLE `arrestreports` (
   `id` int(12) NOT NULL,
-  `copid` int(12) NOT NULL DEFAULT '0',
-  `suspectid` int(12) NOT NULL DEFAULT '0',
+  `copid` int(12) NOT NULL DEFAULT 0,
+  `suspectid` int(12) NOT NULL DEFAULT 0,
   `shortreport` varchar(512) NOT NULL DEFAULT '',
-  `datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `origin` int(11) NOT NULL DEFAULT '1' COMMENT 'SA=1 | TR=2'
+  `datetime` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `origin` int(11) NOT NULL DEFAULT 1 COMMENT 'SA=1 | TR=2'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -559,12 +560,12 @@ CREATE TABLE `arrestreports` (
 CREATE TABLE `auctions` (
   `id` int(11) NOT NULL,
   `BiddingFor` varchar(64) NOT NULL DEFAULT '(none)',
-  `InProgress` int(11) NOT NULL DEFAULT '0',
-  `Bid` int(11) NOT NULL DEFAULT '0',
-  `Bidder` int(11) NOT NULL DEFAULT '0',
-  `Expires` int(11) NOT NULL DEFAULT '0',
+  `InProgress` int(11) NOT NULL DEFAULT 0,
+  `Bid` int(11) NOT NULL DEFAULT 0,
+  `Bidder` int(11) NOT NULL DEFAULT 0,
+  `Expires` int(11) NOT NULL DEFAULT 0,
   `Wining` varchar(24) NOT NULL DEFAULT '(none)',
-  `Increment` int(11) NOT NULL DEFAULT '0'
+  `Increment` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -627,7 +628,7 @@ CREATE TABLE `bugs` (
   `Userid` int(11) NOT NULL,
   `Anoy` int(11) NOT NULL,
   `Type` int(11) NOT NULL,
-  `Status` int(11) DEFAULT '0',
+  `Status` int(11) DEFAULT 0,
   `Subject` text NOT NULL,
   `Created` int(255) NOT NULL,
   `LastDate` int(255) NOT NULL
@@ -642,152 +643,152 @@ CREATE TABLE `bugs` (
 CREATE TABLE `businesses` (
   `Id` int(11) NOT NULL,
   `Name` varchar(40) NOT NULL DEFAULT 'Unnamed Business',
-  `OwnerID` int(11) NOT NULL DEFAULT '0',
+  `OwnerID` int(11) NOT NULL DEFAULT 0,
   `Username` varchar(40) NOT NULL DEFAULT 'None',
-  `Type` int(11) NOT NULL DEFAULT '0',
-  `Value` int(11) NOT NULL DEFAULT '0',
-  `Status` int(11) NOT NULL DEFAULT '1',
-  `Level` tinyint(4) NOT NULL DEFAULT '1',
-  `LevelProgress` int(11) NOT NULL DEFAULT '0',
-  `SafeBalance` int(11) NOT NULL DEFAULT '0',
-  `Inventory` int(11) NOT NULL DEFAULT '0',
-  `InventoryCapacity` int(11) NOT NULL DEFAULT '1000',
-  `AutoSale` tinyint(4) NOT NULL DEFAULT '1',
-  `TotalSales` int(11) NOT NULL DEFAULT '0',
-  `ExteriorX` float NOT NULL DEFAULT '0',
-  `ExteriorY` float NOT NULL DEFAULT '0',
-  `ExteriorZ` float NOT NULL DEFAULT '0',
-  `ExteriorA` float NOT NULL DEFAULT '0',
-  `InteriorX` float NOT NULL DEFAULT '0',
-  `InteriorY` float NOT NULL DEFAULT '0',
-  `InteriorZ` float NOT NULL DEFAULT '0',
-  `InteriorA` float NOT NULL DEFAULT '0',
-  `Interior` tinyint(4) NOT NULL DEFAULT '0',
-  `SupplyPointX` float NOT NULL DEFAULT '0',
-  `SupplyPointY` float NOT NULL DEFAULT '0',
-  `SupplyPointZ` float NOT NULL DEFAULT '0',
-  `GasPrice` float UNSIGNED NOT NULL DEFAULT '0',
+  `Type` int(11) NOT NULL DEFAULT 0,
+  `Value` int(11) NOT NULL DEFAULT 0,
+  `Status` int(11) NOT NULL DEFAULT 1,
+  `Level` tinyint(4) NOT NULL DEFAULT 1,
+  `LevelProgress` int(11) NOT NULL DEFAULT 0,
+  `SafeBalance` int(11) NOT NULL DEFAULT 0,
+  `Inventory` int(11) NOT NULL DEFAULT 0,
+  `InventoryCapacity` int(11) NOT NULL DEFAULT 1000,
+  `AutoSale` tinyint(4) NOT NULL DEFAULT 1,
+  `TotalSales` int(11) NOT NULL DEFAULT 0,
+  `ExteriorX` float NOT NULL DEFAULT 0,
+  `ExteriorY` float NOT NULL DEFAULT 0,
+  `ExteriorZ` float NOT NULL DEFAULT 0,
+  `ExteriorA` float NOT NULL DEFAULT 0,
+  `InteriorX` float NOT NULL DEFAULT 0,
+  `InteriorY` float NOT NULL DEFAULT 0,
+  `InteriorZ` float NOT NULL DEFAULT 0,
+  `InteriorA` float NOT NULL DEFAULT 0,
+  `Interior` tinyint(4) NOT NULL DEFAULT 0,
+  `SupplyPointX` float NOT NULL DEFAULT 0,
+  `SupplyPointY` float NOT NULL DEFAULT 0,
+  `SupplyPointZ` float NOT NULL DEFAULT 0,
+  `GasPrice` float UNSIGNED NOT NULL DEFAULT 0,
   `OrderBy` varchar(24) NOT NULL DEFAULT '',
-  `OrderState` int(11) NOT NULL DEFAULT '0',
-  `OrderAmount` int(11) NOT NULL DEFAULT '0',
+  `OrderState` int(11) NOT NULL DEFAULT 0,
+  `OrderAmount` int(11) NOT NULL DEFAULT 0,
   `OrderDate` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `CustomExterior` int(11) NOT NULL DEFAULT '0',
-  `CustomInterior` int(11) NOT NULL DEFAULT '0',
-  `Grade` int(11) NOT NULL DEFAULT '0',
-  `CustomVW` int(11) NOT NULL DEFAULT '0',
-  `Pay` tinyint(4) NOT NULL DEFAULT '0',
-  `MinInviteRank` tinyint(4) NOT NULL DEFAULT '4',
-  `MinSupplyRank` tinyint(4) NOT NULL DEFAULT '5',
-  `MinGiveRankRank` tinyint(4) NOT NULL DEFAULT '5',
-  `MinSafeRank` tinyint(4) NOT NULL DEFAULT '5',
-  `Months` int(11) NOT NULL DEFAULT '0',
-  `GymEntryFee` int(11) NOT NULL DEFAULT '0',
-  `GymType` int(11) NOT NULL DEFAULT '0',
-  `Rank0Pay` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
-  `Rank1Pay` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
-  `Rank2Pay` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
-  `Rank3Pay` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
-  `Rank4Pay` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
-  `Rank5Pay` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
-  `GasPump1PosX` float NOT NULL DEFAULT '0',
-  `GasPump1PosY` float NOT NULL DEFAULT '0',
-  `GasPump1PosZ` float NOT NULL DEFAULT '0',
-  `GasPump1Angle` float NOT NULL DEFAULT '0',
-  `GasPump1Model` float NOT NULL DEFAULT '0',
-  `GasPump1Capacity` float NOT NULL DEFAULT '0',
-  `GasPump1Gas` float NOT NULL DEFAULT '0',
-  `GasPump2PosX` float NOT NULL DEFAULT '0',
-  `GasPump2PosY` float NOT NULL DEFAULT '0',
-  `GasPump2PosZ` float NOT NULL DEFAULT '0',
-  `GasPump2Angle` float NOT NULL DEFAULT '0',
-  `GasPump2Model` float NOT NULL DEFAULT '0',
-  `GasPump2Capacity` float NOT NULL DEFAULT '0',
-  `GasPump2Gas` float NOT NULL DEFAULT '0',
-  `Item1Price` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
-  `Item2Price` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
-  `Item3Price` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
-  `Item4Price` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
-  `Item5Price` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
-  `Item6Price` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
-  `Item7Price` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
-  `Item8Price` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
-  `Item9Price` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
-  `Item10Price` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
-  `Item11Price` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
-  `Item12Price` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
-  `Item13Price` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
-  `Item14Price` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
-  `Item15Price` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
-  `Item16Price` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
-  `Item17Price` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
-  `Item18Price` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
-  `Item19Price` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
-  `Car0ModelId` int(11) NOT NULL DEFAULT '0',
-  `Car0PosX` float NOT NULL DEFAULT '0',
-  `Car0PosY` float NOT NULL DEFAULT '0',
-  `Car0PosZ` float NOT NULL DEFAULT '0',
-  `Car0PosAngle` float NOT NULL DEFAULT '0',
-  `Car0Price` int(11) NOT NULL DEFAULT '0',
-  `Car1ModelId` int(11) NOT NULL DEFAULT '0',
-  `Car1PosX` float NOT NULL DEFAULT '0',
-  `Car1PosY` float NOT NULL DEFAULT '0',
-  `Car1PosZ` float NOT NULL DEFAULT '0',
-  `Car1PosAngle` float NOT NULL DEFAULT '0',
-  `Car1Price` int(11) NOT NULL DEFAULT '0',
-  `Car2ModelId` int(11) NOT NULL DEFAULT '0',
-  `Car2PosX` float NOT NULL DEFAULT '0',
-  `Car2PosY` float NOT NULL DEFAULT '0',
-  `Car2PosZ` float NOT NULL DEFAULT '0',
-  `Car2PosAngle` float NOT NULL DEFAULT '0',
-  `Car2Price` int(11) NOT NULL DEFAULT '0',
-  `Car3ModelId` int(11) NOT NULL DEFAULT '0',
-  `Car3PosX` float NOT NULL DEFAULT '0',
-  `Car3PosY` float NOT NULL DEFAULT '0',
-  `Car3PosZ` float NOT NULL DEFAULT '0',
-  `Car3PosAngle` float NOT NULL DEFAULT '0',
-  `Car3Price` int(11) NOT NULL DEFAULT '0',
-  `Car4ModelId` int(11) NOT NULL DEFAULT '0',
-  `Car4PosX` float NOT NULL DEFAULT '0',
-  `Car4PosY` float NOT NULL DEFAULT '0',
-  `Car4PosZ` float NOT NULL DEFAULT '0',
-  `Car4PosAngle` float NOT NULL DEFAULT '0',
-  `Car4Price` int(11) NOT NULL DEFAULT '0',
-  `Car5ModelId` int(11) NOT NULL DEFAULT '0',
-  `Car5PosX` int(11) NOT NULL DEFAULT '0',
-  `Car5PosY` float NOT NULL DEFAULT '0',
-  `Car5PosZ` float NOT NULL DEFAULT '0',
-  `Car5PosAngle` float NOT NULL DEFAULT '0',
-  `Car5Price` int(11) NOT NULL DEFAULT '0',
-  `Car6ModelId` int(11) NOT NULL DEFAULT '0',
-  `Car6PosX` float NOT NULL DEFAULT '0',
-  `Car6PosY` float NOT NULL DEFAULT '0',
-  `Car6PosZ` float NOT NULL DEFAULT '0',
-  `Car6PosAngle` float NOT NULL DEFAULT '0',
-  `Car6Price` int(11) NOT NULL DEFAULT '0',
-  `Car7ModelId` int(11) NOT NULL DEFAULT '0',
-  `Car7PosX` float NOT NULL DEFAULT '0',
-  `Car7PosY` float NOT NULL DEFAULT '0',
-  `Car7PosZ` float NOT NULL DEFAULT '0',
-  `Car7PosAngle` float NOT NULL DEFAULT '0',
-  `Car7Price` int(11) NOT NULL DEFAULT '0',
-  `Car8ModelId` int(11) NOT NULL DEFAULT '0',
-  `Car8PosX` float NOT NULL DEFAULT '0',
-  `Car8PosY` float NOT NULL DEFAULT '0',
-  `Car8PosZ` float NOT NULL DEFAULT '0',
-  `Car8PosAngle` float NOT NULL DEFAULT '0',
-  `Car8Price` int(11) NOT NULL DEFAULT '0',
-  `Car9ModelId` int(11) NOT NULL DEFAULT '0',
-  `Car9PosX` float NOT NULL DEFAULT '0',
-  `Car9PosY` float NOT NULL DEFAULT '0',
-  `Car9PosZ` float NOT NULL DEFAULT '0',
-  `Car9PosAngle` float NOT NULL DEFAULT '0',
-  `Car9Price` int(11) NOT NULL DEFAULT '0',
-  `PurchaseX` float NOT NULL DEFAULT '0',
-  `PurchaseY` float NOT NULL DEFAULT '0',
-  `PurchaseZ` float NOT NULL DEFAULT '0',
-  `PurchaseAngle` float NOT NULL DEFAULT '0',
-  `TotalProfits` int(11) NOT NULL DEFAULT '0',
-  `MaxLevel` int(11) NOT NULL DEFAULT '0'
+  `CustomExterior` int(11) NOT NULL DEFAULT 0,
+  `CustomInterior` int(11) NOT NULL DEFAULT 0,
+  `Grade` int(11) NOT NULL DEFAULT 0,
+  `CustomVW` int(11) NOT NULL DEFAULT 0,
+  `Pay` tinyint(4) NOT NULL DEFAULT 0,
+  `MinInviteRank` tinyint(4) NOT NULL DEFAULT 4,
+  `MinSupplyRank` tinyint(4) NOT NULL DEFAULT 5,
+  `MinGiveRankRank` tinyint(4) NOT NULL DEFAULT 5,
+  `MinSafeRank` tinyint(4) NOT NULL DEFAULT 5,
+  `Months` int(11) NOT NULL DEFAULT 0,
+  `GymEntryFee` int(11) NOT NULL DEFAULT 0,
+  `GymType` int(11) NOT NULL DEFAULT 0,
+  `Rank0Pay` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `Rank1Pay` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `Rank2Pay` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `Rank3Pay` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `Rank4Pay` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `Rank5Pay` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `GasPump1PosX` float NOT NULL DEFAULT 0,
+  `GasPump1PosY` float NOT NULL DEFAULT 0,
+  `GasPump1PosZ` float NOT NULL DEFAULT 0,
+  `GasPump1Angle` float NOT NULL DEFAULT 0,
+  `GasPump1Model` float NOT NULL DEFAULT 0,
+  `GasPump1Capacity` float NOT NULL DEFAULT 0,
+  `GasPump1Gas` float NOT NULL DEFAULT 0,
+  `GasPump2PosX` float NOT NULL DEFAULT 0,
+  `GasPump2PosY` float NOT NULL DEFAULT 0,
+  `GasPump2PosZ` float NOT NULL DEFAULT 0,
+  `GasPump2Angle` float NOT NULL DEFAULT 0,
+  `GasPump2Model` float NOT NULL DEFAULT 0,
+  `GasPump2Capacity` float NOT NULL DEFAULT 0,
+  `GasPump2Gas` float NOT NULL DEFAULT 0,
+  `Item1Price` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `Item2Price` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `Item3Price` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `Item4Price` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `Item5Price` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `Item6Price` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `Item7Price` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `Item8Price` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `Item9Price` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `Item10Price` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `Item11Price` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `Item12Price` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `Item13Price` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `Item14Price` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `Item15Price` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `Item16Price` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `Item17Price` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `Item18Price` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `Item19Price` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `Car0ModelId` int(11) NOT NULL DEFAULT 0,
+  `Car0PosX` float NOT NULL DEFAULT 0,
+  `Car0PosY` float NOT NULL DEFAULT 0,
+  `Car0PosZ` float NOT NULL DEFAULT 0,
+  `Car0PosAngle` float NOT NULL DEFAULT 0,
+  `Car0Price` int(11) NOT NULL DEFAULT 0,
+  `Car1ModelId` int(11) NOT NULL DEFAULT 0,
+  `Car1PosX` float NOT NULL DEFAULT 0,
+  `Car1PosY` float NOT NULL DEFAULT 0,
+  `Car1PosZ` float NOT NULL DEFAULT 0,
+  `Car1PosAngle` float NOT NULL DEFAULT 0,
+  `Car1Price` int(11) NOT NULL DEFAULT 0,
+  `Car2ModelId` int(11) NOT NULL DEFAULT 0,
+  `Car2PosX` float NOT NULL DEFAULT 0,
+  `Car2PosY` float NOT NULL DEFAULT 0,
+  `Car2PosZ` float NOT NULL DEFAULT 0,
+  `Car2PosAngle` float NOT NULL DEFAULT 0,
+  `Car2Price` int(11) NOT NULL DEFAULT 0,
+  `Car3ModelId` int(11) NOT NULL DEFAULT 0,
+  `Car3PosX` float NOT NULL DEFAULT 0,
+  `Car3PosY` float NOT NULL DEFAULT 0,
+  `Car3PosZ` float NOT NULL DEFAULT 0,
+  `Car3PosAngle` float NOT NULL DEFAULT 0,
+  `Car3Price` int(11) NOT NULL DEFAULT 0,
+  `Car4ModelId` int(11) NOT NULL DEFAULT 0,
+  `Car4PosX` float NOT NULL DEFAULT 0,
+  `Car4PosY` float NOT NULL DEFAULT 0,
+  `Car4PosZ` float NOT NULL DEFAULT 0,
+  `Car4PosAngle` float NOT NULL DEFAULT 0,
+  `Car4Price` int(11) NOT NULL DEFAULT 0,
+  `Car5ModelId` int(11) NOT NULL DEFAULT 0,
+  `Car5PosX` int(11) NOT NULL DEFAULT 0,
+  `Car5PosY` float NOT NULL DEFAULT 0,
+  `Car5PosZ` float NOT NULL DEFAULT 0,
+  `Car5PosAngle` float NOT NULL DEFAULT 0,
+  `Car5Price` int(11) NOT NULL DEFAULT 0,
+  `Car6ModelId` int(11) NOT NULL DEFAULT 0,
+  `Car6PosX` float NOT NULL DEFAULT 0,
+  `Car6PosY` float NOT NULL DEFAULT 0,
+  `Car6PosZ` float NOT NULL DEFAULT 0,
+  `Car6PosAngle` float NOT NULL DEFAULT 0,
+  `Car6Price` int(11) NOT NULL DEFAULT 0,
+  `Car7ModelId` int(11) NOT NULL DEFAULT 0,
+  `Car7PosX` float NOT NULL DEFAULT 0,
+  `Car7PosY` float NOT NULL DEFAULT 0,
+  `Car7PosZ` float NOT NULL DEFAULT 0,
+  `Car7PosAngle` float NOT NULL DEFAULT 0,
+  `Car7Price` int(11) NOT NULL DEFAULT 0,
+  `Car8ModelId` int(11) NOT NULL DEFAULT 0,
+  `Car8PosX` float NOT NULL DEFAULT 0,
+  `Car8PosY` float NOT NULL DEFAULT 0,
+  `Car8PosZ` float NOT NULL DEFAULT 0,
+  `Car8PosAngle` float NOT NULL DEFAULT 0,
+  `Car8Price` int(11) NOT NULL DEFAULT 0,
+  `Car9ModelId` int(11) NOT NULL DEFAULT 0,
+  `Car9PosX` float NOT NULL DEFAULT 0,
+  `Car9PosY` float NOT NULL DEFAULT 0,
+  `Car9PosZ` float NOT NULL DEFAULT 0,
+  `Car9PosAngle` float NOT NULL DEFAULT 0,
+  `Car9Price` int(11) NOT NULL DEFAULT 0,
+  `PurchaseX` float NOT NULL DEFAULT 0,
+  `PurchaseY` float NOT NULL DEFAULT 0,
+  `PurchaseZ` float NOT NULL DEFAULT 0,
+  `PurchaseAngle` float NOT NULL DEFAULT 0,
+  `TotalProfits` int(11) NOT NULL DEFAULT 0,
+  `MaxLevel` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -911,12 +912,12 @@ INSERT INTO `businesses` (`Id`, `Name`, `OwnerID`, `Username`, `Type`, `Value`, 
 
 CREATE TABLE `businesssales` (
   `bID` int(10) UNSIGNED NOT NULL,
-  `BusinessID` int(11) UNSIGNED NOT NULL DEFAULT '0',
+  `BusinessID` int(11) UNSIGNED NOT NULL DEFAULT 0,
   `Text` varchar(128) DEFAULT '0',
-  `Price` int(11) DEFAULT '0',
-  `Available` int(11) NOT NULL DEFAULT '0',
-  `Purchased` int(11) DEFAULT '0',
-  `Type` int(11) DEFAULT '0'
+  `Price` int(11) DEFAULT 0,
+  `Available` int(11) NOT NULL DEFAULT 0,
+  `Purchased` int(11) DEFAULT 0,
+  `Type` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -930,8 +931,8 @@ CREATE TABLE `casefiles` (
   `suspect` varchar(24) DEFAULT '',
   `issuer` varchar(24) DEFAULT '',
   `information` varchar(128) DEFAULT '',
-  `group` int(11) NOT NULL DEFAULT '0',
-  `active` int(11) NOT NULL DEFAULT '0'
+  `group` int(11) NOT NULL DEFAULT 0,
+  `active` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -948,7 +949,7 @@ CREATE TABLE `cp_shifts` (
   `date` date DEFAULT NULL,
   `sign_up` datetime DEFAULT NULL,
   `status` int(1) DEFAULT NULL,
-  `bonus` int(11) DEFAULT '0'
+  `bonus` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -961,15 +962,15 @@ CREATE TABLE `cp_shift_blocks` (
   `id` int(11) NOT NULL,
   `shift_id` int(11) NOT NULL,
   `shift` varchar(3) DEFAULT NULL,
-  `ShiftCount` int(11) NOT NULL DEFAULT '0',
+  `ShiftCount` int(11) NOT NULL DEFAULT 0,
   `time_start` time DEFAULT NULL,
-  `needs_sunday` int(11) DEFAULT '1',
-  `needs_monday` int(11) DEFAULT '1',
-  `needs_tuesday` int(11) DEFAULT '1',
-  `needs_wednesday` int(11) DEFAULT '1',
-  `needs_thursday` int(11) DEFAULT '1',
-  `needs_friday` int(11) DEFAULT '1',
-  `needs_saturday` int(11) DEFAULT '1',
+  `needs_sunday` int(11) DEFAULT 1,
+  `needs_monday` int(11) DEFAULT 1,
+  `needs_tuesday` int(11) DEFAULT 1,
+  `needs_wednesday` int(11) DEFAULT 1,
+  `needs_thursday` int(11) DEFAULT 1,
+  `needs_friday` int(11) DEFAULT 1,
+  `needs_saturday` int(11) DEFAULT 1,
   `type` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -981,56 +982,56 @@ CREATE TABLE `cp_shift_blocks` (
 
 CREATE TABLE `crates` (
   `id` int(11) NOT NULL,
-  `Facility` int(11) NOT NULL DEFAULT '0',
-  `Group` int(11) NOT NULL DEFAULT '-1',
-  `CrateX` float(20,5) NOT NULL DEFAULT '0.00000',
-  `CrateY` float(20,5) NOT NULL DEFAULT '0.00000',
-  `CrateZ` float(20,5) NOT NULL DEFAULT '0.00000',
-  `InVehicle` int(11) NOT NULL DEFAULT '-1',
-  `OnVehicle` int(11) NOT NULL DEFAULT '-1',
-  `Int` int(11) NOT NULL DEFAULT '0',
-  `VW` int(11) NOT NULL DEFAULT '0',
-  `Materials` int(11) NOT NULL DEFAULT '0',
-  `Gun0` int(11) NOT NULL DEFAULT '0',
-  `GunAmount0` int(11) NOT NULL DEFAULT '0',
-  `Gun1` int(11) NOT NULL DEFAULT '0',
-  `GunAmount1` int(11) NOT NULL DEFAULT '0',
-  `Gun2` int(11) NOT NULL DEFAULT '0',
-  `GunAmount2` int(11) NOT NULL DEFAULT '0',
-  `Gun3` int(11) NOT NULL DEFAULT '0',
-  `GunAmount3` int(11) NOT NULL DEFAULT '0',
-  `Gun4` int(11) NOT NULL DEFAULT '0',
-  `GunAmount4` int(11) NOT NULL DEFAULT '0',
-  `Gun5` int(11) NOT NULL DEFAULT '0',
-  `GunAmount5` int(11) NOT NULL DEFAULT '0',
-  `Gun6` int(11) NOT NULL DEFAULT '0',
-  `GunAmount6` int(11) NOT NULL DEFAULT '0',
-  `Gun7` int(11) NOT NULL DEFAULT '0',
-  `GunAmount7` int(11) NOT NULL DEFAULT '0',
-  `Gun8` int(11) NOT NULL DEFAULT '0',
-  `GunAmount8` int(11) NOT NULL DEFAULT '0',
-  `Gun9` int(11) NOT NULL DEFAULT '0',
-  `GunAmount9` int(11) NOT NULL DEFAULT '0',
-  `Gun10` int(11) NOT NULL DEFAULT '0',
-  `GunAmount10` int(11) NOT NULL DEFAULT '0',
-  `Gun11` int(11) NOT NULL DEFAULT '0',
-  `GunAmount11` int(11) NOT NULL DEFAULT '0',
-  `Gun12` int(11) NOT NULL DEFAULT '0',
-  `GunAmount12` int(11) NOT NULL DEFAULT '0',
-  `Gun13` int(11) NOT NULL DEFAULT '0',
-  `GunAmount13` int(11) NOT NULL DEFAULT '0',
-  `Gun14` int(11) NOT NULL DEFAULT '0',
-  `GunAmount14` int(11) NOT NULL DEFAULT '0',
-  `Gun15` int(11) NOT NULL DEFAULT '0',
-  `GunAmount15` int(11) NOT NULL DEFAULT '0',
+  `Facility` int(11) NOT NULL DEFAULT 0,
+  `Group` int(11) NOT NULL DEFAULT -1,
+  `CrateX` float(20,5) NOT NULL DEFAULT 0.00000,
+  `CrateY` float(20,5) NOT NULL DEFAULT 0.00000,
+  `CrateZ` float(20,5) NOT NULL DEFAULT 0.00000,
+  `InVehicle` int(11) NOT NULL DEFAULT -1,
+  `OnVehicle` int(11) NOT NULL DEFAULT -1,
+  `Int` int(11) NOT NULL DEFAULT 0,
+  `VW` int(11) NOT NULL DEFAULT 0,
+  `Materials` int(11) NOT NULL DEFAULT 0,
+  `Gun0` int(11) NOT NULL DEFAULT 0,
+  `GunAmount0` int(11) NOT NULL DEFAULT 0,
+  `Gun1` int(11) NOT NULL DEFAULT 0,
+  `GunAmount1` int(11) NOT NULL DEFAULT 0,
+  `Gun2` int(11) NOT NULL DEFAULT 0,
+  `GunAmount2` int(11) NOT NULL DEFAULT 0,
+  `Gun3` int(11) NOT NULL DEFAULT 0,
+  `GunAmount3` int(11) NOT NULL DEFAULT 0,
+  `Gun4` int(11) NOT NULL DEFAULT 0,
+  `GunAmount4` int(11) NOT NULL DEFAULT 0,
+  `Gun5` int(11) NOT NULL DEFAULT 0,
+  `GunAmount5` int(11) NOT NULL DEFAULT 0,
+  `Gun6` int(11) NOT NULL DEFAULT 0,
+  `GunAmount6` int(11) NOT NULL DEFAULT 0,
+  `Gun7` int(11) NOT NULL DEFAULT 0,
+  `GunAmount7` int(11) NOT NULL DEFAULT 0,
+  `Gun8` int(11) NOT NULL DEFAULT 0,
+  `GunAmount8` int(11) NOT NULL DEFAULT 0,
+  `Gun9` int(11) NOT NULL DEFAULT 0,
+  `GunAmount9` int(11) NOT NULL DEFAULT 0,
+  `Gun10` int(11) NOT NULL DEFAULT 0,
+  `GunAmount10` int(11) NOT NULL DEFAULT 0,
+  `Gun11` int(11) NOT NULL DEFAULT 0,
+  `GunAmount11` int(11) NOT NULL DEFAULT 0,
+  `Gun12` int(11) NOT NULL DEFAULT 0,
+  `GunAmount12` int(11) NOT NULL DEFAULT 0,
+  `Gun13` int(11) NOT NULL DEFAULT 0,
+  `GunAmount13` int(11) NOT NULL DEFAULT 0,
+  `Gun14` int(11) NOT NULL DEFAULT 0,
+  `GunAmount14` int(11) NOT NULL DEFAULT 0,
+  `Gun15` int(11) NOT NULL DEFAULT 0,
+  `GunAmount15` int(11) NOT NULL DEFAULT 0,
   `PlacedBy` varchar(24) NOT NULL DEFAULT 'Unknown',
-  `Lifespan` int(11) NOT NULL DEFAULT '0',
-  `Transfer` int(1) NOT NULL DEFAULT '0',
-  `DoorID` int(11) NOT NULL DEFAULT '-1',
-  `DoorType` int(11) NOT NULL DEFAULT '-1',
-  `Price` int(11) NOT NULL DEFAULT '0',
-  `Paid` int(1) NOT NULL DEFAULT '0',
-  `Active` int(1) NOT NULL DEFAULT '0'
+  `Lifespan` int(11) NOT NULL DEFAULT 0,
+  `Transfer` int(1) NOT NULL DEFAULT 0,
+  `DoorID` int(11) NOT NULL DEFAULT -1,
+  `DoorType` int(11) NOT NULL DEFAULT -1,
+  `Price` int(11) NOT NULL DEFAULT 0,
+  `Paid` int(1) NOT NULL DEFAULT 0,
+  `Active` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1042,25 +1043,25 @@ CREATE TABLE `crates` (
 CREATE TABLE `crate_facility` (
   `id` int(11) NOT NULL,
   `Name` varchar(52) NOT NULL DEFAULT '----',
-  `Group` int(11) NOT NULL DEFAULT '-1',
-  `Posx` float(20,5) NOT NULL DEFAULT '0.00000',
-  `Posy` float(20,5) NOT NULL DEFAULT '0.00000',
-  `Posz` float(20,5) NOT NULL DEFAULT '0.00000',
-  `Posr` float(20,5) NOT NULL DEFAULT '0.00000',
-  `Int` int(11) NOT NULL DEFAULT '0',
-  `Vw` int(11) NOT NULL DEFAULT '0',
-  `Prodmax` int(11) NOT NULL DEFAULT '10',
-  `ProdPrep` int(11) NOT NULL DEFAULT '0',
-  `ProdReady` int(11) NOT NULL DEFAULT '0',
-  `ProdTimer` int(11) NOT NULL DEFAULT '1',
-  `ProdStatus` int(11) NOT NULL DEFAULT '1',
-  `ProdCost` int(11) NOT NULL DEFAULT '0',
-  `ProdMulti` int(11) NOT NULL DEFAULT '5',
-  `RaidTimer` int(11) NOT NULL DEFAULT '0',
-  `Cooldown` int(11) NOT NULL DEFAULT '0',
-  `Raidable` int(1) NOT NULL DEFAULT '1',
-  `Active` int(1) NOT NULL DEFAULT '0',
-  `Timer` int(11) NOT NULL DEFAULT '0'
+  `Group` int(11) NOT NULL DEFAULT -1,
+  `Posx` float(20,5) NOT NULL DEFAULT 0.00000,
+  `Posy` float(20,5) NOT NULL DEFAULT 0.00000,
+  `Posz` float(20,5) NOT NULL DEFAULT 0.00000,
+  `Posr` float(20,5) NOT NULL DEFAULT 0.00000,
+  `Int` int(11) NOT NULL DEFAULT 0,
+  `Vw` int(11) NOT NULL DEFAULT 0,
+  `Prodmax` int(11) NOT NULL DEFAULT 10,
+  `ProdPrep` int(11) NOT NULL DEFAULT 0,
+  `ProdReady` int(11) NOT NULL DEFAULT 0,
+  `ProdTimer` int(11) NOT NULL DEFAULT 1,
+  `ProdStatus` int(11) NOT NULL DEFAULT 1,
+  `ProdCost` int(11) NOT NULL DEFAULT 0,
+  `ProdMulti` int(11) NOT NULL DEFAULT 5,
+  `RaidTimer` int(11) NOT NULL DEFAULT 0,
+  `Cooldown` int(11) NOT NULL DEFAULT 0,
+  `Raidable` int(1) NOT NULL DEFAULT 1,
+  `Active` int(1) NOT NULL DEFAULT 0,
+  `Timer` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -1087,13 +1088,13 @@ INSERT INTO `crate_facility` (`id`, `Name`, `Group`, `Posx`, `Posy`, `Posz`, `Po
 
 CREATE TABLE `crate_orders` (
   `id` int(11) NOT NULL,
-  `Facility` int(11) NOT NULL DEFAULT '-1',
-  `Crates` int(11) NOT NULL DEFAULT '0',
-  `PerCrate` int(11) NOT NULL DEFAULT '0',
+  `Facility` int(11) NOT NULL DEFAULT -1,
+  `Crates` int(11) NOT NULL DEFAULT 0,
+  `PerCrate` int(11) NOT NULL DEFAULT 0,
   `OrderBy` varchar(25) NOT NULL DEFAULT 'Unknown',
-  `Delivered` int(11) NOT NULL DEFAULT '0',
-  `Status` int(11) NOT NULL DEFAULT '0',
-  `Time` int(11) NOT NULL DEFAULT '0'
+  `Delivered` int(11) NOT NULL DEFAULT 0,
+  `Status` int(11) NOT NULL DEFAULT 0,
+  `Time` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1104,28 +1105,28 @@ CREATE TABLE `crate_orders` (
 
 CREATE TABLE `crate_vehicles` (
   `id` int(11) NOT NULL,
-  `vModel` int(11) NOT NULL DEFAULT '-1',
-  `vColor1` int(11) NOT NULL DEFAULT '0',
-  `vColor2` int(11) NOT NULL DEFAULT '0',
-  `vGroup` int(11) NOT NULL DEFAULT '-1',
-  `vRank` int(11) NOT NULL DEFAULT '-1',
-  `vSpawned` int(1) NOT NULL DEFAULT '1',
-  `vDisabled` int(1) NOT NULL DEFAULT '0',
-  `vImpound` int(1) NOT NULL DEFAULT '0',
-  `vTickets` int(11) NOT NULL DEFAULT '0',
-  `vMaxHealth` int(11) NOT NULL DEFAULT '1000',
-  `vHealth` float NOT NULL DEFAULT '1000',
-  `vFuel` int(11) NOT NULL DEFAULT '100',
-  `vType` int(11) NOT NULL DEFAULT '0',
-  `vPosX` float(20,5) NOT NULL DEFAULT '0.00000',
-  `vPosY` float(20,5) NOT NULL DEFAULT '0.00000',
-  `vPosZ` float(20,5) NOT NULL DEFAULT '0.00000',
-  `vRotZ` float(20,5) NOT NULL DEFAULT '0.00000',
-  `vInt` int(11) NOT NULL DEFAULT '0',
-  `vVw` int(11) NOT NULL DEFAULT '0',
-  `vCrateMax` int(11) NOT NULL DEFAULT '0',
-  `vCrate` int(11) NOT NULL DEFAULT '-1',
-  `FirstDrop` int(1) NOT NULL DEFAULT '0'
+  `vModel` int(11) NOT NULL DEFAULT -1,
+  `vColor1` int(11) NOT NULL DEFAULT 0,
+  `vColor2` int(11) NOT NULL DEFAULT 0,
+  `vGroup` int(11) NOT NULL DEFAULT -1,
+  `vRank` int(11) NOT NULL DEFAULT -1,
+  `vSpawned` int(1) NOT NULL DEFAULT 1,
+  `vDisabled` int(1) NOT NULL DEFAULT 0,
+  `vImpound` int(1) NOT NULL DEFAULT 0,
+  `vTickets` int(11) NOT NULL DEFAULT 0,
+  `vMaxHealth` int(11) NOT NULL DEFAULT 1000,
+  `vHealth` float NOT NULL DEFAULT 1000,
+  `vFuel` int(11) NOT NULL DEFAULT 100,
+  `vType` int(11) NOT NULL DEFAULT 0,
+  `vPosX` float(20,5) NOT NULL DEFAULT 0.00000,
+  `vPosY` float(20,5) NOT NULL DEFAULT 0.00000,
+  `vPosZ` float(20,5) NOT NULL DEFAULT 0.00000,
+  `vRotZ` float(20,5) NOT NULL DEFAULT 0.00000,
+  `vInt` int(11) NOT NULL DEFAULT 0,
+  `vVw` int(11) NOT NULL DEFAULT 0,
+  `vCrateMax` int(11) NOT NULL DEFAULT 0,
+  `vCrate` int(11) NOT NULL DEFAULT -1,
+  `FirstDrop` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1136,12 +1137,12 @@ CREATE TABLE `crate_vehicles` (
 
 CREATE TABLE `crimesdata` (
   `id` int(4) NOT NULL,
-  `type` int(2) DEFAULT '1',
-  `nation` int(2) DEFAULT '1',
+  `type` int(2) DEFAULT 1,
+  `nation` int(2) DEFAULT 1,
   `name` varchar(32) DEFAULT 'N/A',
-  `jailtime` int(6) DEFAULT '1',
-  `fine` int(8) DEFAULT '1',
-  `bail` int(8) DEFAULT '1'
+  `jailtime` int(6) DEFAULT 1,
+  `fine` int(8) DEFAULT 1,
+  `bail` int(8) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1153,43 +1154,43 @@ CREATE TABLE `crimesdata` (
 CREATE TABLE `ddoors` (
   `id` int(11) NOT NULL,
   `Description` varchar(128) NOT NULL DEFAULT 'None',
-  `Owner` int(11) NOT NULL DEFAULT '-1',
+  `Owner` int(11) NOT NULL DEFAULT -1,
   `OwnerName` varchar(24) NOT NULL DEFAULT 'Nobody',
-  `CustomInterior` int(11) NOT NULL DEFAULT '0',
-  `ExteriorVW` int(11) NOT NULL DEFAULT '0',
-  `ExteriorInt` int(11) NOT NULL DEFAULT '0',
-  `InteriorVW` int(11) NOT NULL DEFAULT '0',
-  `InteriorInt` int(11) NOT NULL DEFAULT '0',
-  `ExteriorX` float(10,5) NOT NULL DEFAULT '0.00000',
-  `ExteriorY` float(10,5) NOT NULL DEFAULT '0.00000',
-  `ExteriorZ` float(10,5) NOT NULL DEFAULT '0.00000',
-  `ExteriorA` float(10,5) NOT NULL DEFAULT '0.00000',
-  `InteriorX` float(10,5) NOT NULL DEFAULT '0.00000',
-  `InteriorY` float(10,5) NOT NULL DEFAULT '0.00000',
-  `InteriorZ` float(10,5) NOT NULL DEFAULT '0.00000',
-  `InteriorA` float(10,5) NOT NULL DEFAULT '0.00000',
-  `CustomExterior` int(11) NOT NULL DEFAULT '0',
-  `Type` int(1) NOT NULL DEFAULT '0',
-  `Rank` int(1) NOT NULL DEFAULT '-1',
-  `VIP` int(11) NOT NULL DEFAULT '0',
-  `DPC` int(11) NOT NULL DEFAULT '0',
-  `Allegiance` int(11) NOT NULL DEFAULT '0',
-  `GroupType` int(11) NOT NULL DEFAULT '0',
-  `Family` int(11) NOT NULL DEFAULT '0',
-  `Faction` int(11) NOT NULL DEFAULT '-1',
-  `Admin` int(11) NOT NULL DEFAULT '0',
-  `Wanted` int(11) NOT NULL DEFAULT '0',
-  `VehicleAble` int(11) NOT NULL DEFAULT '0',
-  `Color` int(11) NOT NULL DEFAULT '0',
-  `PickupModel` int(11) NOT NULL DEFAULT '0',
+  `CustomInterior` int(11) NOT NULL DEFAULT 0,
+  `ExteriorVW` int(11) NOT NULL DEFAULT 0,
+  `ExteriorInt` int(11) NOT NULL DEFAULT 0,
+  `InteriorVW` int(11) NOT NULL DEFAULT 0,
+  `InteriorInt` int(11) NOT NULL DEFAULT 0,
+  `ExteriorX` float(10,5) NOT NULL DEFAULT 0.00000,
+  `ExteriorY` float(10,5) NOT NULL DEFAULT 0.00000,
+  `ExteriorZ` float(10,5) NOT NULL DEFAULT 0.00000,
+  `ExteriorA` float(10,5) NOT NULL DEFAULT 0.00000,
+  `InteriorX` float(10,5) NOT NULL DEFAULT 0.00000,
+  `InteriorY` float(10,5) NOT NULL DEFAULT 0.00000,
+  `InteriorZ` float(10,5) NOT NULL DEFAULT 0.00000,
+  `InteriorA` float(10,5) NOT NULL DEFAULT 0.00000,
+  `CustomExterior` int(11) NOT NULL DEFAULT 0,
+  `Type` int(1) NOT NULL DEFAULT 0,
+  `Rank` int(1) NOT NULL DEFAULT -1,
+  `VIP` int(11) NOT NULL DEFAULT 0,
+  `DPC` int(11) NOT NULL DEFAULT 0,
+  `Allegiance` int(11) NOT NULL DEFAULT 0,
+  `GroupType` int(11) NOT NULL DEFAULT 0,
+  `Family` int(11) NOT NULL DEFAULT 0,
+  `Faction` int(11) NOT NULL DEFAULT -1,
+  `Admin` int(11) NOT NULL DEFAULT 0,
+  `Wanted` int(11) NOT NULL DEFAULT 0,
+  `VehicleAble` int(11) NOT NULL DEFAULT 0,
+  `Color` int(11) NOT NULL DEFAULT 0,
+  `PickupModel` int(11) NOT NULL DEFAULT 0,
   `Pass` varchar(24) NOT NULL DEFAULT 'pass',
-  `Locked` int(11) NOT NULL DEFAULT '0',
-  `Famed` int(11) NOT NULL DEFAULT '0',
-  `LastLogin` int(11) NOT NULL DEFAULT '0',
-  `Expire` int(11) NOT NULL DEFAULT '0',
-  `Inactive` int(11) NOT NULL DEFAULT '0',
-  `Ignore` int(11) NOT NULL DEFAULT '0',
-  `Counter` int(11) NOT NULL DEFAULT '0'
+  `Locked` int(11) NOT NULL DEFAULT 0,
+  `Famed` int(11) NOT NULL DEFAULT 0,
+  `LastLogin` int(11) NOT NULL DEFAULT 0,
+  `Expire` int(11) NOT NULL DEFAULT 0,
+  `Inactive` int(11) NOT NULL DEFAULT 0,
+  `Ignore` int(11) NOT NULL DEFAULT 0,
+  `Counter` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -3607,8 +3608,8 @@ INSERT INTO `ddoors` (`id`, `Description`, `Owner`, `OwnerName`, `CustomInterior
 CREATE TABLE `devcpbans` (
   `id` int(11) NOT NULL,
   `user` varchar(255) NOT NULL,
-  `anon` int(1) NOT NULL DEFAULT '0',
-  `bugs` int(1) NOT NULL DEFAULT '0',
+  `anon` int(1) NOT NULL DEFAULT 0,
+  `bugs` int(1) NOT NULL DEFAULT 0,
   `updated` int(34) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -3620,13 +3621,13 @@ CREATE TABLE `devcpbans` (
 
 CREATE TABLE `dmapicons` (
   `id` int(11) NOT NULL,
-  `MarkerType` int(11) NOT NULL DEFAULT '0',
-  `Color` int(11) NOT NULL DEFAULT '0',
-  `VW` int(11) NOT NULL DEFAULT '0',
-  `Int` int(11) NOT NULL DEFAULT '0',
-  `PosX` float(10,5) NOT NULL DEFAULT '0.00000',
-  `PosY` float(10,5) NOT NULL DEFAULT '0.00000',
-  `PosZ` float(10,5) NOT NULL DEFAULT '0.00000'
+  `MarkerType` int(11) NOT NULL DEFAULT 0,
+  `Color` int(11) NOT NULL DEFAULT 0,
+  `VW` int(11) NOT NULL DEFAULT 0,
+  `Int` int(11) NOT NULL DEFAULT 0,
+  `PosX` float(10,5) NOT NULL DEFAULT 0.00000,
+  `PosY` float(10,5) NOT NULL DEFAULT 0.00000,
+  `PosZ` float(10,5) NOT NULL DEFAULT 0.00000
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -3822,10 +3823,10 @@ INSERT INTO `dmapicons` (`id`, `MarkerType`, `Color`, `VW`, `Int`, `PosX`, `PosY
 --
 
 CREATE TABLE `dm_watchdog` (
-  `id` int(11) NOT NULL DEFAULT '0',
-  `reporter` int(11) NOT NULL DEFAULT '0',
-  `timestamp` int(11) NOT NULL DEFAULT '0',
-  `superwatch` tinyint(11) NOT NULL DEFAULT '0'
+  `id` int(11) NOT NULL DEFAULT 0,
+  `reporter` int(11) NOT NULL DEFAULT 0,
+  `timestamp` int(11) NOT NULL DEFAULT 0,
+  `superwatch` tinyint(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3837,29 +3838,29 @@ CREATE TABLE `dm_watchdog` (
 CREATE TABLE `dynpoints` (
   `id` int(11) NOT NULL,
   `pointname` varchar(24) DEFAULT NULL,
-  `type` int(11) NOT NULL DEFAULT '0',
+  `type` int(11) NOT NULL DEFAULT 0,
   `posx` float(20,5) NOT NULL,
   `posy` float(20,5) NOT NULL,
   `posz` float(20,5) NOT NULL,
   `pos2x` float(20,5) NOT NULL,
   `pos2y` float(20,5) NOT NULL,
   `pos2z` float(20,5) NOT NULL,
-  `vw` int(11) NOT NULL DEFAULT '0',
-  `int` int(11) NOT NULL DEFAULT '0',
-  `vw2` int(11) NOT NULL DEFAULT '0',
-  `int2` int(11) NOT NULL DEFAULT '0',
-  `boatonly` int(11) NOT NULL DEFAULT '0',
+  `vw` int(11) NOT NULL DEFAULT 0,
+  `int` int(11) NOT NULL DEFAULT 0,
+  `vw2` int(11) NOT NULL DEFAULT 0,
+  `int2` int(11) NOT NULL DEFAULT 0,
+  `boatonly` int(11) NOT NULL DEFAULT 0,
   `capturename` varchar(24) DEFAULT 'N/A',
-  `capturegroup` int(11) NOT NULL DEFAULT '-1',
-  `ready` int(11) NOT NULL DEFAULT '0',
-  `timer` int(11) NOT NULL DEFAULT '0',
-  `amounthour` int(11) NOT NULL DEFAULT '0',
-  `amount0` int(11) NOT NULL DEFAULT '0',
-  `amount1` int(11) NOT NULL DEFAULT '0',
-  `amount2` int(11) NOT NULL DEFAULT '0',
-  `amount3` int(11) NOT NULL DEFAULT '0',
-  `amount4` int(11) NOT NULL DEFAULT '0',
-  `locked` int(11) NOT NULL DEFAULT '1'
+  `capturegroup` int(11) NOT NULL DEFAULT -1,
+  `ready` int(11) NOT NULL DEFAULT 0,
+  `timer` int(11) NOT NULL DEFAULT 0,
+  `amounthour` int(11) NOT NULL DEFAULT 0,
+  `amount0` int(11) NOT NULL DEFAULT 0,
+  `amount1` int(11) NOT NULL DEFAULT 0,
+  `amount2` int(11) NOT NULL DEFAULT 0,
+  `amount3` int(11) NOT NULL DEFAULT 0,
+  `amount4` int(11) NOT NULL DEFAULT 0,
+  `locked` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3870,8 +3871,8 @@ CREATE TABLE `dynpoints` (
 
 CREATE TABLE `electionresults` (
   `id` int(11) NOT NULL,
-  `accountid` int(11) NOT NULL DEFAULT '0',
-  `optionid` int(11) NOT NULL DEFAULT '0',
+  `accountid` int(11) NOT NULL DEFAULT 0,
+  `optionid` int(11) NOT NULL DEFAULT 0,
   `ip` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -3882,9 +3883,9 @@ CREATE TABLE `electionresults` (
 --
 
 CREATE TABLE `fallintofun` (
-  `player` int(50) NOT NULL DEFAULT '0',
-  `FIFHours` int(30) DEFAULT '0',
-  `FIFChances` int(30) DEFAULT '0'
+  `player` int(50) NOT NULL DEFAULT 0,
+  `FIFHours` int(30) DEFAULT 0,
+  `FIFChances` int(30) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -3909,7 +3910,7 @@ CREATE TABLE `flags` (
   `time` datetime NOT NULL,
   `issuer` varchar(24) NOT NULL,
   `flag` varchar(128) NOT NULL,
-  `type` int(11) NOT NULL DEFAULT '1' COMMENT '1 = Regular | 2 = Admin'
+  `type` int(11) NOT NULL DEFAULT 1 COMMENT '1 = Regular | 2 = Admin'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3920,26 +3921,26 @@ CREATE TABLE `flags` (
 
 CREATE TABLE `furniture` (
   `id` int(11) NOT NULL,
-  `houseid` int(11) NOT NULL DEFAULT '0',
-  `sqlid` int(11) NOT NULL DEFAULT '0',
-  `modelid` int(11) NOT NULL DEFAULT '0',
-  `slotid` int(11) NOT NULL DEFAULT '0',
-  `x` float NOT NULL DEFAULT '0',
-  `y` float NOT NULL DEFAULT '0',
-  `z` float NOT NULL DEFAULT '0',
-  `rx` float NOT NULL DEFAULT '0',
-  `ry` float NOT NULL DEFAULT '0',
-  `rz` float NOT NULL DEFAULT '0',
-  `text0` int(11) NOT NULL DEFAULT '0',
-  `text1` int(11) NOT NULL DEFAULT '0',
-  `text2` int(11) NOT NULL DEFAULT '0',
-  `text3` int(11) NOT NULL DEFAULT '0',
-  `text4` int(11) NOT NULL DEFAULT '0',
-  `col0` int(11) NOT NULL DEFAULT '0',
-  `col1` int(11) NOT NULL DEFAULT '0',
-  `col2` int(11) NOT NULL DEFAULT '0',
-  `col3` int(11) NOT NULL DEFAULT '0',
-  `col4` int(11) NOT NULL DEFAULT '0'
+  `houseid` int(11) NOT NULL DEFAULT 0,
+  `sqlid` int(11) NOT NULL DEFAULT 0,
+  `modelid` int(11) NOT NULL DEFAULT 0,
+  `slotid` int(11) NOT NULL DEFAULT 0,
+  `x` float NOT NULL DEFAULT 0,
+  `y` float NOT NULL DEFAULT 0,
+  `z` float NOT NULL DEFAULT 0,
+  `rx` float NOT NULL DEFAULT 0,
+  `ry` float NOT NULL DEFAULT 0,
+  `rz` float NOT NULL DEFAULT 0,
+  `text0` int(11) NOT NULL DEFAULT 0,
+  `text1` int(11) NOT NULL DEFAULT 0,
+  `text2` int(11) NOT NULL DEFAULT 0,
+  `text3` int(11) NOT NULL DEFAULT 0,
+  `text4` int(11) NOT NULL DEFAULT 0,
+  `col0` int(11) NOT NULL DEFAULT 0,
+  `col1` int(11) NOT NULL DEFAULT 0,
+  `col2` int(11) NOT NULL DEFAULT 0,
+  `col3` int(11) NOT NULL DEFAULT 0,
+  `col4` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3950,11 +3951,11 @@ CREATE TABLE `furniture` (
 
 CREATE TABLE `furniturecatalog` (
   `id` int(11) NOT NULL,
-  `type` int(11) NOT NULL DEFAULT '0',
-  `modelid` int(11) NOT NULL DEFAULT '0',
+  `type` int(11) NOT NULL DEFAULT 0,
+  `modelid` int(11) NOT NULL DEFAULT 0,
   `name` varchar(64) NOT NULL DEFAULT '',
-  `price` int(11) NOT NULL DEFAULT '0',
-  `vip` int(11) NOT NULL DEFAULT '0'
+  `price` int(11) NOT NULL DEFAULT 0,
+  `vip` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3965,18 +3966,18 @@ CREATE TABLE `furniturecatalog` (
 
 CREATE TABLE `gangtags` (
   `id` int(11) NOT NULL,
-  `x` float(11,4) NOT NULL DEFAULT '0.0000',
-  `y` float(11,4) NOT NULL DEFAULT '0.0000',
-  `z` float(11,4) NOT NULL DEFAULT '0.0000',
-  `rx` float(11,4) NOT NULL DEFAULT '0.0000',
-  `ry` float(11,4) NOT NULL DEFAULT '0.0000',
-  `rz` float(11,4) NOT NULL DEFAULT '0.0000',
-  `gangid` int(11) NOT NULL DEFAULT '0',
+  `x` float(11,4) NOT NULL DEFAULT 0.0000,
+  `y` float(11,4) NOT NULL DEFAULT 0.0000,
+  `z` float(11,4) NOT NULL DEFAULT 0.0000,
+  `rx` float(11,4) NOT NULL DEFAULT 0.0000,
+  `ry` float(11,4) NOT NULL DEFAULT 0.0000,
+  `rz` float(11,4) NOT NULL DEFAULT 0.0000,
+  `gangid` int(11) NOT NULL DEFAULT 0,
   `text` text NOT NULL,
-  `fontid` int(11) NOT NULL DEFAULT '0',
-  `pdbid` int(11) NOT NULL DEFAULT '0',
+  `fontid` int(11) NOT NULL DEFAULT 0,
+  `pdbid` int(11) NOT NULL DEFAULT 0,
   `pname` varchar(40) NOT NULL DEFAULT 'None',
-  `color` int(11) NOT NULL DEFAULT '0'
+  `color` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3987,22 +3988,22 @@ CREATE TABLE `gangtags` (
 
 CREATE TABLE `garages` (
   `id` int(11) NOT NULL,
-  `Owner` int(11) NOT NULL DEFAULT '-1',
+  `Owner` int(11) NOT NULL DEFAULT -1,
   `OwnerName` varchar(24) NOT NULL DEFAULT 'Nobody',
-  `ExteriorX` float(10,5) NOT NULL DEFAULT '0.00000',
-  `ExteriorY` float(10,5) NOT NULL DEFAULT '0.00000',
-  `ExteriorZ` float(10,5) NOT NULL DEFAULT '0.00000',
-  `ExteriorA` float(10,5) NOT NULL DEFAULT '0.00000',
-  `ExteriorVW` int(11) NOT NULL DEFAULT '0',
-  `ExteriorInt` int(11) NOT NULL DEFAULT '0',
-  `CustomExterior` int(11) NOT NULL DEFAULT '0',
-  `InteriorX` float(10,5) NOT NULL DEFAULT '0.00000',
-  `InteriorY` float(10,5) NOT NULL DEFAULT '0.00000',
-  `InteriorZ` float(10,5) NOT NULL DEFAULT '0.00000',
-  `InteriorA` float(10,5) NOT NULL DEFAULT '0.00000',
-  `InteriorVW` int(11) NOT NULL DEFAULT '0',
+  `ExteriorX` float(10,5) NOT NULL DEFAULT 0.00000,
+  `ExteriorY` float(10,5) NOT NULL DEFAULT 0.00000,
+  `ExteriorZ` float(10,5) NOT NULL DEFAULT 0.00000,
+  `ExteriorA` float(10,5) NOT NULL DEFAULT 0.00000,
+  `ExteriorVW` int(11) NOT NULL DEFAULT 0,
+  `ExteriorInt` int(11) NOT NULL DEFAULT 0,
+  `CustomExterior` int(11) NOT NULL DEFAULT 0,
+  `InteriorX` float(10,5) NOT NULL DEFAULT 0.00000,
+  `InteriorY` float(10,5) NOT NULL DEFAULT 0.00000,
+  `InteriorZ` float(10,5) NOT NULL DEFAULT 0.00000,
+  `InteriorA` float(10,5) NOT NULL DEFAULT 0.00000,
+  `InteriorVW` int(11) NOT NULL DEFAULT 0,
   `Pass` varchar(24) NOT NULL DEFAULT 'pass',
-  `Locked` int(11) NOT NULL DEFAULT '0'
+  `Locked` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -4013,38 +4014,38 @@ CREATE TABLE `garages` (
 
 CREATE TABLE `gates` (
   `ID` int(11) NOT NULL,
-  `HID` int(11) NOT NULL DEFAULT '-1',
-  `Speed` float NOT NULL DEFAULT '10',
-  `Range` float NOT NULL DEFAULT '10',
-  `Model` int(11) NOT NULL DEFAULT '18631',
-  `VW` int(11) NOT NULL DEFAULT '0',
-  `Int` int(11) NOT NULL DEFAULT '0',
+  `HID` int(11) NOT NULL DEFAULT -1,
+  `Speed` float NOT NULL DEFAULT 10,
+  `Range` float NOT NULL DEFAULT 10,
+  `Model` int(11) NOT NULL DEFAULT 18631,
+  `VW` int(11) NOT NULL DEFAULT 0,
+  `Int` int(11) NOT NULL DEFAULT 0,
   `Pass` varchar(24) NOT NULL DEFAULT '',
-  `PosX` float NOT NULL DEFAULT '0',
-  `PosY` float NOT NULL DEFAULT '0',
-  `PosZ` float NOT NULL DEFAULT '0',
-  `RotX` float NOT NULL DEFAULT '0',
-  `RotY` float NOT NULL DEFAULT '0',
-  `RotZ` float NOT NULL DEFAULT '0',
-  `PosXM` float NOT NULL DEFAULT '0',
-  `PosYM` float NOT NULL DEFAULT '0',
-  `PosZM` float NOT NULL DEFAULT '0',
-  `RotXM` float NOT NULL DEFAULT '0',
-  `RotYM` float NOT NULL DEFAULT '0',
-  `RotZM` float NOT NULL DEFAULT '0',
-  `Allegiance` int(11) NOT NULL DEFAULT '0',
-  `GroupType` int(11) NOT NULL DEFAULT '0',
-  `GroupID` int(2) NOT NULL DEFAULT '-1',
-  `RenderHQ` int(11) NOT NULL DEFAULT '1',
-  `Timer` int(1) NOT NULL DEFAULT '0',
-  `Automate` int(1) NOT NULL DEFAULT '0',
-  `Locked` int(1) NOT NULL DEFAULT '0',
-  `TIndex` int(11) NOT NULL DEFAULT '0',
-  `TModel` int(11) NOT NULL DEFAULT '0',
+  `PosX` float NOT NULL DEFAULT 0,
+  `PosY` float NOT NULL DEFAULT 0,
+  `PosZ` float NOT NULL DEFAULT 0,
+  `RotX` float NOT NULL DEFAULT 0,
+  `RotY` float NOT NULL DEFAULT 0,
+  `RotZ` float NOT NULL DEFAULT 0,
+  `PosXM` float NOT NULL DEFAULT 0,
+  `PosYM` float NOT NULL DEFAULT 0,
+  `PosZM` float NOT NULL DEFAULT 0,
+  `RotXM` float NOT NULL DEFAULT 0,
+  `RotYM` float NOT NULL DEFAULT 0,
+  `RotZM` float NOT NULL DEFAULT 0,
+  `Allegiance` int(11) NOT NULL DEFAULT 0,
+  `GroupType` int(11) NOT NULL DEFAULT 0,
+  `GroupID` int(2) NOT NULL DEFAULT -1,
+  `RenderHQ` int(11) NOT NULL DEFAULT 1,
+  `Timer` int(1) NOT NULL DEFAULT 0,
+  `Automate` int(1) NOT NULL DEFAULT 0,
+  `Locked` int(1) NOT NULL DEFAULT 0,
+  `TIndex` int(11) NOT NULL DEFAULT 0,
+  `TModel` int(11) NOT NULL DEFAULT 0,
   `TTXD` varchar(64) NOT NULL DEFAULT '',
   `TTexture` varchar(64) NOT NULL DEFAULT '',
-  `TColor` int(11) NOT NULL DEFAULT '0',
-  `Facility` int(11) NOT NULL DEFAULT '0'
+  `TColor` int(11) NOT NULL DEFAULT 0,
+  `Facility` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -7137,134 +7138,134 @@ INSERT INTO `gates` (`ID`, `HID`, `Speed`, `Range`, `Model`, `VW`, `Int`, `Pass`
 --
 
 CREATE TABLE `giftbox` (
-  `dgMoney0` int(11) DEFAULT '0',
-  `dgRimKit0` int(11) DEFAULT '0',
-  `dgFirework0` int(11) DEFAULT '0',
-  `dgGVIP0` int(11) DEFAULT '0',
-  `dgGVIPEx0` int(11) DEFAULT '0',
-  `dgSVIP0` int(11) DEFAULT '0',
-  `dgSVIPEx0` int(11) DEFAULT '0',
-  `dgCarSlot0` int(11) DEFAULT '0',
-  `dgToySlot0` int(11) DEFAULT '0',
-  `dgArmor0` int(11) DEFAULT '0',
-  `dgFirstaid0` int(11) DEFAULT '0',
-  `dgDDFlag0` int(11) DEFAULT '0',
-  `dgGateFlag0` int(11) DEFAULT '0',
-  `dgCredits0` int(11) DEFAULT '0',
-  `dgPriorityAd0` int(11) DEFAULT '0',
-  `dgHealthNArmor0` int(11) DEFAULT '0',
-  `dgRespectPoint0` int(11) DEFAULT '0',
-  `dgCarVoucher0` int(11) DEFAULT '0',
-  `dgBuddyInvite0` int(11) DEFAULT '0',
-  `dgLaser0` int(11) DEFAULT '0',
-  `dgCustomToy0` int(11) DEFAULT '0',
-  `dgAdmuteReset0` int(11) DEFAULT '0',
-  `dgNewbieMuteReset0` int(11) DEFAULT '0',
-  `dgRestrictedCarVoucher0` int(11) DEFAULT '0',
-  `dgPlatinumVIPVoucher0` int(11) DEFAULT '0',
-  `dgGiftReset0` int(11) DEFAULT '0',
-  `dgMaterial0` int(11) DEFAULT '0',
-  `dgWarning0` int(11) DEFAULT '0',
-  `dgPot0` int(11) DEFAULT '0',
-  `dgCrack0` int(11) DEFAULT '0',
-  `dgPaintballToken0` int(11) DEFAULT '0',
-  `dgVIPToken0` int(11) DEFAULT '0',
-  `dgMoney1` int(11) DEFAULT '0',
-  `dgRimKit1` int(11) DEFAULT '0',
-  `dgFirework1` int(11) DEFAULT '0',
-  `dgGVIP1` int(11) DEFAULT '0',
-  `dgGVIPEx1` int(11) DEFAULT '0',
-  `dgSVIP1` int(11) DEFAULT '0',
-  `dgSVIPEx1` int(11) DEFAULT '0',
-  `dgCarSlot1` int(11) DEFAULT '0',
-  `dgToySlot1` int(11) DEFAULT '0',
-  `dgArmor1` int(11) DEFAULT '0',
-  `dgFirstaid1` int(11) DEFAULT '0',
-  `dgDDFlag1` int(11) DEFAULT '0',
-  `dgGateFlag1` int(11) DEFAULT '0',
-  `dgCredits1` int(11) DEFAULT '0',
-  `dgPriorityAd1` int(11) DEFAULT '0',
-  `dgHealthNArmor1` int(11) DEFAULT '0',
-  `dgRespectPoint1` int(11) DEFAULT '0',
-  `dgCarVoucher1` int(11) DEFAULT '0',
-  `dgBuddyInvite1` int(11) DEFAULT '0',
-  `dgLaser1` int(11) DEFAULT '0',
-  `dgCustomToy1` int(11) DEFAULT '0',
-  `dgAdmuteReset1` int(11) DEFAULT '0',
-  `dgNewbieMuteReset1` int(11) DEFAULT '0',
-  `dgRestrictedCarVoucher1` int(11) DEFAULT '0',
-  `dgPlatinumVIPVoucher1` int(11) DEFAULT '0',
-  `dgGiftReset1` int(11) DEFAULT '0',
-  `dgMaterial1` int(11) DEFAULT '0',
-  `dgWarning1` int(11) DEFAULT '0',
-  `dgPot1` int(11) DEFAULT '0',
-  `dgCrack1` int(11) DEFAULT '0',
-  `dgPaintballToken1` int(11) DEFAULT '0',
-  `dgVIPToken1` int(11) DEFAULT '0',
-  `dgMoney2` int(11) DEFAULT '0',
-  `dgRimKit2` int(11) DEFAULT '0',
-  `dgFirework2` int(11) DEFAULT '0',
-  `dgGVIP2` int(11) DEFAULT '0',
-  `dgGVIPEx2` int(11) DEFAULT '0',
-  `dgSVIP2` int(11) DEFAULT '0',
-  `dgSVIPEx2` int(11) DEFAULT '0',
-  `dgCarSlot2` int(11) DEFAULT '0',
-  `dgToySlot2` int(11) DEFAULT '0',
-  `dgArmor2` int(11) DEFAULT '0',
-  `dgFirstaid2` int(11) DEFAULT '0',
-  `dgDDFlag2` int(11) DEFAULT '0',
-  `dgGateFlag2` int(11) DEFAULT '0',
-  `dgCredits2` int(11) DEFAULT '0',
-  `dgPriorityAd2` int(11) DEFAULT '0',
-  `dgHealthNArmor2` int(11) DEFAULT '0',
-  `dgRespectPoint2` int(11) DEFAULT '0',
-  `dgCarVoucher2` int(11) DEFAULT '0',
-  `dgBuddyInvite2` int(11) DEFAULT '0',
-  `dgLaser2` int(11) DEFAULT '0',
-  `dgCustomToy2` int(11) DEFAULT '0',
-  `dgAdmuteReset2` int(11) DEFAULT '0',
-  `dgNewbieMuteReset2` int(11) DEFAULT '0',
-  `dgRestrictedCarVoucher2` int(11) DEFAULT '0',
-  `dgPlatinumVIPVoucher2` int(11) DEFAULT '0',
-  `dgGiftReset2` int(11) DEFAULT '0',
-  `dgMaterial2` int(11) DEFAULT '0',
-  `dgWarning2` int(11) DEFAULT '0',
-  `dgPot2` int(11) DEFAULT '0',
-  `dgCrack2` int(11) DEFAULT '0',
-  `dgPaintballToken2` int(11) DEFAULT '0',
-  `dgVIPToken2` int(11) DEFAULT '0',
-  `dgMoney3` int(11) DEFAULT '0',
-  `dgRimKit3` int(11) DEFAULT '0',
-  `dgFirework3` int(11) DEFAULT '0',
-  `dgGVIP3` int(11) DEFAULT '0',
-  `dgGVIPEx3` int(11) DEFAULT '0',
-  `dgSVIP3` int(11) DEFAULT '0',
-  `dgSVIPEx3` int(11) DEFAULT '0',
-  `dgCarSlot3` int(11) DEFAULT '0',
-  `dgToySlot3` int(11) DEFAULT '0',
-  `dgArmor3` int(11) DEFAULT '0',
-  `dgFirstaid3` int(11) DEFAULT '0',
-  `dgDDFlag3` int(11) DEFAULT '0',
-  `dgGateFlag3` int(11) DEFAULT '0',
-  `dgCredits3` int(11) DEFAULT '0',
-  `dgPriorityAd3` int(11) DEFAULT '0',
-  `dgHealthNArmor3` int(11) DEFAULT '0',
-  `dgRespectPoint3` int(11) DEFAULT '0',
-  `dgCarVoucher3` int(11) DEFAULT '0',
-  `dgBuddyInvite3` int(11) DEFAULT '0',
-  `dgLaser3` int(11) DEFAULT '0',
-  `dgCustomToy3` int(11) DEFAULT '0',
-  `dgAdmuteReset3` int(11) DEFAULT '0',
-  `dgNewbieMuteReset3` int(11) DEFAULT '0',
-  `dgRestrictedCarVoucher3` int(11) DEFAULT '0',
-  `dgPlatinumVIPVoucher3` int(11) DEFAULT '0',
-  `dgGiftReset3` int(11) DEFAULT '0',
-  `dgMaterial3` int(11) DEFAULT '0',
-  `dgWarning3` int(11) DEFAULT '0',
-  `dgPot3` int(11) DEFAULT '0',
-  `dgCrack3` int(11) DEFAULT '0',
-  `dgPaintballToken3` int(11) DEFAULT '0',
-  `dgVIPToken3` int(11) DEFAULT '0'
+  `dgMoney0` int(11) DEFAULT 0,
+  `dgRimKit0` int(11) DEFAULT 0,
+  `dgFirework0` int(11) DEFAULT 0,
+  `dgGVIP0` int(11) DEFAULT 0,
+  `dgGVIPEx0` int(11) DEFAULT 0,
+  `dgSVIP0` int(11) DEFAULT 0,
+  `dgSVIPEx0` int(11) DEFAULT 0,
+  `dgCarSlot0` int(11) DEFAULT 0,
+  `dgToySlot0` int(11) DEFAULT 0,
+  `dgArmor0` int(11) DEFAULT 0,
+  `dgFirstaid0` int(11) DEFAULT 0,
+  `dgDDFlag0` int(11) DEFAULT 0,
+  `dgGateFlag0` int(11) DEFAULT 0,
+  `dgCredits0` int(11) DEFAULT 0,
+  `dgPriorityAd0` int(11) DEFAULT 0,
+  `dgHealthNArmor0` int(11) DEFAULT 0,
+  `dgRespectPoint0` int(11) DEFAULT 0,
+  `dgCarVoucher0` int(11) DEFAULT 0,
+  `dgBuddyInvite0` int(11) DEFAULT 0,
+  `dgLaser0` int(11) DEFAULT 0,
+  `dgCustomToy0` int(11) DEFAULT 0,
+  `dgAdmuteReset0` int(11) DEFAULT 0,
+  `dgNewbieMuteReset0` int(11) DEFAULT 0,
+  `dgRestrictedCarVoucher0` int(11) DEFAULT 0,
+  `dgPlatinumVIPVoucher0` int(11) DEFAULT 0,
+  `dgGiftReset0` int(11) DEFAULT 0,
+  `dgMaterial0` int(11) DEFAULT 0,
+  `dgWarning0` int(11) DEFAULT 0,
+  `dgPot0` int(11) DEFAULT 0,
+  `dgCrack0` int(11) DEFAULT 0,
+  `dgPaintballToken0` int(11) DEFAULT 0,
+  `dgVIPToken0` int(11) DEFAULT 0,
+  `dgMoney1` int(11) DEFAULT 0,
+  `dgRimKit1` int(11) DEFAULT 0,
+  `dgFirework1` int(11) DEFAULT 0,
+  `dgGVIP1` int(11) DEFAULT 0,
+  `dgGVIPEx1` int(11) DEFAULT 0,
+  `dgSVIP1` int(11) DEFAULT 0,
+  `dgSVIPEx1` int(11) DEFAULT 0,
+  `dgCarSlot1` int(11) DEFAULT 0,
+  `dgToySlot1` int(11) DEFAULT 0,
+  `dgArmor1` int(11) DEFAULT 0,
+  `dgFirstaid1` int(11) DEFAULT 0,
+  `dgDDFlag1` int(11) DEFAULT 0,
+  `dgGateFlag1` int(11) DEFAULT 0,
+  `dgCredits1` int(11) DEFAULT 0,
+  `dgPriorityAd1` int(11) DEFAULT 0,
+  `dgHealthNArmor1` int(11) DEFAULT 0,
+  `dgRespectPoint1` int(11) DEFAULT 0,
+  `dgCarVoucher1` int(11) DEFAULT 0,
+  `dgBuddyInvite1` int(11) DEFAULT 0,
+  `dgLaser1` int(11) DEFAULT 0,
+  `dgCustomToy1` int(11) DEFAULT 0,
+  `dgAdmuteReset1` int(11) DEFAULT 0,
+  `dgNewbieMuteReset1` int(11) DEFAULT 0,
+  `dgRestrictedCarVoucher1` int(11) DEFAULT 0,
+  `dgPlatinumVIPVoucher1` int(11) DEFAULT 0,
+  `dgGiftReset1` int(11) DEFAULT 0,
+  `dgMaterial1` int(11) DEFAULT 0,
+  `dgWarning1` int(11) DEFAULT 0,
+  `dgPot1` int(11) DEFAULT 0,
+  `dgCrack1` int(11) DEFAULT 0,
+  `dgPaintballToken1` int(11) DEFAULT 0,
+  `dgVIPToken1` int(11) DEFAULT 0,
+  `dgMoney2` int(11) DEFAULT 0,
+  `dgRimKit2` int(11) DEFAULT 0,
+  `dgFirework2` int(11) DEFAULT 0,
+  `dgGVIP2` int(11) DEFAULT 0,
+  `dgGVIPEx2` int(11) DEFAULT 0,
+  `dgSVIP2` int(11) DEFAULT 0,
+  `dgSVIPEx2` int(11) DEFAULT 0,
+  `dgCarSlot2` int(11) DEFAULT 0,
+  `dgToySlot2` int(11) DEFAULT 0,
+  `dgArmor2` int(11) DEFAULT 0,
+  `dgFirstaid2` int(11) DEFAULT 0,
+  `dgDDFlag2` int(11) DEFAULT 0,
+  `dgGateFlag2` int(11) DEFAULT 0,
+  `dgCredits2` int(11) DEFAULT 0,
+  `dgPriorityAd2` int(11) DEFAULT 0,
+  `dgHealthNArmor2` int(11) DEFAULT 0,
+  `dgRespectPoint2` int(11) DEFAULT 0,
+  `dgCarVoucher2` int(11) DEFAULT 0,
+  `dgBuddyInvite2` int(11) DEFAULT 0,
+  `dgLaser2` int(11) DEFAULT 0,
+  `dgCustomToy2` int(11) DEFAULT 0,
+  `dgAdmuteReset2` int(11) DEFAULT 0,
+  `dgNewbieMuteReset2` int(11) DEFAULT 0,
+  `dgRestrictedCarVoucher2` int(11) DEFAULT 0,
+  `dgPlatinumVIPVoucher2` int(11) DEFAULT 0,
+  `dgGiftReset2` int(11) DEFAULT 0,
+  `dgMaterial2` int(11) DEFAULT 0,
+  `dgWarning2` int(11) DEFAULT 0,
+  `dgPot2` int(11) DEFAULT 0,
+  `dgCrack2` int(11) DEFAULT 0,
+  `dgPaintballToken2` int(11) DEFAULT 0,
+  `dgVIPToken2` int(11) DEFAULT 0,
+  `dgMoney3` int(11) DEFAULT 0,
+  `dgRimKit3` int(11) DEFAULT 0,
+  `dgFirework3` int(11) DEFAULT 0,
+  `dgGVIP3` int(11) DEFAULT 0,
+  `dgGVIPEx3` int(11) DEFAULT 0,
+  `dgSVIP3` int(11) DEFAULT 0,
+  `dgSVIPEx3` int(11) DEFAULT 0,
+  `dgCarSlot3` int(11) DEFAULT 0,
+  `dgToySlot3` int(11) DEFAULT 0,
+  `dgArmor3` int(11) DEFAULT 0,
+  `dgFirstaid3` int(11) DEFAULT 0,
+  `dgDDFlag3` int(11) DEFAULT 0,
+  `dgGateFlag3` int(11) DEFAULT 0,
+  `dgCredits3` int(11) DEFAULT 0,
+  `dgPriorityAd3` int(11) DEFAULT 0,
+  `dgHealthNArmor3` int(11) DEFAULT 0,
+  `dgRespectPoint3` int(11) DEFAULT 0,
+  `dgCarVoucher3` int(11) DEFAULT 0,
+  `dgBuddyInvite3` int(11) DEFAULT 0,
+  `dgLaser3` int(11) DEFAULT 0,
+  `dgCustomToy3` int(11) DEFAULT 0,
+  `dgAdmuteReset3` int(11) DEFAULT 0,
+  `dgNewbieMuteReset3` int(11) DEFAULT 0,
+  `dgRestrictedCarVoucher3` int(11) DEFAULT 0,
+  `dgPlatinumVIPVoucher3` int(11) DEFAULT 0,
+  `dgGiftReset3` int(11) DEFAULT 0,
+  `dgMaterial3` int(11) DEFAULT 0,
+  `dgWarning3` int(11) DEFAULT 0,
+  `dgPot3` int(11) DEFAULT 0,
+  `dgCrack3` int(11) DEFAULT 0,
+  `dgPaintballToken3` int(11) DEFAULT 0,
+  `dgVIPToken3` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -7287,10 +7288,10 @@ CREATE TABLE `govgunsales` (
 
 CREATE TABLE `groupbans` (
   `id` int(11) NOT NULL,
-  `TypeBan` int(11) NOT NULL DEFAULT '-1',
-  `PlayerID` int(11) NOT NULL DEFAULT '-1',
+  `TypeBan` int(11) NOT NULL DEFAULT -1,
+  `PlayerID` int(11) NOT NULL DEFAULT -1,
   `BanDate` datetime NOT NULL DEFAULT '2001-01-12 00:00:00',
-  `GroupBan` int(11) NOT NULL DEFAULT '-1',
+  `GroupBan` int(11) NOT NULL DEFAULT -1,
   `BannedBy` varchar(24) NOT NULL DEFAULT '',
   `BanReason` varchar(64) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -7303,84 +7304,84 @@ CREATE TABLE `groupbans` (
 
 CREATE TABLE `groups` (
   `id` int(11) NOT NULL,
-  `Type` tinyint(4) NOT NULL DEFAULT '0',
+  `Type` tinyint(4) NOT NULL DEFAULT 0,
   `Name` varchar(64) NOT NULL DEFAULT '',
   `MOTD` varchar(128) NOT NULL DEFAULT 'None',
   `MOTD2` varchar(128) NOT NULL DEFAULT 'None',
   `MOTD3` varchar(128) NOT NULL DEFAULT 'None',
-  `Allegiance` tinyint(4) NOT NULL DEFAULT '0',
-  `Bug` tinyint(4) UNSIGNED NOT NULL DEFAULT '255',
-  `Find` tinyint(4) UNSIGNED NOT NULL DEFAULT '255',
-  `RadioColour` mediumint(8) UNSIGNED NOT NULL DEFAULT '16777215',
-  `Radio` tinyint(4) UNSIGNED NOT NULL DEFAULT '255',
-  `DeptRadio` tinyint(4) UNSIGNED NOT NULL DEFAULT '255',
-  `IntRadio` tinyint(4) UNSIGNED NOT NULL DEFAULT '255',
-  `GovAnnouncement` tinyint(4) UNSIGNED NOT NULL DEFAULT '255',
-  `TreasuryAccess` tinyint(4) UNSIGNED NOT NULL DEFAULT '255',
-  `FreeNameChange` tinyint(3) UNSIGNED NOT NULL DEFAULT '255',
-  `FreeNameChangeDiv` tinyint(3) UNSIGNED NOT NULL DEFAULT '255',
-  `Budget` int(11) NOT NULL DEFAULT '0',
-  `BudgetPayment` int(11) NOT NULL DEFAULT '0',
-  `SpikeStrips` tinyint(4) UNSIGNED NOT NULL DEFAULT '255',
-  `Barricades` tinyint(4) UNSIGNED NOT NULL DEFAULT '255',
-  `Cones` tinyint(4) UNSIGNED NOT NULL DEFAULT '255',
-  `Flares` tinyint(4) UNSIGNED NOT NULL DEFAULT '255',
-  `Barrels` tinyint(4) UNSIGNED NOT NULL DEFAULT '255',
-  `Ladders` tinyint(4) UNSIGNED NOT NULL DEFAULT '255',
-  `Tapes` tinyint(4) UNSIGNED NOT NULL DEFAULT '255',
-  `DutyColour` mediumint(8) UNSIGNED NOT NULL DEFAULT '16777215',
-  `Stock` int(11) NOT NULL DEFAULT '0',
-  `CrateX` float NOT NULL DEFAULT '0',
-  `CrateY` float NOT NULL DEFAULT '0',
-  `CrateZ` float NOT NULL DEFAULT '0',
-  `LockerCostType` int(11) NOT NULL DEFAULT '2',
-  `CratesOrder` int(11) NOT NULL DEFAULT '0',
-  `CrateIsland` int(4) NOT NULL DEFAULT '255',
-  `GarageX` float(11,0) NOT NULL DEFAULT '0',
-  `GarageY` float(11,0) NOT NULL DEFAULT '0',
-  `GarageZ` float(11,0) NOT NULL DEFAULT '0',
-  `TackleAccess` int(11) NOT NULL DEFAULT '255',
-  `WheelClamps` int(11) NOT NULL DEFAULT '255',
-  `DoCAccess` int(11) NOT NULL DEFAULT '255',
-  `MedicAccess` int(11) NOT NULL DEFAULT '-1',
-  `DMVAccess` int(11) NOT NULL DEFAULT '255',
-  `TempNum` int(11) NOT NULL DEFAULT '255',
-  `LEOArrest` int(11) NOT NULL DEFAULT '255',
-  `OOCChat` int(11) NOT NULL DEFAULT '255',
-  `OOCColor` mediumint(8) UNSIGNED NOT NULL DEFAULT '130303',
-  `Pot` int(11) NOT NULL DEFAULT '0',
-  `Crack` int(11) NOT NULL DEFAULT '0',
-  `Meth` int(11) NOT NULL DEFAULT '0',
-  `Ecstasy` int(11) NOT NULL DEFAULT '0',
-  `Heroin` int(11) NOT NULL DEFAULT '0',
-  `Syringes` int(11) NOT NULL DEFAULT '0',
-  `Mats` int(11) NOT NULL DEFAULT '0',
-  `TurfCapRank` int(11) NOT NULL DEFAULT '255',
-  `PointCapRank` int(11) NOT NULL DEFAULT '255',
-  `WithdrawRank` int(11) NOT NULL DEFAULT '255',
-  `WithdrawRank2` int(11) NOT NULL DEFAULT '255',
-  `WithdrawRank3` int(11) NOT NULL DEFAULT '255',
-  `WithdrawRank4` int(11) NOT NULL DEFAULT '255',
-  `WithdrawRank5` int(11) NOT NULL DEFAULT '255',
-  `Tokens` int(11) NOT NULL DEFAULT '0',
-  `CrimeType` int(11) NOT NULL DEFAULT '0',
-  `GroupToyID` int(11) NOT NULL DEFAULT '0',
-  `TurfTax` int(11) NOT NULL DEFAULT '0',
-  `gRival0` int(11) NOT NULL DEFAULT '0',
-  `gRival1` int(11) NOT NULL DEFAULT '0',
-  `gRival2` int(11) NOT NULL DEFAULT '0',
-  `gRival3` int(11) NOT NULL DEFAULT '0',
-  `gRival4` int(11) NOT NULL DEFAULT '0',
-  `GClothes0` int(11) NOT NULL DEFAULT '0',
-  `GClothes1` int(11) NOT NULL DEFAULT '0',
-  `GClothes2` int(11) NOT NULL DEFAULT '0',
-  `GClothes3` int(11) NOT NULL DEFAULT '0',
-  `GClothes4` int(11) NOT NULL DEFAULT '0',
-  `GClothes5` int(11) NOT NULL DEFAULT '0',
-  `GClothes6` int(11) NOT NULL DEFAULT '0',
-  `GClothes7` int(11) NOT NULL DEFAULT '0',
-  `GClothes8` int(11) NOT NULL DEFAULT '0',
-  `GClothes9` int(11) NOT NULL DEFAULT '0',
+  `Allegiance` tinyint(4) NOT NULL DEFAULT 0,
+  `Bug` tinyint(4) UNSIGNED NOT NULL DEFAULT 255,
+  `Find` tinyint(4) UNSIGNED NOT NULL DEFAULT 255,
+  `RadioColour` mediumint(8) UNSIGNED NOT NULL DEFAULT 16777215,
+  `Radio` tinyint(4) UNSIGNED NOT NULL DEFAULT 255,
+  `DeptRadio` tinyint(4) UNSIGNED NOT NULL DEFAULT 255,
+  `IntRadio` tinyint(4) UNSIGNED NOT NULL DEFAULT 255,
+  `GovAnnouncement` tinyint(4) UNSIGNED NOT NULL DEFAULT 255,
+  `TreasuryAccess` tinyint(4) UNSIGNED NOT NULL DEFAULT 255,
+  `FreeNameChange` tinyint(3) UNSIGNED NOT NULL DEFAULT 255,
+  `FreeNameChangeDiv` tinyint(3) UNSIGNED NOT NULL DEFAULT 255,
+  `Budget` int(11) NOT NULL DEFAULT 0,
+  `BudgetPayment` int(11) NOT NULL DEFAULT 0,
+  `SpikeStrips` tinyint(4) UNSIGNED NOT NULL DEFAULT 255,
+  `Barricades` tinyint(4) UNSIGNED NOT NULL DEFAULT 255,
+  `Cones` tinyint(4) UNSIGNED NOT NULL DEFAULT 255,
+  `Flares` tinyint(4) UNSIGNED NOT NULL DEFAULT 255,
+  `Barrels` tinyint(4) UNSIGNED NOT NULL DEFAULT 255,
+  `Ladders` tinyint(4) UNSIGNED NOT NULL DEFAULT 255,
+  `Tapes` tinyint(4) UNSIGNED NOT NULL DEFAULT 255,
+  `DutyColour` mediumint(8) UNSIGNED NOT NULL DEFAULT 16777215,
+  `Stock` int(11) NOT NULL DEFAULT 0,
+  `CrateX` float NOT NULL DEFAULT 0,
+  `CrateY` float NOT NULL DEFAULT 0,
+  `CrateZ` float NOT NULL DEFAULT 0,
+  `LockerCostType` int(11) NOT NULL DEFAULT 2,
+  `CratesOrder` int(11) NOT NULL DEFAULT 0,
+  `CrateIsland` int(4) NOT NULL DEFAULT 255,
+  `GarageX` float(11,0) NOT NULL DEFAULT 0,
+  `GarageY` float(11,0) NOT NULL DEFAULT 0,
+  `GarageZ` float(11,0) NOT NULL DEFAULT 0,
+  `TackleAccess` int(11) NOT NULL DEFAULT 255,
+  `WheelClamps` int(11) NOT NULL DEFAULT 255,
+  `DoCAccess` int(11) NOT NULL DEFAULT 255,
+  `MedicAccess` int(11) NOT NULL DEFAULT -1,
+  `DMVAccess` int(11) NOT NULL DEFAULT 255,
+  `TempNum` int(11) NOT NULL DEFAULT 255,
+  `LEOArrest` int(11) NOT NULL DEFAULT 255,
+  `OOCChat` int(11) NOT NULL DEFAULT 255,
+  `OOCColor` mediumint(8) UNSIGNED NOT NULL DEFAULT 130303,
+  `Pot` int(11) NOT NULL DEFAULT 0,
+  `Crack` int(11) NOT NULL DEFAULT 0,
+  `Meth` int(11) NOT NULL DEFAULT 0,
+  `Ecstasy` int(11) NOT NULL DEFAULT 0,
+  `Heroin` int(11) NOT NULL DEFAULT 0,
+  `Syringes` int(11) NOT NULL DEFAULT 0,
+  `Mats` int(11) NOT NULL DEFAULT 0,
+  `TurfCapRank` int(11) NOT NULL DEFAULT 255,
+  `PointCapRank` int(11) NOT NULL DEFAULT 255,
+  `WithdrawRank` int(11) NOT NULL DEFAULT 255,
+  `WithdrawRank2` int(11) NOT NULL DEFAULT 255,
+  `WithdrawRank3` int(11) NOT NULL DEFAULT 255,
+  `WithdrawRank4` int(11) NOT NULL DEFAULT 255,
+  `WithdrawRank5` int(11) NOT NULL DEFAULT 255,
+  `Tokens` int(11) NOT NULL DEFAULT 0,
+  `CrimeType` int(11) NOT NULL DEFAULT 0,
+  `GroupToyID` int(11) NOT NULL DEFAULT 0,
+  `TurfTax` int(11) NOT NULL DEFAULT 0,
+  `gRival0` int(11) NOT NULL DEFAULT 0,
+  `gRival1` int(11) NOT NULL DEFAULT 0,
+  `gRival2` int(11) NOT NULL DEFAULT 0,
+  `gRival3` int(11) NOT NULL DEFAULT 0,
+  `gRival4` int(11) NOT NULL DEFAULT 0,
+  `GClothes0` int(11) NOT NULL DEFAULT 0,
+  `GClothes1` int(11) NOT NULL DEFAULT 0,
+  `GClothes2` int(11) NOT NULL DEFAULT 0,
+  `GClothes3` int(11) NOT NULL DEFAULT 0,
+  `GClothes4` int(11) NOT NULL DEFAULT 0,
+  `GClothes5` int(11) NOT NULL DEFAULT 0,
+  `GClothes6` int(11) NOT NULL DEFAULT 0,
+  `GClothes7` int(11) NOT NULL DEFAULT 0,
+  `GClothes8` int(11) NOT NULL DEFAULT 0,
+  `GClothes9` int(11) NOT NULL DEFAULT 0,
   `Rank0` varchar(30) NOT NULL DEFAULT '',
   `Rank1` varchar(30) NOT NULL DEFAULT '',
   `Rank2` varchar(30) NOT NULL DEFAULT '',
@@ -7391,16 +7392,16 @@ CREATE TABLE `groups` (
   `Rank7` varchar(30) NOT NULL DEFAULT '',
   `Rank8` varchar(30) NOT NULL DEFAULT '',
   `Rank9` varchar(30) NOT NULL DEFAULT '',
-  `Rank0Pay` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
-  `Rank1Pay` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
-  `Rank2Pay` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
-  `Rank3Pay` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
-  `Rank4Pay` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
-  `Rank5Pay` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
-  `Rank6Pay` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
-  `Rank7Pay` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
-  `Rank8Pay` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
-  `Rank9Pay` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
+  `Rank0Pay` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `Rank1Pay` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `Rank2Pay` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `Rank3Pay` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `Rank4Pay` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `Rank5Pay` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `Rank6Pay` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `Rank7Pay` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `Rank8Pay` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `Rank9Pay` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
   `Div1` varchar(16) NOT NULL DEFAULT 'None',
   `Div2` varchar(16) NOT NULL DEFAULT 'None',
   `Div3` varchar(16) NOT NULL DEFAULT 'None',
@@ -7411,38 +7412,38 @@ CREATE TABLE `groups` (
   `Div8` varchar(16) NOT NULL DEFAULT 'None',
   `Div9` varchar(16) NOT NULL DEFAULT 'None',
   `Div10` varchar(16) NOT NULL DEFAULT 'None',
-  `Gun1` tinyint(4) NOT NULL DEFAULT '0',
-  `Cost1` int(11) NOT NULL DEFAULT '0',
-  `Gun2` tinyint(4) NOT NULL DEFAULT '0',
-  `Cost2` int(11) NOT NULL DEFAULT '0',
-  `Gun3` tinyint(4) NOT NULL DEFAULT '0',
-  `Cost3` int(11) NOT NULL DEFAULT '0',
-  `Gun4` tinyint(4) NOT NULL DEFAULT '0',
-  `Cost4` int(11) NOT NULL DEFAULT '0',
-  `Gun5` tinyint(4) NOT NULL DEFAULT '0',
-  `Cost5` int(11) NOT NULL DEFAULT '0',
-  `Gun6` tinyint(4) NOT NULL DEFAULT '0',
-  `Cost6` int(11) NOT NULL DEFAULT '0',
-  `Gun7` tinyint(4) NOT NULL DEFAULT '0',
-  `Cost7` int(11) NOT NULL DEFAULT '0',
-  `Gun8` tinyint(4) NOT NULL DEFAULT '0',
-  `Cost8` int(11) NOT NULL DEFAULT '0',
-  `Gun9` tinyint(4) NOT NULL DEFAULT '0',
-  `Cost9` int(11) NOT NULL DEFAULT '0',
-  `Gun10` tinyint(4) NOT NULL DEFAULT '0',
-  `Cost10` int(11) NOT NULL DEFAULT '0',
-  `Gun11` tinyint(4) NOT NULL DEFAULT '0',
-  `Cost11` int(11) NOT NULL DEFAULT '0',
-  `Gun12` tinyint(4) NOT NULL DEFAULT '0',
-  `Cost12` int(11) NOT NULL DEFAULT '0',
-  `Gun13` tinyint(4) NOT NULL DEFAULT '0',
-  `Cost13` int(11) NOT NULL DEFAULT '0',
-  `Gun14` tinyint(4) NOT NULL DEFAULT '0',
-  `Cost14` int(11) NOT NULL DEFAULT '0',
-  `Gun15` tinyint(4) NOT NULL DEFAULT '0',
-  `Cost15` int(11) NOT NULL DEFAULT '0',
-  `Gun16` int(11) NOT NULL DEFAULT '0',
-  `Cost16` int(11) NOT NULL DEFAULT '0'
+  `Gun1` tinyint(4) NOT NULL DEFAULT 0,
+  `Cost1` int(11) NOT NULL DEFAULT 0,
+  `Gun2` tinyint(4) NOT NULL DEFAULT 0,
+  `Cost2` int(11) NOT NULL DEFAULT 0,
+  `Gun3` tinyint(4) NOT NULL DEFAULT 0,
+  `Cost3` int(11) NOT NULL DEFAULT 0,
+  `Gun4` tinyint(4) NOT NULL DEFAULT 0,
+  `Cost4` int(11) NOT NULL DEFAULT 0,
+  `Gun5` tinyint(4) NOT NULL DEFAULT 0,
+  `Cost5` int(11) NOT NULL DEFAULT 0,
+  `Gun6` tinyint(4) NOT NULL DEFAULT 0,
+  `Cost6` int(11) NOT NULL DEFAULT 0,
+  `Gun7` tinyint(4) NOT NULL DEFAULT 0,
+  `Cost7` int(11) NOT NULL DEFAULT 0,
+  `Gun8` tinyint(4) NOT NULL DEFAULT 0,
+  `Cost8` int(11) NOT NULL DEFAULT 0,
+  `Gun9` tinyint(4) NOT NULL DEFAULT 0,
+  `Cost9` int(11) NOT NULL DEFAULT 0,
+  `Gun10` tinyint(4) NOT NULL DEFAULT 0,
+  `Cost10` int(11) NOT NULL DEFAULT 0,
+  `Gun11` tinyint(4) NOT NULL DEFAULT 0,
+  `Cost11` int(11) NOT NULL DEFAULT 0,
+  `Gun12` tinyint(4) NOT NULL DEFAULT 0,
+  `Cost12` int(11) NOT NULL DEFAULT 0,
+  `Gun13` tinyint(4) NOT NULL DEFAULT 0,
+  `Cost13` int(11) NOT NULL DEFAULT 0,
+  `Gun14` tinyint(4) NOT NULL DEFAULT 0,
+  `Cost14` int(11) NOT NULL DEFAULT 0,
+  `Gun15` tinyint(4) NOT NULL DEFAULT 0,
+  `Cost15` int(11) NOT NULL DEFAULT 0,
+  `Gun16` int(11) NOT NULL DEFAULT 0,
+  `Cost16` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -7450,10 +7451,10 @@ CREATE TABLE `groups` (
 --
 
 INSERT INTO `groups` (`id`, `Type`, `Name`, `MOTD`, `MOTD2`, `MOTD3`, `Allegiance`, `Bug`, `Find`, `RadioColour`, `Radio`, `DeptRadio`, `IntRadio`, `GovAnnouncement`, `TreasuryAccess`, `FreeNameChange`, `FreeNameChangeDiv`, `Budget`, `BudgetPayment`, `SpikeStrips`, `Barricades`, `Cones`, `Flares`, `Barrels`, `Ladders`, `Tapes`, `DutyColour`, `Stock`, `CrateX`, `CrateY`, `CrateZ`, `LockerCostType`, `CratesOrder`, `CrateIsland`, `GarageX`, `GarageY`, `GarageZ`, `TackleAccess`, `WheelClamps`, `DoCAccess`, `MedicAccess`, `DMVAccess`, `TempNum`, `LEOArrest`, `OOCChat`, `OOCColor`, `Pot`, `Crack`, `Meth`, `Ecstasy`, `Heroin`, `Syringes`, `Mats`, `TurfCapRank`, `PointCapRank`, `WithdrawRank`, `WithdrawRank2`, `WithdrawRank3`, `WithdrawRank4`, `WithdrawRank5`, `Tokens`, `CrimeType`, `GroupToyID`, `TurfTax`, `gRival0`, `gRival1`, `gRival2`, `gRival3`, `gRival4`, `GClothes0`, `GClothes1`, `GClothes2`, `GClothes3`, `GClothes4`, `GClothes5`, `GClothes6`, `GClothes7`, `GClothes8`, `GClothes9`, `Rank0`, `Rank1`, `Rank2`, `Rank3`, `Rank4`, `Rank5`, `Rank6`, `Rank7`, `Rank8`, `Rank9`, `Rank0Pay`, `Rank1Pay`, `Rank2Pay`, `Rank3Pay`, `Rank4Pay`, `Rank5Pay`, `Rank6Pay`, `Rank7Pay`, `Rank8Pay`, `Rank9Pay`, `Div1`, `Div2`, `Div3`, `Div4`, `Div5`, `Div6`, `Div7`, `Div8`, `Div9`, `Div10`, `Gun1`, `Cost1`, `Gun2`, `Cost2`, `Gun3`, `Cost3`, `Gun4`, `Cost4`, `Gun5`, `Cost5`, `Gun6`, `Cost6`, `Gun7`, `Cost7`, `Gun8`, `Cost8`, `Gun9`, `Cost9`, `Gun10`, `Cost10`, `Gun11`, `Cost11`, `Gun12`, `Cost12`, `Gun13`, `Cost13`, `Gun14`, `Cost14`, `Gun15`, `Cost15`, `Gun16`, `Cost16`) VALUES
-(1, 1, 'LSPD', 'If you are not in the business - contact High Command for an invite', 'None', 'None', 1, 255, 255, 7237375, 0, 0, 255, 7, 255, 255, 255, 33617806, 0, 4, 4, 2, 2, 4, 255, 255, 255, 503, 1529.05, -1688.03, 5.88, 0, 15, 255, 1567, -1682, 6, 255, 255, 255, -1, 255, 255, 255, 255, 130303, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'Cadet', 'Officer', 'Senior Officer', 'Corporal', 'Sergeant', 'Staff Sergeant', 'Lieutenant', 'Captain', 'Deputy Chief', 'Chief of Police', 3000, 10000, 20000, 25000, 30000, 40000, 50000, 55000, 57000, 60000, 'IA', 'SWAT', '', 'FTO', 'DUNC', 'PTL', 'ADM', 'HON', 'OPS', 'PROB', 3, 0, 41, 0, 17, 1, 24, 3, 29, 5, 25, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 0, 27, 12, 34, 10, 30, 6, 31, 8),
-(2, 1, 'FBI', 'Agent+ Allowed 1 SPAS-12 per day DONT ABUSE - Make sure to use the arrest log', 'None', 'None', 1, 0, 255, 5789946, 0, 0, 4, 6, 255, 0, 255, 77463, 0, 0, 0, 0, 0, 0, 255, 255, 5789946, 351, 300.7, -1490.81, 24.59, 0, 2, 7, 299, -1518, 25, 255, 255, 255, -1, 255, 255, 255, 255, 130303, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'Probationary Agent', 'Staff', 'Agent', 'Senior Agent', 'Special Agent', 'Division Supervisor', 'Division Leader', 'Assistant Director', 'Deputy Director', 'Director', 0, 15000, 20000, 30000, 40000, 50000, 60000, 90000, 95000, 100000, 'IA', 'ACDMY', 'NSB', 'OCU', 'CID', 'FO', 'CMD', 'HON', '', ' ', 3, 0, 41, 0, 17, 1, 24, 3, 25, 3, 29, 5, 31, 8, 27, 12, 34, 10, 33, 4, 30, 8, 46, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(3, 1, 'S.H.A.F.T[CLOSED]', 'Do NOT donate to our budget fund! Return the cars after use!', 'None', 'None', 1, 0, 255, 9276927, 0, 0, 255, 6, 255, 0, 255, 83109271, 0, 1, 1, 1, 1, 1, 255, 255, 1794468, 417, -2068.57, 360.04, 35.15, 0, 5, 0, -2048, 374, 42, 255, 255, 255, -1, 255, 255, 255, 255, 130303, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'Probationary Agent', 'Agent', 'Senior Agent', 'Special Agent', 'Supervisory Special Agent', 'Special Agent I.C.', 'Special Advisor', 'Assistant Director', 'Deputy Director', 'Director', 5000, 15000, 20000, 25000, 30000, 40000, 50000, 70000, 80000, 100000, 'OPR) (T&R', 'OPR', 'ATT', 'FO', 'ATT) (T&R', 'FO) (T&R', 'Spec Ops', '', '', '', 3, 1, 24, 3, 25, 3, 27, 12, 29, 5, 31, 8, 43, 0, 34, 10, 17, 1, 41, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(4, 1, 'SFPD', 'Make sure to sign up for your shift for DoC! Its Mandatory for everyone!', 'None', 'None', 1, 255, 255, 9276927, 0, 0, 255, 6, 255, 255, 255, 93577846, 0, 3, 3, 3, 3, 3, 255, 255, 6724095, 452, -1622.93, 659.84, -5.23, 0, 9, 255, -1578, 719, -5, 255, 255, 255, -1, 255, 255, 255, 255, 130303, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'Cadet', 'Officer', 'Corporal', 'Sergeant', 'Staff Sergeant', 'Lieutenant', 'Captain', 'Commander', 'Deputy Chief', 'Chief of Police', 5000, 10000, 15000, 25000, 30000, 40000, 50000, 60000, 70000, 75000, 'SO', '', '', 'HR-FTO', 'PROB', 'ADM', 'HON', 'HR-IA', '', '', 3, 0, 41, 0, 17, 1, 24, 3, 25, 3, 29, 5, 31, 8, 27, 12, 34, 10, 30, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(1, 1, 'LSPD', 'If you are not in the business - contact High Command for an invite', 'None', 'None', 1, 255, 255, 7237375, 0, 0, 255, 7, 255, 255, 255, 33503806, 0, 4, 4, 2, 2, 4, 255, 255, 255, 503, 1529.05, -1688.03, 5.88, 0, 15, 255, 1567, -1682, 6, 255, 255, 255, -1, 255, 255, 255, 255, 130303, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'Cadet', 'Officer', 'Senior Officer', 'Corporal', 'Sergeant', 'Staff Sergeant', 'Lieutenant', 'Captain', 'Deputy Chief', 'Chief of Police', 3000, 10000, 20000, 25000, 30000, 40000, 50000, 55000, 57000, 60000, 'IA', 'SWAT', '', 'FTO', 'DUNC', 'PTL', 'ADM', 'HON', 'OPS', 'PROB', 3, 0, 41, 0, 17, 1, 24, 3, 29, 5, 25, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 46, 0, 27, 12, 34, 10, 30, 6, 31, 8),
+(2, 1, 'FBI', 'Agent+ Allowed 1 SPAS-12 per day DONT ABUSE - Make sure to use the arrest log', 'None', 'None', 1, 0, 255, 5789946, 0, 0, 4, 6, 255, 0, 255, 463, 0, 0, 0, 0, 0, 0, 255, 255, 5789946, 351, 300.7, -1490.81, 24.59, 0, 2, 7, 299, -1518, 25, 255, 255, 255, -1, 255, 255, 255, 255, 130303, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'Probationary Agent', 'Staff', 'Agent', 'Senior Agent', 'Special Agent', 'Division Supervisor', 'Division Leader', 'Assistant Director', 'Deputy Director', 'Director', 0, 15000, 20000, 30000, 40000, 50000, 60000, 90000, 95000, 100000, 'IA', 'ACDMY', 'NSB', 'OCU', 'CID', 'FO', 'CMD', 'HON', '', ' ', 3, 0, 41, 0, 17, 1, 24, 3, 25, 3, 29, 5, 31, 8, 27, 12, 34, 10, 33, 4, 30, 8, 46, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(3, 1, 'S.H.A.F.T[CLOSED]', 'Do NOT donate to our budget fund! Return the cars after use!', 'None', 'None', 1, 0, 255, 9276927, 0, 0, 255, 6, 255, 0, 255, 82961271, 0, 1, 1, 1, 1, 1, 255, 255, 1794468, 417, -2068.57, 360.04, 35.15, 0, 5, 0, -2048, 374, 42, 255, 255, 255, -1, 255, 255, 255, 255, 130303, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'Probationary Agent', 'Agent', 'Senior Agent', 'Special Agent', 'Supervisory Special Agent', 'Special Agent I.C.', 'Special Advisor', 'Assistant Director', 'Deputy Director', 'Director', 5000, 15000, 20000, 25000, 30000, 40000, 50000, 70000, 80000, 100000, 'OPR) (T&R', 'OPR', 'ATT', 'FO', 'ATT) (T&R', 'FO) (T&R', 'Spec Ops', '', '', '', 3, 1, 24, 3, 25, 3, 27, 12, 29, 5, 31, 8, 43, 0, 34, 10, 17, 1, 41, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(4, 1, 'SFPD', 'Make sure to sign up for your shift for DoC! Its Mandatory for everyone!', 'None', 'None', 1, 255, 255, 9276927, 0, 0, 255, 6, 255, 255, 255, 93385846, 0, 3, 3, 3, 3, 3, 255, 255, 6724095, 452, -1622.93, 659.84, -5.23, 0, 9, 255, -1578, 719, -5, 255, 255, 255, -1, 255, 255, 255, 255, 130303, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'Cadet', 'Officer', 'Corporal', 'Sergeant', 'Staff Sergeant', 'Lieutenant', 'Captain', 'Commander', 'Deputy Chief', 'Chief of Police', 5000, 10000, 15000, 25000, 30000, 40000, 50000, 60000, 70000, 75000, 'SO', '', '', 'HR-FTO', 'PROB', 'ADM', 'HON', 'HR-IA', '', '', 3, 0, 41, 0, 17, 1, 24, 3, 25, 3, 29, 5, 31, 8, 27, 12, 34, 10, 30, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (5, 1, 'Secret Service[CLOSED]', '', 'None', 'None', 1, 0, 255, 7697781, 0, 0, 7, 6, 255, 0, 255, 31370843, 0, 255, 1, 1, 1, 1, 255, 255, 7697781, 149, 1741.81, -1779.16, 13.63, 0, 15, 255, -124, -1126, 2, 255, 255, 255, -1, 255, 255, 255, 255, 130303, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'Intern', 'Agent', 'Senior Agent', 'Special Agent', 'Supervisor', 'Lead Supervisor', 'Deputy Director', 'Director', '', '', 5000, 15000, 20000, 30000, 40000, 50000, 70000, 80000, 0, 0, 'TNR', 'Investigations', 'Protection', 'Uniformed', 'Administration', 'TNR-INV', 'PRO-UNI', '', '', '', 24, 8, 29, 5, 27, 12, 34, 10, 31, 8, 28, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (6, 5, 'San Andreas', 'Try to build up relations with other departments!', 'None', 'None', 1, 0, 255, 11310968, 0, 0, 3, 9, 255, 0, 255, 1029459426, 0, 255, 255, 255, 0, 255, 255, 255, 11711154, 16000, -1105.56, 4309.79, 4.4, 2, 0, 0, 1259, -2033, 59, 255, 255, 255, -1, 255, 255, 255, 255, 130303, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'Intern', 'Advisor', 'Senior Advisor', 'Ambassador', 'Security Advisor', 'Attorney General', 'Secretary', 'Chief of Staff', 'Vice President', 'President', 10000, 25000, 40000, 50000, 60000, 70000, 90000, 100000, 150000, 250000, 'ADM', 'Immigration', 'Security', 'State', 'Treasury', 'Defense', '', '', '', '', 24, 0, 25, 0, 29, 0, 31, 0, 34, 0, 0, 0, 0, 0, 0, 0, 3, 0, 41, 0, 46, 0, 43, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (7, 1, 'FCTS[CLOSED]', 'Free Tibet', 'None', 'None', 1, 7, 255, 9057807, 0, 0, 7, 7, 255, 255, 255, 1446, 0, 2, 2, 1, 1, 1, 255, 255, 9057807, 15000, 0, 0, 0, 2, 0, 255, 0, 0, 0, 255, 255, 255, -1, 255, 255, 255, 255, 130303, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'Trainee', 'Serviceman', 'Senior Serviceman', '', '', '', '', 'Regional Manager', 'Co-Owner', 'Owner', 15000, 25000, 95000, 0, 0, 0, 0, 100000, 130000, 150000, 'LS-Office', 'Flint-Office', '420', '', '', '', '', '', '', '', 24, 2000, 25, 2000, 29, 5000, 5, 500, 27, 3000, 31, 4500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
@@ -7461,12 +7462,12 @@ INSERT INTO `groups` (`id`, `Type`, `Name`, `MOTD`, `MOTD2`, `MOTD3`, `Allegianc
 (9, 1, 'TRAF[CLOSED]', 'If I see any of you using my bullets, you will suffer extreme pain.', 'None', 'None', 2, 2, 255, 30549, 0, 0, 7, 7, 255, 255, 255, 2866062, 0, 1, 2, 1, 1, 1, 255, 255, 30549, 0, 0, 0, 0, 1, 5, 255, -2262, 2533, 4, 255, 255, 255, -1, 255, 255, 255, 255, 130303, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'Recruit', 'Private', 'Corporal', 'Sergeant', 'Staff Sergeant', 'Lieutenant', 'Captain', 'Major', 'Colonel', 'General', 14000, 21000, 28000, 35000, 42000, 49000, 56000, 63000, 70000, 80000, 'Human Resources', 'Border Patrol', 'Police Unit', 'Marine Corps', 'DSS', 'Command', '', '', '', '', 3, 0, 41, 0, 29, 0, 24, 0, 17, 0, 46, 0, 31, 0, 27, 0, 34, 0, 30, 0, 25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (10, 3, 'TRES[CLOSED]', 'Follow the weapon and vehicle restrictions, any breach results in punishment', 'None', 'None', 2, 255, 255, 43656, 0, 0, 255, 5, 255, 255, 255, 252, 0, 1, 1, 1, 1, 1, 255, 255, 43656, 0, 0, 0, 0, 1, 0, 255, -522, 2593, 53, 255, 255, 255, -1, 255, 255, 255, 255, 130303, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'Trainee', 'Paramedic', 'Staff', 'Intermediate', 'Lieutenant', 'Captain', 'District Supervisor', 'District Chief', 'Assistant Commissioner', 'Commissioner', 9000, 19000, 27000, 35000, 40000, 50000, 60000, 70000, 80000, 90000, 'Fire Dept', 'Combat Medic', 'Human Resources', 'JRS', 'HAZMAT', 'Coast Guard', '', '', '', '', 29, 0, 24, 0, 25, 0, 33, 0, 6, 0, 9, 0, 46, 0, 43, 0, 42, 0, 31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (11, 5, 'Teirra Robada[CLOSED]', 'Be sure to check the forums daily! (National Government, Governing Council & Legislative) - James Luck.', 'None', 'None', 2, 255, 255, 52377, 0, 0, 2, 6, 255, 255, 255, 1000000, 0, 1, 2, 1, 1, 1, 255, 255, 52377, 0, -2489.28, 2254.26, 4.98, 2, 0, 255, -2480, 2236, 5, 255, 255, 255, -1, 255, 255, 255, 255, 130303, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'Volunteer', 'Tribal Ranger', 'Intelligence Agent', 'Director', 'Diplomatic Staff', 'Executive Assistant', 'Ambassedor', 'Consulor General', 'Council Member', 'Executive Officer', 19000, 24000, 27000, 34000, 39000, 49000, 59000, 69000, 79000, 89000, 'TRGC', 'TRDC', 'TRIA', 'NGO', '', '', '', '', '', '', 24, 0, 25, 2500, 29, 10000, 43, 0, 46, 0, 30, 50000, 27, 80000, 31, 10000, 34, 50000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(12, 1, 'SAAS[CLOSED]', 'All units make sure you get insurance at Fort Carson Hospital, until base is finished!', 'None', 'None', 1, 0, 255, 10079232, 0, 0, 7, 8, 255, 255, 255, 31814845, 0, 3, 4, 3, 3, 3, 255, 255, 9156653, 1231, -1550.68, 400.51, 7.17, 0, 3, 0, 325, 1933, 18, 255, 255, 255, -1, 255, 255, 255, 255, 130303, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'Recruit', 'Private', 'Private First Class', 'Corporal', 'Sergeant', 'First Sergeant', 'Lieutenant', 'Captain', 'Major', 'General', 3000, 7000, 10000, 15000, 23000, 25000, 40000, 70000, 97000, 110000, 'CMD', 'TNR', '16TH AER', '75th R', 'VET', 'Air Force', 'Navy', '', '', '', 6, 0, 17, 1, 33, 4, 24, 3, 25, 3, 29, 5, 31, 8, 27, 12, 34, 10, 46, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(12, 1, 'SAAS[CLOSED]', 'All units make sure you get insurance at Fort Carson Hospital, until base is finished!', 'None', 'None', 1, 0, 255, 10079232, 0, 0, 7, 8, 255, 255, 255, 31675845, 0, 3, 4, 3, 3, 3, 255, 255, 9156653, 1231, -1550.68, 400.51, 7.17, 0, 3, 0, 325, 1933, 18, 255, 255, 255, -1, 255, 255, 255, 255, 130303, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'Recruit', 'Private', 'Private First Class', 'Corporal', 'Sergeant', 'First Sergeant', 'Lieutenant', 'Captain', 'Major', 'General', 3000, 7000, 10000, 15000, 23000, 25000, 40000, 70000, 97000, 110000, 'CMD', 'TNR', '16TH AER', '75th R', 'VET', 'Air Force', 'Navy', '', '', '', 6, 0, 17, 1, 33, 4, 24, 3, 25, 3, 29, 5, 31, 8, 27, 12, 34, 10, 46, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (13, 1, 'NOOSE[CLOSED]', 'Ensigns HAVE to wear Ensign uniforms((skin id 71))', 'None', 'None', 1, 0, 255, 10027008, 0, 0, 255, 8, 255, 255, 255, 180568457, 0, 1, 1, 1, 1, 1, 255, 255, 8390921, 1111, -649.9, -1837.91, 38.43, 0, 6, 1, -706, -1979, 15, 255, 255, 255, -1, 255, 255, 255, 255, 130303, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'Ensign', 'Marksman', 'MW Mercenary', 'Operative', 'MW Commander', 'Master at Arms', 'Enforcer', 'Division Leader', 'Commander', 'Founder', 1000, 5000, 20000, 30000, 40000, 50000, 60000, 85000, 125000, 150000, 'SS', 'AA', 'REPO', 'VET', 'IT', 'FRE', 'MWD', '', '', '', 3, 0, 41, 0, 46, 0, 17, 1, 25, 3, 24, 3, 29, 5, 31, 8, 30, 6, 27, 12, 34, 12, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(14, 6, 'Judicial[CLOSED]', 'Continue to stay active on TeamSpeak & Forum. Judges & Clerks: Check Case Assignments', 'None', 'None', 1, 255, 255, 10053324, 0, 0, 255, 7, 255, 255, 255, 21773437, 0, 255, 255, 255, 255, 255, 255, 255, 10079436, 15000, 1397.42, -1649.43, 13.35, 2, 0, 255, 0, 0, 0, 255, 255, 255, -1, 255, 255, 255, 255, 130303, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'Intern', 'Clerk', 'Public Defender', 'Prosecutor', 'District Attorney', 'District Judge', 'Secretary General', 'Associate Justice', 'Senior Associate Justice', 'Chief Justice', 5000, 7000, 10000, 20000, 40000, 40000, 0, 50000, 80000, 95000, 'JRC', '', '', '', '', '', '', '', '', '', 15, 0, 46, 0, 43, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(14, 6, 'Judicial[CLOSED]', 'Continue to stay active on TeamSpeak & Forum. Judges & Clerks: Check Case Assignments', 'None', 'None', 1, 255, 255, 10053324, 0, 0, 255, 7, 255, 255, 255, 21753437, 0, 255, 255, 255, 255, 255, 255, 255, 10079436, 15000, 1397.42, -1649.43, 13.35, 2, 0, 255, 0, 0, 0, 255, 255, 255, -1, 255, 255, 255, 255, 130303, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'Intern', 'Clerk', 'Public Defender', 'Prosecutor', 'District Attorney', 'District Judge', 'Secretary General', 'Associate Justice', 'Senior Associate Justice', 'Chief Justice', 5000, 7000, 10000, 20000, 40000, 40000, 0, 50000, 80000, 95000, 'JRC', '', '', '', '', '', '', '', '', '', 15, 0, 46, 0, 43, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (15, 3, 'FDSA', '', 'None', 'None', 0, 255, 255, 16711680, 255, 255, 255, 255, 255, 255, 255, 500, 0, 255, 255, 255, 255, 255, 255, 255, 16711680, 15000, 0, 0, 0, 2, 0, 255, 1569, -2173, 14, 255, 255, 255, -1, 255, 255, 255, 255, 130303, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', '', '', '', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', '', '', '', '', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (16, 9, 'Underground Racing League[C]', 'Sorry for the lack of events but out even cordinator is really sick ', 'None', 'None', 0, 255, 255, 16728325, 0, 255, 255, 255, 255, 255, 255, -26562, 0, 255, 255, 6, 8, 9, 255, 255, 16728325, 0, -548.28, -514.2, 33.34, 2, 0, 255, -607, -483, 26, 255, 255, 255, -1, 255, 255, 255, 255, 130303, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'Outsider', 'Rookie Driver', 'Pro Driver', 'Elite Driver', 'Champion', 'Crew Co-Leader', 'Crew Leader', 'Legend', 'Underboss', 'Boss', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'Staff', 'Solo', 'Crew', '', '', '', '', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(17, 1, 'SASD', 'Remember to return cars to the garage and please DO NOT leave them out. Keep up the great work! ', 'None', 'None', 1, 255, 255, 13408563, 0, 1, 255, 7, 255, 255, 255, 19818584, 0, 1, 1, 1, 1, 1, 255, 255, 13408563, 48, 612.82, -588.59, 17.2, 0, 0, 255, 599, -591, -5, 255, 255, 255, -1, 255, 255, 255, 255, 130303, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'CSO', 'Trainee', 'Deputy', 'Senior Deputy', 'Corporal', 'Sergeant', 'Lieutenant', 'Captain', 'Undersheriff', 'Sheriff', 7000, 12000, 25000, 30000, 40000, 45000, 55000, 65000, 70000, 80000, 'HON', 'IA', 'FTO', 'PATROL', 'FIELD', 'SUPPORT', 'K9', 'MCU', '', 'RESTRICTION', 41, 0, 3, 0, 24, 3, 25, 3, 27, 12, 29, 5, 31, 8, 34, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(17, 1, 'SASD', 'Remember to return cars to the garage and please DO NOT leave them out. Keep up the great work! ', 'None', 'None', 1, 255, 255, 13408563, 0, 1, 255, 7, 255, 255, 255, 19644584, 0, 1, 1, 1, 1, 1, 255, 255, 13408563, 48, 612.82, -588.59, 17.2, 0, 0, 255, 599, -591, -5, 255, 255, 255, -1, 255, 255, 255, 255, 130303, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'CSO', 'Trainee', 'Deputy', 'Senior Deputy', 'Corporal', 'Sergeant', 'Lieutenant', 'Captain', 'Undersheriff', 'Sheriff', 7000, 12000, 25000, 30000, 40000, 45000, 55000, 65000, 70000, 80000, 'HON', 'IA', 'FTO', 'PATROL', 'FIELD', 'SUPPORT', 'K9', 'MCU', '', 'RESTRICTION', 41, 0, 3, 0, 24, 3, 25, 3, 27, 12, 29, 5, 31, 8, 34, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (18, 1, 'Department of Game Affairs', '', 'None', 'None', 1, 0, 255, 6535423, 0, 0, 0, 0, 255, 0, 255, 3799, 0, 0, 0, 0, 0, 0, 255, 255, 16724736, 9999999, 1769.88, -1915.28, 14.5, 2, 0, 0, -2462, -130, 26, 255, 255, 255, -1, 255, 255, 255, 255, 130303, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'Gang Moderator', 'Faction Moderator', 'Senior Gang Mod', 'Senior Faction Mod', 'Game Affairs Tech', 'DoFM', 'DoGM', 'DGA Mapper', 'ADoGA', 'DoGA', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'FMOD', 'GMOD', 'DGA', 'II', 'I', 'HR', '', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
@@ -7477,94 +7478,94 @@ INSERT INTO `groups` (`id`, `Type`, `Name`, `MOTD`, `MOTD2`, `MOTD3`, `Allegianc
 
 CREATE TABLE `groupvehs` (
   `id` int(11) NOT NULL,
-  `SpawnedID` int(11) NOT NULL DEFAULT '65535',
-  `gID` int(11) NOT NULL DEFAULT '-1',
-  `gDivID` int(11) NOT NULL DEFAULT '0',
-  `rID` int(11) NOT NULL DEFAULT '0',
-  `vModel` int(11) NOT NULL DEFAULT '0',
+  `SpawnedID` int(11) NOT NULL DEFAULT 65535,
+  `gID` int(11) NOT NULL DEFAULT -1,
+  `gDivID` int(11) NOT NULL DEFAULT 0,
+  `rID` int(11) NOT NULL DEFAULT 0,
+  `vModel` int(11) NOT NULL DEFAULT 0,
   `vPlate` varchar(32) NOT NULL,
-  `vMaxHealth` float NOT NULL DEFAULT '1000',
-  `vType` int(11) NOT NULL DEFAULT '0',
-  `vLoadMax` int(11) NOT NULL DEFAULT '2',
-  `vCol1` int(11) NOT NULL DEFAULT '0',
-  `vCol2` int(11) NOT NULL DEFAULT '0',
-  `vX` float NOT NULL DEFAULT '0',
-  `vY` float NOT NULL DEFAULT '0',
-  `vZ` float NOT NULL DEFAULT '0',
-  `vVW` int(11) NOT NULL DEFAULT '0',
-  `vInt` int(11) NOT NULL DEFAULT '0',
-  `vDisabled` tinyint(4) NOT NULL DEFAULT '0',
-  `vRotZ` float NOT NULL DEFAULT '0',
-  `vUpkeep` int(11) NOT NULL DEFAULT '0',
-  `vFuel` float NOT NULL DEFAULT '100',
-  `vSiren` int(11) NOT NULL DEFAULT '0',
-  `vAttachedObjectModel1` int(11) NOT NULL DEFAULT '65535',
-  `vObjectX1` float(11,2) NOT NULL DEFAULT '0.00',
-  `vObjectY1` float(11,2) NOT NULL DEFAULT '0.00',
-  `vObjectZ1` float(11,2) NOT NULL DEFAULT '0.00',
-  `vObjectRX1` float(11,2) NOT NULL DEFAULT '0.00',
-  `vObjectRY1` float(11,2) NOT NULL DEFAULT '0.00',
-  `vObjectRZ1` float(11,2) NOT NULL DEFAULT '0.00',
+  `vMaxHealth` float NOT NULL DEFAULT 1000,
+  `vType` int(11) NOT NULL DEFAULT 0,
+  `vLoadMax` int(11) NOT NULL DEFAULT 2,
+  `vCol1` int(11) NOT NULL DEFAULT 0,
+  `vCol2` int(11) NOT NULL DEFAULT 0,
+  `vX` float NOT NULL DEFAULT 0,
+  `vY` float NOT NULL DEFAULT 0,
+  `vZ` float NOT NULL DEFAULT 0,
+  `vVW` int(11) NOT NULL DEFAULT 0,
+  `vInt` int(11) NOT NULL DEFAULT 0,
+  `vDisabled` tinyint(4) NOT NULL DEFAULT 0,
+  `vRotZ` float NOT NULL DEFAULT 0,
+  `vUpkeep` int(11) NOT NULL DEFAULT 0,
+  `vFuel` float NOT NULL DEFAULT 100,
+  `vSiren` int(11) NOT NULL DEFAULT 0,
+  `vAttachedObjectModel1` int(11) NOT NULL DEFAULT 65535,
+  `vObjectX1` float(11,2) NOT NULL DEFAULT 0.00,
+  `vObjectY1` float(11,2) NOT NULL DEFAULT 0.00,
+  `vObjectZ1` float(11,2) NOT NULL DEFAULT 0.00,
+  `vObjectRX1` float(11,2) NOT NULL DEFAULT 0.00,
+  `vObjectRY1` float(11,2) NOT NULL DEFAULT 0.00,
+  `vObjectRZ1` float(11,2) NOT NULL DEFAULT 0.00,
   `vObjectText1` varchar(32) NOT NULL,
-  `vObjectMatSize1` int(11) NOT NULL DEFAULT '0',
+  `vObjectMatSize1` int(11) NOT NULL DEFAULT 0,
   `vObjectFont1` varchar(32) NOT NULL,
-  `vObjectSize1` int(11) NOT NULL DEFAULT '0',
-  `vObjectColor1` int(11) NOT NULL DEFAULT '0',
-  `vObjectBGColor1` int(11) NOT NULL DEFAULT '0',
-  `vAttachedObjectModel2` int(11) NOT NULL DEFAULT '65535',
-  `vObjectX2` float(11,2) NOT NULL DEFAULT '0.00',
-  `vObjectY2` float(11,2) NOT NULL DEFAULT '0.00',
-  `vObjectZ2` float(11,2) NOT NULL DEFAULT '0.00',
-  `vObjectRX2` float(11,2) NOT NULL DEFAULT '0.00',
-  `vObjectRY2` float(11,2) NOT NULL DEFAULT '0.00',
-  `vObjectRZ2` float(11,2) NOT NULL DEFAULT '0.00',
+  `vObjectSize1` int(11) NOT NULL DEFAULT 0,
+  `vObjectColor1` int(11) NOT NULL DEFAULT 0,
+  `vObjectBGColor1` int(11) NOT NULL DEFAULT 0,
+  `vAttachedObjectModel2` int(11) NOT NULL DEFAULT 65535,
+  `vObjectX2` float(11,2) NOT NULL DEFAULT 0.00,
+  `vObjectY2` float(11,2) NOT NULL DEFAULT 0.00,
+  `vObjectZ2` float(11,2) NOT NULL DEFAULT 0.00,
+  `vObjectRX2` float(11,2) NOT NULL DEFAULT 0.00,
+  `vObjectRY2` float(11,2) NOT NULL DEFAULT 0.00,
+  `vObjectRZ2` float(11,2) NOT NULL DEFAULT 0.00,
   `vObjectText2` varchar(32) NOT NULL,
-  `vObjectMatSize2` int(11) NOT NULL DEFAULT '0',
+  `vObjectMatSize2` int(11) NOT NULL DEFAULT 0,
   `vObjectFont2` varchar(32) NOT NULL,
-  `vObjectSize2` int(11) NOT NULL DEFAULT '0',
-  `vObjectColor2` int(11) NOT NULL DEFAULT '0',
-  `vObjectBGColor2` int(11) NOT NULL DEFAULT '0',
-  `vAttachedObjectModel3` int(11) NOT NULL DEFAULT '65535',
-  `vObjectX3` float(11,2) NOT NULL DEFAULT '0.00',
-  `vObjectY3` float(11,2) NOT NULL DEFAULT '0.00',
-  `vObjectZ3` float(11,2) NOT NULL DEFAULT '0.00',
-  `vObjectRX3` float(11,2) NOT NULL DEFAULT '0.00',
-  `vObjectRY3` float(11,2) NOT NULL DEFAULT '0.00',
-  `vObjectRZ3` float(11,2) NOT NULL DEFAULT '0.00',
+  `vObjectSize2` int(11) NOT NULL DEFAULT 0,
+  `vObjectColor2` int(11) NOT NULL DEFAULT 0,
+  `vObjectBGColor2` int(11) NOT NULL DEFAULT 0,
+  `vAttachedObjectModel3` int(11) NOT NULL DEFAULT 65535,
+  `vObjectX3` float(11,2) NOT NULL DEFAULT 0.00,
+  `vObjectY3` float(11,2) NOT NULL DEFAULT 0.00,
+  `vObjectZ3` float(11,2) NOT NULL DEFAULT 0.00,
+  `vObjectRX3` float(11,2) NOT NULL DEFAULT 0.00,
+  `vObjectRY3` float(11,2) NOT NULL DEFAULT 0.00,
+  `vObjectRZ3` float(11,2) NOT NULL DEFAULT 0.00,
   `vObjectText3` varchar(32) NOT NULL,
-  `vObjectMatSize3` int(11) NOT NULL DEFAULT '0',
+  `vObjectMatSize3` int(11) NOT NULL DEFAULT 0,
   `vObjectFont3` varchar(32) NOT NULL,
-  `vObjectSize3` int(11) NOT NULL DEFAULT '0',
-  `vObjectColor3` int(11) NOT NULL DEFAULT '0',
-  `vObjectBGColor3` int(11) NOT NULL DEFAULT '0',
-  `vAttachedObjectModel4` int(11) NOT NULL DEFAULT '65535',
-  `vObjectX4` float(11,2) NOT NULL DEFAULT '0.00',
-  `vObjectY4` float(11,2) NOT NULL DEFAULT '0.00',
-  `vObjectZ4` float(11,2) NOT NULL DEFAULT '0.00',
-  `vObjectRX4` float(11,2) NOT NULL DEFAULT '0.00',
-  `vObjectRY4` float(11,2) NOT NULL DEFAULT '0.00',
-  `vObjectRZ4` float(11,2) NOT NULL DEFAULT '0.00',
+  `vObjectSize3` int(11) NOT NULL DEFAULT 0,
+  `vObjectColor3` int(11) NOT NULL DEFAULT 0,
+  `vObjectBGColor3` int(11) NOT NULL DEFAULT 0,
+  `vAttachedObjectModel4` int(11) NOT NULL DEFAULT 65535,
+  `vObjectX4` float(11,2) NOT NULL DEFAULT 0.00,
+  `vObjectY4` float(11,2) NOT NULL DEFAULT 0.00,
+  `vObjectZ4` float(11,2) NOT NULL DEFAULT 0.00,
+  `vObjectRX4` float(11,2) NOT NULL DEFAULT 0.00,
+  `vObjectRY4` float(11,2) NOT NULL DEFAULT 0.00,
+  `vObjectRZ4` float(11,2) NOT NULL DEFAULT 0.00,
   `vObjectText4` varchar(32) NOT NULL,
-  `vObjectMatSize4` int(11) NOT NULL DEFAULT '0',
+  `vObjectMatSize4` int(11) NOT NULL DEFAULT 0,
   `vObjectFont4` varchar(32) NOT NULL,
-  `vObjectSize4` int(11) NOT NULL DEFAULT '0',
-  `vObjectColor4` int(11) NOT NULL DEFAULT '0',
-  `vObjectBGColor4` int(11) NOT NULL DEFAULT '0',
-  `vMod0` int(11) NOT NULL DEFAULT '0',
-  `vMod1` int(11) NOT NULL DEFAULT '0',
-  `vMod2` int(11) NOT NULL DEFAULT '0',
-  `vMod3` int(11) NOT NULL DEFAULT '0',
-  `vMod4` int(11) NOT NULL DEFAULT '0',
-  `vMod5` int(11) NOT NULL DEFAULT '0',
-  `vMod6` int(11) NOT NULL DEFAULT '0',
-  `vMod7` int(11) NOT NULL DEFAULT '0',
-  `vMod8` int(11) NOT NULL DEFAULT '0',
-  `vMod9` int(11) NOT NULL DEFAULT '0',
-  `vMod10` int(11) NOT NULL DEFAULT '0',
-  `vMod11` int(11) NOT NULL DEFAULT '0',
-  `vMod12` int(11) NOT NULL DEFAULT '0',
-  `vMod13` int(11) NOT NULL DEFAULT '0',
-  `vMod14` int(11) NOT NULL DEFAULT '0'
+  `vObjectSize4` int(11) NOT NULL DEFAULT 0,
+  `vObjectColor4` int(11) NOT NULL DEFAULT 0,
+  `vObjectBGColor4` int(11) NOT NULL DEFAULT 0,
+  `vMod0` int(11) NOT NULL DEFAULT 0,
+  `vMod1` int(11) NOT NULL DEFAULT 0,
+  `vMod2` int(11) NOT NULL DEFAULT 0,
+  `vMod3` int(11) NOT NULL DEFAULT 0,
+  `vMod4` int(11) NOT NULL DEFAULT 0,
+  `vMod5` int(11) NOT NULL DEFAULT 0,
+  `vMod6` int(11) NOT NULL DEFAULT 0,
+  `vMod7` int(11) NOT NULL DEFAULT 0,
+  `vMod8` int(11) NOT NULL DEFAULT 0,
+  `vMod9` int(11) NOT NULL DEFAULT 0,
+  `vMod10` int(11) NOT NULL DEFAULT 0,
+  `vMod11` int(11) NOT NULL DEFAULT 0,
+  `vMod12` int(11) NOT NULL DEFAULT 0,
+  `vMod13` int(11) NOT NULL DEFAULT 0,
+  `vMod14` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -7683,233 +7684,233 @@ INSERT INTO `groupvehs` (`id`, `SpawnedID`, `gID`, `gDivID`, `rID`, `vModel`, `v
 (109, 65535, 2, 0, 0, 497, '', 2000, 0, 2, 0, 106, 1475.43, -1340.18, 163.85, 0, 0, 1, 86.05, 2000, 0, 0, 65535, 0.00, 1.20, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, -1.50, 0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (110, 65535, 2, 0, 0, 417, '{0000FF}S.H.A.F.T', 3500, 0, 2, 1, 1, -2038.65, 388.35, 42.04, 0, 0, 1, 182.3, 3500, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (111, 65535, 2, 0, 0, 563, '', 4000, 0, 2, 0, 106, -2054.09, 380.6, 42.22, 0, 0, 1, 181.44, 3000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(112, 325, 1, 0, 0, 563, '', 3500, 0, 2, 0, 6, 343.07, -1486.18, 77.23, 0, 0, 0, 212.47, 3000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(112, 65535, 1, 0, 0, 563, '', 3500, 0, 2, 0, 6, 343.07, -1486.18, 77.23, 0, 0, 1, 212.47, 3000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (113, 65535, 16, 0, 0, 431, '', 3000, 0, 2, 40, 61, 647.4, -620.34, -14.85, 56812, 0, 1, 0.17, 2000, 0, 0, 19420, 0.00, 5.09, 2.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19420, 0.00, -5.00, 2.15, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (114, 65535, 2, 0, 0, 452, 'LSPD-02', 2000, 0, 2, 0, 106, 1334.43, -301.48, -0.46, 0, 0, 1, 59.59, 2000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(115, 326, 0, 0, 0, 596, 'LSPD-03', 2000, 0, 2, 0, 1, 1587.31, -1710.93, 5.63, 0, 0, 0, 359.1, 2000, 0, 0, 19420, 0.00, 2.19, -0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19420, 0.00, -1.60, 0.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(116, 327, 0, 0, 0, 596, 'LSPD-05', 2000, 0, 2, 0, 1, 1578.64, -1711.4, 5.63, 0, 0, 0, 359.42, 2000, 0, 0, 19420, 0.00, 2.19, -0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19420, 0.00, -1.70, 0.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(117, 328, -1, 0, 0, 560, '', 1000, 0, 2, 3, 3, -620.07, 410.42, 1345.68, 383765465, 1, 0, 178.36, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(118, 329, -1, 0, 0, 560, '', 1000, 0, 2, 3, 3, -629.84, 410.57, 1345.68, 383765465, 1, 0, 180.11, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(119, 330, 0, 0, 0, 596, 'LSPD-08', 2000, 0, 2, 0, 1, 1566.06, -1711.31, 5.63, 0, 0, 0, 0.1, 2000, 0, 0, 19420, 0.00, 2.19, -0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19420, 0.00, -1.70, 0.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(120, 331, -1, 0, 0, 595, '', 1000, 0, 2, 57, 86, 1017.33, -125.75, 0.1, 0, 0, 0, 266.95, 0, 0, 0, 65535, 0.00, 0.00, 0.68, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+(115, 325, 0, 0, 0, 596, 'LSPD-03', 2000, 0, 2, 0, 1, 1587.31, -1710.93, 5.63, 0, 0, 0, 359.1, 2000, 0, 0, 19420, 0.00, 2.19, -0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19420, 0.00, -1.60, 0.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(116, 326, 0, 0, 0, 596, 'LSPD-05', 2000, 0, 2, 0, 1, 1578.64, -1711.4, 5.63, 0, 0, 0, 359.42, 2000, 0, 0, 19420, 0.00, 2.19, -0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19420, 0.00, -1.70, 0.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(117, 327, -1, 0, 0, 560, '', 1000, 0, 2, 3, 3, -620.07, 410.42, 1345.68, 383765465, 1, 0, 178.36, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(118, 328, -1, 0, 0, 560, '', 1000, 0, 2, 3, 3, -629.84, 410.57, 1345.68, 383765465, 1, 0, 180.11, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(119, 329, 0, 0, 0, 596, 'LSPD-08', 2000, 0, 2, 0, 1, 1566.06, -1711.31, 5.63, 0, 0, 0, 0.1, 2000, 0, 0, 19420, 0.00, 2.19, -0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19420, 0.00, -1.70, 0.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(120, 330, -1, 0, 0, 595, '', 1000, 0, 2, 57, 86, 1017.33, -125.75, 0.1, 0, 0, 0, 266.95, 0, 0, 0, 65535, 0.00, 0.00, 0.68, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 INSERT INTO `groupvehs` (`id`, `SpawnedID`, `gID`, `gDivID`, `rID`, `vModel`, `vPlate`, `vMaxHealth`, `vType`, `vLoadMax`, `vCol1`, `vCol2`, `vX`, `vY`, `vZ`, `vVW`, `vInt`, `vDisabled`, `vRotZ`, `vUpkeep`, `vFuel`, `vSiren`, `vAttachedObjectModel1`, `vObjectX1`, `vObjectY1`, `vObjectZ1`, `vObjectRX1`, `vObjectRY1`, `vObjectRZ1`, `vObjectText1`, `vObjectMatSize1`, `vObjectFont1`, `vObjectSize1`, `vObjectColor1`, `vObjectBGColor1`, `vAttachedObjectModel2`, `vObjectX2`, `vObjectY2`, `vObjectZ2`, `vObjectRX2`, `vObjectRY2`, `vObjectRZ2`, `vObjectText2`, `vObjectMatSize2`, `vObjectFont2`, `vObjectSize2`, `vObjectColor2`, `vObjectBGColor2`, `vAttachedObjectModel3`, `vObjectX3`, `vObjectY3`, `vObjectZ3`, `vObjectRX3`, `vObjectRY3`, `vObjectRZ3`, `vObjectText3`, `vObjectMatSize3`, `vObjectFont3`, `vObjectSize3`, `vObjectColor3`, `vObjectBGColor3`, `vAttachedObjectModel4`, `vObjectX4`, `vObjectY4`, `vObjectZ4`, `vObjectRX4`, `vObjectRY4`, `vObjectRZ4`, `vObjectText4`, `vObjectMatSize4`, `vObjectFont4`, `vObjectSize4`, `vObjectColor4`, `vObjectBGColor4`, `vMod0`, `vMod1`, `vMod2`, `vMod3`, `vMod4`, `vMod5`, `vMod6`, `vMod7`, `vMod8`, `vMod9`, `vMod10`, `vMod11`, `vMod12`, `vMod13`, `vMod14`) VALUES
-(121, 332, 9, 0, 0, 490, '', 3500, 0, 2, 3, 2, 1743.75, 2070.37, 10.93, 0, 0, 0, 237.74, 0, 0, 0, 19420, 0.00, 0.68, 1.09, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 1892, 0.00, 0.00, 0.00, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(122, 333, 0, 0, 0, 596, 'LSPD-09', 2000, 0, 2, 0, 1, 1562.43, -1711.31, 5.63, 0, 0, 0, 0.62, 2000, 0, 0, 19420, 0.00, 2.19, -0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19420, 0.00, -1.70, 0.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(123, 334, -1, 0, 0, 580, '', 1000, 0, 2, 1, 1, -2513.87, -32.36, 25.37, 0, 0, 0, 1.25, 0, 0, 0, 65535, 0.00, 0.00, 0.68, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.50, 0.80, 0.00, 90.00, 90.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(124, 335, 0, 0, 0, 599, 'HCMD-01', 1000, 0, 2, 0, 1, 1545.91, -1672.06, 6.07, 0, 0, 0, 90.23, 0, 0, 0, 65535, 0.00, 2.19, -0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, -1.70, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(121, 331, 9, 0, 0, 490, '', 3500, 0, 2, 3, 2, 1743.75, 2070.37, 10.93, 0, 0, 0, 237.74, 0, 0, 0, 19420, 0.00, 0.68, 1.09, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 1892, 0.00, 0.00, 0.00, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(122, 332, 0, 0, 0, 596, 'LSPD-09', 2000, 0, 2, 0, 1, 1562.43, -1711.31, 5.63, 0, 0, 0, 0.62, 2000, 0, 0, 19420, 0.00, 2.19, -0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19420, 0.00, -1.70, 0.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(123, 333, -1, 0, 0, 580, '', 1000, 0, 2, 1, 1, -2513.87, -32.36, 25.37, 0, 0, 0, 1.25, 0, 0, 0, 65535, 0.00, 0.00, 0.68, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.50, 0.80, 0.00, 90.00, 90.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(124, 334, 0, 0, 0, 599, 'HCMD-01', 1000, 0, 2, 0, 1, 1545.91, -1672.06, 6.07, 0, 0, 0, 90.23, 0, 0, 0, 65535, 0.00, 2.19, -0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, -1.70, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (125, 65535, 2, 0, 0, 430, '', 2500, 0, 2, 0, 106, -1476.93, 699.65, -0.17, 0, 0, 1, 0.62, 3000, 0, 0, 19300, -0.87, 3.20, 1.25, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19300, 0.87, 3.20, 1.25, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (126, 65535, 16, 0, 0, 599, '', 2000, 0, 2, 40, 61, 611.96, -579.07, -4.28, 56812, 0, 1, 359.32, 2000, 0, 0, 65535, 0.00, 0.00, 0.68, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(127, 336, -1, 0, 0, 472, '', 1000, 0, 2, 57, 86, 1003.52, -124.48, 0, 0, 0, 0, 265.76, 0, 0, 0, 65535, 0.00, 3.20, 1.25, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(128, 337, 10, 0, 0, 490, 'LSPD-11', 3500, 0, 2, 3, 2, -2455.81, 2225.37, 4.96, 0, 0, 0, 359.29, 0, 0, 0, 65535, 0.00, 2.19, -0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, -1.70, 0.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(129, 338, 0, 0, 0, 596, 'LSPD-07', 2000, 0, 2, 0, 1, 1570.43, -1711.38, 5.63, 0, 0, 0, 359.51, 2000, 0, 0, 19420, 0.00, 2.19, -0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19420, 0.00, -1.70, 0.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(130, 339, 9, 0, 0, 407, '', 4000, 0, 2, 2, 3, 1757.06, 2076.87, 11.05, 0, 0, 0, 180.11, 0, 0, 0, 19420, 0.00, 3.20, 1.25, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(131, 340, 0, 0, 0, 596, 'LSPD-01', 2000, 0, 2, 0, 1, 1595.56, -1711.43, 5.53, 0, 0, 0, 359.29, 2000, 0, 0, 19420, 0.00, 2.19, -0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19420, 0.00, -1.75, 0.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(132, 341, 0, 0, 0, 528, 'Hunter-01', 1000, 0, 2, 1, 1, 1538.76, -1644.18, 5.92, 0, 0, 0, 180.36, 0, 0, 0, 65535, 0.50, 0.00, 0.68, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(133, 342, -1, 0, 0, 580, '{000000} SAINTS', 1000, 0, 2, 1, 0, -2518.05, -31.87, 25.37, 0, 0, 0, 358.26, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(134, 343, -1, 0, 0, 433, '', 5000, 1, 6, 0, 0, -2001.93, -1593.05, 87.19, 0, 0, 0, 308.64, 0, 0, 0, 1892, -0.50, 1.60, -0.50, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19419, 0.00, -2.25, 0.93, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(127, 335, -1, 0, 0, 472, '', 1000, 0, 2, 57, 86, 1003.52, -124.48, 0, 0, 0, 0, 265.76, 0, 0, 0, 65535, 0.00, 3.20, 1.25, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(128, 336, 10, 0, 0, 490, 'LSPD-11', 3500, 0, 2, 3, 2, -2455.81, 2225.37, 4.96, 0, 0, 0, 359.29, 0, 0, 0, 65535, 0.00, 2.19, -0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, -1.70, 0.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(129, 337, 0, 0, 0, 596, 'LSPD-07', 2000, 0, 2, 0, 1, 1570.43, -1711.38, 5.63, 0, 0, 0, 359.51, 2000, 0, 0, 19420, 0.00, 2.19, -0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19420, 0.00, -1.70, 0.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(130, 338, 9, 0, 0, 407, '', 4000, 0, 2, 2, 3, 1757.06, 2076.87, 11.05, 0, 0, 0, 180.11, 0, 0, 0, 19420, 0.00, 3.20, 1.25, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(131, 339, 0, 0, 0, 596, 'LSPD-01', 2000, 0, 2, 0, 1, 1595.56, -1711.43, 5.53, 0, 0, 0, 359.29, 2000, 0, 0, 19420, 0.00, 2.19, -0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19420, 0.00, -1.75, 0.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(132, 340, 0, 0, 0, 528, 'Hunter-01', 1000, 0, 2, 1, 1, 1538.76, -1644.18, 5.92, 0, 0, 0, 180.36, 0, 0, 0, 65535, 0.50, 0.00, 0.68, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(133, 341, -1, 0, 0, 580, '{000000} SAINTS', 1000, 0, 2, 1, 0, -2518.05, -31.87, 25.37, 0, 0, 0, 358.26, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(134, 342, -1, 0, 0, 433, '', 5000, 1, 6, 0, 0, -2001.93, -1593.05, 87.19, 0, 0, 0, 308.64, 0, 0, 0, 1892, -0.50, 1.60, -0.50, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19419, 0.00, -2.25, 0.93, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (135, 65535, 3, 0, 0, 490, '{000000} SRU', 3500, 0, 2, 0, 0, -1640.15, 674.09, -5.11, 0, 0, 1, 269.82, 3000, 0, 0, 65535, -0.50, 2.00, -0.30, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19420, 0.00, 1.37, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(136, 344, 0, 0, 0, 596, 'SWAT-01', 2000, 0, 2, 0, 0, -616.09, 425.82, 1345.75, 100, 1, 0, 88.26, 2000, 0, 0, 65535, 0.00, 0.00, 110.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, -0.50, 1.20, -0.15, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(136, 343, 0, 0, 0, 596, 'SWAT-01', 2000, 0, 2, 0, 0, -616.09, 425.82, 1345.75, 100, 1, 0, 88.26, 2000, 0, 0, 65535, 0.00, 0.00, 110.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, -0.50, 1.20, -0.15, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (137, 65535, 2, 0, 0, 430, '', 2500, 0, 2, 0, 106, 1347.77, -304.98, 0.05, 0, 0, 1, 109.5, 3000, 0, 0, 19300, 0.87, 3.20, 1.25, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19300, -0.87, 3.20, 1.25, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(138, 0, 6, 0, 0, 525, '{5C4033}FCTS-L002', 2000, 0, 2, 61, 40, 1871.64, -1866.15, 13.43, 0, 0, 1, 269.35, 2000, 0, 0, 19420, 0.00, -1.87, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(139, 345, 0, 0, 0, 596, 'LSPD-06', 2000, 0, 2, 0, 1, 1574.13, -1711.18, 5.63, 0, 0, 0, 358.51, 2000, 0, 0, 19420, 0.00, 2.20, -0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19420, 0.00, -1.70, 0.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(140, 346, 0, 0, 0, 528, '', 1000, 0, 2, 1, 1, 1534.68, -1644.18, 5.92, 0, 0, 0, 180.83, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(141, 347, 0, 0, 0, 426, 'LSPD', 1000, 0, 2, 0, 0, 1602.06, -1683.81, 5.55, 0, 0, 0, 87.83, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(142, 348, -1, 0, 0, 426, '{000000} SAINTS', 1000, 0, 2, 1, 0, -2518.12, -3.88, 25.36, 0, 0, 0, 176.19, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(143, 349, -1, 0, 0, 482, '{000000} SAINTS', 1000, 0, 2, 1, 1, -2525.37, -14.6, 25.7, 0, 0, 0, 273.32, 0, 0, 0, 19036, 0.30, 2.50, -0.43, 0.00, 0.00, 90.00, '', 0, '', 0, 0, 0, 19036, -0.30, 2.50, -0.43, 0.00, 0.00, 90.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(138, 65535, 6, 0, 0, 525, '{5C4033}FCTS-L002', 2000, 0, 2, 61, 40, 1871.64, -1866.15, 13.43, 0, 0, 1, 269.35, 2000, 0, 0, 19420, 0.00, -1.87, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(139, 344, 0, 0, 0, 596, 'LSPD-06', 2000, 0, 2, 0, 1, 1574.13, -1711.18, 5.63, 0, 0, 0, 358.51, 2000, 0, 0, 19420, 0.00, 2.20, -0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19420, 0.00, -1.70, 0.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(140, 345, 0, 0, 0, 528, '', 1000, 0, 2, 1, 1, 1534.68, -1644.18, 5.92, 0, 0, 0, 180.83, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(141, 346, 0, 0, 0, 426, 'LSPD', 1000, 0, 2, 0, 0, 1602.06, -1683.81, 5.55, 0, 0, 0, 87.83, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(142, 347, -1, 0, 0, 426, '{000000} SAINTS', 1000, 0, 2, 1, 0, -2518.12, -3.88, 25.36, 0, 0, 0, 176.19, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(143, 348, -1, 0, 0, 482, '{000000} SAINTS', 1000, 0, 2, 1, 1, -2525.37, -14.6, 25.7, 0, 0, 0, 273.32, 0, 0, 0, 19036, 0.30, 2.50, -0.43, 0.00, 0.00, 90.00, '', 0, '', 0, 0, 0, 19036, -0.30, 2.50, -0.43, 0.00, 0.00, 90.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (144, 65535, 16, 0, 0, 598, '', 2000, 0, 2, 40, 61, 594.71, -623.57, -4.42, 56812, 0, 1, 1.12, 2000, 0, 0, 65535, 0.00, -1.45, 0.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(145, 350, -1, 0, 0, 482, '{000000} SAINTS', 1000, 0, 2, 1, 0, -2524.37, -26.01, 25.79, 0, 0, 0, 272.7, 0, 0, 0, 19036, -0.34, 2.50, -0.43, 0.00, 0.00, 90.00, '', 0, '', 0, 0, 0, 19036, 0.34, 2.50, -0.43, 0.00, 0.00, 90.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(146, 351, 5, 0, 0, 426, '', 2000, 0, 2, 0, 0, 1245.68, -2021.25, 59.63, 0, 0, 0, 268.79, 0, 0, 0, 65535, 0.00, 0.00, 0.62, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(145, 349, -1, 0, 0, 482, '{000000} SAINTS', 1000, 0, 2, 1, 0, -2524.37, -26.01, 25.79, 0, 0, 0, 272.7, 0, 0, 0, 19036, -0.34, 2.50, -0.43, 0.00, 0.00, 90.00, '', 0, '', 0, 0, 0, 19036, 0.34, 2.50, -0.43, 0.00, 0.00, 90.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(146, 350, 5, 0, 0, 426, '', 2000, 0, 2, 0, 0, 1245.68, -2021.25, 59.63, 0, 0, 0, 268.79, 0, 0, 0, 65535, 0.00, 0.00, 0.62, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (147, 65535, 16, 0, 0, 598, '', 2000, 0, 2, 40, 61, 570.34, -611.09, -4.42, 56812, 0, 1, 270.76, 2000, 0, 0, 65535, 0.00, -2.25, 0.00, 180.00, 90.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (148, 65535, 2, 0, 0, 430, '', 2500, 0, 2, 0, 106, 732.9, -1495.31, -0.15, 0, 0, 1, 177.32, 3000, 0, 0, 18646, 0.00, 8.18, 0.85, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(149, 352, -1, 0, 0, 579, '', 1000, 0, 2, 3, 3, -633.4, 444.14, 1345.88, 383765465, 1, 0, 90.62, 0, 0, 0, 65535, 0.00, 2.00, 0.50, 20.00, 90.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(150, 353, 9, 0, 0, 583, '', 2000, 1, 5, 1, 1, 1315.89, 1278.81, 10.35, 0, 0, 0, 0.36, 0, 0, 0, 18646, 0.40, -0.36, 1.60, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(151, 354, -1, 0, 0, 579, '', 1000, 0, 0, 3, 3, -632.65, 439.38, 1345.91, 383765465, 1, 0, 89.25, 0, 0, 0, 65535, 0.00, 2.00, 0.43, 20.00, 90.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(152, 355, -1, 0, 0, 560, '', 1000, 0, 2, 3, 0, -615.88, 410.29, 1345.68, 383765465, 1, 0, 181.96, 0, 0, 0, 65535, 0.00, 2.00, 0.43, 20.00, 90.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(149, 351, -1, 0, 0, 579, '', 1000, 0, 2, 3, 3, -633.4, 444.14, 1345.88, 383765465, 1, 0, 90.62, 0, 0, 0, 65535, 0.00, 2.00, 0.50, 20.00, 90.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(150, 352, 9, 0, 0, 583, '', 2000, 1, 5, 1, 1, 1315.89, 1278.81, 10.35, 0, 0, 0, 0.36, 0, 0, 0, 18646, 0.40, -0.36, 1.60, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(151, 353, -1, 0, 0, 579, '', 1000, 0, 0, 3, 3, -632.65, 439.38, 1345.91, 383765465, 1, 0, 89.25, 0, 0, 0, 65535, 0.00, 2.00, 0.43, 20.00, 90.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(152, 354, -1, 0, 0, 560, '', 1000, 0, 2, 3, 0, -615.88, 410.29, 1345.68, 383765465, 1, 0, 181.96, 0, 0, 0, 65535, 0.00, 2.00, 0.43, 20.00, 90.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (153, 65535, 13, 0, 0, 490, 'JUDICIAL', 4000, 0, 0, 0, 0, 1408.31, -1605.81, 1086.8, 0, 0, 1, 89.51, 3000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (154, 65535, 13, 0, 0, 490, 'JUDICIAL', 4000, 0, 0, 0, 0, 1407.55, -1609.65, 1086.8, 0, 0, 1, 88.75, 3000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(155, 356, -1, 0, 0, 566, '', 1000, 0, 2, 3, 3, -632.15, 430.17, 1345.76, 383765465, 1, 0, 88.3, 0, 0, 0, 65535, 0.00, 2.00, 0.50, 20.00, 90.00, 3.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(156, 357, -1, 0, 0, 566, '', 1000, 0, 2, 3, 3, -631.71, 425.51, 1345.76, 383765465, 1, 0, 88.47, 0, 0, 0, 65535, 0.00, 0.00, 0.80, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(157, 358, -1, 1, 0, 530, '', 1000, 1, 0, 0, 0, -631.82, 434.73, 1345.75, 383765465, 1, 0, 89.26, 0, 0, 0, 65535, 0.00, 90.00, 0.50, 20.00, 90.00, 0.00, '', 0, '', 0, 0, 0, 65535, 30.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(158, 359, 0, 0, 0, 598, '', 1000, 0, 2, 1, 0, 1546.17, -1684.55, 5.63, 0, 0, 0, 89.58, 0, 0, 0, 65535, 0.00, 0.00, 0.81, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(155, 355, -1, 0, 0, 566, '', 1000, 0, 2, 3, 3, -632.15, 430.17, 1345.76, 383765465, 1, 0, 88.3, 0, 0, 0, 65535, 0.00, 2.00, 0.50, 20.00, 90.00, 3.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(156, 356, -1, 0, 0, 566, '', 1000, 0, 2, 3, 3, -631.71, 425.51, 1345.76, 383765465, 1, 0, 88.47, 0, 0, 0, 65535, 0.00, 0.00, 0.80, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(157, 357, -1, 1, 0, 530, '', 1000, 1, 0, 0, 0, -631.82, 434.73, 1345.75, 383765465, 1, 0, 89.26, 0, 0, 0, 65535, 0.00, 90.00, 0.50, 20.00, 90.00, 0.00, '', 0, '', 0, 0, 0, 65535, 30.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(158, 358, 0, 0, 0, 598, '', 1000, 0, 2, 1, 0, 1546.17, -1684.55, 5.63, 0, 0, 0, 89.58, 0, 0, 0, 65535, 0.00, 0.00, 0.81, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (159, 65535, 3, 0, 0, 490, '{000000}DET', 3500, 0, 2, 36, 36, -1624.68, 693.65, -5.28, 0, 0, 1, 180.16, 3000, 0, 0, 65535, 0.50, 2.00, -0.40, 90.00, 0.00, 180.00, '', 0, '', 0, 0, 0, 19420, 0.00, 1.37, 0.30, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (160, 65535, 13, 0, 0, 426, 'JUDICIAL', 2000, 0, 2, 0, 0, 1405.68, -1614.13, 1086.42, 0, 0, 1, 89.93, 2000, 0, 0, 65535, 0.00, 0.00, 1.00, 0.00, -40.00, 90.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 2.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(161, 360, 10, 0, 0, 409, '', 2000, 0, 2, 3, 2, -2470.62, 2224.87, 4.63, 0, 0, 0, 359.17, 0, 0, 0, 19420, 0.00, 3.45, -0.15, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19420, 0.00, -3.70, -0.15, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(162, 361, -1, 0, 0, 445, 'Hunter-03', 1000, 0, 2, 34, 34, 1628.81, -1341.28, 17.29, 0, 0, 0, 270.91, 0, 0, 0, 65535, 0.40, 0.00, 0.60, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 1.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(163, 362, -1, 0, 0, 530, '', 1000, 1, 2, 0, 0, -2005.43, -1583.04, 86.16, 0, 0, 0, 266.63, 0, 0, 0, 65535, 0.00, 2.25, 0.43, 20.00, 90.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(164, 363, -1, 0, 0, 487, '', 1000, 0, 2, 205, 205, 1082.29, -1319.81, 22.69, 0, 0, 0, 303.25, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(165, 364, -1, 0, 0, 534, '', 1000, 0, 2, 6, 6, 1809.03, -2036.28, 13.26, 0, 0, 0, 89.48, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(166, 365, -1, 0, 0, 487, '', 1000, 0, 2, 1, 1, -2481.12, -5.88, 33.81, 0, 0, 0, 90.87, 0, 0, 0, 65535, 0.00, -1.50, 2.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 1.50, 2.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(167, 366, -1, 0, 0, 579, 'Grove St.', 1000, 0, 2, 234, 234, 2444.81, -1674.93, 13.43, 0, 0, 0, 0.56, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(168, 367, -1, 0, 0, 482, '', 1000, 0, 2, 1, 0, -2548.06, -13.8, 16.53, 0, 0, 0, 268.82, 0, 0, 0, 19036, 0.30, 2.50, -0.43, 0.00, 0.00, 90.00, '', 0, '', 0, 0, 0, 19036, -0.30, 2.50, -0.43, 0.00, 0.00, 90.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(169, 368, 8, 0, 0, 598, '', 2000, 0, 2, 3, 1, -1400.56, 2637.51, 55.45, 0, 0, 0, 88.58, 0, 0, 0, 1892, -0.50, 1.20, 0.00, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(161, 359, 10, 0, 0, 409, '', 2000, 0, 2, 3, 2, -2470.62, 2224.87, 4.63, 0, 0, 0, 359.17, 0, 0, 0, 19420, 0.00, 3.45, -0.15, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19420, 0.00, -3.70, -0.15, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(162, 360, -1, 0, 0, 445, 'Hunter-03', 1000, 0, 2, 34, 34, 1628.81, -1341.28, 17.29, 0, 0, 0, 270.91, 0, 0, 0, 65535, 0.40, 0.00, 0.60, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 1.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(163, 361, -1, 0, 0, 530, '', 1000, 1, 2, 0, 0, -2005.43, -1583.04, 86.16, 0, 0, 0, 266.63, 0, 0, 0, 65535, 0.00, 2.25, 0.43, 20.00, 90.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(164, 362, -1, 0, 0, 487, '', 1000, 0, 2, 205, 205, 1082.29, -1319.81, 22.69, 0, 0, 0, 303.25, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(165, 363, -1, 0, 0, 534, '', 1000, 0, 2, 6, 6, 1809.03, -2036.28, 13.26, 0, 0, 0, 89.48, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(166, 364, -1, 0, 0, 487, '', 1000, 0, 2, 1, 1, -2481.12, -5.88, 33.81, 0, 0, 0, 90.87, 0, 0, 0, 65535, 0.00, -1.50, 2.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 1.50, 2.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(167, 365, -1, 0, 0, 579, 'Grove St.', 1000, 0, 2, 234, 234, 2444.81, -1674.93, 13.43, 0, 0, 0, 0.56, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(168, 366, -1, 0, 0, 482, '', 1000, 0, 2, 1, 0, -2548.06, -13.8, 16.53, 0, 0, 0, 268.82, 0, 0, 0, 19036, 0.30, 2.50, -0.43, 0.00, 0.00, 90.00, '', 0, '', 0, 0, 0, 19036, -0.30, 2.50, -0.43, 0.00, 0.00, 90.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(169, 367, 8, 0, 0, 598, '', 2000, 0, 2, 3, 1, -1400.56, 2637.51, 55.45, 0, 0, 0, 88.58, 0, 0, 0, 1892, -0.50, 1.20, 0.00, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (170, 65535, 3, 0, 0, 490, '{000000} DOC-03', 3500, 0, 2, 79, 36, -2020.29, -143.8, 15.18, 0, 0, 1, 89.55, 3000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (171, 65535, 3, 0, 0, 525, '{000000} DOC-04', 2000, 0, 2, 79, 36, -2020.65, -148.72, 14.93, 0, 0, 1, 90.41, 2000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(172, 369, 8, 0, 0, 598, '', 2000, 0, 2, 3, 1, -1400.43, 2640.87, 55.4, 0, 0, 0, 87.94, 0, 0, 0, 1892, -0.50, 1.20, 0.00, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(173, 370, 8, 0, 0, 598, '', 2000, 0, 2, 3, 1, -1400.52, 2634.62, 55.45, 0, 0, 0, 89.37, 0, 0, 0, 1892, -0.50, 1.20, 0.00, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(174, 371, -1, 0, 0, 560, '', 1000, 0, 2, 75, 75, 2521.37, -1946.06, 13.27, 0, 0, 0, 1.2, 0, 0, 0, 65535, -0.50, 2.00, 0.00, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(172, 368, 8, 0, 0, 598, '', 2000, 0, 2, 3, 1, -1400.43, 2640.87, 55.4, 0, 0, 0, 87.94, 0, 0, 0, 1892, -0.50, 1.20, 0.00, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(173, 369, 8, 0, 0, 598, '', 2000, 0, 2, 3, 1, -1400.52, 2634.62, 55.45, 0, 0, 0, 89.37, 0, 0, 0, 1892, -0.50, 1.20, 0.00, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(174, 370, -1, 0, 0, 560, '', 1000, 0, 2, 75, 75, 2521.37, -1946.06, 13.27, 0, 0, 0, 1.2, 0, 0, 0, 65535, -0.50, 2.00, 0.00, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (175, 65535, 11, 0, 0, 563, '', 3000, 0, 2, 99, 99, -1636.78, 286.67, 7.51, 0, 0, 1, 358.95, 3000, 0, 0, 65535, -0.50, 2.00, 0.00, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(176, 372, -1, 0, 0, 609, '', 1000, 0, 0, 252, 252, 1252.56, 245.72, 19.62, 0, 0, 0, 155.08, 0, 0, 0, 65535, 0.00, 0.00, 0.62, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(177, 373, -1, 0, 0, 578, '', 10000000, 1, 6, 0, 0, 1600.18, 1157.68, 11.43, 0, 0, 0, 89.98, 0, 0, 0, 18749, -0.85, 4.50, -0.43, 0.00, 0.00, 180.00, '', 0, '', 0, 0, 0, 18749, 0.85, 4.50, -0.43, 0.00, 0.00, 180.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(178, 374, -1, 0, 0, 482, '', 1000, 0, 2, 75, 75, 2524.12, -1978.43, 13.67, 0, 0, 0, 180.3, 0, 0, 0, 65535, -0.50, 2.00, 0.00, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(179, 375, 9, 0, 0, 430, '', 2500, 0, 2, 0, 0, -427.01, 1160.51, -0.31, 0, 0, 0, 1.22, 0, 0, 0, 65535, -0.50, 2.00, 0.00, -90.00, 90.00, 90.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(176, 371, -1, 0, 0, 609, '', 1000, 0, 0, 252, 252, 1252.56, 245.72, 19.62, 0, 0, 0, 155.08, 0, 0, 0, 65535, 0.00, 0.00, 0.62, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(177, 372, -1, 0, 0, 578, '', 10000000, 1, 6, 0, 0, 1600.18, 1157.68, 11.43, 0, 0, 0, 89.98, 0, 0, 0, 18749, -0.85, 4.50, -0.43, 0.00, 0.00, 180.00, '', 0, '', 0, 0, 0, 18749, 0.85, 4.50, -0.43, 0.00, 0.00, 180.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(178, 373, -1, 0, 0, 482, '', 1000, 0, 2, 75, 75, 2524.12, -1978.43, 13.67, 0, 0, 0, 180.3, 0, 0, 0, 65535, -0.50, 2.00, 0.00, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(179, 374, 9, 0, 0, 430, '', 2500, 0, 2, 0, 0, -427.01, 1160.51, -0.31, 0, 0, 0, 1.22, 0, 0, 0, 65535, -0.50, 2.00, 0.00, -90.00, 90.00, 90.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (180, 65535, 11, 0, 0, 470, '', 3500, 0, 2, 0, 0, -1530.93, 443.01, 7.15, 0, 0, 1, 90.94, 3000, 0, 0, 65535, -0.50, 1.10, 0.10, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.50, 1.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (181, 65535, 11, 0, 0, 470, '', 3500, 0, 0, 0, 0, -1530.31, 438.1, 7.15, 0, 0, 1, 90.66, 3000, 0, 0, 65535, 0.00, 3.75, 0.36, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 4.19, 0.00, -30.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (182, 65535, 3, 0, 0, 579, 'H-R', 2000, 0, 2, 79, 79, -1608.31, 693.9, -5.3, 0, 0, 1, 179.21, 2000, 0, 0, 19419, 0.00, 0.00, 1.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(183, 0, 6, 0, 0, 525, '{8B0000}DONAHUE', 2000, 0, 2, 61, 40, -27.7, -1125.43, 0.93, 0, 0, 1, 69.43, 2000, 0, 0, 19420, 0.00, -0.46, 1.37, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19314, 0.00, 3.00, 0.68, 90.00, 90.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(183, 65535, 6, 0, 0, 525, '{8B0000}DONAHUE', 2000, 0, 2, 61, 40, -27.7, -1125.43, 0.93, 0, 0, 1, 69.43, 2000, 0, 0, 19420, 0.00, -0.46, 1.37, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19314, 0.00, 3.00, 0.68, 90.00, 90.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (184, 65535, 11, 0, 0, 470, 'XYZSR998', 3500, 0, 2, 0, 0, -1531.18, 453.7, 7.13, 0, 0, 1, 88.44, 3000, 0, 0, 65535, -0.50, 1.00, 0.00, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, -0.50, 1.00, 0.00, 270.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (185, 65535, 16, 0, 0, 525, '', 2000, 0, 2, 40, 61, 645.84, -578.25, -4.36, 56812, 0, 1, 89.66, 2000, 0, 0, 65535, 0.00, 0.50, 1.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (186, 65535, 11, 0, 0, 470, '', 3500, 0, 2, 0, 0, -1532.06, 423.16, 7.15, 0, 0, 1, 85.98, 3000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(187, 376, 9, 0, 0, 485, '', 2000, 0, 2, 1, 1, 1319.26, 1278.43, 10.47, 0, 0, 0, 0.28, 0, 0, 0, 18646, 0.50, -1.11, 1.19, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(187, 375, 9, 0, 0, 485, '', 2000, 0, 2, 1, 1, 1319.26, 1278.43, 10.47, 0, 0, 0, 0.28, 0, 0, 0, 18646, 0.50, -1.11, 1.19, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (188, 65535, 16, 0, 0, 598, '', 2000, 0, 2, 40, 61, 569.65, -615.84, -4.59, 56812, 0, 1, 273.48, 2000, 0, 0, 19420, 0.00, -1.25, 0.40, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (189, 65535, 16, 0, 0, 598, '', 2000, 0, 2, 40, 61, 2208.35, 53.93, 27.03, 0, 0, 1, 89.55, 2000, 0, 0, 19420, 0.00, -2.40, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19420, 0.00, 2.20, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(190, 377, 1, 0, 0, 560, '{000000}Bureau', 2000, 0, 2, 0, 0, 625.09, -621.71, -4.53, 2653, 0, 0, 0.27, 2000, 0, 0, 19420, 0.00, -1.25, 0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.85, 0.28, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(191, 378, -1, 0, 0, 522, '{FF0000} R--H--F', 1000, 0, 2, 75, 75, 2517.12, -1956.52, 16.34, 0, 0, 0, 47.95, 0, 0, 0, 65535, 0.00, -2.40, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 2.20, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(190, 65535, 1, 0, 0, 560, '{000000}Bureau', 2000, 0, 2, 0, 0, 625.09, -621.71, -4.53, 2653, 0, 1, 0.27, 2000, 0, 0, 19420, 0.00, -1.25, 0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.85, 0.28, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(191, 376, -1, 0, 0, 522, '{FF0000} R--H--F', 1000, 0, 2, 75, 75, 2517.12, -1956.52, 16.34, 0, 0, 0, 47.95, 0, 0, 0, 65535, 0.00, -2.40, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 2.20, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (192, 65535, 16, 0, 0, 598, 'SD-P10', 2000, 0, 2, 40, 61, 603.26, -623.77, -4.57, 56812, 0, 1, 0.09, 2000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(193, 379, -1, 0, 0, 426, '{FF0000}Engineer 2', 1000, 0, 2, 1, 0, -2513.54, -2.9, 25.36, 0, 0, 0, 180.58, 0, 0, 0, 65535, 0.00, 0.80, 1.25, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 1.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(193, 377, -1, 0, 0, 426, '{FF0000}Engineer 2', 1000, 0, 2, 1, 0, -2513.54, -2.9, 25.36, 0, 0, 0, 180.58, 0, 0, 0, 65535, 0.00, 0.80, 1.25, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 1.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (194, 65535, 16, 0, 0, 598, 'SD-P09', 2000, 0, 2, 40, 61, 607.59, -623.78, -4.55, 56812, 0, 1, 357.17, 2000, 0, 0, 65535, 0.00, 0.15, 1.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(195, 380, -1, 0, 0, 522, '{FF0000} R--H--F', 1000, 0, 2, 75, 75, 2513.04, -1956.17, 16.37, 0, 0, 0, 315.44, 0, 0, 0, 65535, 0.00, 2.20, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, -2.25, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(195, 378, -1, 0, 0, 522, '{FF0000} R--H--F', 1000, 0, 2, 75, 75, 2513.04, -1956.17, 16.37, 0, 0, 0, 315.44, 0, 0, 0, 65535, 0.00, 2.20, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, -2.25, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (196, 65535, 13, 0, 0, 426, 'JUDICIAL', 2000, 0, 2, 0, 0, 1405.93, -1617.81, 1086.42, 0, 0, 1, 90.87, 2000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(197, 381, -1, 0, 0, 487, 'SD-P14', 4000, 0, 2, 75, 75, 2485.62, -1963.25, 21.77, 0, 0, 0, 186.55, 0, 0, 0, 65535, 0.00, 0.15, 1.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(197, 379, -1, 0, 0, 487, 'SD-P14', 4000, 0, 2, 75, 75, 2485.62, -1963.25, 21.77, 0, 0, 0, 186.55, 0, 0, 0, 65535, 0.00, 0.15, 1.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (198, 65535, 11, 0, 0, 595, '', 2500, 0, 2, 99, 99, -1445.93, 491.95, 0, 0, 0, 1, 88.73, 3000, 0, 0, 65535, 0.00, 2.25, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, -1.50, 0.40, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(199, 382, -1, 0, 0, 579, '', 1000, 0, 2, 0, 0, 1605.68, -1831.68, 13.42, 0, 0, 0, 267.26, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(200, 383, -1, 0, 0, 579, '{FF0000}Cuban', 1000, 0, 2, 86, 86, 2479.65, -1653.38, 13.31, 0, 0, 0, 264.64, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(201, 384, -1, 0, 0, 579, 'SWAT-04', 1000, 0, 2, 86, 86, 2498.85, -1654.31, 13.35, 0, 0, 0, 254.35, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(202, 385, -1, 0, 6, 566, '', 1000, 0, 2, 86, 86, 2505.76, -1694.66, 13.31, 0, 0, 0, 1.35, 0, 0, 0, 65535, 50.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(199, 380, -1, 0, 0, 579, '', 1000, 0, 2, 0, 0, 1605.68, -1831.68, 13.42, 0, 0, 0, 267.26, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(200, 381, -1, 0, 0, 579, '{FF0000}Cuban', 1000, 0, 2, 86, 86, 2479.65, -1653.38, 13.31, 0, 0, 0, 264.64, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(201, 382, -1, 0, 0, 579, 'SWAT-04', 1000, 0, 2, 86, 86, 2498.85, -1654.31, 13.35, 0, 0, 0, 254.35, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(202, 383, -1, 0, 6, 566, '', 1000, 0, 2, 86, 86, 2505.76, -1694.66, 13.31, 0, 0, 0, 1.35, 0, 0, 0, 65535, 50.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (203, 65535, 11, 0, 0, 472, '', 2500, 0, 2, 99, 99, -1444.56, 498.17, 0.05, 0, 0, 1, 85.33, 2000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(204, 386, 0, 0, 0, 525, '{000000}MPS-05', 2000, 0, 2, 1, 0, 1585.68, -1675.81, 5.76, 0, 0, 0, 270.42, 2000, 0, 0, 19420, 0.00, -0.46, 1.37, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(204, 384, 0, 0, 0, 525, '{000000}MPS-05', 2000, 0, 2, 1, 0, 1585.68, -1675.81, 5.76, 0, 0, 0, 270.42, 2000, 0, 0, 19420, 0.00, -0.46, 1.37, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (205, 65535, 3, 0, 0, 579, 'H-R', 2000, 0, 6, 79, 79, -1612.43, 694.03, -5.3, 0, 0, 1, 180.16, 2000, 0, 0, 65535, 0.50, 1.10, -0.30, 90.00, 0.00, 180.00, '', 0, '', 0, 0, 0, 19420, 0.00, 0.00, 1.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(206, 387, -1, 0, 0, 428, '{FF0000} SAINTS', 1000, 0, 6, 1, 0, -2548.33, -29.51, 16.7, 0, 0, 0, 267.57, 0, 0, 0, 65535, 0.00, 2.65, 0.34, 20.00, 90.00, 1.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(207, 388, -1, 0, 0, 493, 'Tow-Ken', 1000, 0, 2, 86, 57, 899.4, -135.27, -0.15, 0, 0, 0, 279.82, 0, 0, 0, 65535, 0.00, 0.00, 0.68, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, -2.90, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(208, 389, -1, 0, 0, 409, '{FF0000} SAINTS', 1000, 0, 2, 1, 0, -2521.62, -4.09, 25.53, 0, 0, 0, 177.27, 0, 0, 0, 65535, 0.00, 2.00, 1.20, 0.00, 90.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(209, 390, -1, 0, 0, 566, '', 1000, 0, 2, 86, 86, 2509.86, -1671.8, 13.18, 0, 0, 0, 169.11, 0, 0, 0, 65535, 0.00, 0.00, 0.80, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(210, 391, 1, 0, 0, 482, '{000000}Bureau', 2000, 0, 2, 0, 0, 300.32, -1532.06, 25.04, 0, 0, 0, 54.15, 2000, 0, 0, 19420, 0.00, 2.25, -0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, -2.00, 0.87, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(206, 385, -1, 0, 0, 428, '{FF0000} SAINTS', 1000, 0, 6, 1, 0, -2548.33, -29.51, 16.7, 0, 0, 0, 267.57, 0, 0, 0, 65535, 0.00, 2.65, 0.34, 20.00, 90.00, 1.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(207, 386, -1, 0, 0, 493, 'Tow-Ken', 1000, 0, 2, 86, 57, 899.4, -135.27, -0.15, 0, 0, 0, 279.82, 0, 0, 0, 65535, 0.00, 0.00, 0.68, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, -2.90, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(208, 387, -1, 0, 0, 409, '{FF0000} SAINTS', 1000, 0, 2, 1, 0, -2521.62, -4.09, 25.53, 0, 0, 0, 177.27, 0, 0, 0, 65535, 0.00, 2.00, 1.20, 0.00, 90.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(209, 388, -1, 0, 0, 566, '', 1000, 0, 2, 86, 86, 2509.86, -1671.8, 13.18, 0, 0, 0, 169.11, 0, 0, 0, 65535, 0.00, 0.00, 0.80, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(210, 65535, 1, 0, 0, 482, '{000000}Bureau', 2000, 0, 2, 0, 0, 300.32, -1532.06, 25.04, 0, 0, 1, 54.15, 2000, 0, 0, 19420, 0.00, 2.25, -0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, -2.00, 0.87, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (211, 65535, 3, 0, 0, 525, 'SF-T03', 2000, 0, 2, 1, 79, -1600.06, 692.15, -5.36, 0, 0, 1, 179.63, 2000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (212, 65535, 11, 0, 0, 593, '', 2000, 0, 6, 99, 99, -1359.43, 342.94, 30.54, 0, 0, 1, 5.76, 2000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (213, 65535, 11, 0, 0, 433, '', 5000, 0, 2, 0, 0, 644.53, -572.89, -3.97, 1107, 0, 1, 88.25, 4000, 0, 0, 1892, -0.50, 3.00, -0.50, -90.00, 0.00, 1.00, '', 0, '', 0, 0, 0, 65535, 0.00, 1.75, 2.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(214, 0, 6, 0, 0, 525, '{FF0000}Mike\'s', 2000, 0, 2, 61, 40, -29.28, -1129.31, 0.93, 0, 0, 1, 66.51, 2000, 0, 0, 19420, 0.00, -0.46, 1.37, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19314, 0.00, 3.19, 0.00, 0.00, -90.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(214, 65535, 6, 0, 0, 525, '{FF0000}Mike\'s', 2000, 0, 2, 61, 40, -29.28, -1129.31, 0.93, 0, 0, 1, 66.51, 2000, 0, 0, 19420, 0.00, -0.46, 1.37, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19314, 0.00, 3.19, 0.00, 0.00, -90.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (215, 65535, 11, 0, 0, 470, '', 3500, 0, 2, 57, 57, -1531.06, 458.67, 7.15, 0, 0, 1, 90.66, 3000, 0, 0, 65535, -0.50, 2.00, 0.00, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(216, 392, -1, 0, 0, 579, '', 1000, 0, 2, 0, 0, 1605.81, -1836.68, 13.43, 0, 0, 0, 269.23, 0, 0, 0, 65535, 0.00, 0.00, 1.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(217, 393, -1, 0, 0, 433, '', 5000, 1, 6, 1, 1, 571.9, -615.96, -3.75, 1107, 0, 0, 268.76, 0, 0, 0, 65535, -0.50, 3.00, -0.50, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19420, 0.00, -4.40, -0.43, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(218, 394, 1, 0, 0, 541, '{000000}Bureau', 2000, 0, 2, 0, 0, 278.16, -1535.68, 24.2, 0, 0, 0, 234.22, 2000, 0, 0, 19420, 0.00, 2.00, -0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, -2.00, -0.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(219, 395, 5, 0, 0, 426, '', 2000, 0, 2, 0, 0, 1246.54, -2028.38, 59.59, 0, 0, 0, 267.95, 0, 0, 0, 65535, 0.00, -3.00, 0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 2.70, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(216, 389, -1, 0, 0, 579, '', 1000, 0, 2, 0, 0, 1605.81, -1836.68, 13.43, 0, 0, 0, 269.23, 0, 0, 0, 65535, 0.00, 0.00, 1.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(217, 390, -1, 0, 0, 433, '', 5000, 1, 6, 1, 1, 571.9, -615.96, -3.75, 1107, 0, 0, 268.76, 0, 0, 0, 65535, -0.50, 3.00, -0.50, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19420, 0.00, -4.40, -0.43, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(218, 65535, 1, 0, 0, 541, '{000000}Bureau', 2000, 0, 2, 0, 0, 278.16, -1535.68, 24.2, 0, 0, 1, 234.22, 2000, 0, 0, 19420, 0.00, 2.00, -0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, -2.00, -0.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(219, 391, 5, 0, 0, 426, '', 2000, 0, 2, 0, 0, 1246.54, -2028.38, 59.59, 0, 0, 0, 267.95, 0, 0, 0, 65535, 0.00, -3.00, 0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 2.70, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (220, 65535, 11, 0, 0, 500, '', 2000, 0, 2, 57, 57, 628.09, -596.88, -4.13, 1107, 0, 1, 270.57, 2000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(221, 0, 6, 0, 0, 490, '{A52A2A}FCTS-SATIVA', 3500, 0, 2, 40, 61, -39.93, -1153.15, 1.12, 0, 0, 1, 334.32, 3000, 0, 0, 19314, 0.00, 3.00, 0.40, 90.00, 0.00, 90.00, '', 0, '', 0, 0, 0, 1892, -0.50, 1.75, -0.34, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(222, 396, 10, 0, 0, 490, '', 3500, 0, 2, 3, 2, -823.84, 1544.4, 27.2, 0, 0, 0, 271.29, 0, 0, 0, 19420, 0.00, 0.80, 1.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(223, 397, 10, 0, 0, 497, '', 2000, 0, 2, 3, 2, -2232.33, 2293.12, 5.65, 0, 0, 0, 85.15, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(224, 398, 0, 0, 0, 427, '{008000} Grove St.', 1000, 0, 2, 0, 1, 1546.32, -1658.89, 6.01, 0, 0, 0, 89.61, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(225, 399, 0, 0, 0, 427, '{008000} Grove St.', 1000, 0, 2, 0, 1, 1546.01, -1654.88, 6.01, 0, 0, 0, 89.75, 0, 0, 0, 65535, 0.00, 2.40, 0.20, 20.00, 90.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(226, 400, -1, 0, 0, 433, '', 5000, 1, 6, 0, 0, -2000.67, -1597.26, 87.55, 0, 0, 0, 311.57, 0, 0, 0, 1892, -0.50, 0.10, -0.50, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19420, 0.00, -2.00, 0.93, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(221, 65535, 6, 0, 0, 490, '{A52A2A}FCTS-SATIVA', 3500, 0, 2, 40, 61, -39.93, -1153.15, 1.12, 0, 0, 1, 334.32, 3000, 0, 0, 19314, 0.00, 3.00, 0.40, 90.00, 0.00, 90.00, '', 0, '', 0, 0, 0, 1892, -0.50, 1.75, -0.34, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(222, 392, 10, 0, 0, 490, '', 3500, 0, 2, 3, 2, -823.84, 1544.4, 27.2, 0, 0, 0, 271.29, 0, 0, 0, 19420, 0.00, 0.80, 1.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(223, 393, 10, 0, 0, 497, '', 2000, 0, 2, 3, 2, -2232.33, 2293.12, 5.65, 0, 0, 0, 85.15, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(224, 394, 0, 0, 0, 427, '{008000} Grove St.', 1000, 0, 2, 0, 1, 1546.32, -1658.89, 6.01, 0, 0, 0, 89.61, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(225, 395, 0, 0, 0, 427, '{008000} Grove St.', 1000, 0, 2, 0, 1, 1546.01, -1654.88, 6.01, 0, 0, 0, 89.75, 0, 0, 0, 65535, 0.00, 2.40, 0.20, 20.00, 90.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(226, 396, -1, 0, 0, 433, '', 5000, 1, 6, 0, 0, -2000.67, -1597.26, 87.55, 0, 0, 0, 311.57, 0, 0, 0, 1892, -0.50, 0.10, -0.50, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19420, 0.00, -2.00, 0.93, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (227, 65535, 11, 0, 0, 598, '', 2000, 0, 2, 0, 99, 628.4, -588.9, -4.48, 1107, 0, 1, 270.35, 2000, 0, 0, 65535, 0.00, 1.20, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, -1.50, 0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(228, 401, 1, 0, 0, 402, '{008000}SWAG', 2000, 0, 2, 0, 0, 287.82, -1522.18, 24.42, 0, 0, 0, 234.05, 2000, 0, 0, 19420, 0.00, 2.25, -0.40, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, -2.25, 0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(228, 65535, 1, 0, 0, 402, '{008000}SWAG', 2000, 0, 2, 0, 0, 287.82, -1522.18, 24.42, 0, 0, 1, 234.05, 2000, 0, 0, 19420, 0.00, 2.25, -0.40, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, -2.25, 0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (229, 65535, 11, 0, 0, 470, '', 4500, 0, 2, 0, 0, -1530.81, 448.32, 7.03, 0, 0, 1, 88.51, 3000, 0, 0, 65535, -0.50, 1.10, 0.10, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.50, 1.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (230, 65535, 2, 0, 0, 451, 'R--H--F', 2000, 0, 2, 0, 0, -2052.51, 369.04, 36.75, 0, 0, 1, 2.71, 2000, 0, 0, 65535, 0.00, -1.37, 0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 1.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(231, 402, -1, 0, 0, 530, '', 1000, 0, 4, 0, 0, -2006.06, -1587.77, 86.33, 0, 0, 0, 264.7, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(231, 397, -1, 0, 0, 530, '', 1000, 0, 4, 0, 0, -2006.06, -1587.77, 86.33, 0, 0, 0, 264.7, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (232, 65535, 11, 0, 0, 500, '', 2000, 0, 2, 57, 57, 628.84, -601.53, -4.13, 1107, 0, 1, 269.07, 2000, 0, 0, 65535, -0.50, 2.00, 0.00, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(233, 403, 1, 0, 0, 402, '{000000}Bureau', 2000, 0, 2, 0, 0, 284.63, -1526.78, 24.42, 0, 0, 0, 236.52, 2000, 0, 0, 19420, 0.00, 2.39, -0.50, 1.00, 0.00, 1.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(233, 65535, 1, 0, 0, 402, '{000000}Bureau', 2000, 0, 2, 0, 0, 284.63, -1526.78, 24.42, 0, 0, 1, 236.52, 2000, 0, 0, 19420, 0.00, 2.39, -0.50, 1.00, 0.00, 1.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (234, 65535, 2, 0, 0, 541, '', 2000, 0, 2, 0, 0, -2049.57, 368.26, 36.68, 0, 0, 1, 2.42, 2000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 90.00, 90.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(235, 404, -1, 0, 0, 560, '', 1000, 0, 2, 0, 0, 1603.79, -1825.06, 13.17, 0, 0, 0, 272.01, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(236, 405, -1, 0, 0, 534, '', 1000, 0, 2, 6, 6, 1809.31, -2032.31, 13.26, 0, 0, 0, 87.33, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(237, 406, 0, 0, 0, 598, '', 1000, 0, 2, 1, 0, 1545.89, -1676.18, 5.63, 0, 0, 0, 89.44, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(238, 407, -1, 0, 0, 579, '', 1000, 0, 2, 0, 0, 1605.43, -1840.93, 13.43, 0, 0, 0, 267.26, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(239, 408, 5, 0, 0, 409, '{FFFF00} Banana', 40000, 0, 0, 0, 0, 1246.93, -2040.43, 59.59, 0, 0, 0, 270.26, 0, 0, 0, 65535, 0.00, 3.50, -0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, -3.50, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(240, 409, -1, 0, 0, 567, '', 1000, 0, 2, 86, 86, 2468.88, -1669.93, 13.26, 0, 0, 0, 5.05, 0, 0, 0, 65535, 0.00, 1.20, -1.25, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+(235, 398, -1, 0, 0, 560, '', 1000, 0, 2, 0, 0, 1603.79, -1825.06, 13.17, 0, 0, 0, 272.01, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(236, 399, -1, 0, 0, 534, '', 1000, 0, 2, 6, 6, 1809.31, -2032.31, 13.26, 0, 0, 0, 87.33, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(237, 400, 0, 0, 0, 598, '', 1000, 0, 2, 1, 0, 1545.89, -1676.18, 5.63, 0, 0, 0, 89.44, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(238, 401, -1, 0, 0, 579, '', 1000, 0, 2, 0, 0, 1605.43, -1840.93, 13.43, 0, 0, 0, 267.26, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(239, 402, 5, 0, 0, 409, '{FFFF00} Banana', 40000, 0, 0, 0, 0, 1246.93, -2040.43, 59.59, 0, 0, 0, 270.26, 0, 0, 0, 65535, 0.00, 3.50, -0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, -3.50, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(240, 403, -1, 0, 0, 567, '', 1000, 0, 2, 86, 86, 2468.88, -1669.93, 13.26, 0, 0, 0, 5.05, 0, 0, 0, 65535, 0.00, 1.20, -1.25, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 INSERT INTO `groupvehs` (`id`, `SpawnedID`, `gID`, `gDivID`, `rID`, `vModel`, `vPlate`, `vMaxHealth`, `vType`, `vLoadMax`, `vCol1`, `vCol2`, `vX`, `vY`, `vZ`, `vVW`, `vInt`, `vDisabled`, `vRotZ`, `vUpkeep`, `vFuel`, `vSiren`, `vAttachedObjectModel1`, `vObjectX1`, `vObjectY1`, `vObjectZ1`, `vObjectRX1`, `vObjectRY1`, `vObjectRZ1`, `vObjectText1`, `vObjectMatSize1`, `vObjectFont1`, `vObjectSize1`, `vObjectColor1`, `vObjectBGColor1`, `vAttachedObjectModel2`, `vObjectX2`, `vObjectY2`, `vObjectZ2`, `vObjectRX2`, `vObjectRY2`, `vObjectRZ2`, `vObjectText2`, `vObjectMatSize2`, `vObjectFont2`, `vObjectSize2`, `vObjectColor2`, `vObjectBGColor2`, `vAttachedObjectModel3`, `vObjectX3`, `vObjectY3`, `vObjectZ3`, `vObjectRX3`, `vObjectRY3`, `vObjectRZ3`, `vObjectText3`, `vObjectMatSize3`, `vObjectFont3`, `vObjectSize3`, `vObjectColor3`, `vObjectBGColor3`, `vAttachedObjectModel4`, `vObjectX4`, `vObjectY4`, `vObjectZ4`, `vObjectRX4`, `vObjectRY4`, `vObjectRZ4`, `vObjectText4`, `vObjectMatSize4`, `vObjectFont4`, `vObjectSize4`, `vObjectColor4`, `vObjectBGColor4`, `vMod0`, `vMod1`, `vMod2`, `vMod3`, `vMod4`, `vMod5`, `vMod6`, `vMod7`, `vMod8`, `vMod9`, `vMod10`, `vMod11`, `vMod12`, `vMod13`, `vMod14`) VALUES
-(241, 410, -1, 0, 0, 518, '', 1000, 0, 2, 6, 6, 1801.27, -2022.93, 13.18, 0, 0, 0, 180.25, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(242, 411, -1, 0, 0, 487, '', 1000, 0, 2, 86, 86, 2508.87, -1718.66, 18.75, 0, 0, 0, 91.19, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(243, 0, 9, 0, 0, 523, 'JRS 1', 1000, 0, 2, 3, 2, -1528.8, 2526, 55.33, 0, 0, 1, 180.86, 2000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(241, 404, -1, 0, 0, 518, '', 1000, 0, 2, 6, 6, 1801.27, -2022.93, 13.18, 0, 0, 0, 180.25, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(242, 405, -1, 0, 0, 487, '', 1000, 0, 2, 86, 86, 2508.87, -1718.66, 18.75, 0, 0, 0, 91.19, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(243, 65535, 9, 0, 0, 523, 'JRS 1', 1000, 0, 2, 3, 2, -1528.8, 2526, 55.33, 0, 0, 1, 180.86, 2000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (244, 65535, 11, 0, 0, 563, '', 5000, 0, 2, 0, 0, -1651.43, 287.17, 7.5, 0, 0, 1, 359.32, 3000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(245, 412, -1, 0, 0, 481, '', 1000, 0, 2, 86, 86, 2456.31, -1666.78, 12.97, 0, 0, 0, 28.7, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(246, 0, 9, 0, 0, 523, '', 1000, 0, 2, 3, 2, 1602.51, 1839.43, 10.38, 0, 0, 1, 359.45, 2000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(247, 413, -1, 0, 0, 482, '', 1000, 0, 2, 6, 6, 1809.18, -2028.15, 13.64, 0, 0, 0, 89.76, 0, 0, 0, 65535, 0.00, 6.00, 0.00, 0.00, 0.00, 180.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(248, 0, 9, 0, 0, 411, 'JRS 3', 2000, 0, 2, 2, 3, -528.34, 2579.03, 53.13, 0, 0, 1, 270.01, 2000, 0, 0, 65535, 0.00, 5.00, 0.00, 0.00, 0.00, 180.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(249, 414, -1, 0, 0, 474, '', 1000, 0, 2, 6, 6, 1809.4, -2046.14, 13.31, 0, 0, 0, 92.19, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(250, 415, -1, 0, 0, 487, '', 1000, 0, 2, 6, 6, 1754.18, -2061.12, 13.77, 0, 0, 0, 269.57, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(251, 416, 9, 0, 0, 416, '', 2000, 0, 2, 3, 2, -528.25, 2576.53, 53.52, 0, 0, 0, 269.41, 0, 0, 0, 65535, 0.00, -0.80, 1.50, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 4.00, -1.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(252, 417, -1, 0, 0, 487, '', 1000, 0, 2, 6, 6, 1754.52, -2070.03, 13.8, 0, 0, 0, 270.95, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(245, 406, -1, 0, 0, 481, '', 1000, 0, 2, 86, 86, 2456.31, -1666.78, 12.97, 0, 0, 0, 28.7, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(246, 65535, 9, 0, 0, 523, '', 1000, 0, 2, 3, 2, 1602.51, 1839.43, 10.38, 0, 0, 1, 359.45, 2000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(247, 407, -1, 0, 0, 482, '', 1000, 0, 2, 6, 6, 1809.18, -2028.15, 13.64, 0, 0, 0, 89.76, 0, 0, 0, 65535, 0.00, 6.00, 0.00, 0.00, 0.00, 180.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(248, 65535, 9, 0, 0, 411, 'JRS 3', 2000, 0, 2, 2, 3, -528.34, 2579.03, 53.13, 0, 0, 1, 270.01, 2000, 0, 0, 65535, 0.00, 5.00, 0.00, 0.00, 0.00, 180.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(249, 408, -1, 0, 0, 474, '', 1000, 0, 2, 6, 6, 1809.4, -2046.14, 13.31, 0, 0, 0, 92.19, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(250, 409, -1, 0, 0, 487, '', 1000, 0, 2, 6, 6, 1754.18, -2061.12, 13.77, 0, 0, 0, 269.57, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(251, 410, 9, 0, 0, 416, '', 2000, 0, 2, 3, 2, -528.25, 2576.53, 53.52, 0, 0, 0, 269.41, 0, 0, 0, 65535, 0.00, -0.80, 1.50, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 4.00, -1.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(252, 411, -1, 0, 0, 487, '', 1000, 0, 2, 6, 6, 1754.52, -2070.03, 13.8, 0, 0, 0, 270.95, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (253, 65535, 11, 0, 0, 470, '', 4500, 0, 2, 99, 99, -1530.77, 428.48, 7.13, 0, 0, 1, 89, 3000, 0, 0, 65535, -0.50, 1.00, 0.00, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (254, 65535, 3, 0, 0, 597, 'SF-312', 2000, 0, 2, 79, 1, -1612.43, 731.65, -5.53, 0, 0, 1, 358.1, 2000, 0, 0, 65535, 0.00, 1.25, 0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, -1.50, 0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (255, 65535, 11, 0, 0, 430, '', 2500, 0, 2, 99, 99, -1439.28, 504.95, -0.25, 0, 0, 1, 85.69, 3000, 0, 0, 19419, 0.00, 1.25, 0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19419, 0.00, -1.50, 0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(256, 418, -1, 0, 0, 567, '{0000FF} Market Blocc', 1000, 0, 0, 86, 86, 2498.25, -1683.5, 13.25, 0, 0, 0, 105.58, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(257, 419, 1, 0, 0, 490, '{000000}Bureau', 3500, 0, 2, 0, 0, 325.01, -1495.53, 25.04, 0, 0, 0, 55.33, 3000, 0, 0, 19420, 0.00, 2.70, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, -0.50, 2.00, 0.00, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(258, 420, -1, 0, 0, 560, '', 1000, 0, 2, 6, 6, 1809.43, -2041.06, 13.22, 0, 0, 0, 87.43, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(259, 421, 0, 0, 0, 427, '', 1000, 0, 2, 0, 1, 1545.67, -1651.18, 6.01, 0, 0, 0, 89.41, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 90.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(256, 412, -1, 0, 0, 567, '{0000FF} Market Blocc', 1000, 0, 0, 86, 86, 2498.25, -1683.5, 13.25, 0, 0, 0, 105.58, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(257, 65535, 1, 0, 0, 490, '{000000}Bureau', 3500, 0, 2, 0, 0, 325.01, -1495.53, 25.04, 0, 0, 1, 55.33, 3000, 0, 0, 19420, 0.00, 2.70, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, -0.50, 2.00, 0.00, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(258, 413, -1, 0, 0, 560, '', 1000, 0, 2, 6, 6, 1809.43, -2041.06, 13.22, 0, 0, 0, 87.43, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(259, 414, 0, 0, 0, 427, '', 1000, 0, 2, 0, 1, 1545.67, -1651.18, 6.01, 0, 0, 0, 89.41, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 90.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (260, 65535, 11, 0, 0, 525, '', 2000, 0, 2, 40, 99, 645.96, -583.34, -4.36, 1107, 0, 1, 89.58, 2000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(261, 422, -1, 0, 0, 481, '{0000FF} Market Blocc', 1000, 0, 2, 86, 86, 2457.64, -1666.42, 12.97, 0, 0, 0, 23.35, 0, 0, 0, 65535, 0.00, -1.75, 1.00, 0.00, 0.00, 90.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(262, 423, -1, 0, 0, 481, '{0000FF} Market Blocc', 1000, 0, 4, 86, 86, 2454.12, -1666.81, 12.97, 0, 0, 0, 2.67, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(263, 424, -1, 0, 0, 481, '', 1000, 0, 2, 86, 86, 2459.44, -1666.04, 12.97, 0, 0, 0, 25.54, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(264, 425, 8, 0, 0, 497, '{FF0000}NOOSE', 2000, 0, 2, 3, 2, 201.88, 1881.66, 17.78, 0, 0, 0, 0.43, 0, 0, 0, 19300, 0.00, -0.85, 0.43, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 3.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(265, 426, 9, 0, 0, 497, '', 2000, 1, 6, 0, 0, -569.39, 2598.12, 66.01, 0, 0, 0, 99.37, 0, 0, 0, 65535, 0.00, -4.75, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 1.00, 1.62, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(261, 415, -1, 0, 0, 481, '{0000FF} Market Blocc', 1000, 0, 2, 86, 86, 2457.64, -1666.42, 12.97, 0, 0, 0, 23.35, 0, 0, 0, 65535, 0.00, -1.75, 1.00, 0.00, 0.00, 90.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(262, 416, -1, 0, 0, 481, '{0000FF} Market Blocc', 1000, 0, 4, 86, 86, 2454.12, -1666.81, 12.97, 0, 0, 0, 2.67, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(263, 417, -1, 0, 0, 481, '', 1000, 0, 2, 86, 86, 2459.44, -1666.04, 12.97, 0, 0, 0, 25.54, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(264, 418, 8, 0, 0, 497, '{FF0000}NOOSE', 2000, 0, 2, 3, 2, 201.88, 1881.66, 17.78, 0, 0, 0, 0.43, 0, 0, 0, 19300, 0.00, -0.85, 0.43, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 3.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(265, 419, 9, 0, 0, 497, '', 2000, 1, 6, 0, 0, -569.39, 2598.12, 66.01, 0, 0, 0, 99.37, 0, 0, 0, 65535, 0.00, -4.75, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 1.00, 1.62, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (266, 65535, 16, 0, 0, 426, '', 2000, 0, 2, 8, 8, 594.34, -579.46, -4.73, 56812, 0, 1, 359.64, 2000, 0, 0, 19420, 0.00, -1.25, 0.40, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(267, 427, -1, 0, 0, 481, '', 1000, 0, 2, 86, 86, 2461.39, -1665.85, 12.97, 0, 0, 0, 33.9, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(268, 428, -1, 0, 0, 463, '', 1000, 0, 2, 1, 1, -2506.87, -49.86, 25.2, 0, 0, 0, 174.94, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(267, 420, -1, 0, 0, 481, '', 1000, 0, 2, 86, 86, 2461.39, -1665.85, 12.97, 0, 0, 0, 33.9, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(268, 421, -1, 0, 0, 463, '', 1000, 0, 2, 1, 1, -2506.87, -49.86, 25.2, 0, 0, 0, 174.94, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (269, 65535, 16, 0, 0, 598, 'SD-P06', 2000, 0, 2, 40, 61, 646.08, -592.9, -4.55, 56812, 0, 1, 90.11, 2000, 0, 0, 19420, 0.00, -1.25, 0.40, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (270, 65535, 16, 0, 0, 426, 'OFFICIAL', 2000, 0, 2, 24, 24, 755.84, -581.89, 17.01, 0, 0, 1, 90.44, 2000, 0, 0, 19300, -0.46, 0.10, 0.87, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(271, 0, 6, 0, 0, 554, '{5C4033}FCTS-L001', 2000, 1, 0, 40, 61, 1871.53, -1876.31, 13.56, 0, 0, 1, 270.7, 2000, 0, 0, 19419, 0.00, 0.00, 0.93, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(272, 429, -1, 0, 0, 463, '', 1000, 0, 2, 1, 1, -2505.84, -51.81, 25.04, 0, 0, 0, 173.13, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(273, 430, 1, 0, 0, 415, '{000000}Bureau', 2000, 0, 2, 0, 0, 281.19, -1531.31, 24.36, 0, 0, 0, 232.52, 2000, 0, 0, 19420, 0.00, 2.40, -0.30, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(274, 431, -1, 0, 0, 498, '{FF0000}NOOSE', 1000, 1, 0, 1, 1, -2548.12, -22.54, 16.45, 0, 0, 0, 270.85, 0, 0, 0, 65535, 0.00, 1.87, 0.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, -1.00, 0.30, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(271, 65535, 6, 0, 0, 554, '{5C4033}FCTS-L001', 2000, 1, 0, 40, 61, 1871.53, -1876.31, 13.56, 0, 0, 1, 270.7, 2000, 0, 0, 19419, 0.00, 0.00, 0.93, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(272, 422, -1, 0, 0, 463, '', 1000, 0, 2, 1, 1, -2505.84, -51.81, 25.04, 0, 0, 0, 173.13, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(273, 65535, 1, 0, 0, 415, '{000000}Bureau', 2000, 0, 2, 0, 0, 281.19, -1531.31, 24.36, 0, 0, 1, 232.52, 2000, 0, 0, 19420, 0.00, 2.40, -0.30, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(274, 423, -1, 0, 0, 498, '{FF0000}NOOSE', 1000, 1, 0, 1, 1, -2548.12, -22.54, 16.45, 0, 0, 0, 270.85, 0, 0, 0, 65535, 0.00, 1.87, 0.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, -1.00, 0.30, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (275, 65535, -1, 0, 0, 463, '', 1000, 0, 0, 1, 1, -2505.62, -44.97, 25.11, 0, 0, 0, 175.46, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (276, 65535, 11, 0, 0, 432, '', 1000, 0, 0, 1, 1, -1423.43, 506.76, 18.2, 0, 0, 1, 327.64, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(277, 432, -1, 0, 0, 560, '', 1000, 0, 4, 3, 0, 2237.29, -1763.5, 13.25, 0, 0, 0, 270.01, 0, 0, 0, 65535, 0.00, 2.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(277, 424, -1, 0, 0, 560, '', 1000, 0, 4, 3, 0, 2237.29, -1763.5, 13.25, 0, 0, 0, 270.01, 0, 0, 0, 65535, 0.00, 2.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (278, 65535, 3, 0, 0, 597, 'SF-311', 2000, 1, 6, 79, 1, -1616.75, 731.83, -5.71, 0, 0, 1, 358.26, 2000, 0, 0, 65535, 0.00, -0.40, 1.37, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 2.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(279, 433, -1, 0, 0, 513, 'SF-B02', 50000, 0, 1, 3, 0, 1659.43, 1581.03, 11.35, 0, 0, 0, 99.26, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(280, 434, 1, 0, 0, 426, '{000000}Bureau', 2000, 0, 2, 0, 0, 291.91, -1545.06, 24.29, 0, 0, 0, 56.18, 2000, 0, 0, 19420, 0.00, 2.20, -0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(281, 435, 1, 0, 0, 560, '{000000}Bureau', 2000, 0, 2, 0, 0, 290.19, -1517.54, 24.28, 0, 0, 0, 234.47, 2000, 0, 0, 19420, 0.00, -1.37, 0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.85, 0.28, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(282, 436, -1, 0, 0, 487, '{008000} GSF - Steezy', 1000, 0, 2, 0, 0, 1930.18, 573.52, 11.6, 0, 0, 0, 4.23, 0, 0, 0, 65535, 0.00, -1.00, 0.30, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, -1.25, 0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(279, 425, -1, 0, 0, 513, 'SF-B02', 50000, 0, 1, 3, 0, 1659.43, 1581.03, 11.35, 0, 0, 0, 99.26, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(280, 65535, 1, 0, 0, 426, '{000000}Bureau', 2000, 0, 2, 0, 0, 291.91, -1545.06, 24.29, 0, 0, 1, 56.18, 2000, 0, 0, 19420, 0.00, 2.20, -0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(281, 65535, 1, 0, 0, 560, '{000000}Bureau', 2000, 0, 2, 0, 0, 290.19, -1517.54, 24.28, 0, 0, 1, 234.47, 2000, 0, 0, 19420, 0.00, -1.37, 0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.85, 0.28, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(282, 426, -1, 0, 0, 487, '{008000} GSF - Steezy', 1000, 0, 2, 0, 0, 1930.18, 573.52, 11.6, 0, 0, 0, 4.23, 0, 0, 0, 65535, 0.00, -1.00, 0.30, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, -1.25, 0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (283, 65535, 3, 0, 0, 599, 'Sf-R02', 5000, 0, 2, 79, 1, -1572.56, 738.71, -5.23, 0, 0, 1, 90.26, 2000, 0, 0, 1, 0.00, 2.90, 1.44, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 19420.00, 19420.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (284, 65535, -1, 0, 0, 570, '', 1000, 1, 2, 0, 0, 1493.66, -1238.62, 14.36, 0, 0, 0, 90.48, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(285, 437, 8, 0, 0, 525, '{000000} Tow 01', 2000, 0, 0, 3, 2, -1400.43, 2650.54, 55.56, 0, 0, 0, 90.86, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(285, 427, 8, 0, 0, 525, '{000000} Tow 01', 2000, 0, 0, 3, 2, -1400.43, 2650.54, 55.56, 0, 0, 0, 90.86, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (286, 65535, -1, 0, 0, 492, '', 1000, 0, 0, 0, 0, 1249.79, 251.19, 19.29, 0, 0, 0, 67.05, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (287, 65535, 11, 0, 0, 432, '{000000} GENERAL', 1000, 0, 2, 1, 1, -1310.13, 445.73, 7.28, 0, 0, 1, 0.85, 0, 0, 0, 65535, 0.00, 1.20, 0.20, 60.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.87, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (288, 65535, 12, 0, 0, 582, '', 2000, 0, 2, 1, 151, 755.21, -1334.5, 13.59, 0, 0, 0, 216.49, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (289, 65535, 11, 0, 0, 520, '', 1000, 0, 2, 1, 1, -1405.54, 492.76, 19.12, 0, 0, 1, 312.98, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (290, 65535, 11, 0, 0, 520, '', 1000, 0, 2, 1, 1, -1429.68, 493.2, 18.95, 0, 0, 1, 317.95, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (291, 65535, 11, 0, 0, 425, '', 1000, 0, 2, 1, 1, -1282.43, 495.97, 18.79, 0, 0, 1, 300.07, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(292, 438, -1, 0, 0, 580, '{FF0000}JPC {0000FF} 05', 1000, 0, 2, 0, 0, 1917.13, 990.09, 10.64, 0, 0, 0, 90.01, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(293, 439, 8, 0, 0, 470, '', 3500, 0, 2, 1, 1, 202.25, 1920.81, 17.62, 0, 0, 0, 179.55, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(292, 428, -1, 0, 0, 580, '{FF0000}JPC {0000FF} 05', 1000, 0, 2, 0, 0, 1917.13, 990.09, 10.64, 0, 0, 0, 90.01, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(293, 429, 8, 0, 0, 470, '', 3500, 0, 2, 1, 1, 202.25, 1920.81, 17.62, 0, 0, 0, 179.55, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (294, 65535, 16, 0, 0, 482, '', 2000, 0, 2, 40, 61, 646.09, -588.21, -4.11, 56812, 0, 1, 91.94, 2000, 0, 0, 19420, 0.00, 0.60, 0.87, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(295, 440, 12, 0, 0, 582, '', 2000, 0, 2, 1, 151, 744.7, -1334.3, 13.59, 0, 0, 0, 214.6, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(296, 441, 8, 0, 0, 470, '', 3500, 0, 2, 1, 1, 220.41, 1920.43, 17.62, 0, 0, 0, 180.44, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(297, 442, 12, 0, 0, 582, '', 2000, 0, 2, 1, 151, 759.45, -1333.8, 13.59, 0, 0, 0, 208.38, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(298, 443, 8, 0, 0, 470, 'Highspeed 1', 3500, 0, 2, 3, 2, -616.9, 425.76, 1345.56, 1812837, 1, 0, 269.42, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(299, 444, 8, 0, 0, 598, '', 2000, 0, 2, 2, 1, 2314.62, 2465.12, 3, 0, 0, 0, 267.98, 0, 0, 0, 65535, -0.50, 1.25, 0.00, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(300, 445, 8, 0, 0, 470, '', 3500, 0, 2, 3, 2, -616.9, 430.35, 1345.56, 1812837, 1, 0, 271.17, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(301, 446, 8, 0, 0, 470, '', 3500, 0, 2, 1, 1, 211.66, 1920.81, 17.62, 0, 0, 0, 179.72, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(302, 447, 8, 0, 0, 470, '', 3500, 0, 2, 1, 1, 193.41, 1920.67, 17.62, 0, 0, 0, 179.5, 0, 0, 0, 65535, 0.00, -3.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(303, 448, 8, 0, 0, 598, '', 2000, 0, 2, 2, 1, 2314.53, 2460.37, 3, 0, 0, 0, 270.26, 0, 0, 0, 65535, -0.50, 1.25, 0.00, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(304, 449, -1, 0, 0, 579, '{008000} GSF - Sang', 1000, 0, 2, 86, 0, 1938.26, -2083.37, 13.47, 0, 0, 0, 89.22, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(305, 450, -1, 0, 0, 487, '{008000} Grove St.', 1000, 0, 2, 1, 1, 1882.58, 582.28, 11.81, 0, 0, 0, 359.26, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(306, 451, -1, 0, 0, 586, 'General', 1000, 0, 2, 1, 1, -2505.37, -42.65, 25.1, 0, 0, 0, 175.69, 0, 0, 0, 65535, 0.00, -1.87, 0.40, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(307, 452, 12, 0, 0, 582, '', 2000, 0, 2, 1, 151, 750.15, -1334.29, 13.59, 0, 0, 0, 215.02, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(308, 453, 8, 0, 0, 598, '', 2000, 0, 2, 2, 1, 2314.84, 2455.37, 3, 0, 0, 0, 267.95, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(309, 454, -1, 0, 0, 411, '', 1000, 0, 2, 0, 0, 1932, 618.13, 10.55, 0, 0, 0, 89.26, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(310, 455, -1, 0, 0, 411, '', 1000, 0, 2, 0, 0, 1932.13, 614, 10.55, 0, 0, 0, 91.05, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(311, 456, -1, 0, 0, 560, '{FF0000}JPC {0000FF} 04', 1000, 0, 2, 0, 0, 1917.56, 1001.21, 10.52, 0, 0, 0, 89.98, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(312, 457, -1, 0, 0, 560, '{FF0000}JPC {0000FF} 01', 1000, 0, 2, 0, 0, 1917.56, 1005, 10.52, 0, 0, 0, 89.98, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(313, 458, 12, 8, 0, 488, '', 1500, 0, 2, 1, 151, 744.4, -1373.31, 25.87, 0, 0, 0, 86.23, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(314, 459, 12, 0, 0, 488, '', 1500, 0, 2, 1, 151, 742.94, -1364.76, 25.87, 0, 0, 0, 91.98, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(315, 460, 12, 0, 0, 498, '', 2000, 0, 2, 151, 151, 769.32, -1382.68, 13.75, 0, 0, 0, 268.01, 0, 0, 0, 1, 0.00, -2.00, 4.09, 0.00, 0.00, 90.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(316, 461, -1, 0, 0, 560, '{FF0000}JPC {0000FF} 02', 1000, 0, 2, 0, 0, 1917.51, 994, 10.52, 0, 0, 0, 90.01, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(295, 430, 12, 0, 0, 582, '', 2000, 0, 2, 1, 151, 744.7, -1334.3, 13.59, 0, 0, 0, 214.6, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(296, 431, 8, 0, 0, 470, '', 3500, 0, 2, 1, 1, 220.41, 1920.43, 17.62, 0, 0, 0, 180.44, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(297, 432, 12, 0, 0, 582, '', 2000, 0, 2, 1, 151, 759.45, -1333.8, 13.59, 0, 0, 0, 208.38, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(298, 433, 8, 0, 0, 470, 'Highspeed 1', 3500, 0, 2, 3, 2, -616.9, 425.76, 1345.56, 1812837, 1, 0, 269.42, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(299, 434, 8, 0, 0, 598, '', 2000, 0, 2, 2, 1, 2314.62, 2465.12, 3, 0, 0, 0, 267.98, 0, 0, 0, 65535, -0.50, 1.25, 0.00, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(300, 435, 8, 0, 0, 470, '', 3500, 0, 2, 3, 2, -616.9, 430.35, 1345.56, 1812837, 1, 0, 271.17, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(301, 436, 8, 0, 0, 470, '', 3500, 0, 2, 1, 1, 211.66, 1920.81, 17.62, 0, 0, 0, 179.72, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(302, 437, 8, 0, 0, 470, '', 3500, 0, 2, 1, 1, 193.41, 1920.67, 17.62, 0, 0, 0, 179.5, 0, 0, 0, 65535, 0.00, -3.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(303, 438, 8, 0, 0, 598, '', 2000, 0, 2, 2, 1, 2314.53, 2460.37, 3, 0, 0, 0, 270.26, 0, 0, 0, 65535, -0.50, 1.25, 0.00, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(304, 439, -1, 0, 0, 579, '{008000} GSF - Sang', 1000, 0, 2, 86, 0, 1938.26, -2083.37, 13.47, 0, 0, 0, 89.22, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(305, 440, -1, 0, 0, 487, '{008000} Grove St.', 1000, 0, 2, 1, 1, 1882.58, 582.28, 11.81, 0, 0, 0, 359.26, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(306, 441, -1, 0, 0, 586, 'General', 1000, 0, 2, 1, 1, -2505.37, -42.65, 25.1, 0, 0, 0, 175.69, 0, 0, 0, 65535, 0.00, -1.87, 0.40, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(307, 442, 12, 0, 0, 582, '', 2000, 0, 2, 1, 151, 750.15, -1334.29, 13.59, 0, 0, 0, 215.02, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(308, 443, 8, 0, 0, 598, '', 2000, 0, 2, 2, 1, 2314.84, 2455.37, 3, 0, 0, 0, 267.95, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(309, 444, -1, 0, 0, 411, '', 1000, 0, 2, 0, 0, 1932, 618.13, 10.55, 0, 0, 0, 89.26, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(310, 445, -1, 0, 0, 411, '', 1000, 0, 2, 0, 0, 1932.13, 614, 10.55, 0, 0, 0, 91.05, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(311, 446, -1, 0, 0, 560, '{FF0000}JPC {0000FF} 04', 1000, 0, 2, 0, 0, 1917.56, 1001.21, 10.52, 0, 0, 0, 89.98, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(312, 447, -1, 0, 0, 560, '{FF0000}JPC {0000FF} 01', 1000, 0, 2, 0, 0, 1917.56, 1005, 10.52, 0, 0, 0, 89.98, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(313, 448, 12, 8, 0, 488, '', 1500, 0, 2, 1, 151, 744.4, -1373.31, 25.87, 0, 0, 0, 86.23, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(314, 449, 12, 0, 0, 488, '', 1500, 0, 2, 1, 151, 742.94, -1364.76, 25.87, 0, 0, 0, 91.98, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(315, 450, 12, 0, 0, 498, '', 2000, 0, 2, 151, 151, 769.32, -1382.68, 13.75, 0, 0, 0, 268.01, 0, 0, 0, 1, 0.00, -2.00, 4.09, 0.00, 0.00, 90.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(316, 451, -1, 0, 0, 560, '{FF0000}JPC {0000FF} 02', 1000, 0, 2, 0, 0, 1917.51, 994, 10.52, 0, 0, 0, 90.01, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (317, 65535, 8, 0, 0, 471, '', 1000, 0, 2, 2, 3, 229.88, 1913.01, 17.12, 0, 0, 0, 266.54, 0, 0, 0, 19300, 0.00, 2.00, 1.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (318, 65535, 11, 0, 0, 425, '', 1000, 0, 2, 1, 1, -1262.06, 494.6, 18.79, 0, 0, 1, 296.35, 0, 0, 0, 65535, 0.80, 0.00, -0.43, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, -0.85, 0.00, -0.43, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(319, 462, 8, 0, 0, 470, '', 3500, 0, 2, 2, 3, -616.89, 434.82, 1345.93, 1812837, 1, 0, 270.64, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(320, 463, 8, 0, 0, 598, '', 2000, 0, 2, 2, 1, 2297.54, 2451.62, 3, 0, 0, 0, 271.85, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(321, 464, -1, 0, 0, 470, '', 1000, 0, 2, 3, 3, 1723.88, 1495.29, 10.81, 0, 0, 0, 177.6, 0, 0, 0, 1079, 1079.00, 2.75, -0.10, 1079.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(322, 465, 8, 0, 0, 598, '{FF0000}Bus 9', 2000, 0, 2, 2, 1, 2315.32, 2470.55, 3, 0, 0, 0, 272, 0, 0, 0, 65535, 0.00, 2.75, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 1.70, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(323, 466, -1, 0, 0, 560, '{FF0000}JPC {0000FF} 03', 1000, 0, 2, 0, 0, 1917.55, 997.64, 10.52, 0, 0, 0, 89.98, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(324, 467, 8, 0, 0, 598, '{FF0000}Noose', 2000, 0, 2, 2, 1, 2314.56, 2475.35, 3, 0, 0, 0, 267.85, 0, 0, 0, 65535, -0.60, 0.30, 1.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, -0.50, 1.00, -0.20, 270.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(325, 468, -1, 0, 0, 579, '{008000} Grove St.', 1000, 0, 2, 0, 0, 1920.09, 607.79, 10.75, 0, 0, 0, 355.79, 0, 0, 0, 65535, 0.00, 8.00, 1.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 2.94, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(326, 469, 8, 0, 0, 497, '{FF0000}NOOSE', 2000, 0, 2, 3, 2, 225.63, 1881.53, 17.78, 0, 0, 0, 0.23, 0, 0, 0, 65535, 0.00, 0.30, 1.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, -0.50, 1.00, 0.50, 270.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(319, 452, 8, 0, 0, 470, '', 3500, 0, 2, 2, 3, -616.89, 434.82, 1345.93, 1812837, 1, 0, 270.64, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(320, 453, 8, 0, 0, 598, '', 2000, 0, 2, 2, 1, 2297.54, 2451.62, 3, 0, 0, 0, 271.85, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(321, 454, -1, 0, 0, 470, '', 1000, 0, 2, 3, 3, 1723.88, 1495.29, 10.81, 0, 0, 0, 177.6, 0, 0, 0, 1079, 1079.00, 2.75, -0.10, 1079.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(322, 455, 8, 0, 0, 598, '{FF0000}Bus 9', 2000, 0, 2, 2, 1, 2315.32, 2470.55, 3, 0, 0, 0, 272, 0, 0, 0, 65535, 0.00, 2.75, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 1.70, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(323, 456, -1, 0, 0, 560, '{FF0000}JPC {0000FF} 03', 1000, 0, 2, 0, 0, 1917.55, 997.64, 10.52, 0, 0, 0, 89.98, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(324, 457, 8, 0, 0, 598, '{FF0000}Noose', 2000, 0, 2, 2, 1, 2314.56, 2475.35, 3, 0, 0, 0, 267.85, 0, 0, 0, 65535, -0.60, 0.30, 1.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, -0.50, 1.00, -0.20, 270.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(325, 458, -1, 0, 0, 579, '{008000} Grove St.', 1000, 0, 2, 0, 0, 1920.09, 607.79, 10.75, 0, 0, 0, 355.79, 0, 0, 0, 65535, 0.00, 8.00, 1.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 2.94, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(326, 459, 8, 0, 0, 497, '{FF0000}NOOSE', 2000, 0, 2, 3, 2, 225.63, 1881.53, 17.78, 0, 0, 0, 0.23, 0, 0, 0, 65535, 0.00, 0.30, 1.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, -0.50, 1.00, 0.50, 270.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (327, 65535, -1, 0, 0, 426, '{FF0000}NOOSE', 1000, 0, 0, 73, 200, 1270.56, 203.27, 19.13, 0, 0, 0, 161.22, 0, 0, 0, 65535, -0.40, -0.05, 0.85, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 5.00, 2.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (328, 65535, -1, 0, 7, 0, '{FF0000}NOOSE', 1000, 0, 2, 0, 0, 1916.02, 615.76, 10.82, 0, 0, 0, 264.57, 0, 0, 0, 65535, 0.00, 2.25, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, -0.50, 1.20, -0.20, 270.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(329, 470, -1, 0, 0, 445, '', 1000, 0, 0, 0, 23, 1297.17, 218.61, 19.12, 0, 0, 0, 86.68, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(330, 471, -1, 0, 0, 579, '{FF0000}JPC {0000FF} 06', 1000, 0, 2, 0, 0, 1916.93, 978.34, 10.75, 0, 0, 0, 91.05, 0, 0, 0, 65535, 0.00, 2.15, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(329, 460, -1, 0, 0, 445, '', 1000, 0, 0, 0, 23, 1297.17, 218.61, 19.12, 0, 0, 0, 86.68, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(330, 461, -1, 0, 0, 579, '{FF0000}JPC {0000FF} 06', 1000, 0, 2, 0, 0, 1916.93, 978.34, 10.75, 0, 0, 0, 91.05, 0, 0, 0, 65535, 0.00, 2.15, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (331, 65535, 16, 0, 0, 598, '', 2000, 1, 6, 40, 61, 629.34, -623.39, -4.59, 56812, 0, 1, 0.1, 2000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (332, 65535, 16, 0, 0, 598, '', 2000, 0, 2, 40, 61, 569.96, -582.09, -4.59, 56812, 0, 1, 269.23, 2000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(333, 472, -1, 0, 0, 579, '', 1000, 0, 6, 0, 0, 1913.71, 608.48, 10.76, 0, 0, 0, 0.4, 0, 0, 0, 65535, 0.00, 2.50, -0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 1.75, -0.50, 0.00, 0.00, 90.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(333, 462, -1, 0, 0, 579, '', 1000, 0, 6, 0, 0, 1913.71, 608.48, 10.76, 0, 0, 0, 0.4, 0, 0, 0, 65535, 0.00, 2.50, -0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 1.75, -0.50, 0.00, 0.00, 90.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (334, 65535, 11, 0, 0, 433, '', 5000, 0, 2, 0, 57, 644.58, -577.77, -3.97, 1107, 0, 1, 89.72, 4000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(335, 473, -1, 0, 0, 551, '', 1000, 0, 0, 210, 3, 1272.68, 224.55, 19.27, 0, 0, 0, 154.94, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(336, 474, -1, 0, 0, 472, '', 1000, 0, 2, 57, 86, 921.09, -132.75, 0, 0, 0, 0, 275.98, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(335, 463, -1, 0, 0, 551, '', 1000, 0, 0, 210, 3, 1272.68, 224.55, 19.27, 0, 0, 0, 154.94, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(336, 464, -1, 0, 0, 472, '', 1000, 0, 2, 57, 86, 921.09, -132.75, 0, 0, 0, 0, 275.98, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (337, 65535, 16, 0, 0, 598, '', 2000, 0, 2, 40, 61, 570.26, -586.94, -4.59, 56812, 0, 1, 268.26, 2000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (338, 65535, -1, 0, 0, 409, '', 1000, 0, 2, 0, 0, 1899.95, 608.42, 10.62, 0, 0, 0, 357.25, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (339, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 0, 0, -812.03, -1975.56, 9.64, 0, 0, 0, 25.36, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
@@ -7926,7 +7927,7 @@ INSERT INTO `groupvehs` (`id`, `SpawnedID`, `gID`, `gDivID`, `rID`, `vModel`, `v
 (350, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 3, 3, -724.71, -2069.12, 18.37, 0, 0, 0, 106.55, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (351, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 0, 3, -727.9, -2090.87, 18.11, 0, 0, 0, 60.29, 0, 0, 0, 65535, 1.25, 0.00, 0.00, 0.00, 50.00, 50.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (352, 65535, -1, 0, 0, 0, '{FF0000}NOOSE', 1000, 0, 2, 3, 0, -604.28, -1832.9, 38.61, 0, 0, 0, 179.52, 0, 100, 0, 65535, 0.00, 5.50, 2.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, -0.50, 4.84, -0.15, 270.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(353, 65535, 1, 0, 0, 525, '{000000}Bureau', 2000, 0, 2, 0, 0, 321.7, -1501.05, 24.79, 0, 0, 0, 234.44, 2000, 0, 0, 19419, 0.00, -0.46, 1.37, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(353, 65535, 1, 0, 0, 525, '{000000}Bureau', 2000, 0, 2, 0, 0, 321.7, -1501.05, 24.79, 0, 0, 1, 234.44, 2000, 0, 0, 19419, 0.00, -0.46, 1.37, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (354, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 0, 0, 1553.93, -1657.27, 6.01, 0, 0, 0, 179.44, 0, 0, 0, 65535, 0.00, -2.40, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 2.15, -0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (355, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 1, 3, -2051.83, 92.44, 28.43, 0, 0, 0, 88.3, 0, 0, 0, 65535, 0.00, 2.75, -0.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (356, 65535, -1, 0, 0, 530, '', 1000, 1, 0, 0, 0, -2003.81, -1570.5, 85.87, 0, 0, 0, 270.92, 0, 0, 0, 65535, 0.00, 2.40, 0.20, 20.00, 90.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
@@ -7959,7 +7960,7 @@ INSERT INTO `groupvehs` (`id`, `SpawnedID`, `gID`, `gDivID`, `rID`, `vModel`, `v
 (382, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 135, 135, -611.32, -473.98, 25.19, 0, 0, 0, 215.61, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (383, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 135, 135, -603.96, -474.29, 25.12, 0, 0, 0, 228.24, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (384, 65535, 11, 0, 0, 592, '', 3000, 0, 2, 1, 1, -1359.56, -656.08, 15.97, 0, 0, 1, 0.73, 3000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(385, 475, 15, 2, 0, 402, '{FF0000}URL 001', 2000, 0, 2, 222, 0, -557.46, -492.57, 25.29, 0, 0, 0, 359.63, 0, 0, 0, 65535, 1.00, 0.60, -0.30, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(385, 465, 15, 2, 0, 402, '{FF0000}URL 001', 2000, 0, 2, 222, 0, -557.46, -492.57, 25.29, 0, 0, 0, 359.63, 0, 0, 0, 65535, 1.00, 0.60, -0.30, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (386, 65535, 11, 0, 0, 553, '', 2000, 0, 2, 57, 57, -1285.81, -652.28, 15.47, 0, 0, 1, 357.95, 2000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (387, 65535, -1, 0, 0, 570, '', 1000, 0, 2, 0, 0, 1494.82, -1237.76, 14.35, 0, 0, 0, 109.12, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (388, 65535, -1, 0, 0, 570, '', 1000, 0, 2, 0, 0, 1496.08, -1240.93, 14.48, 0, 0, 0, 188.52, 0, 0, 0, 65535, 0.00, 0.50, 1.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
@@ -7975,49 +7976,49 @@ INSERT INTO `groupvehs` (`id`, `SpawnedID`, `gID`, `gDivID`, `rID`, `vModel`, `v
 (398, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 0, 0, -766.28, -2085.33, 18.7, 0, 0, 0, 313.76, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (399, 65535, -1, 0, 0, 0, '', 1000, 1, 5, 3, 0, 1513.43, -2629.62, 14.72, 0, 0, 0, 356.95, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (400, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 3, 0, 1910.43, -1594.93, 29.2, 0, 0, 0, 92.76, 0, 0, 0, 65535, 0.00, 1.25, 0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, -1.50, 0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(401, 476, -1, 0, 0, 578, '{FF0000}JPC {0000FF} 09', 1000, 0, 0, 0, 0, 2478.52, -2073.62, 14.17, 0, 0, 0, 179.96, 0, 0, 0, 65535, 0.00, 0.85, 1.25, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(402, 477, -1, 0, 0, 530, '', 1000, 0, 2, 0, 0, 2471.87, -2074.12, 13.31, 0, 0, 0, 179.97, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(401, 466, -1, 0, 0, 578, '{FF0000}JPC {0000FF} 09', 1000, 0, 0, 0, 0, 2478.52, -2073.62, 14.17, 0, 0, 0, 179.96, 0, 0, 0, 65535, 0.00, 0.85, 1.25, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(402, 467, -1, 0, 0, 530, '', 1000, 0, 2, 0, 0, 2471.87, -2074.12, 13.31, 0, 0, 0, 179.97, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (403, 65535, -1, 0, 0, 428, '{FF0000}JPC {0000FF} 10', 1000, 0, 2, 0, 0, 1916.93, 970.65, 10.93, 0, 0, 0, 89.76, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (404, 65535, -1, 0, 0, 0, '{FF0000}GVARDIA R6', 1000, 0, 2, 3, 0, 2681.67, -1540.68, 25.59, 0, 0, 0, 88.44, 0, 0, 0, 65535, 0.00, 0.40, 0.00, 0.00, 90.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(405, 478, -1, 0, 0, 454, '', 1000, 0, 2, 0, 0, 2486.37, -2269.12, 0.18, 0, 0, 0, 272.48, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(406, 479, 12, 0, 0, 457, '', 1000, 0, 2, 151, 51, 785.38, -1351.68, 13.17, 0, 0, 0, 91.44, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(407, 480, 12, 0, 0, 457, '', 1000, 0, 2, 151, 93, 785.39, -1349.18, 13.14, 0, 0, 0, 90.37, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(405, 468, -1, 0, 0, 454, '', 1000, 0, 2, 0, 0, 2486.37, -2269.12, 0.18, 0, 0, 0, 272.48, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(406, 469, 12, 0, 0, 457, '', 1000, 0, 2, 151, 51, 785.38, -1351.68, 13.17, 0, 0, 0, 91.44, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(407, 470, 12, 0, 0, 457, '', 1000, 0, 2, 151, 93, 785.39, -1349.18, 13.14, 0, 0, 0, 90.37, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (408, 65535, 12, 0, 0, 457, '', 1000, 0, 2, 151, 151, 785.32, -1340.79, 13.14, 0, 0, 0, 89.05, 0, 0, 0, 65535, 0.00, 0.00, 0.80, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 2.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (409, 65535, -1, 0, 0, 0, '{FF0000}GVARDIA R6', 1000, 0, 2, 3, 0, 2681.62, -1544.64, 24.77, 0, 0, 0, 90, 0, 0, 0, 65535, 0.00, 0.40, 0.50, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, -0.68, 0.50, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (410, 65535, 9, 0, 0, 427, '', 5000, 0, 2, 3, 2, 1765.06, 2075.85, 10.93, 0, 0, 0, 187.21, 0, 0, 0, 19419, 0.00, 1.12, 1.25, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (411, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 3, 2, 1629.3, 571.51, -0.31, 0, 0, 0, 88.05, 0, 0, 0, 65535, 0.00, 2.70, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(412, 481, 1, 0, 0, 497, '', 2000, 0, 2, 0, 0, 321.01, -1503.25, 76.8, 0, 0, 0, 236.19, 2000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(413, 482, 1, 0, 0, 497, '', 2000, 0, 2, 0, 0, 329.41, -1490.9, 76.68, 0, 0, 0, 225.52, 2000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(414, 483, 1, 0, 0, 560, '{000000}Bureau', 2000, 0, 2, 0, 0, 293.41, -1512.81, 24.29, 0, 0, 0, 233.88, 2000, 0, 0, 19420, 0.00, -1.25, 0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(415, 0, 6, 0, 0, 525, '{FF0000}C{FFFFFF}u{0000FF}ba\'s', 2000, 0, 2, 61, 40, 119.68, -68.36, 1.69, 0, 0, 1, 93.72, 2000, 0, 0, 19314, 0.00, 3.00, 0.68, 90.00, 0.00, 90.00, '', 0, '', 0, 0, 0, 19420, 0.00, -0.46, 1.37, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(416, 0, 6, 0, 0, 525, '{A52A2A}FCTS-SATIVA', 2000, 0, 2, 61, 40, -1396.68, -1209.43, 105.83, 0, 0, 1, 85.47, 2000, 0, 0, 19314, 0.00, 3.00, 0.68, 90.00, 0.00, 90.00, '', 0, '', 0, 0, 0, 19420, 0.00, -0.46, 1.37, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(412, 65535, 1, 0, 0, 497, '', 2000, 0, 2, 0, 0, 321.01, -1503.25, 76.8, 0, 0, 1, 236.19, 2000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(413, 65535, 1, 0, 0, 497, '', 2000, 0, 2, 0, 0, 329.41, -1490.9, 76.68, 0, 0, 1, 225.52, 2000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(414, 65535, 1, 0, 0, 560, '{000000}Bureau', 2000, 0, 2, 0, 0, 293.41, -1512.81, 24.29, 0, 0, 1, 233.88, 2000, 0, 0, 19420, 0.00, -1.25, 0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(415, 65535, 6, 0, 0, 525, '{FF0000}C{FFFFFF}u{0000FF}ba\'s', 2000, 0, 2, 61, 40, 119.68, -68.36, 1.69, 0, 0, 1, 93.72, 2000, 0, 0, 19314, 0.00, 3.00, 0.68, 90.00, 0.00, 90.00, '', 0, '', 0, 0, 0, 19420, 0.00, -0.46, 1.37, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(416, 65535, 6, 0, 0, 525, '{A52A2A}FCTS-SATIVA', 2000, 0, 2, 61, 40, -1396.68, -1209.43, 105.83, 0, 0, 1, 85.47, 2000, 0, 0, 19314, 0.00, 3.00, 0.68, 90.00, 0.00, 90.00, '', 0, '', 0, 0, 0, 19420, 0.00, -0.46, 1.37, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (417, 65535, -1, 0, 0, 0, '{000000}Bureau', 1000, 0, 2, 0, 0, 324.82, -1496.53, 24.79, 0, 0, 0, 234.44, 0, 0, 0, 65535, 0.00, -0.46, 1.37, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(418, 0, 6, 0, 0, 525, '{000080}TRUMP\'D', 2500, 0, 2, 61, 40, 2314, 1279.06, 10.68, 1, 0, 1, 270.19, 2000, 0, 0, 19314, 0.00, 3.00, 0.68, 90.00, 0.00, 90.00, '', 0, '', 0, 0, 0, 19420, 0.00, -0.46, 1.37, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(419, 0, 6, 0, 0, 525, '{A52A2A}FCT', 2000, 0, 2, 61, 40, 830.83, -608.08, 16.37, 0, 0, 1, 357, 2000, 0, 0, 19314, 0.00, 3.00, 0.68, 90.00, 0.00, 90.00, '', 0, '', 0, 0, 0, 19420, 0.00, -0.46, 1.37, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(418, 65535, 6, 0, 0, 525, '{000080}TRUMP\'D', 2500, 0, 2, 61, 40, 2314, 1279.06, 10.68, 1, 0, 1, 270.19, 2000, 0, 0, 19314, 0.00, 3.00, 0.68, 90.00, 0.00, 90.00, '', 0, '', 0, 0, 0, 19420, 0.00, -0.46, 1.37, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(419, 65535, 6, 0, 0, 525, '{A52A2A}FCT', 2000, 0, 2, 61, 40, 830.83, -608.08, 16.37, 0, 0, 1, 357, 2000, 0, 0, 19314, 0.00, 3.00, 0.68, 90.00, 0.00, 90.00, '', 0, '', 0, 0, 0, 19420, 0.00, -0.46, 1.37, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (420, 65535, -1, 0, 0, 0, 'LSPD-16', 1000, 0, 2, 0, 1, 1562.6, -1711.56, 5.65, 0, 0, 0, 359.41, 0, 0, 0, 65535, 0.00, 2.23, -0.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, -1.70, 0.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (421, 65535, -1, 0, 0, 579, '', 1000, 0, 0, 0, 0, 1604.18, -1833.64, 13.42, 0, 0, 0, 276.32, 0, 0, 0, 65535, 0.00, 0.80, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, -0.46, 1.37, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (422, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 16, 1, 321, -1809.43, 4.25, 0, 0, 0, 0.43, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(423, 484, 1, 0, 0, 567, '', 2000, 0, 2, 16, 1, 315.1, -1809.43, 4.26, 0, 0, 0, 1.96, 2000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(423, 65535, 1, 0, 0, 567, '', 2000, 0, 2, 16, 1, 315.1, -1809.43, 4.26, 0, 0, 1, 1.96, 2000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (424, 65535, 16, 0, 0, 430, '', 2500, 0, 2, 40, 61, 1315.56, -284.47, -0.2, 0, 0, 1, 41.02, 3000, 0, 0, 19419, 0.00, 0.62, 2.75, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (425, 65535, 3, 0, 0, 430, '', 2500, 0, 2, 79, 1, -1476.93, 680.5, -0.25, 0, 0, 1, 359.17, 3000, 0, 0, 65535, 0.00, 0.62, 2.75, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (426, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 1, 44, 1323.14, -294.64, 0.07, 0, 0, 0, 42.79, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(427, 485, 9, 0, 0, 416, '', 2000, 0, 2, 3, 2, -538.27, 2583.62, 53.47, 0, 0, 0, 271.6, 0, 0, 0, 65535, 0.00, -0.40, 1.37, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(428, 65535, 1, 0, 0, 598, '{000000}Bureau', 2000, 0, 2, 0, 0, 301.6, -1503.81, 24.29, 0, 0, 0, 233.3, 2000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(427, 471, 9, 0, 0, 416, '', 2000, 0, 2, 3, 2, -538.27, 2583.62, 53.47, 0, 0, 0, 271.6, 0, 0, 0, 65535, 0.00, -0.40, 1.37, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(428, 65535, 1, 0, 0, 598, '{000000}Bureau', 2000, 0, 2, 0, 0, 301.6, -1503.81, 24.29, 0, 0, 1, 233.3, 2000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (429, 65535, -1, 0, 0, 0, '', 1000, 0, 6, 3, 0, 628.65, -601.96, -3.75, 25559, 0, 0, 272.75, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (430, 65535, -1, 0, 0, 0, '{FF0000}GVARDIA R6', 1000, 1, 6, 0, 0, 627.03, -592.7, -4.48, 25559, 0, 0, 268.26, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (431, 65535, -1, 0, 0, 487, '{FF0000}GVARDIA R6', 1000, 0, 6, 0, 0, 1588.18, -1890.56, 27.28, 0, 0, 0, 356.26, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (432, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 0, 0, 1317.01, -1217.18, 38.11, 0, 0, 0, 90.33, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(433, 486, 1, 0, 0, 598, '{000000}Bureau', 2000, 0, 2, 0, 0, 634.21, -622.53, -4.5, 2653, 0, 0, 358.14, 2000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(434, 487, 9, 0, 0, 416, '', 2000, 0, 2, 3, 2, -305.29, 1023.57, 19.76, 0, 0, 0, 270.82, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(433, 65535, 1, 0, 0, 598, '{000000}Bureau', 2000, 0, 2, 0, 0, 634.21, -622.53, -4.5, 2653, 0, 1, 358.14, 2000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(434, 472, 9, 0, 0, 416, '', 2000, 0, 2, 3, 2, -305.29, 1023.57, 19.76, 0, 0, 0, 270.82, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (435, 65535, 9, 0, 0, 490, '', 3500, 0, 2, 3, 2, -292.67, 1009.59, 19.7, 0, 0, 0, 358.98, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (436, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 0, 0, 1266.93, 1319.13, 10.56, 0, 0, 0, 270.29, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(437, 488, -1, 0, 0, 487, '{FF0000}GVARDIA R6', 1000, 0, 2, 0, 0, 1548.88, -1889.16, 27.29, 0, 0, 0, 359.42, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(438, 489, -1, 0, 0, 580, '{FF0000}GVARDIA', 1000, 0, 2, 0, 0, 1599.18, -1817.38, 13.22, 0, 0, 0, 271.92, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(439, 490, -1, 0, 0, 530, '', 1000, 0, 2, 0, 0, -2006.64, -1590.02, 86.44, 0, 0, 0, 264.75, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(437, 473, -1, 0, 0, 487, '{FF0000}GVARDIA R6', 1000, 0, 2, 0, 0, 1548.88, -1889.16, 27.29, 0, 0, 0, 359.42, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(438, 474, -1, 0, 0, 580, '{FF0000}GVARDIA', 1000, 0, 2, 0, 0, 1599.18, -1817.38, 13.22, 0, 0, 0, 271.92, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(439, 475, -1, 0, 0, 530, '', 1000, 0, 2, 0, 0, -2006.64, -1590.02, 86.44, 0, 0, 0, 264.75, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (440, 65535, -1, 0, 0, 426, '{FF0000}GVARDIA', 1000, 1, 6, 0, 0, 1598.56, -1816.81, 13.14, 0, 0, 0, 275.1, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (441, 65535, -1, 0, 0, 0, 'SD-P19', 1000, 1, 6, 40, 61, 569.4, -606.4, -4.55, 56812, 0, 0, 270.35, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (442, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 3, 2, -527.78, 2581.51, 53.54, 0, 0, 0, 89.73, 0, 0, 0, 65535, 0.00, 2.70, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(443, 65535, 1, 0, 0, 599, '{000000}Bureau', 2000, 0, 2, 0, 0, 296.63, -1508.13, 24.78, 0, 0, 0, 235.02, 2000, 0, 0, 10, 0.00, 2.00, -0.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 10, -0.50, 1.37, 0.00, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(443, 65535, 1, 0, 0, 599, '{000000}Bureau', 2000, 0, 2, 0, 0, 296.63, -1508.13, 24.78, 0, 0, 1, 235.02, 2000, 0, 0, 10, 0.00, 2.00, -0.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 10, -0.50, 1.37, 0.00, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (444, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 3, 2, 199.52, 1930.81, 23.36, 0, 0, 0, 181.08, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (445, 65535, 11, 0, 0, 470, '', 3500, 0, 2, 0, 0, -1530.67, 433.01, 7.15, 0, 0, 1, 90.05, 3000, 0, 0, 65535, -0.50, 1.10, 0.10, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (446, 65535, 11, 0, 0, 500, '', 2000, 0, 2, 99, 99, 628.53, -593.07, -4.13, 1107, 0, 1, 269.19, 2500, 0, 0, 65535, -0.50, 2.00, 0.00, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
@@ -8037,12 +8038,12 @@ INSERT INTO `groupvehs` (`id`, `SpawnedID`, `gID`, `gDivID`, `rID`, `vModel`, `v
 (460, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 1, 3, 1561.93, -2170.33, 13.6, 0, 0, 0, 180.77, 0, 0, 0, 65535, 0.00, 0.60, 1.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.60, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (461, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 1, 3, 1616.39, -2169.06, 13.72, 0, 0, 0, 178.52, 0, 100, 0, 65535, 0.00, 2.75, -0.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (462, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 1, 3, -2051.87, 84.22, 28.44, 0, 0, 0, 89.18, 0, 0, 0, 65535, 0.00, 2.75, -0.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(463, 491, 8, 0, 0, 470, '', 3500, 0, 2, 0, 0, -616.84, 439.01, 1345.93, 1812837, 1, 0, 270.7, 0, 0, 0, 1892, -0.50, 1.10, 0.00, 270.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, -0.50, 0.00, 0.87, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(464, 492, 8, 0, 0, 490, '', 3500, 0, 2, 3, 2, 2285.36, 2430.1, 3.25, 0, 0, 0, 1.2, 0, 0, 0, 1892, -0.50, 2.00, 0.00, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(465, 493, 9, 0, 0, 407, 'Engine 1', 4000, 0, 2, 2, 2, -539.13, 2603.62, 53.65, 0, 0, 0, 268.6, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(463, 476, 8, 0, 0, 470, '', 3500, 0, 2, 0, 0, -616.84, 439.01, 1345.93, 1812837, 1, 0, 270.7, 0, 0, 0, 1892, -0.50, 1.10, 0.00, 270.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, -0.50, 0.00, 0.87, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(464, 477, 8, 0, 0, 490, '', 3500, 0, 2, 3, 2, 2285.36, 2430.1, 3.25, 0, 0, 0, 1.2, 0, 0, 0, 1892, -0.50, 2.00, 0.00, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(465, 478, 9, 0, 0, 407, 'Engine 1', 4000, 0, 2, 2, 2, -539.13, 2603.62, 53.65, 0, 0, 0, 268.6, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (466, 65535, 9, 0, 0, 416, '', 2000, 0, 2, 3, 2, -1522.93, 2526.84, 55.86, 0, 0, 0, 358.2, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (467, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 3, 2, 214.3, 1932.31, 23.34, 0, 0, 0, 179.08, 0, 0, 0, 65535, 0.00, -0.40, 1.37, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(468, 494, 9, 0, 0, 416, 'Unit - 3', 2000, 0, 2, 3, 2, -1510.06, 2524.12, 55.95, 0, 0, 0, 358.35, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(468, 479, 9, 0, 0, 416, 'Unit - 3', 2000, 0, 2, 3, 2, -1510.06, 2524.12, 55.95, 0, 0, 0, 358.35, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (469, 65535, -1, 0, 0, 579, 'SD-P24', 1000, 0, 2, 251, 251, 1632.56, -1318.18, 17.37, 0, 0, 0, 89.37, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (470, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 3, 2, -538.84, 2611.02, 53.56, 0, 0, 0, 268.95, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (471, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 1, 1, -1279.1, -8.81, 14.73, 0, 0, 0, 314.82, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
@@ -8051,7 +8052,7 @@ INSERT INTO `groupvehs` (`id`, `SpawnedID`, `gID`, `gDivID`, `rID`, `vModel`, `v
 (474, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 0, 0, 339.23, 1897.81, 19.62, 0, 0, 0, 88.98, 0, 100, 0, 65535, 0.00, 1.37, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (475, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 0, 0, 202.35, 1881.56, 17.94, 0, 0, 0, 358.29, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (476, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 3, 2, 340.73, 1923.93, 18.34, 0, 0, 0, 89.54, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(477, 495, 1, 0, 0, 497, '', 2000, 1, 2, 0, 0, -1953.02, 416.29, 57.02, 0, 0, 0, 89.01, 2000, 0, 0, 65535, 0.00, 0.87, 1.25, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(477, 65535, 1, 0, 0, 497, '', 2000, 1, 2, 0, 0, -1953.02, 416.29, 57.02, 0, 0, 1, 89.01, 2000, 0, 0, 65535, 0.00, 0.87, 1.25, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (478, 65535, -1, 0, 0, 579, '', 1000, 0, 0, 251, 251, 1648.28, -1318.17, 17.37, 0, 0, 0, 89.37, 0, 0, 0, 65535, 0.00, 0.87, 1.25, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (479, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 1, 1, 616.9, -576.46, 26.12, 0, 0, 0, 271.07, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (480, 65535, 16, 0, 0, 598, '', 2000, 0, 2, 40, 61, 633.71, -622.33, -4.59, 56812, 0, 1, 358.51, 2000, 0, 0, 65535, 5.00, 0.00, 1.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
@@ -8059,8 +8060,8 @@ INSERT INTO `groupvehs` (`id`, `SpawnedID`, `gID`, `gDivID`, `rID`, `vModel`, `v
 (482, 65535, -1, 0, 0, 0, '{000000}SUP-01', 1000, 0, 2, 1, 1, 1545.43, -1680.31, 5.63, 0, 0, 0, 90.58, 0, 100, 0, 65535, 0.00, 2.19, -0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, -0.50, 1.20, -0.15, -90.00, 2.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 INSERT INTO `groupvehs` (`id`, `SpawnedID`, `gID`, `gDivID`, `rID`, `vModel`, `vPlate`, `vMaxHealth`, `vType`, `vLoadMax`, `vCol1`, `vCol2`, `vX`, `vY`, `vZ`, `vVW`, `vInt`, `vDisabled`, `vRotZ`, `vUpkeep`, `vFuel`, `vSiren`, `vAttachedObjectModel1`, `vObjectX1`, `vObjectY1`, `vObjectZ1`, `vObjectRX1`, `vObjectRY1`, `vObjectRZ1`, `vObjectText1`, `vObjectMatSize1`, `vObjectFont1`, `vObjectSize1`, `vObjectColor1`, `vObjectBGColor1`, `vAttachedObjectModel2`, `vObjectX2`, `vObjectY2`, `vObjectZ2`, `vObjectRX2`, `vObjectRY2`, `vObjectRZ2`, `vObjectText2`, `vObjectMatSize2`, `vObjectFont2`, `vObjectSize2`, `vObjectColor2`, `vObjectBGColor2`, `vAttachedObjectModel3`, `vObjectX3`, `vObjectY3`, `vObjectZ3`, `vObjectRX3`, `vObjectRY3`, `vObjectRZ3`, `vObjectText3`, `vObjectMatSize3`, `vObjectFont3`, `vObjectSize3`, `vObjectColor3`, `vObjectBGColor3`, `vAttachedObjectModel4`, `vObjectX4`, `vObjectY4`, `vObjectZ4`, `vObjectRX4`, `vObjectRY4`, `vObjectRZ4`, `vObjectText4`, `vObjectMatSize4`, `vObjectFont4`, `vObjectSize4`, `vObjectColor4`, `vObjectBGColor4`, `vMod0`, `vMod1`, `vMod2`, `vMod3`, `vMod4`, `vMod5`, `vMod6`, `vMod7`, `vMod8`, `vMod9`, `vMod10`, `vMod11`, `vMod12`, `vMod13`, `vMod14`) VALUES
 (483, 65535, 16, 0, 0, 598, '', 2000, 0, 2, 40, 61, 616.51, -621.96, -4.38, 56812, 0, 1, 0.23, 2000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(484, 496, -1, 0, 0, 426, '', 1000, 0, 2, 251, 251, 1636.5, -1329.15, 17.19, 0, 0, 0, 272.57, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(485, 497, 0, 0, 0, 596, 'LSPD-10', 2000, 0, 2, 0, 1, 1558.81, -1711.38, 5.63, 0, 0, 0, 359.73, 2000, 0, 0, 19419, 0.00, 2.19, -0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19419, 0.00, -1.70, 0.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(484, 480, -1, 0, 0, 426, '', 1000, 0, 2, 251, 251, 1636.5, -1329.15, 17.19, 0, 0, 0, 272.57, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(485, 481, 0, 0, 0, 596, 'LSPD-10', 2000, 0, 2, 0, 1, 1558.81, -1711.38, 5.63, 0, 0, 0, 359.73, 2000, 0, 0, 19419, 0.00, 2.19, -0.20, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19419, 0.00, -1.70, 0.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (486, 65535, -1, 0, 0, 445, '', 1000, 0, 2, 24, 24, 1635, -1341.56, 17.29, 0, 0, 0, 270.51, 0, 0, 0, 65535, 0.00, 2.25, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, -1.25, 0.40, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (487, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 13, 13, 646.54, -553.14, -15.18, 56812, 0, 1, 89.05, 0, 0, 0, 65535, 0.00, 2.20, -0.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (488, 65535, -1, 0, 0, 0, '', 1000, 1, 2, 0, 0, 2519.07, -2116.59, 13.52, 0, 0, 0, 1.48, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
@@ -8079,17 +8080,17 @@ INSERT INTO `groupvehs` (`id`, `SpawnedID`, `gID`, `gDivID`, `rID`, `vModel`, `v
 (501, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 0, 0, -2199.01, 583.08, 61.93, 0, 0, 0, 87.19, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (502, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 0, 0, 982.71, 1746.38, 8.76, 0, 0, 0, 90.47, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (503, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 0, 0, -2202.37, 594.65, 62.02, 0, 0, 0, 266.1, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(504, 498, 1, 0, 0, 427, '{000080}BIG DADDY', 5000, 0, 2, 0, 0, 303.64, -1500.55, 24.7, 0, 0, 0, 235.71, 4000, 0, 0, 65535, -0.50, 2.00, -0.60, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, -0.50, 2.00, 0.00, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(505, 499, 1, 0, 0, 490, '', 3500, 0, 2, 0, 0, 629.46, -622.78, -4.11, 2653, 0, 0, 0.5, 3000, 0, 0, 19420, 0.00, 2.75, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 1892, -0.50, 2.00, 0.00, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(506, 500, 1, 0, 0, 490, '', 3500, 0, 2, 0, 0, 2156.83, -1727.4, 13.64, 0, 0, 0, 269.2, 3000, 0, 0, 19420, 0.00, 2.75, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 1892, -0.50, 2.00, 0.00, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(507, 65535, 1, 0, 0, 528, '', 5000, 0, 2, 0, 0, 302.32, -1529.06, 24.95, 0, 0, 0, 51.24, 4000, 0, 0, 65535, -0.50, 1.50, -0.30, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 1892, -0.50, -1.50, -0.30, 90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(504, 65535, 1, 0, 0, 427, '{000080}BIG DADDY', 5000, 0, 2, 0, 0, 303.64, -1500.55, 24.7, 0, 0, 1, 235.71, 4000, 0, 0, 65535, -0.50, 2.00, -0.60, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, -0.50, 2.00, 0.00, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(505, 65535, 1, 0, 0, 490, '', 3500, 0, 2, 0, 0, 629.46, -622.78, -4.11, 2653, 0, 1, 0.5, 3000, 0, 0, 19420, 0.00, 2.75, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 1892, -0.50, 2.00, 0.00, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(506, 65535, 1, 0, 0, 490, '', 3500, 0, 2, 0, 0, 2156.83, -1727.4, 13.64, 0, 0, 1, 269.2, 3000, 0, 0, 19420, 0.00, 2.75, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 1892, -0.50, 2.00, 0.00, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(507, 65535, 1, 0, 0, 528, '', 5000, 0, 2, 0, 0, 302.32, -1529.06, 24.95, 0, 0, 1, 51.24, 4000, 0, 0, 65535, -0.50, 1.50, -0.30, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 1892, -0.50, -1.50, -0.30, 90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (508, 65535, -1, 0, 0, 0, '', 1000, 0, 4, 0, 0, -2044.68, 367.2, 36.61, 0, 0, 0, 356.23, 0, 0, 0, 65535, 0.00, 2.25, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, -1.70, 0.30, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (509, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 13, 0, 647.15, -568.46, -15.22, 56812, 0, 0, 89.83, 0, 0, 0, 65535, 0.00, 2.25, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, -1.70, 0.30, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (510, 65535, 16, 0, 0, 426, '', 2000, 0, 2, 4, 7, 603.01, -579, -4.73, 56812, 0, 1, 359.92, 2000, 0, 0, 19420, 0.00, 2.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19420, 0.00, -2.25, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (511, 65535, -1, 0, 0, 0, 'GVARDIA R6', 1000, 0, 2, 0, 17, -2015.68, -431.01, 35.15, 1, 0, 0, 91.98, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(512, 65535, 1, 0, 0, 528, '', 5000, 0, 2, 0, 0, 305.01, -1525.91, 24.95, 0, 0, 0, 53.15, 4000, 0, 0, 65535, -0.50, 1.50, -0.30, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, -0.50, -1.50, -0.30, 90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(512, 65535, 1, 0, 0, 528, '', 5000, 0, 2, 0, 0, 305.01, -1525.91, 24.95, 0, 0, 1, 53.15, 4000, 0, 0, 65535, -0.50, 1.50, -0.30, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, -0.50, -1.50, -0.30, 90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (513, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 0, 0, 1284.68, -1251.43, 13.25, 0, 0, 0, 182.86, 0, 0, 0, 65535, 0.00, 2.00, -0.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(514, 501, 1, 0, 0, 601, '', 5000, 0, 2, 0, 0, 293.72, -1497.81, 24.68, 0, 0, 0, 327.64, 5000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(514, 65535, 1, 0, 0, 601, '', 5000, 0, 2, 0, 0, 293.72, -1497.81, 24.68, 0, 0, 1, 327.64, 5000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (515, 65535, -1, 0, 0, 409, '{FF0000}GVARDIA R6', 1000, 1, 4, 0, 0, 1599.77, -1806.31, 13.18, 0, 0, 0, 264.39, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (516, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 0, 0, 1288.68, -1251.56, 13.25, 0, 0, 0, 181.97, 0, 0, 0, 65535, 0.00, 2.00, -0.10, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (517, 65535, -1, 0, 0, 0, '{000000}Bureau', 1000, 0, 2, 0, 0, 628.19, -601.59, -4.11, 2653, 0, 0, 270.97, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
@@ -8107,8 +8108,8 @@ INSERT INTO `groupvehs` (`id`, `SpawnedID`, `gID`, `gDivID`, `rID`, `vModel`, `v
 (529, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 57, 86, -1996.91, -465.82, 35.11, 0, 0, 0, 91.05, 0, 0, 0, 65535, 0.00, 2.45, 0.30, 90.00, 0.00, 90.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (530, 65535, -1, 0, 0, 427, '', 4000, 0, 2, 0, 0, -2013.81, -471.17, 35.52, 0, 0, 0, 270.13, 0, 0, 0, 19314, 0.00, 3.20, 0.60, 90.00, 90.00, 0.00, '', 0, '', 0, 0, 0, 2985, 0.00, -0.87, 1.50, 0.00, 0.00, 90.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (531, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 57, 86, -2014.43, -454.7, 35.5, 0, 0, 0, 270.01, 0, 0, 0, 65535, 90.00, 5.00, 0.00, 0.00, 0.00, 90.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(532, 502, -1, 0, 0, 563, '', 2000, 0, 2, 57, 86, 1064.55, -291.29, 74.76, 0, 0, 0, 272.39, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(533, 503, 1, 0, 0, 497, '', 2000, 0, 2, 0, 0, 307.54, -1521.43, 76.69, 0, 0, 0, 237.21, 2000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(532, 482, -1, 0, 0, 563, '', 2000, 0, 2, 57, 86, 1064.55, -291.29, 74.76, 0, 0, 0, 272.39, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(533, 65535, 1, 0, 0, 497, '', 2000, 0, 2, 0, 0, 307.54, -1521.43, 76.69, 0, 0, 1, 237.21, 2000, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (534, 65535, -1, 0, 0, 599, '', 2500, 0, 2, 57, 86, -2015.06, -448.79, 35.59, 0, 0, 0, 271.35, 0, 0, 0, 1736, 0.00, 2.95, 0.20, 180.00, 180.00, 0.00, '', 0, '', 0, 0, 0, 2985, 0.00, 1.75, 0.00, 0.00, 0.00, 90.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (535, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 1, 1, 646.4, -577.64, -15.22, 56812, 0, 0, 90.29, 0, 0, 0, 65535, 0.00, 2.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, -2.50, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (536, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 1, 171, 2035.13, -1279.51, 20.54, 0, 0, 0, 2.16, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
@@ -8126,9 +8127,9 @@ INSERT INTO `groupvehs` (`id`, `SpawnedID`, `gID`, `gDivID`, `rID`, `vModel`, `v
 (548, 65535, 8, 0, 0, 598, '', 2000, 0, 2, 2, 1, 2314.62, 2480.78, 3, 0, 0, 0, 270.07, 0, 0, 0, 65535, -0.50, 1.25, 0.00, -90.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (549, 65535, -1, 0, 0, 0, '{0000FF}S.H.A.F.T', 1000, 0, 2, 0, 106, -2056.61, 390, 36.79, 0, 0, 0, 177.19, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (550, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 1, 1, 2494.19, 96.73, 26.2, 0, 0, 0, 359.54, 0, 0, 0, 65535, 0.00, 2.25, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, -1.70, 0.30, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(551, 504, 8, 0, 0, 525, '', 2000, 0, 2, 3, 2, -611.34, 409.1, 1345.81, 1812837, 1, 0, 358.51, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(552, 505, 8, 0, 0, 525, '', 2000, 0, 2, 3, 2, -1400.43, 2656.62, 55.54, 0, 0, 0, 91.23, 0, 0, 0, 19419, 0.00, -0.46, 1.37, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(553, 506, -1, 0, 0, 580, '', 1000, 0, 2, 251, 0, 1629.06, -1353.56, 17.2, 0, 0, 0, 268.57, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(551, 483, 8, 0, 0, 525, '', 2000, 0, 2, 3, 2, -611.34, 409.1, 1345.81, 1812837, 1, 0, 358.51, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(552, 484, 8, 0, 0, 525, '', 2000, 0, 2, 3, 2, -1400.43, 2656.62, 55.54, 0, 0, 0, 91.23, 0, 0, 0, 19419, 0.00, -0.46, 1.37, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(553, 485, -1, 0, 0, 580, '', 1000, 0, 2, 251, 0, 1629.06, -1353.56, 17.2, 0, 0, 0, 268.57, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (554, 65535, 16, 0, 0, 490, '', 3500, 0, 2, 40, 61, 628.15, -597.39, -4.26, 56812, 0, 1, 270.32, 3000, 0, 0, 19420, 0.00, 2.25, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 19420, 0.00, -2.25, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (555, 65535, -1, 0, 0, 580, '', 1000, 0, 2, 24, 0, 1636.17, -1353.56, 17.2, 0, 0, 0, 268.51, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (556, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 40, 61, 627.82, -597.21, -14.89, 56812, 0, 0, 270.98, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
@@ -8142,14 +8143,14 @@ INSERT INTO `groupvehs` (`id`, `SpawnedID`, `gID`, `gDivID`, `rID`, `vModel`, `v
 (564, 65535, -1, 0, 0, 530, '', 1000, 1, 1, 79, 79, -1347.31, -691.46, 13.89, 0, 0, 0, 88.44, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (565, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 1, 1, 646.88, -583.03, -15.22, 56812, 0, 0, 90.91, 0, 0, 0, 65535, 0.00, 2.25, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, -1.70, 0.30, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (566, 65535, -1, 0, 0, 0, '{0000FF}SWAT-03', 1000, 0, 2, 0, 1, -607.51, 430.2, 1345.93, 100, 1, 0, 269.04, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(567, 507, 5, 0, 0, 563, '', 3000, 0, 2, 0, 0, 1113.52, -2054.37, 75.12, 0, 0, 0, 357.72, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(568, 508, 5, 0, 0, 497, '', 2500, 0, 2, 0, 0, 1115.65, -2017.81, 74.61, 0, 0, 0, 84.26, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(567, 486, 5, 0, 0, 563, '', 3000, 0, 2, 0, 0, 1113.52, -2054.37, 75.12, 0, 0, 0, 357.72, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(568, 487, 5, 0, 0, 497, '', 2500, 0, 2, 0, 0, 1115.65, -2017.81, 74.61, 0, 0, 0, 84.26, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (569, 65535, -1, 0, 0, 567, '', 1000, 0, 2, 0, 0, 1886.63, -2025.26, 13.25, 0, 0, 0, 178.97, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (570, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 0, 0, 2371.69, -1320.85, 23.82, 0, 0, 0, 181.77, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(571, 509, 5, 0, 0, 519, '', 3000, 0, 2, 0, 0, 1458.16, -2627.01, 14.46, 0, 0, 0, 3.49, 0, 0, 0, 65535, 0.00, 0.50, 1.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(572, 510, -1, 0, 0, 567, '', 1000, 0, 2, 0, 0, 2334.05, -1340.43, 24.02, 0, 0, 0, 174.86, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(573, 511, -1, 0, 0, 566, '', 1000, 0, 2, 0, 0, 2375.01, -1211.56, 27.18, 0, 0, 0, 0.92, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(574, 512, -1, 0, 0, 535, '', 1000, 0, 2, 0, 0, 2337.87, -1324.4, 23.92, 0, 0, 0, 0.07, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(571, 488, 5, 0, 0, 519, '', 3000, 0, 2, 0, 0, 1458.16, -2627.01, 14.46, 0, 0, 0, 3.49, 0, 0, 0, 65535, 0.00, 0.50, 1.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(572, 489, -1, 0, 0, 567, '', 1000, 0, 2, 0, 0, 2334.05, -1340.43, 24.02, 0, 0, 0, 174.86, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(573, 490, -1, 0, 0, 566, '', 1000, 0, 2, 0, 0, 2375.01, -1211.56, 27.18, 0, 0, 0, 0.92, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(574, 491, -1, 0, 0, 535, '', 1000, 0, 2, 0, 0, 2337.87, -1324.4, 23.92, 0, 0, 0, 0.07, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (575, 65535, -1, 0, 0, 482, '', 1000, 0, 2, 0, 0, 1924.18, -2123.12, 13.72, 0, 0, 0, 2.18, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (576, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 3, 1, 94.69, -164.8, 2.75, 0, 0, 0, 269.54, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (577, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 3, 1, -2051.37, 75.29, 28.59, 0, 0, 0, 90.33, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
@@ -8171,8 +8172,8 @@ INSERT INTO `groupvehs` (`id`, `SpawnedID`, `gID`, `gDivID`, `rID`, `vModel`, `v
 (593, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 205, 6, 989.53, -1305.93, 13.05, 0, 0, 0, 357.64, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (594, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 205, 202, 1012.63, -1299.13, 13.26, 0, 0, 0, 180.61, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (595, 65535, -1, 0, 0, 0, '', 1000, 0, 2, 205, 205, 985.33, -1305.68, 13.18, 0, 0, 0, 3, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(596, 513, -1, 0, 0, 487, '', 1000, 0, 2, 205, 0, 1016.65, -1279.93, 19.54, 0, 0, 0, 175.99, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(597, 514, -1, 0, 0, 482, '', 1000, 0, 2, 205, 6, 973.03, -1261.79, 16.29, 0, 0, 0, 181.27, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(596, 492, -1, 0, 0, 487, '', 1000, 0, 2, 205, 0, 1016.65, -1279.93, 19.54, 0, 0, 0, 175.99, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(597, 493, -1, 0, 0, 482, '', 1000, 0, 2, 205, 6, 973.03, -1261.79, 16.29, 0, 0, 0, 181.27, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (598, 65535, -1, 0, 0, 487, '', 1000, 0, 2, 205, 0, 1130.42, -1219.81, 25.51, 0, 0, 0, 89.62, 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 65535, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, '', 0, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
@@ -8183,8 +8184,8 @@ INSERT INTO `groupvehs` (`id`, `SpawnedID`, `gID`, `gDivID`, `rID`, `vModel`, `v
 
 CREATE TABLE `gweapons` (
   `id` int(11) NOT NULL,
-  `Weapon_ID` int(11) NOT NULL DEFAULT '0',
-  `Group_ID` int(11) NOT NULL DEFAULT '0'
+  `Weapon_ID` int(11) NOT NULL DEFAULT 0,
+  `Group_ID` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -8195,49 +8196,49 @@ CREATE TABLE `gweapons` (
 
 CREATE TABLE `gweaponsnew` (
   `Group_ID` int(11) NOT NULL,
-  `1` int(11) NOT NULL DEFAULT '0',
-  `2` int(11) NOT NULL DEFAULT '0',
-  `3` int(11) NOT NULL DEFAULT '0',
-  `4` int(11) NOT NULL DEFAULT '0',
-  `5` int(11) NOT NULL DEFAULT '0',
-  `6` int(11) NOT NULL DEFAULT '0',
-  `7` int(11) NOT NULL DEFAULT '0',
-  `8` int(11) NOT NULL DEFAULT '0',
-  `9` int(11) NOT NULL DEFAULT '0',
-  `10` int(11) NOT NULL DEFAULT '0',
-  `11` int(11) NOT NULL DEFAULT '0',
-  `12` int(11) NOT NULL DEFAULT '0',
-  `13` int(11) NOT NULL DEFAULT '0',
-  `14` int(11) NOT NULL DEFAULT '0',
-  `15` int(11) NOT NULL DEFAULT '0',
-  `16` int(11) NOT NULL DEFAULT '0',
-  `17` int(11) NOT NULL DEFAULT '0',
-  `18` int(11) NOT NULL DEFAULT '0',
-  `22` int(11) NOT NULL DEFAULT '0',
-  `23` int(11) NOT NULL DEFAULT '0',
-  `24` int(11) NOT NULL DEFAULT '0',
-  `25` int(11) NOT NULL DEFAULT '0',
-  `26` int(11) NOT NULL DEFAULT '0',
-  `27` int(11) NOT NULL DEFAULT '0',
-  `28` int(11) NOT NULL DEFAULT '0',
-  `29` int(11) NOT NULL DEFAULT '0',
-  `30` int(11) NOT NULL DEFAULT '0',
-  `31` int(11) NOT NULL DEFAULT '0',
-  `32` int(11) NOT NULL DEFAULT '0',
-  `33` int(11) NOT NULL DEFAULT '0',
-  `34` int(11) NOT NULL DEFAULT '0',
-  `35` int(11) NOT NULL DEFAULT '0',
-  `36` int(11) NOT NULL DEFAULT '0',
-  `37` int(11) NOT NULL DEFAULT '0',
-  `38` int(11) NOT NULL DEFAULT '0',
-  `39` int(11) NOT NULL DEFAULT '0',
-  `40` int(11) NOT NULL DEFAULT '0',
-  `41` int(11) NOT NULL DEFAULT '0',
-  `42` int(11) NOT NULL DEFAULT '0',
-  `43` int(11) NOT NULL DEFAULT '0',
-  `44` int(11) NOT NULL DEFAULT '0',
-  `45` int(11) NOT NULL DEFAULT '0',
-  `46` int(11) NOT NULL DEFAULT '0'
+  `1` int(11) NOT NULL DEFAULT 0,
+  `2` int(11) NOT NULL DEFAULT 0,
+  `3` int(11) NOT NULL DEFAULT 0,
+  `4` int(11) NOT NULL DEFAULT 0,
+  `5` int(11) NOT NULL DEFAULT 0,
+  `6` int(11) NOT NULL DEFAULT 0,
+  `7` int(11) NOT NULL DEFAULT 0,
+  `8` int(11) NOT NULL DEFAULT 0,
+  `9` int(11) NOT NULL DEFAULT 0,
+  `10` int(11) NOT NULL DEFAULT 0,
+  `11` int(11) NOT NULL DEFAULT 0,
+  `12` int(11) NOT NULL DEFAULT 0,
+  `13` int(11) NOT NULL DEFAULT 0,
+  `14` int(11) NOT NULL DEFAULT 0,
+  `15` int(11) NOT NULL DEFAULT 0,
+  `16` int(11) NOT NULL DEFAULT 0,
+  `17` int(11) NOT NULL DEFAULT 0,
+  `18` int(11) NOT NULL DEFAULT 0,
+  `22` int(11) NOT NULL DEFAULT 0,
+  `23` int(11) NOT NULL DEFAULT 0,
+  `24` int(11) NOT NULL DEFAULT 0,
+  `25` int(11) NOT NULL DEFAULT 0,
+  `26` int(11) NOT NULL DEFAULT 0,
+  `27` int(11) NOT NULL DEFAULT 0,
+  `28` int(11) NOT NULL DEFAULT 0,
+  `29` int(11) NOT NULL DEFAULT 0,
+  `30` int(11) NOT NULL DEFAULT 0,
+  `31` int(11) NOT NULL DEFAULT 0,
+  `32` int(11) NOT NULL DEFAULT 0,
+  `33` int(11) NOT NULL DEFAULT 0,
+  `34` int(11) NOT NULL DEFAULT 0,
+  `35` int(11) NOT NULL DEFAULT 0,
+  `36` int(11) NOT NULL DEFAULT 0,
+  `37` int(11) NOT NULL DEFAULT 0,
+  `38` int(11) NOT NULL DEFAULT 0,
+  `39` int(11) NOT NULL DEFAULT 0,
+  `40` int(11) NOT NULL DEFAULT 0,
+  `41` int(11) NOT NULL DEFAULT 0,
+  `42` int(11) NOT NULL DEFAULT 0,
+  `43` int(11) NOT NULL DEFAULT 0,
+  `44` int(11) NOT NULL DEFAULT 0,
+  `45` int(11) NOT NULL DEFAULT 0,
+  `46` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -8332,77 +8333,77 @@ CREATE TABLE `hgbackpacks` (
 
 CREATE TABLE `houses` (
   `id` int(11) NOT NULL,
-  `Owned` int(11) NOT NULL DEFAULT '0',
-  `Level` int(11) NOT NULL DEFAULT '999',
+  `Owned` int(11) NOT NULL DEFAULT 0,
+  `Level` int(11) NOT NULL DEFAULT 999,
   `Description` varchar(16) NOT NULL DEFAULT 'High',
-  `OwnerID` int(11) NOT NULL DEFAULT '-1',
+  `OwnerID` int(11) NOT NULL DEFAULT -1,
   `Username` varchar(24) NOT NULL DEFAULT 'Nobody',
-  `ExteriorX` float(10,5) NOT NULL DEFAULT '0.00000',
-  `ExteriorY` float(10,5) NOT NULL DEFAULT '0.00000',
-  `ExteriorZ` float(10,5) NOT NULL DEFAULT '0.00000',
-  `ExteriorR` float(10,5) NOT NULL DEFAULT '0.00000',
-  `ExteriorA` float(10,5) NOT NULL DEFAULT '0.00000',
-  `CustomExterior` int(11) NOT NULL DEFAULT '0',
-  `InteriorX` float(10,5) NOT NULL DEFAULT '0.00000',
-  `InteriorY` float(10,5) NOT NULL DEFAULT '0.00000',
-  `InteriorZ` float(10,5) NOT NULL DEFAULT '0.00000',
-  `InteriorR` float(10,5) NOT NULL DEFAULT '0.00000',
-  `InteriorA` float(10,5) NOT NULL DEFAULT '0.00000',
-  `CustomInterior` int(11) NOT NULL DEFAULT '0',
-  `ExtIW` int(11) NOT NULL DEFAULT '0',
-  `ExtVW` int(11) NOT NULL DEFAULT '0',
-  `IntIW` int(11) NOT NULL DEFAULT '9',
-  `IntVW` int(11) NOT NULL DEFAULT '0',
-  `Lock` int(11) NOT NULL DEFAULT '0',
-  `Rentable` int(11) NOT NULL DEFAULT '0',
-  `RentFee` int(11) NOT NULL DEFAULT '0',
-  `Value` int(11) NOT NULL DEFAULT '0',
-  `SafeMoney` int(11) NOT NULL DEFAULT '0',
-  `Pot` int(11) NOT NULL DEFAULT '0',
-  `Crack` int(11) NOT NULL DEFAULT '0',
-  `Heroin` int(11) NOT NULL DEFAULT '0',
-  `Meth` int(11) NOT NULL DEFAULT '0',
-  `Ecstasy` int(11) NOT NULL DEFAULT '0',
-  `Materials` int(11) NOT NULL DEFAULT '0',
-  `Weapons0` int(11) NOT NULL DEFAULT '0',
-  `Weapons1` int(11) NOT NULL DEFAULT '0',
-  `Weapons2` int(11) NOT NULL DEFAULT '0',
-  `Weapons3` int(11) NOT NULL DEFAULT '0',
-  `Weapons4` int(11) NOT NULL DEFAULT '0',
-  `GLUpgrade` int(11) NOT NULL DEFAULT '0',
-  `PickupID` int(11) NOT NULL DEFAULT '0',
-  `MailX` float(10,5) NOT NULL DEFAULT '0.00000',
-  `MailY` float(10,5) NOT NULL DEFAULT '0.00000',
-  `MailZ` float(10,5) NOT NULL DEFAULT '0.00000',
-  `MailA` float(10,5) NOT NULL DEFAULT '0.00000',
-  `MailType` tinyint(4) NOT NULL DEFAULT '0',
-  `ClosetX` float(10,5) NOT NULL DEFAULT '0.00000',
-  `ClosetY` float(10,5) NOT NULL DEFAULT '0.00000',
-  `ClosetZ` float(10,5) NOT NULL DEFAULT '0.00000',
+  `ExteriorX` float(10,5) NOT NULL DEFAULT 0.00000,
+  `ExteriorY` float(10,5) NOT NULL DEFAULT 0.00000,
+  `ExteriorZ` float(10,5) NOT NULL DEFAULT 0.00000,
+  `ExteriorR` float(10,5) NOT NULL DEFAULT 0.00000,
+  `ExteriorA` float(10,5) NOT NULL DEFAULT 0.00000,
+  `CustomExterior` int(11) NOT NULL DEFAULT 0,
+  `InteriorX` float(10,5) NOT NULL DEFAULT 0.00000,
+  `InteriorY` float(10,5) NOT NULL DEFAULT 0.00000,
+  `InteriorZ` float(10,5) NOT NULL DEFAULT 0.00000,
+  `InteriorR` float(10,5) NOT NULL DEFAULT 0.00000,
+  `InteriorA` float(10,5) NOT NULL DEFAULT 0.00000,
+  `CustomInterior` int(11) NOT NULL DEFAULT 0,
+  `ExtIW` int(11) NOT NULL DEFAULT 0,
+  `ExtVW` int(11) NOT NULL DEFAULT 0,
+  `IntIW` int(11) NOT NULL DEFAULT 9,
+  `IntVW` int(11) NOT NULL DEFAULT 0,
+  `Lock` int(11) NOT NULL DEFAULT 0,
+  `Rentable` int(11) NOT NULL DEFAULT 0,
+  `RentFee` int(11) NOT NULL DEFAULT 0,
+  `Value` int(11) NOT NULL DEFAULT 0,
+  `SafeMoney` int(11) NOT NULL DEFAULT 0,
+  `Pot` int(11) NOT NULL DEFAULT 0,
+  `Crack` int(11) NOT NULL DEFAULT 0,
+  `Heroin` int(11) NOT NULL DEFAULT 0,
+  `Meth` int(11) NOT NULL DEFAULT 0,
+  `Ecstasy` int(11) NOT NULL DEFAULT 0,
+  `Materials` int(11) NOT NULL DEFAULT 0,
+  `Weapons0` int(11) NOT NULL DEFAULT 0,
+  `Weapons1` int(11) NOT NULL DEFAULT 0,
+  `Weapons2` int(11) NOT NULL DEFAULT 0,
+  `Weapons3` int(11) NOT NULL DEFAULT 0,
+  `Weapons4` int(11) NOT NULL DEFAULT 0,
+  `GLUpgrade` int(11) NOT NULL DEFAULT 0,
+  `PickupID` int(11) NOT NULL DEFAULT 0,
+  `MailX` float(10,5) NOT NULL DEFAULT 0.00000,
+  `MailY` float(10,5) NOT NULL DEFAULT 0.00000,
+  `MailZ` float(10,5) NOT NULL DEFAULT 0.00000,
+  `MailA` float(10,5) NOT NULL DEFAULT 0.00000,
+  `MailType` tinyint(4) NOT NULL DEFAULT 0,
+  `ClosetX` float(10,5) NOT NULL DEFAULT 0.00000,
+  `ClosetY` float(10,5) NOT NULL DEFAULT 0.00000,
+  `ClosetZ` float(10,5) NOT NULL DEFAULT 0.00000,
   `SignDesc` varchar(255) NOT NULL DEFAULT 'None',
-  `SignX` float(10,5) NOT NULL DEFAULT '0.00000',
-  `SignY` float(10,5) NOT NULL DEFAULT '0.00000',
-  `SignZ` float(10,5) NOT NULL DEFAULT '0.00000',
-  `SignA` float(10,5) NOT NULL DEFAULT '0.00000',
-  `SignExpire` int(11) NOT NULL DEFAULT '0',
-  `LastLogin` int(11) NOT NULL DEFAULT '0',
-  `Expire` int(11) NOT NULL DEFAULT '0',
-  `Inactive` int(11) NOT NULL DEFAULT '0',
-  `Ignore` int(11) NOT NULL DEFAULT '0',
-  `Counter` int(11) NOT NULL DEFAULT '0',
-  `Listed` int(11) NOT NULL DEFAULT '0',
-  `PendingApproval` int(11) NOT NULL DEFAULT '0',
-  `ListedTimeStamp` int(11) NOT NULL DEFAULT '0',
-  `ListingPrice` int(11) NOT NULL DEFAULT '0',
+  `SignX` float(10,5) NOT NULL DEFAULT 0.00000,
+  `SignY` float(10,5) NOT NULL DEFAULT 0.00000,
+  `SignZ` float(10,5) NOT NULL DEFAULT 0.00000,
+  `SignA` float(10,5) NOT NULL DEFAULT 0.00000,
+  `SignExpire` int(11) NOT NULL DEFAULT 0,
+  `LastLogin` int(11) NOT NULL DEFAULT 0,
+  `Expire` int(11) NOT NULL DEFAULT 0,
+  `Inactive` int(11) NOT NULL DEFAULT 0,
+  `Ignore` int(11) NOT NULL DEFAULT 0,
+  `Counter` int(11) NOT NULL DEFAULT 0,
+  `Listed` int(11) NOT NULL DEFAULT 0,
+  `PendingApproval` int(11) NOT NULL DEFAULT 0,
+  `ListedTimeStamp` int(11) NOT NULL DEFAULT 0,
+  `ListingPrice` int(11) NOT NULL DEFAULT 0,
   `ListingDescription` varchar(128) NOT NULL DEFAULT 'None',
-  `LinkedDoor0` int(11) NOT NULL DEFAULT '0',
-  `LinkedDoor1` int(11) NOT NULL DEFAULT '0',
-  `LinkedDoor2` int(11) NOT NULL DEFAULT '0',
-  `LinkedDoor3` int(11) NOT NULL DEFAULT '0',
-  `LinkedDoor4` int(11) NOT NULL DEFAULT '0',
-  `LinkedGarage0` int(11) NOT NULL DEFAULT '0',
-  `LinkedGarage1` int(11) NOT NULL DEFAULT '0',
-  `Lights` int(11) NOT NULL DEFAULT '0'
+  `LinkedDoor0` int(11) NOT NULL DEFAULT 0,
+  `LinkedDoor1` int(11) NOT NULL DEFAULT 0,
+  `LinkedDoor2` int(11) NOT NULL DEFAULT 0,
+  `LinkedDoor3` int(11) NOT NULL DEFAULT 0,
+  `LinkedDoor4` int(11) NOT NULL DEFAULT 0,
+  `LinkedGarage0` int(11) NOT NULL DEFAULT 0,
+  `LinkedGarage1` int(11) NOT NULL DEFAULT 0,
+  `Lights` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -12403,8 +12404,8 @@ CREATE TABLE `house_closet` (
 --
 
 CREATE TABLE `humankills` (
-  `id` int(11) NOT NULL DEFAULT '0',
-  `num` int(11) NOT NULL DEFAULT '0'
+  `id` int(11) NOT NULL DEFAULT 0,
+  `num` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -12414,9 +12415,9 @@ CREATE TABLE `humankills` (
 --
 
 CREATE TABLE `humansurvivor` (
-  `id` int(11) NOT NULL DEFAULT '0',
+  `id` int(11) NOT NULL DEFAULT 0,
   `name` varchar(24) NOT NULL DEFAULT 'Nobody',
-  `num` int(11) NOT NULL DEFAULT '0'
+  `num` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -12427,11 +12428,11 @@ CREATE TABLE `humansurvivor` (
 
 CREATE TABLE `impoundpoints` (
   `id` int(2) NOT NULL,
-  `PosX` float(10,5) NOT NULL DEFAULT '0.00000',
-  `PosY` float(10,5) NOT NULL DEFAULT '0.00000',
-  `PosZ` float(10,5) NOT NULL DEFAULT '0.00000',
-  `VW` int(5) NOT NULL DEFAULT '0',
-  `Int` int(5) NOT NULL DEFAULT '0'
+  `PosX` float(10,5) NOT NULL DEFAULT 0.00000,
+  `PosY` float(10,5) NOT NULL DEFAULT 0.00000,
+  `PosZ` float(10,5) NOT NULL DEFAULT 0.00000,
+  `VW` int(5) NOT NULL DEFAULT 0,
+  `Int` int(5) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -12463,14 +12464,14 @@ CREATE TABLE `ip_bans` (
 
 CREATE TABLE `jobs` (
   `id` int(11) NOT NULL,
-  `type` int(11) NOT NULL DEFAULT '0',
-  `posx` float NOT NULL DEFAULT '0',
-  `posy` float NOT NULL DEFAULT '0',
-  `posz` float NOT NULL DEFAULT '0',
-  `int` int(11) NOT NULL DEFAULT '0',
-  `marker` int(11) NOT NULL DEFAULT '0',
-  `vw` int(11) NOT NULL DEFAULT '0',
-  `level` int(11) NOT NULL DEFAULT '1'
+  `type` int(11) NOT NULL DEFAULT 0,
+  `posx` float NOT NULL DEFAULT 0,
+  `posy` float NOT NULL DEFAULT 0,
+  `posz` float NOT NULL DEFAULT 0,
+  `int` int(11) NOT NULL DEFAULT 0,
+  `marker` int(11) NOT NULL DEFAULT 0,
+  `vw` int(11) NOT NULL DEFAULT 0,
+  `level` int(11) NOT NULL DEFAULT 1
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -12482,15 +12483,15 @@ CREATE TABLE `jobs` (
 CREATE TABLE `jobstuff` (
   `id` int(11) NOT NULL,
   `pId` int(11) NOT NULL,
-  `junkmetal` int(11) NOT NULL DEFAULT '0',
-  `newcoin` int(11) NOT NULL DEFAULT '0',
-  `oldcoin` int(11) NOT NULL DEFAULT '0',
-  `brokenwatch` int(11) NOT NULL DEFAULT '0',
-  `oldkey` int(11) NOT NULL DEFAULT '0',
-  `treasure` int(11) NOT NULL DEFAULT '0',
-  `goldwatch` int(11) NOT NULL DEFAULT '0',
-  `silvernugget` int(11) NOT NULL DEFAULT '0',
-  `goldnugget` int(11) NOT NULL DEFAULT '0'
+  `junkmetal` int(11) NOT NULL DEFAULT 0,
+  `newcoin` int(11) NOT NULL DEFAULT 0,
+  `oldcoin` int(11) NOT NULL DEFAULT 0,
+  `brokenwatch` int(11) NOT NULL DEFAULT 0,
+  `oldkey` int(11) NOT NULL DEFAULT 0,
+  `treasure` int(11) NOT NULL DEFAULT 0,
+  `goldwatch` int(11) NOT NULL DEFAULT 0,
+  `silvernugget` int(11) NOT NULL DEFAULT 0,
+  `goldnugget` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -12553,7 +12554,7 @@ INSERT INTO `jobs_types` (`id`, `name`) VALUES
 
 CREATE TABLE `jurisdictions` (
   `id` int(11) NOT NULL,
-  `GroupID` int(11) NOT NULL DEFAULT '-1',
+  `GroupID` int(11) NOT NULL DEFAULT -1,
   `AreaName` varchar(64) DEFAULT NULL,
   `JurisdictionID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -12607,8 +12608,8 @@ INSERT INTO `jurisdictions` (`id`, `GroupID`, `AreaName`, `JurisdictionID`) VALU
 
 CREATE TABLE `kills` (
   `id` int(11) NOT NULL,
-  `killerid` int(11) NOT NULL DEFAULT '-1',
-  `killedid` int(11) NOT NULL DEFAULT '-1',
+  `killerid` int(11) NOT NULL DEFAULT -1,
+  `killedid` int(11) NOT NULL DEFAULT -1,
   `date` datetime DEFAULT NULL,
   `weapon` varchar(56) DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -12635,7 +12636,7 @@ CREATE TABLE `letters` (
   `Message` varchar(255) DEFAULT NULL,
   `Notify` varchar(1) DEFAULT NULL,
   `Delivery_Min` int(11) DEFAULT NULL,
-  `Read` int(11) DEFAULT '0'
+  `Read` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -12646,13 +12647,13 @@ CREATE TABLE `letters` (
 
 CREATE TABLE `lockers` (
   `Id` int(11) NOT NULL,
-  `Group_ID` int(11) NOT NULL DEFAULT '-1',
+  `Group_ID` int(11) NOT NULL DEFAULT -1,
   `Locker_ID` int(11) NOT NULL,
-  `LockerX` float NOT NULL DEFAULT '0',
-  `LockerY` float NOT NULL DEFAULT '0',
-  `LockerZ` float NOT NULL DEFAULT '0',
-  `LockerVW` int(11) NOT NULL DEFAULT '0',
-  `LockerShare` tinyint(4) NOT NULL DEFAULT '0'
+  `LockerX` float NOT NULL DEFAULT 0,
+  `LockerY` float NOT NULL DEFAULT 0,
+  `LockerZ` float NOT NULL DEFAULT 0,
+  `LockerVW` int(11) NOT NULL DEFAULT 0,
+  `LockerShare` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -12693,22 +12694,22 @@ INSERT INTO `lockers` (`Id`, `Group_ID`, `Locker_ID`, `LockerX`, `LockerY`, `Loc
 
 CREATE TABLE `locker_restrict` (
   `id` int(11) NOT NULL,
-  `1` int(11) NOT NULL DEFAULT '0',
-  `2` int(11) NOT NULL DEFAULT '0',
-  `3` int(11) NOT NULL DEFAULT '0',
-  `4` int(11) NOT NULL DEFAULT '0',
-  `5` int(11) NOT NULL DEFAULT '0',
-  `6` int(11) NOT NULL DEFAULT '0',
-  `7` int(11) NOT NULL DEFAULT '0',
-  `8` int(11) NOT NULL DEFAULT '0',
-  `9` int(11) NOT NULL DEFAULT '0',
-  `10` int(11) NOT NULL DEFAULT '0',
-  `11` int(11) NOT NULL DEFAULT '0',
-  `12` int(11) NOT NULL DEFAULT '0',
-  `13` int(11) NOT NULL DEFAULT '0',
-  `14` int(11) NOT NULL DEFAULT '0',
-  `15` int(11) NOT NULL DEFAULT '0',
-  `16` int(11) NOT NULL DEFAULT '0'
+  `1` int(11) NOT NULL DEFAULT 0,
+  `2` int(11) NOT NULL DEFAULT 0,
+  `3` int(11) NOT NULL DEFAULT 0,
+  `4` int(11) NOT NULL DEFAULT 0,
+  `5` int(11) NOT NULL DEFAULT 0,
+  `6` int(11) NOT NULL DEFAULT 0,
+  `7` int(11) NOT NULL DEFAULT 0,
+  `8` int(11) NOT NULL DEFAULT 0,
+  `9` int(11) NOT NULL DEFAULT 0,
+  `10` int(11) NOT NULL DEFAULT 0,
+  `11` int(11) NOT NULL DEFAULT 0,
+  `12` int(11) NOT NULL DEFAULT 0,
+  `13` int(11) NOT NULL DEFAULT 0,
+  `14` int(11) NOT NULL DEFAULT 0,
+  `15` int(11) NOT NULL DEFAULT 0,
+  `16` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -12731,13 +12732,13 @@ CREATE TABLE `lotto` (
 
 CREATE TABLE `mailboxes` (
   `ID` int(11) NOT NULL,
-  `VW` int(11) NOT NULL DEFAULT '0',
-  `Int` int(11) NOT NULL DEFAULT '0',
-  `Model` int(11) NOT NULL DEFAULT '3407',
-  `PosX` float(10,5) NOT NULL DEFAULT '0.00000',
-  `PosY` float(10,5) NOT NULL DEFAULT '0.00000',
-  `PosZ` float(10,5) NOT NULL DEFAULT '0.00000',
-  `Angle` float NOT NULL DEFAULT '0'
+  `VW` int(11) NOT NULL DEFAULT 0,
+  `Int` int(11) NOT NULL DEFAULT 0,
+  `Model` int(11) NOT NULL DEFAULT 3407,
+  `PosX` float(10,5) NOT NULL DEFAULT 0.00000,
+  `PosY` float(10,5) NOT NULL DEFAULT 0.00000,
+  `PosZ` float(10,5) NOT NULL DEFAULT 0.00000,
+  `Angle` float NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -12773,8 +12774,8 @@ CREATE TABLE `mdc` (
   `time` datetime NOT NULL,
   `issuer` varchar(24) NOT NULL,
   `crime` varchar(128) NOT NULL,
-  `active` tinyint(2) DEFAULT '1',
-  `origin` int(11) NOT NULL DEFAULT '1' COMMENT 'SA = | TR=2'
+  `active` tinyint(2) DEFAULT 1,
+  `origin` int(11) NOT NULL DEFAULT 1 COMMENT 'SA = | TR=2'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -12785,14 +12786,14 @@ CREATE TABLE `mdc` (
 
 CREATE TABLE `metaldetectors` (
   `id` int(11) NOT NULL,
-  `posx` float(10,5) NOT NULL DEFAULT '0.00000',
-  `posy` float(10,5) NOT NULL DEFAULT '0.00000',
-  `posz` float(10,5) NOT NULL DEFAULT '0.00000',
-  `rotx` float(10,5) NOT NULL DEFAULT '0.00000',
-  `roty` float(10,5) NOT NULL DEFAULT '0.00000',
-  `rotz` float(10,5) NOT NULL DEFAULT '0.00000',
-  `vw` int(11) NOT NULL DEFAULT '0',
-  `int` int(11) NOT NULL DEFAULT '0'
+  `posx` float(10,5) NOT NULL DEFAULT 0.00000,
+  `posy` float(10,5) NOT NULL DEFAULT 0.00000,
+  `posz` float(10,5) NOT NULL DEFAULT 0.00000,
+  `rotx` float(10,5) NOT NULL DEFAULT 0.00000,
+  `roty` float(10,5) NOT NULL DEFAULT 0.00000,
+  `rotz` float(10,5) NOT NULL DEFAULT 0.00000,
+  `vw` int(11) NOT NULL DEFAULT 0,
+  `int` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -12817,30 +12818,30 @@ CREATE TABLE `misc` (
   `vMOTD` varchar(256) NOT NULL,
   `cMOTD` varchar(256) NOT NULL,
   `pMOTD` varchar(256) NOT NULL,
-  `ShopTechPay` float(11,1) NOT NULL DEFAULT '0.5',
+  `ShopTechPay` float(11,1) NOT NULL DEFAULT 0.5,
   `GiftCode` varchar(32) NOT NULL DEFAULT 'off',
-  `GiftCodeBypass` int(11) NOT NULL DEFAULT '0',
-  `TotalCitizens` int(11) NOT NULL DEFAULT '0',
-  `TRCitizens` int(11) NOT NULL DEFAULT '0',
+  `GiftCodeBypass` int(11) NOT NULL DEFAULT 0,
+  `TotalCitizens` int(11) NOT NULL DEFAULT 0,
+  `TRCitizens` int(11) NOT NULL DEFAULT 0,
   `SecurityCode` varchar(32) NOT NULL DEFAULT 'none',
-  `ShopClosed` int(11) NOT NULL DEFAULT '0',
-  `RimMod` int(11) NOT NULL DEFAULT '0',
-  `CarVoucher` int(11) NOT NULL DEFAULT '0',
-  `PVIPVoucher` int(11) NOT NULL DEFAULT '0',
-  `GarageVW` int(11) DEFAULT '0',
-  `PumpkinStock` int(11) NOT NULL DEFAULT '0',
-  `HalloweenShop` int(11) NOT NULL DEFAULT '0',
-  `PassComplexCheck` int(11) NOT NULL DEFAULT '0',
-  `prisonerMOTD` int(11) NOT NULL DEFAULT '0',
-  `prisonerMOTD2` int(11) NOT NULL DEFAULT '0',
-  `prisonerMOTD3` int(11) NOT NULL DEFAULT '0',
-  `GunPrice0` int(11) NOT NULL DEFAULT '0',
-  `GunPrice1` int(11) NOT NULL DEFAULT '0',
-  `GunPrice2` int(11) NOT NULL DEFAULT '0',
-  `GunPrice3` int(11) NOT NULL DEFAULT '0',
-  `GunPrice4` int(11) NOT NULL DEFAULT '0',
-  `GunPrice5` int(11) NOT NULL DEFAULT '0',
-  `GunPrice6` int(11) NOT NULL DEFAULT '0'
+  `ShopClosed` int(11) NOT NULL DEFAULT 0,
+  `RimMod` int(11) NOT NULL DEFAULT 0,
+  `CarVoucher` int(11) NOT NULL DEFAULT 0,
+  `PVIPVoucher` int(11) NOT NULL DEFAULT 0,
+  `GarageVW` int(11) DEFAULT 0,
+  `PumpkinStock` int(11) NOT NULL DEFAULT 0,
+  `HalloweenShop` int(11) NOT NULL DEFAULT 0,
+  `PassComplexCheck` int(11) NOT NULL DEFAULT 0,
+  `prisonerMOTD` int(11) NOT NULL DEFAULT 0,
+  `prisonerMOTD2` int(11) NOT NULL DEFAULT 0,
+  `prisonerMOTD3` int(11) NOT NULL DEFAULT 0,
+  `GunPrice0` int(11) NOT NULL DEFAULT 0,
+  `GunPrice1` int(11) NOT NULL DEFAULT 0,
+  `GunPrice2` int(11) NOT NULL DEFAULT 0,
+  `GunPrice3` int(11) NOT NULL DEFAULT 0,
+  `GunPrice4` int(11) NOT NULL DEFAULT 0,
+  `GunPrice5` int(11) NOT NULL DEFAULT 0,
+  `GunPrice6` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -12855,7 +12856,7 @@ CREATE TABLE `nation_queue` (
   `name` varchar(24) DEFAULT NULL,
   `date` datetime NOT NULL,
   `nation` int(1) NOT NULL,
-  `status` int(1) NOT NULL DEFAULT '1'
+  `status` int(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -12865,13 +12866,13 @@ CREATE TABLE `nation_queue` (
 --
 
 CREATE TABLE `nonrppoints` (
-  `sqlid` int(11) DEFAULT '0',
-  `point` int(11) DEFAULT '0',
-  `expiration` int(11) DEFAULT '0',
+  `sqlid` int(11) DEFAULT 0,
+  `point` int(11) DEFAULT 0,
+  `expiration` int(11) DEFAULT 0,
   `reason` varchar(128) DEFAULT NULL,
-  `issuer` int(11) DEFAULT '0',
-  `active` int(11) DEFAULT '0',
-  `manual` int(11) DEFAULT '0'
+  `issuer` int(11) DEFAULT 0,
+  `active` int(11) DEFAULT 0,
+  `manual` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -12881,7 +12882,7 @@ CREATE TABLE `nonrppoints` (
 --
 
 CREATE TABLE `orders` (
-  `id` int(11) NOT NULL DEFAULT '0'
+  `id` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -12892,19 +12893,19 @@ CREATE TABLE `orders` (
 
 CREATE TABLE `parking_meters` (
   `MeterID` int(11) NOT NULL,
-  `MeterActive` int(11) NOT NULL DEFAULT '0',
-  `MeterRate` int(11) NOT NULL DEFAULT '500',
-  `MeterRange` float(10,5) NOT NULL DEFAULT '0.00000',
-  `MeterPosition0` float(10,5) NOT NULL DEFAULT '0.00000',
-  `MeterPosition1` float(10,5) NOT NULL DEFAULT '0.00000',
-  `MeterPosition2` float(10,5) NOT NULL DEFAULT '0.00000',
-  `MeterPosition3` float(10,5) NOT NULL DEFAULT '0.00000',
-  `MeterPosition4` float(10,5) NOT NULL DEFAULT '0.00000',
-  `MeterPosition5` float(10,5) NOT NULL DEFAULT '0.00000',
-  `ParkedPosition0` float(10,5) NOT NULL DEFAULT '0.00000',
-  `ParkedPosition1` float(10,5) NOT NULL DEFAULT '0.00000',
-  `ParkedPosition2` float(10,5) NOT NULL DEFAULT '0.00000',
-  `ParkedPosition3` float(10,5) NOT NULL DEFAULT '0.00000'
+  `MeterActive` int(11) NOT NULL DEFAULT 0,
+  `MeterRate` int(11) NOT NULL DEFAULT 500,
+  `MeterRange` float(10,5) NOT NULL DEFAULT 0.00000,
+  `MeterPosition0` float(10,5) NOT NULL DEFAULT 0.00000,
+  `MeterPosition1` float(10,5) NOT NULL DEFAULT 0.00000,
+  `MeterPosition2` float(10,5) NOT NULL DEFAULT 0.00000,
+  `MeterPosition3` float(10,5) NOT NULL DEFAULT 0.00000,
+  `MeterPosition4` float(10,5) NOT NULL DEFAULT 0.00000,
+  `MeterPosition5` float(10,5) NOT NULL DEFAULT 0.00000,
+  `ParkedPosition0` float(10,5) NOT NULL DEFAULT 0.00000,
+  `ParkedPosition1` float(10,5) NOT NULL DEFAULT 0.00000,
+  `ParkedPosition2` float(10,5) NOT NULL DEFAULT 0.00000,
+  `ParkedPosition3` float(10,5) NOT NULL DEFAULT 0.00000
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -12915,14 +12916,14 @@ CREATE TABLE `parking_meters` (
 
 CREATE TABLE `paynsprays` (
   `id` int(11) NOT NULL,
-  `Status` int(1) NOT NULL DEFAULT '0',
-  `PosX` float(10,5) NOT NULL DEFAULT '0.00000',
-  `PosY` float(10,5) NOT NULL DEFAULT '0.00000',
-  `PosZ` float(10,5) NOT NULL DEFAULT '0.00000',
-  `VW` int(11) NOT NULL DEFAULT '0',
-  `Int` int(11) NOT NULL DEFAULT '0',
-  `GroupCost` int(11) NOT NULL DEFAULT '0',
-  `RegCost` int(11) NOT NULL DEFAULT '0'
+  `Status` int(1) NOT NULL DEFAULT 0,
+  `PosX` float(10,5) NOT NULL DEFAULT 0.00000,
+  `PosY` float(10,5) NOT NULL DEFAULT 0.00000,
+  `PosZ` float(10,5) NOT NULL DEFAULT 0.00000,
+  `VW` int(11) NOT NULL DEFAULT 0,
+  `Int` int(11) NOT NULL DEFAULT 0,
+  `GroupCost` int(11) NOT NULL DEFAULT 0,
+  `RegCost` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -12934,11 +12935,11 @@ CREATE TABLE `paynsprays` (
 CREATE TABLE `payphones` (
   `id` int(11) NOT NULL,
   `number` int(11) NOT NULL,
-  `posx` float NOT NULL DEFAULT '0',
-  `posy` float NOT NULL DEFAULT '0',
-  `posz` float NOT NULL DEFAULT '0',
-  `vw` int(11) NOT NULL DEFAULT '0',
-  `int` int(11) NOT NULL DEFAULT '0'
+  `posx` float NOT NULL DEFAULT 0,
+  `posy` float NOT NULL DEFAULT 0,
+  `posz` float NOT NULL DEFAULT 0,
+  `vw` int(11) NOT NULL DEFAULT 0,
+  `int` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -12950,7 +12951,7 @@ CREATE TABLE `payphones` (
 CREATE TABLE `phone_contacts` (
   `id` int(11) NOT NULL,
   `contactname` varchar(128) NOT NULL DEFAULT '',
-  `contactnr` int(11) NOT NULL DEFAULT '0'
+  `contactnr` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -12961,17 +12962,17 @@ CREATE TABLE `phone_contacts` (
 
 CREATE TABLE `plants` (
   `plantID` int(11) NOT NULL,
-  `Owner` int(11) NOT NULL DEFAULT '0',
-  `Object` int(11) NOT NULL DEFAULT '0',
-  `PlantType` int(11) NOT NULL DEFAULT '0',
-  `PositionX` float NOT NULL DEFAULT '0',
-  `PositionY` float NOT NULL DEFAULT '0',
-  `PositionZ` float NOT NULL DEFAULT '0',
-  `Virtual` int(11) NOT NULL DEFAULT '0',
-  `Interior` int(11) NOT NULL DEFAULT '0',
-  `Growth` int(11) NOT NULL DEFAULT '0',
-  `Expires` int(11) NOT NULL DEFAULT '0',
-  `DrugsSkill` int(11) NOT NULL DEFAULT '0'
+  `Owner` int(11) NOT NULL DEFAULT 0,
+  `Object` int(11) NOT NULL DEFAULT 0,
+  `PlantType` int(11) NOT NULL DEFAULT 0,
+  `PositionX` float NOT NULL DEFAULT 0,
+  `PositionY` float NOT NULL DEFAULT 0,
+  `PositionZ` float NOT NULL DEFAULT 0,
+  `Virtual` int(11) NOT NULL DEFAULT 0,
+  `Interior` int(11) NOT NULL DEFAULT 0,
+  `Growth` int(11) NOT NULL DEFAULT 0,
+  `Expires` int(11) NOT NULL DEFAULT 0,
+  `DrugsSkill` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -12982,14 +12983,14 @@ CREATE TABLE `plants` (
 
 CREATE TABLE `rentedcars` (
   `id` int(11) NOT NULL,
-  `sqlid` int(11) DEFAULT '0',
-  `modelid` int(11) DEFAULT '0',
-  `posx` float DEFAULT '0',
-  `posy` float DEFAULT '0',
-  `posz` float DEFAULT '0',
-  `posa` float DEFAULT '0',
-  `spawned` int(11) DEFAULT '0',
-  `hours` int(11) DEFAULT '0'
+  `sqlid` int(11) DEFAULT 0,
+  `modelid` int(11) DEFAULT 0,
+  `posx` float DEFAULT 0,
+  `posy` float DEFAULT 0,
+  `posz` float DEFAULT 0,
+  `posa` float DEFAULT 0,
+  `spawned` int(11) DEFAULT 0,
+  `hours` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -13008,10 +13009,10 @@ INSERT INTO `rentedcars` (`id`, `sqlid`, `modelid`, `posx`, `posy`, `posz`, `pos
 CREATE TABLE `rflteams` (
   `id` int(5) NOT NULL,
   `name` varchar(64) NOT NULL DEFAULT 'Not Used',
-  `used` int(2) NOT NULL DEFAULT '0',
-  `laps` int(5) NOT NULL DEFAULT '0',
+  `used` int(2) NOT NULL DEFAULT 0,
+  `laps` int(5) NOT NULL DEFAULT 0,
   `leader` varchar(26) NOT NULL DEFAULT 'None',
-  `members` int(3) NOT NULL DEFAULT '0'
+  `members` int(3) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -13022,21 +13023,21 @@ CREATE TABLE `rflteams` (
 
 CREATE TABLE `safes` (
   `safeDBID` int(11) NOT NULL,
-  `safeModel` int(3) NOT NULL DEFAULT '0',
-  `safeType` int(11) NOT NULL DEFAULT '0',
-  `safeTypeID` int(11) NOT NULL DEFAULT '-1',
-  `safeVW` int(11) NOT NULL DEFAULT '0',
-  `safeInt` int(11) NOT NULL DEFAULT '0',
-  `safePosX` float NOT NULL DEFAULT '0',
-  `safePosY` float NOT NULL DEFAULT '0',
-  `safePosZ` float NOT NULL DEFAULT '0',
-  `safeRotX` float NOT NULL DEFAULT '0',
-  `safeRotY` float NOT NULL DEFAULT '1',
-  `safeRotZ` float NOT NULL DEFAULT '0',
-  `safeMoney` int(11) NOT NULL DEFAULT '0',
+  `safeModel` int(3) NOT NULL DEFAULT 0,
+  `safeType` int(11) NOT NULL DEFAULT 0,
+  `safeTypeID` int(11) NOT NULL DEFAULT -1,
+  `safeVW` int(11) NOT NULL DEFAULT 0,
+  `safeInt` int(11) NOT NULL DEFAULT 0,
+  `safePosX` float NOT NULL DEFAULT 0,
+  `safePosY` float NOT NULL DEFAULT 0,
+  `safePosZ` float NOT NULL DEFAULT 0,
+  `safeRotX` float NOT NULL DEFAULT 0,
+  `safeRotY` float NOT NULL DEFAULT 1,
+  `safeRotZ` float NOT NULL DEFAULT 0,
+  `safeMoney` int(11) NOT NULL DEFAULT 0,
   `safePin` varchar(5) DEFAULT '0000',
-  `safeRobbed` int(11) NOT NULL DEFAULT '0',
-  `safeRobbedTime` int(11) NOT NULL DEFAULT '0'
+  `safeRobbed` int(11) NOT NULL DEFAULT 0,
+  `safeRobbedTime` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -13048,94 +13049,94 @@ CREATE TABLE `safes` (
 CREATE TABLE `sales` (
   `id` int(11) NOT NULL,
   `Month` datetime NOT NULL,
-  `TotalSold0` int(11) NOT NULL DEFAULT '0',
-  `AmountMade0` int(11) NOT NULL DEFAULT '0',
-  `TotalSold1` int(11) NOT NULL DEFAULT '0',
-  `AmountMade1` int(11) NOT NULL DEFAULT '0',
-  `TotalSold2` int(11) NOT NULL DEFAULT '0',
-  `AmountMade2` int(11) NOT NULL DEFAULT '0',
-  `TotalSold3` int(11) NOT NULL DEFAULT '0',
-  `AmountMade3` int(11) NOT NULL DEFAULT '0',
-  `TotalSold4` int(11) NOT NULL DEFAULT '0',
-  `AmountMade4` int(11) NOT NULL DEFAULT '0',
-  `TotalSold5` int(11) NOT NULL DEFAULT '0',
-  `AmountMade5` int(11) NOT NULL DEFAULT '0',
-  `TotalSold6` int(11) NOT NULL DEFAULT '0',
-  `AmountMade6` int(11) NOT NULL DEFAULT '0',
-  `TotalSold7` int(11) NOT NULL DEFAULT '0',
-  `AmountMade7` int(11) NOT NULL DEFAULT '0',
-  `TotalSold8` int(11) NOT NULL DEFAULT '0',
-  `AmountMade8` int(11) NOT NULL DEFAULT '0',
-  `TotalSold9` int(11) NOT NULL DEFAULT '0',
-  `AmountMade9` int(11) NOT NULL DEFAULT '0',
-  `TotalSold10` int(11) NOT NULL DEFAULT '0',
-  `AmountMade10` int(11) NOT NULL DEFAULT '0',
-  `TotalSold11` int(11) NOT NULL DEFAULT '0',
-  `AmountMade11` int(11) NOT NULL DEFAULT '0',
-  `TotalSold12` int(11) NOT NULL DEFAULT '0',
-  `AmountMade12` int(11) NOT NULL DEFAULT '0',
-  `TotalSold13` int(11) NOT NULL DEFAULT '0',
-  `AmountMade13` int(11) NOT NULL DEFAULT '0',
-  `TotalSold14` int(11) NOT NULL DEFAULT '0',
-  `AmountMade14` int(11) NOT NULL DEFAULT '0',
-  `TotalSold15` int(11) NOT NULL DEFAULT '0',
-  `AmountMade15` int(11) NOT NULL DEFAULT '0',
-  `TotalSold16` int(11) NOT NULL DEFAULT '0',
-  `AmountMade16` int(11) NOT NULL DEFAULT '0',
-  `TotalSold17` int(11) NOT NULL DEFAULT '0',
-  `AmountMade17` int(11) NOT NULL DEFAULT '0',
-  `TotalSold18` int(11) NOT NULL DEFAULT '0',
-  `AmountMade18` int(11) NOT NULL DEFAULT '0',
-  `TotalSold19` int(11) NOT NULL DEFAULT '0',
-  `AmountMade19` int(11) NOT NULL DEFAULT '0',
-  `TotalSold20` int(11) NOT NULL DEFAULT '0',
-  `AmountMade20` int(11) NOT NULL DEFAULT '0',
-  `TotalSold21` int(11) NOT NULL DEFAULT '0',
-  `AmountMade21` int(11) NOT NULL DEFAULT '0',
-  `TotalSold22` int(11) NOT NULL DEFAULT '0',
-  `AmountMade22` int(11) NOT NULL DEFAULT '0',
-  `TotalSold23` int(11) NOT NULL DEFAULT '0',
-  `AmountMade23` int(11) NOT NULL DEFAULT '0',
-  `TotalSold24` int(11) NOT NULL DEFAULT '0',
-  `AmountMade24` int(11) NOT NULL DEFAULT '0',
-  `TotalSold25` int(11) NOT NULL DEFAULT '0',
-  `AmountMade25` int(11) NOT NULL DEFAULT '0',
-  `TotalSold26` int(11) NOT NULL DEFAULT '0',
-  `AmountMade26` int(11) NOT NULL DEFAULT '0',
-  `TotalSold27` int(11) NOT NULL DEFAULT '0',
-  `AmountMade27` int(11) NOT NULL DEFAULT '0',
-  `TotalSold28` int(11) NOT NULL DEFAULT '0',
-  `AmountMade28` int(11) NOT NULL DEFAULT '0',
-  `TotalSold29` int(11) NOT NULL DEFAULT '0',
-  `AmountMade29` int(11) NOT NULL DEFAULT '0',
-  `TotalSold30` int(11) NOT NULL DEFAULT '0',
-  `AmountMade30` int(11) NOT NULL DEFAULT '0',
-  `TotalSold31` int(11) NOT NULL DEFAULT '0',
-  `AmountMade31` int(11) NOT NULL DEFAULT '0',
-  `TotalSold32` int(11) NOT NULL DEFAULT '0',
-  `AmountMade32` int(11) NOT NULL DEFAULT '0',
-  `TotalSold33` int(11) NOT NULL DEFAULT '0',
-  `AmountMade33` int(11) NOT NULL DEFAULT '0',
-  `TotalSold34` int(11) NOT NULL DEFAULT '0',
-  `AmountMade34` int(11) NOT NULL DEFAULT '0',
-  `TotalSold35` int(11) NOT NULL DEFAULT '0',
-  `AmountMade35` int(11) NOT NULL DEFAULT '0',
-  `TotalSold36` int(11) NOT NULL DEFAULT '0',
-  `AmountMade36` int(11) NOT NULL DEFAULT '0',
-  `TotalSold37` int(11) NOT NULL DEFAULT '0',
-  `AmountMade37` int(11) NOT NULL DEFAULT '0',
-  `TotalSold38` int(11) NOT NULL DEFAULT '0',
-  `AmountMade38` int(11) NOT NULL DEFAULT '0',
-  `TotalSold39` int(11) NOT NULL DEFAULT '0',
-  `AmountMade39` int(11) NOT NULL DEFAULT '0',
-  `TotalSold40` int(11) NOT NULL DEFAULT '0',
-  `AmountMade40` int(11) NOT NULL DEFAULT '0',
-  `TotalSold41` int(11) NOT NULL DEFAULT '0',
-  `AmountMade41` int(11) NOT NULL DEFAULT '0',
-  `TotalSold42` int(11) NOT NULL DEFAULT '0',
-  `AmountMade42` int(11) NOT NULL DEFAULT '0',
-  `TotalSold43` int(11) NOT NULL DEFAULT '0',
-  `AmountMade43` int(11) NOT NULL DEFAULT '0',
+  `TotalSold0` int(11) NOT NULL DEFAULT 0,
+  `AmountMade0` int(11) NOT NULL DEFAULT 0,
+  `TotalSold1` int(11) NOT NULL DEFAULT 0,
+  `AmountMade1` int(11) NOT NULL DEFAULT 0,
+  `TotalSold2` int(11) NOT NULL DEFAULT 0,
+  `AmountMade2` int(11) NOT NULL DEFAULT 0,
+  `TotalSold3` int(11) NOT NULL DEFAULT 0,
+  `AmountMade3` int(11) NOT NULL DEFAULT 0,
+  `TotalSold4` int(11) NOT NULL DEFAULT 0,
+  `AmountMade4` int(11) NOT NULL DEFAULT 0,
+  `TotalSold5` int(11) NOT NULL DEFAULT 0,
+  `AmountMade5` int(11) NOT NULL DEFAULT 0,
+  `TotalSold6` int(11) NOT NULL DEFAULT 0,
+  `AmountMade6` int(11) NOT NULL DEFAULT 0,
+  `TotalSold7` int(11) NOT NULL DEFAULT 0,
+  `AmountMade7` int(11) NOT NULL DEFAULT 0,
+  `TotalSold8` int(11) NOT NULL DEFAULT 0,
+  `AmountMade8` int(11) NOT NULL DEFAULT 0,
+  `TotalSold9` int(11) NOT NULL DEFAULT 0,
+  `AmountMade9` int(11) NOT NULL DEFAULT 0,
+  `TotalSold10` int(11) NOT NULL DEFAULT 0,
+  `AmountMade10` int(11) NOT NULL DEFAULT 0,
+  `TotalSold11` int(11) NOT NULL DEFAULT 0,
+  `AmountMade11` int(11) NOT NULL DEFAULT 0,
+  `TotalSold12` int(11) NOT NULL DEFAULT 0,
+  `AmountMade12` int(11) NOT NULL DEFAULT 0,
+  `TotalSold13` int(11) NOT NULL DEFAULT 0,
+  `AmountMade13` int(11) NOT NULL DEFAULT 0,
+  `TotalSold14` int(11) NOT NULL DEFAULT 0,
+  `AmountMade14` int(11) NOT NULL DEFAULT 0,
+  `TotalSold15` int(11) NOT NULL DEFAULT 0,
+  `AmountMade15` int(11) NOT NULL DEFAULT 0,
+  `TotalSold16` int(11) NOT NULL DEFAULT 0,
+  `AmountMade16` int(11) NOT NULL DEFAULT 0,
+  `TotalSold17` int(11) NOT NULL DEFAULT 0,
+  `AmountMade17` int(11) NOT NULL DEFAULT 0,
+  `TotalSold18` int(11) NOT NULL DEFAULT 0,
+  `AmountMade18` int(11) NOT NULL DEFAULT 0,
+  `TotalSold19` int(11) NOT NULL DEFAULT 0,
+  `AmountMade19` int(11) NOT NULL DEFAULT 0,
+  `TotalSold20` int(11) NOT NULL DEFAULT 0,
+  `AmountMade20` int(11) NOT NULL DEFAULT 0,
+  `TotalSold21` int(11) NOT NULL DEFAULT 0,
+  `AmountMade21` int(11) NOT NULL DEFAULT 0,
+  `TotalSold22` int(11) NOT NULL DEFAULT 0,
+  `AmountMade22` int(11) NOT NULL DEFAULT 0,
+  `TotalSold23` int(11) NOT NULL DEFAULT 0,
+  `AmountMade23` int(11) NOT NULL DEFAULT 0,
+  `TotalSold24` int(11) NOT NULL DEFAULT 0,
+  `AmountMade24` int(11) NOT NULL DEFAULT 0,
+  `TotalSold25` int(11) NOT NULL DEFAULT 0,
+  `AmountMade25` int(11) NOT NULL DEFAULT 0,
+  `TotalSold26` int(11) NOT NULL DEFAULT 0,
+  `AmountMade26` int(11) NOT NULL DEFAULT 0,
+  `TotalSold27` int(11) NOT NULL DEFAULT 0,
+  `AmountMade27` int(11) NOT NULL DEFAULT 0,
+  `TotalSold28` int(11) NOT NULL DEFAULT 0,
+  `AmountMade28` int(11) NOT NULL DEFAULT 0,
+  `TotalSold29` int(11) NOT NULL DEFAULT 0,
+  `AmountMade29` int(11) NOT NULL DEFAULT 0,
+  `TotalSold30` int(11) NOT NULL DEFAULT 0,
+  `AmountMade30` int(11) NOT NULL DEFAULT 0,
+  `TotalSold31` int(11) NOT NULL DEFAULT 0,
+  `AmountMade31` int(11) NOT NULL DEFAULT 0,
+  `TotalSold32` int(11) NOT NULL DEFAULT 0,
+  `AmountMade32` int(11) NOT NULL DEFAULT 0,
+  `TotalSold33` int(11) NOT NULL DEFAULT 0,
+  `AmountMade33` int(11) NOT NULL DEFAULT 0,
+  `TotalSold34` int(11) NOT NULL DEFAULT 0,
+  `AmountMade34` int(11) NOT NULL DEFAULT 0,
+  `TotalSold35` int(11) NOT NULL DEFAULT 0,
+  `AmountMade35` int(11) NOT NULL DEFAULT 0,
+  `TotalSold36` int(11) NOT NULL DEFAULT 0,
+  `AmountMade36` int(11) NOT NULL DEFAULT 0,
+  `TotalSold37` int(11) NOT NULL DEFAULT 0,
+  `AmountMade37` int(11) NOT NULL DEFAULT 0,
+  `TotalSold38` int(11) NOT NULL DEFAULT 0,
+  `AmountMade38` int(11) NOT NULL DEFAULT 0,
+  `TotalSold39` int(11) NOT NULL DEFAULT 0,
+  `AmountMade39` int(11) NOT NULL DEFAULT 0,
+  `TotalSold40` int(11) NOT NULL DEFAULT 0,
+  `AmountMade40` int(11) NOT NULL DEFAULT 0,
+  `TotalSold41` int(11) NOT NULL DEFAULT 0,
+  `AmountMade41` int(11) NOT NULL DEFAULT 0,
+  `TotalSold42` int(11) NOT NULL DEFAULT 0,
+  `AmountMade42` int(11) NOT NULL DEFAULT 0,
+  `TotalSold43` int(11) NOT NULL DEFAULT 0,
+  `AmountMade43` int(11) NOT NULL DEFAULT 0,
   `TotalSoldMicro` varchar(255) NOT NULL DEFAULT '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0',
   `AmountMadeMicro` varchar(255) NOT NULL DEFAULT '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -13146,7 +13147,8 @@ CREATE TABLE `sales` (
 
 INSERT INTO `sales` (`id`, `Month`, `TotalSold0`, `AmountMade0`, `TotalSold1`, `AmountMade1`, `TotalSold2`, `AmountMade2`, `TotalSold3`, `AmountMade3`, `TotalSold4`, `AmountMade4`, `TotalSold5`, `AmountMade5`, `TotalSold6`, `AmountMade6`, `TotalSold7`, `AmountMade7`, `TotalSold8`, `AmountMade8`, `TotalSold9`, `AmountMade9`, `TotalSold10`, `AmountMade10`, `TotalSold11`, `AmountMade11`, `TotalSold12`, `AmountMade12`, `TotalSold13`, `AmountMade13`, `TotalSold14`, `AmountMade14`, `TotalSold15`, `AmountMade15`, `TotalSold16`, `AmountMade16`, `TotalSold17`, `AmountMade17`, `TotalSold18`, `AmountMade18`, `TotalSold19`, `AmountMade19`, `TotalSold20`, `AmountMade20`, `TotalSold21`, `AmountMade21`, `TotalSold22`, `AmountMade22`, `TotalSold23`, `AmountMade23`, `TotalSold24`, `AmountMade24`, `TotalSold25`, `AmountMade25`, `TotalSold26`, `AmountMade26`, `TotalSold27`, `AmountMade27`, `TotalSold28`, `AmountMade28`, `TotalSold29`, `AmountMade29`, `TotalSold30`, `AmountMade30`, `TotalSold31`, `AmountMade31`, `TotalSold32`, `AmountMade32`, `TotalSold33`, `AmountMade33`, `TotalSold34`, `AmountMade34`, `TotalSold35`, `AmountMade35`, `TotalSold36`, `AmountMade36`, `TotalSold37`, `AmountMade37`, `TotalSold38`, `AmountMade38`, `TotalSold39`, `AmountMade39`, `TotalSold40`, `AmountMade40`, `TotalSold41`, `AmountMade41`, `TotalSold42`, `AmountMade42`, `TotalSold43`, `AmountMade43`, `TotalSoldMicro`, `AmountMadeMicro`) VALUES
 (1, '2018-02-07 15:46:11', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0', '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0'),
-(2, '2018-04-19 17:41:40', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0', '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0');
+(2, '2018-04-19 17:41:40', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0', '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0'),
+(3, '2020-06-26 20:38:01', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0', '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0');
 
 -- --------------------------------------------------------
 
@@ -13156,13 +13158,13 @@ INSERT INTO `sales` (`id`, `Month`, `TotalSold0`, `AmountMade0`, `TotalSold1`, `
 
 CREATE TABLE `shop` (
   `order_product_id` int(11) NOT NULL,
-  `order_id` int(11) NOT NULL DEFAULT '0',
-  `product_id` int(11) NOT NULL DEFAULT '0',
-  `order_status_id` int(11) NOT NULL DEFAULT '0',
+  `order_id` int(11) NOT NULL DEFAULT 0,
+  `product_id` int(11) NOT NULL DEFAULT 0,
+  `order_status_id` int(11) NOT NULL DEFAULT 0,
   `name` varchar(64) NOT NULL DEFAULT '',
-  `price` decimal(15,4) NOT NULL DEFAULT '0.0000',
-  `quantity` int(4) NOT NULL DEFAULT '0',
-  `delivered` tinyint(1) NOT NULL DEFAULT '0',
+  `price` decimal(15,4) NOT NULL DEFAULT 0.0000,
+  `quantity` int(4) NOT NULL DEFAULT 0,
+  `delivered` tinyint(1) NOT NULL DEFAULT 0,
   `deliveruser` varchar(32) NOT NULL DEFAULT '',
   `email` varchar(256) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -13174,50 +13176,50 @@ CREATE TABLE `shop` (
 --
 
 CREATE TABLE `shopprices` (
-  `Price0` int(11) NOT NULL DEFAULT '0',
-  `Price1` int(11) NOT NULL DEFAULT '0',
-  `Price2` int(11) NOT NULL DEFAULT '0',
-  `Price3` int(11) NOT NULL DEFAULT '0',
-  `Price4` int(11) NOT NULL DEFAULT '0',
-  `Price5` int(11) NOT NULL DEFAULT '0',
-  `Price6` int(11) NOT NULL DEFAULT '0',
-  `Price7` int(11) NOT NULL DEFAULT '0',
-  `Price8` int(11) NOT NULL DEFAULT '0',
-  `Price9` int(11) NOT NULL DEFAULT '0',
-  `Price10` int(11) NOT NULL DEFAULT '0',
-  `Price11` int(11) NOT NULL DEFAULT '0',
-  `Price12` int(11) NOT NULL DEFAULT '0',
-  `Price13` int(11) NOT NULL DEFAULT '0',
-  `Price14` int(11) NOT NULL DEFAULT '0',
-  `Price15` int(11) NOT NULL DEFAULT '0',
-  `Price16` int(11) NOT NULL DEFAULT '0',
-  `Price17` int(11) NOT NULL DEFAULT '0',
-  `Price18` int(11) NOT NULL DEFAULT '0',
-  `Price19` int(11) NOT NULL DEFAULT '0',
-  `Price20` int(11) NOT NULL DEFAULT '0',
-  `Price21` int(11) NOT NULL DEFAULT '0',
-  `Price22` int(11) NOT NULL DEFAULT '0',
-  `Price23` int(11) NOT NULL DEFAULT '0',
-  `Price24` int(11) NOT NULL DEFAULT '0',
-  `Price25` int(11) NOT NULL DEFAULT '0',
-  `Price26` int(11) NOT NULL DEFAULT '0',
-  `Price27` int(11) NOT NULL DEFAULT '0',
-  `Price28` int(11) NOT NULL DEFAULT '0',
-  `Price29` int(11) NOT NULL DEFAULT '0',
-  `Price30` int(11) NOT NULL DEFAULT '0',
-  `Price31` int(11) NOT NULL DEFAULT '0',
-  `Price32` int(11) NOT NULL DEFAULT '0',
-  `Price33` int(11) NOT NULL DEFAULT '0',
-  `Price34` int(11) NOT NULL DEFAULT '0',
-  `Price35` int(11) NOT NULL DEFAULT '0',
-  `Price36` int(11) NOT NULL DEFAULT '0',
-  `Price37` int(11) NOT NULL DEFAULT '0',
-  `Price38` int(11) NOT NULL DEFAULT '0',
-  `Price39` int(11) NOT NULL DEFAULT '0',
-  `Price40` int(11) NOT NULL DEFAULT '0',
-  `Price41` int(11) NOT NULL DEFAULT '0',
-  `Price42` int(11) NOT NULL DEFAULT '0',
-  `Price43` int(11) NOT NULL DEFAULT '0',
+  `Price0` int(11) NOT NULL DEFAULT 0,
+  `Price1` int(11) NOT NULL DEFAULT 0,
+  `Price2` int(11) NOT NULL DEFAULT 0,
+  `Price3` int(11) NOT NULL DEFAULT 0,
+  `Price4` int(11) NOT NULL DEFAULT 0,
+  `Price5` int(11) NOT NULL DEFAULT 0,
+  `Price6` int(11) NOT NULL DEFAULT 0,
+  `Price7` int(11) NOT NULL DEFAULT 0,
+  `Price8` int(11) NOT NULL DEFAULT 0,
+  `Price9` int(11) NOT NULL DEFAULT 0,
+  `Price10` int(11) NOT NULL DEFAULT 0,
+  `Price11` int(11) NOT NULL DEFAULT 0,
+  `Price12` int(11) NOT NULL DEFAULT 0,
+  `Price13` int(11) NOT NULL DEFAULT 0,
+  `Price14` int(11) NOT NULL DEFAULT 0,
+  `Price15` int(11) NOT NULL DEFAULT 0,
+  `Price16` int(11) NOT NULL DEFAULT 0,
+  `Price17` int(11) NOT NULL DEFAULT 0,
+  `Price18` int(11) NOT NULL DEFAULT 0,
+  `Price19` int(11) NOT NULL DEFAULT 0,
+  `Price20` int(11) NOT NULL DEFAULT 0,
+  `Price21` int(11) NOT NULL DEFAULT 0,
+  `Price22` int(11) NOT NULL DEFAULT 0,
+  `Price23` int(11) NOT NULL DEFAULT 0,
+  `Price24` int(11) NOT NULL DEFAULT 0,
+  `Price25` int(11) NOT NULL DEFAULT 0,
+  `Price26` int(11) NOT NULL DEFAULT 0,
+  `Price27` int(11) NOT NULL DEFAULT 0,
+  `Price28` int(11) NOT NULL DEFAULT 0,
+  `Price29` int(11) NOT NULL DEFAULT 0,
+  `Price30` int(11) NOT NULL DEFAULT 0,
+  `Price31` int(11) NOT NULL DEFAULT 0,
+  `Price32` int(11) NOT NULL DEFAULT 0,
+  `Price33` int(11) NOT NULL DEFAULT 0,
+  `Price34` int(11) NOT NULL DEFAULT 0,
+  `Price35` int(11) NOT NULL DEFAULT 0,
+  `Price36` int(11) NOT NULL DEFAULT 0,
+  `Price37` int(11) NOT NULL DEFAULT 0,
+  `Price38` int(11) NOT NULL DEFAULT 0,
+  `Price39` int(11) NOT NULL DEFAULT 0,
+  `Price40` int(11) NOT NULL DEFAULT 0,
+  `Price41` int(11) NOT NULL DEFAULT 0,
+  `Price42` int(11) NOT NULL DEFAULT 0,
+  `Price43` int(11) NOT NULL DEFAULT 0,
   `MicroPrices` varchar(255) NOT NULL DEFAULT '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -13228,9 +13230,9 @@ CREATE TABLE `shopprices` (
 --
 
 CREATE TABLE `shoptech` (
-  `id` int(11) NOT NULL DEFAULT '0',
-  `total` int(11) NOT NULL DEFAULT '0',
-  `dtotal` float(11,1) NOT NULL DEFAULT '0.0'
+  `id` int(11) NOT NULL DEFAULT 0,
+  `total` int(11) NOT NULL DEFAULT 0,
+  `dtotal` float(11,1) NOT NULL DEFAULT 0.0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -13242,14 +13244,14 @@ CREATE TABLE `shoptech` (
 CREATE TABLE `shop_orders` (
   `id` int(12) NOT NULL,
   `user_id` int(12) NOT NULL,
-  `GiftVoucher` int(12) NOT NULL DEFAULT '0',
-  `CarVoucher` int(12) NOT NULL DEFAULT '0',
-  `VehVoucher` int(12) NOT NULL DEFAULT '0',
-  `SVIPVoucher` int(12) NOT NULL DEFAULT '0',
-  `GVIPVoucher` int(12) NOT NULL DEFAULT '0',
-  `PVIPVoucher` int(12) NOT NULL DEFAULT '0',
-  `credits_spent` int(12) NOT NULL DEFAULT '0',
-  `status` int(12) NOT NULL DEFAULT '0'
+  `GiftVoucher` int(12) NOT NULL DEFAULT 0,
+  `CarVoucher` int(12) NOT NULL DEFAULT 0,
+  `VehVoucher` int(12) NOT NULL DEFAULT 0,
+  `SVIPVoucher` int(12) NOT NULL DEFAULT 0,
+  `GVIPVoucher` int(12) NOT NULL DEFAULT 0,
+  `PVIPVoucher` int(12) NOT NULL DEFAULT 0,
+  `credits_spent` int(12) NOT NULL DEFAULT 0,
+  `status` int(12) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -13261,11 +13263,11 @@ CREATE TABLE `shop_orders` (
 CREATE TABLE `sms` (
   `id` int(11) NOT NULL,
   `sender` varchar(24) DEFAULT NULL,
-  `senderid` int(11) NOT NULL DEFAULT '-1',
-  `sendernumber` int(11) NOT NULL DEFAULT '0',
+  `senderid` int(11) NOT NULL DEFAULT -1,
+  `sendernumber` int(11) NOT NULL DEFAULT 0,
   `receiver` varchar(24) DEFAULT NULL,
-  `receiverid` int(11) NOT NULL DEFAULT '-1',
-  `receivernumber` int(11) NOT NULL DEFAULT '0',
+  `receiverid` int(11) NOT NULL DEFAULT -1,
+  `receivernumber` int(11) NOT NULL DEFAULT 0,
   `message` varchar(128) DEFAULT NULL,
   `date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -13277,8 +13279,8 @@ CREATE TABLE `sms` (
 --
 
 CREATE TABLE `sobeitkicks` (
-  `sqlID` int(11) NOT NULL DEFAULT '0',
-  `Kicks` int(11) NOT NULL DEFAULT '0'
+  `sqlID` int(11) NOT NULL DEFAULT 0,
+  `Kicks` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -13318,11 +13320,11 @@ INSERT INTO `speed_cameras` (`id`, `pos_x`, `pos_y`, `pos_z`, `rotation`, `range
 CREATE TABLE `staffbans` (
   `id` int(11) NOT NULL,
   `details` varchar(128) NOT NULL DEFAULT '',
-  `issuer` int(11) NOT NULL DEFAULT '0',
-  `playerid` int(11) NOT NULL DEFAULT '0',
-  `expiredate` int(11) NOT NULL DEFAULT '0',
-  `created` int(11) NOT NULL DEFAULT '0',
-  `status` int(11) NOT NULL DEFAULT '0'
+  `issuer` int(11) NOT NULL DEFAULT 0,
+  `playerid` int(11) NOT NULL DEFAULT 0,
+  `expiredate` int(11) NOT NULL DEFAULT 0,
+  `created` int(11) NOT NULL DEFAULT 0,
+  `status` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -13334,13 +13336,13 @@ CREATE TABLE `staffbans` (
 CREATE TABLE `text_labels` (
   `id` int(11) NOT NULL,
   `Text` varchar(128) NOT NULL DEFAULT '0',
-  `PosX` float NOT NULL DEFAULT '0',
-  `PosY` float NOT NULL DEFAULT '0',
-  `PosZ` float NOT NULL DEFAULT '0',
-  `VW` int(11) NOT NULL DEFAULT '0',
-  `Int` int(11) NOT NULL DEFAULT '0',
-  `Color` int(11) NOT NULL DEFAULT '0',
-  `PickupModel` int(11) NOT NULL DEFAULT '0'
+  `PosX` float NOT NULL DEFAULT 0,
+  `PosY` float NOT NULL DEFAULT 0,
+  `PosZ` float NOT NULL DEFAULT 0,
+  `VW` int(11) NOT NULL DEFAULT 0,
+  `Int` int(11) NOT NULL DEFAULT 0,
+  `Color` int(11) NOT NULL DEFAULT 0,
+  `PickupModel` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -13398,7 +13400,7 @@ CREATE TABLE `tokens_call` (
   `playerid` int(11) NOT NULL,
   `date` date DEFAULT NULL,
   `hour` int(2) DEFAULT NULL,
-  `count` int(11) NOT NULL DEFAULT '0'
+  `count` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -13412,7 +13414,7 @@ CREATE TABLE `tokens_report` (
   `playerid` int(11) NOT NULL,
   `date` date DEFAULT NULL,
   `hour` time DEFAULT NULL,
-  `count` int(11) NOT NULL DEFAULT '0'
+  `count` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -13426,7 +13428,7 @@ CREATE TABLE `tokens_request` (
   `playerid` int(11) NOT NULL,
   `date` date DEFAULT NULL,
   `hour` time DEFAULT NULL,
-  `count` int(11) NOT NULL DEFAULT '0'
+  `count` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -13440,7 +13442,7 @@ CREATE TABLE `tokens_wd` (
   `playerid` int(11) NOT NULL,
   `date` date DEFAULT NULL,
   `hour` time DEFAULT NULL,
-  `count` int(11) NOT NULL DEFAULT '0'
+  `count` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -13451,21 +13453,21 @@ CREATE TABLE `tokens_wd` (
 
 CREATE TABLE `toys` (
   `id` int(11) NOT NULL,
-  `player` int(11) NOT NULL DEFAULT '0',
-  `modelid` int(11) NOT NULL DEFAULT '0',
-  `bone` int(11) NOT NULL DEFAULT '0',
-  `posx` float NOT NULL DEFAULT '0',
-  `posy` float NOT NULL DEFAULT '0',
-  `posz` float NOT NULL DEFAULT '0',
-  `rotx` float NOT NULL DEFAULT '0',
-  `roty` float NOT NULL DEFAULT '0',
-  `rotz` float NOT NULL DEFAULT '0',
-  `scalex` float NOT NULL DEFAULT '0',
-  `scaley` float NOT NULL DEFAULT '0',
-  `scalez` float NOT NULL DEFAULT '0',
-  `tradable` int(11) NOT NULL DEFAULT '0',
-  `special` int(11) NOT NULL DEFAULT '0',
-  `autoattach` int(11) NOT NULL DEFAULT '0'
+  `player` int(11) NOT NULL DEFAULT 0,
+  `modelid` int(11) NOT NULL DEFAULT 0,
+  `bone` int(11) NOT NULL DEFAULT 0,
+  `posx` float NOT NULL DEFAULT 0,
+  `posy` float NOT NULL DEFAULT 0,
+  `posz` float NOT NULL DEFAULT 0,
+  `rotx` float NOT NULL DEFAULT 0,
+  `roty` float NOT NULL DEFAULT 0,
+  `rotz` float NOT NULL DEFAULT 0,
+  `scalex` float NOT NULL DEFAULT 0,
+  `scaley` float NOT NULL DEFAULT 0,
+  `scalez` float NOT NULL DEFAULT 0,
+  `tradable` int(11) NOT NULL DEFAULT 0,
+  `special` int(11) NOT NULL DEFAULT 0,
+  `autoattach` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -13487,62 +13489,61 @@ CREATE TABLE `turfs` (
 
 CREATE TABLE `vehicles` (
   `id` int(11) NOT NULL,
-  `sqlID` int(11) NOT NULL DEFAULT '0',
-  `pvModelId` int(11) NOT NULL DEFAULT '0',
-  `pvPosX` float NOT NULL DEFAULT '0',
-  `pvPosY` float NOT NULL DEFAULT '0',
-  `pvPosZ` float NOT NULL DEFAULT '0',
-  `pvPosAngle` float NOT NULL DEFAULT '0',
-  `pvLock` int(11) NOT NULL DEFAULT '0',
-  `pvLocked` int(11) NOT NULL DEFAULT '0',
-  `pvPaintJob` int(11) NOT NULL DEFAULT '0',
-  `pvColor1` int(11) NOT NULL DEFAULT '0',
-  `pvColor2` int(11) NOT NULL DEFAULT '0',
-  `pvPrice` int(11) NOT NULL DEFAULT '0',
-  `pvTicket` int(11) NOT NULL DEFAULT '0',
-  `pvRestricted` int(11) NOT NULL DEFAULT '0',
-  `pvWeapon0` int(11) NOT NULL DEFAULT '0',
-  `pvWeapon1` int(11) NOT NULL DEFAULT '0',
-  `pvWeapon2` int(11) NOT NULL DEFAULT '0',
-  `pvWepUpgrade` int(11) NOT NULL DEFAULT '0',
-  `pvFuel` float NOT NULL DEFAULT '0',
-  `pvImpound` int(11) NOT NULL DEFAULT '0',
-  `pvDisabled` int(11) NOT NULL DEFAULT '0',
+  `sqlID` int(11) NOT NULL DEFAULT 0,
+  `pvModelId` int(11) NOT NULL DEFAULT 0,
+  `pvPosX` float NOT NULL DEFAULT 0,
+  `pvPosY` float NOT NULL DEFAULT 0,
+  `pvPosZ` float NOT NULL DEFAULT 0,
+  `pvPosAngle` float NOT NULL DEFAULT 0,
+  `pvLock` int(11) NOT NULL DEFAULT 0,
+  `pvLocked` int(11) NOT NULL DEFAULT 0,
+  `pvPaintJob` int(11) NOT NULL DEFAULT 0,
+  `pvColor1` int(11) NOT NULL DEFAULT 0,
+  `pvColor2` int(11) NOT NULL DEFAULT 0,
+  `pvPrice` int(11) NOT NULL DEFAULT 0,
+  `pvTicket` int(11) NOT NULL DEFAULT 0,
+  `pvRestricted` int(11) NOT NULL DEFAULT 0,
+  `pvWeapon0` int(11) NOT NULL DEFAULT 0,
+  `pvWeapon1` int(11) NOT NULL DEFAULT 0,
+  `pvWeapon2` int(11) NOT NULL DEFAULT 0,
+  `pvWepUpgrade` int(11) NOT NULL DEFAULT 0,
+  `pvFuel` float NOT NULL DEFAULT 0,
+  `pvImpound` int(11) NOT NULL DEFAULT 0,
+  `pvDisabled` int(11) NOT NULL DEFAULT 0,
   `pvPlate` varchar(32) NOT NULL DEFAULT 'None',
-  `pvVW` int(11) NOT NULL DEFAULT '0',
-  `pvInt` int(11) NOT NULL DEFAULT '0',
-  `pvMod0` int(11) NOT NULL DEFAULT '0',
-  `pvMod1` int(11) NOT NULL DEFAULT '0',
-  `pvMod2` int(11) NOT NULL DEFAULT '0',
-  `pvMod3` int(11) NOT NULL DEFAULT '0',
-  `pvMod4` int(11) NOT NULL DEFAULT '0',
-  `pvMod5` int(11) NOT NULL DEFAULT '0',
-  `pvMod6` int(11) NOT NULL DEFAULT '0',
-  `pvMod7` int(11) NOT NULL DEFAULT '0',
-  `pvMod8` int(11) NOT NULL DEFAULT '0',
-  `pvMod9` int(11) NOT NULL DEFAULT '0',
-  `pvMod10` int(11) NOT NULL DEFAULT '0',
-  `pvMod11` int(11) NOT NULL DEFAULT '0',
-  `pvMod12` int(11) NOT NULL DEFAULT '0',
-  `pvMod13` int(11) NOT NULL DEFAULT '0',
-  `pvMod14` int(11) NOT NULL DEFAULT '0',
-  `Pot` int(11) NOT NULL DEFAULT '0',
-  `Crack` int(11) NOT NULL DEFAULT '0',
-  `Meth` int(11) NOT NULL DEFAULT '0',
-  `Ecstasy` int(11) NOT NULL DEFAULT '0',
-  `Heroin` int(11) NOT NULL DEFAULT '0',
-  `pvCrashFlag` int(11) NOT NULL DEFAULT '0',
-  `pvCrashVW` int(11) NOT NULL DEFAULT '0',
-  `pvCrashX` float NOT NULL DEFAULT '0',
-  `pvCrashY` float NOT NULL DEFAULT '0',
-  `pvCrashZ` float NOT NULL DEFAULT '0',
-  `pvCrashAngle` float NOT NULL DEFAULT '0',
-  `pvAlarm` int(11) NOT NULL DEFAULT '0',
+  `pvVW` int(11) NOT NULL DEFAULT 0,
+  `pvInt` int(11) NOT NULL DEFAULT 0,
+  `pvMod0` int(11) NOT NULL DEFAULT 0,
+  `pvMod1` int(11) NOT NULL DEFAULT 0,
+  `pvMod2` int(11) NOT NULL DEFAULT 0,
+  `pvMod3` int(11) NOT NULL DEFAULT 0,
+  `pvMod4` int(11) NOT NULL DEFAULT 0,
+  `pvMod5` int(11) NOT NULL DEFAULT 0,
+  `pvMod6` int(11) NOT NULL DEFAULT 0,
+  `pvMod7` int(11) NOT NULL DEFAULT 0,
+  `pvMod8` int(11) NOT NULL DEFAULT 0,
+  `pvMod9` int(11) NOT NULL DEFAULT 0,
+  `pvMod10` int(11) NOT NULL DEFAULT 0,
+  `pvMod11` int(11) NOT NULL DEFAULT 0,
+  `pvMod12` int(11) NOT NULL DEFAULT 0,
+  `pvMod13` int(11) NOT NULL DEFAULT 0,
+  `pvMod14` int(11) NOT NULL DEFAULT 0,
+  `Pot` int(11) NOT NULL DEFAULT 0,
+  `Crack` int(11) NOT NULL DEFAULT 0,
+  `Meth` int(11) NOT NULL DEFAULT 0,
+  `Ecstasy` int(11) NOT NULL DEFAULT 0,
+  `Heroin` int(11) NOT NULL DEFAULT 0,
+  `pvCrashFlag` int(11) NOT NULL DEFAULT 0,
+  `pvCrashVW` int(11) NOT NULL DEFAULT 0,
+  `pvCrashX` float NOT NULL DEFAULT 0,
+  `pvCrashY` float NOT NULL DEFAULT 0,
+  `pvCrashZ` float NOT NULL DEFAULT 0,
+  `pvCrashAngle` float NOT NULL DEFAULT 0,
+  `pvAlarm` int(11) NOT NULL DEFAULT 0,
   `pvLastLockPickedBy` varchar(24) NOT NULL DEFAULT 'Empty',
-  `pvLocksLeft` int(11) NOT NULL DEFAULT '5',
-  `pvHealth` float NOT NULL DEFAULT '1000'
+  `pvLocksLeft` int(11) NOT NULL DEFAULT 5,
+  `pvHealth` float NOT NULL DEFAULT 1000
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 -- --------------------------------------------------------
 
@@ -13552,11 +13553,11 @@ CREATE TABLE `vehicles` (
 
 CREATE TABLE `watchdog_reports` (
   `id` int(11) NOT NULL,
-  `reporter` int(11) NOT NULL DEFAULT '0',
+  `reporter` int(11) NOT NULL DEFAULT 0,
   `report` text NOT NULL,
-  `reported` int(11) NOT NULL DEFAULT '0',
-  `type` int(11) NOT NULL DEFAULT '0' COMMENT '1 = DM Alert | 2 = Refer',
-  `time` int(11) NOT NULL DEFAULT '0'
+  `reported` int(11) NOT NULL DEFAULT 0,
+  `type` int(11) NOT NULL DEFAULT 0 COMMENT '1 = DM Alert | 2 = Refer',
+  `time` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -13566,7 +13567,7 @@ CREATE TABLE `watchdog_reports` (
 --
 
 CREATE TABLE `zombie` (
-  `id` int(11) NOT NULL DEFAULT '0'
+  `id` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -13576,8 +13577,8 @@ CREATE TABLE `zombie` (
 --
 
 CREATE TABLE `zombieheals` (
-  `id` int(11) NOT NULL DEFAULT '0',
-  `num` int(11) NOT NULL DEFAULT '0'
+  `id` int(11) NOT NULL DEFAULT 0,
+  `num` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -13587,9 +13588,9 @@ CREATE TABLE `zombieheals` (
 --
 
 CREATE TABLE `zombiekills` (
-  `id` int(11) NOT NULL DEFAULT '0',
+  `id` int(11) NOT NULL DEFAULT 0,
   `name` varchar(24) NOT NULL DEFAULT 'Nobody',
-  `num` int(11) NOT NULL DEFAULT '0'
+  `num` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -13599,9 +13600,9 @@ CREATE TABLE `zombiekills` (
 --
 
 CREATE TABLE `zombiesurvivor` (
-  `id` int(11) NOT NULL DEFAULT '0',
+  `id` int(11) NOT NULL DEFAULT 0,
   `name` varchar(24) NOT NULL DEFAULT 'Nobody',
-  `num` int(11) NOT NULL DEFAULT '0'
+  `num` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -14200,356 +14201,427 @@ ALTER TABLE `zombiesurvivor`
 --
 ALTER TABLE `911calls`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `accounts`
 --
 ALTER TABLE `accounts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `arenas`
 --
 ALTER TABLE `arenas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `arrestpoints`
 --
 ALTER TABLE `arrestpoints`
   MODIFY `id` int(2) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `arrestreports`
 --
 ALTER TABLE `arrestreports`
   MODIFY `id` int(12) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `ban`
 --
 ALTER TABLE `ban`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `bans`
 --
 ALTER TABLE `bans`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `bugcomments`
 --
 ALTER TABLE `bugcomments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `bugs`
 --
 ALTER TABLE `bugs`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `businesses`
 --
 ALTER TABLE `businesses`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `businesssales`
 --
 ALTER TABLE `businesssales`
   MODIFY `bID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `casefiles`
 --
 ALTER TABLE `casefiles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `cp_shifts`
 --
 ALTER TABLE `cp_shifts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `cp_shift_blocks`
 --
 ALTER TABLE `cp_shift_blocks`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `crates`
 --
 ALTER TABLE `crates`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `crate_facility`
 --
 ALTER TABLE `crate_facility`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `crate_orders`
 --
 ALTER TABLE `crate_orders`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `crate_vehicles`
 --
 ALTER TABLE `crate_vehicles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `crimesdata`
 --
 ALTER TABLE `crimesdata`
   MODIFY `id` int(4) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `ddoors`
 --
 ALTER TABLE `ddoors`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2390;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `devcpbans`
 --
 ALTER TABLE `devcpbans`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `dmapicons`
 --
 ALTER TABLE `dmapicons`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=181;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `dynpoints`
 --
 ALTER TABLE `dynpoints`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `electionresults`
 --
 ALTER TABLE `electionresults`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `flags`
 --
 ALTER TABLE `flags`
   MODIFY `fid` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `furniture`
 --
 ALTER TABLE `furniture`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `furniturecatalog`
 --
 ALTER TABLE `furniturecatalog`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `gangtags`
 --
 ALTER TABLE `gangtags`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `garages`
 --
 ALTER TABLE `garages`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `gates`
 --
 ALTER TABLE `gates`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3069;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `groupbans`
 --
 ALTER TABLE `groupbans`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `groups`
 --
 ALTER TABLE `groups`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `groupvehs`
 --
 ALTER TABLE `groupvehs`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=599;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `gweapons`
 --
 ALTER TABLE `gweapons`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `help`
 --
 ALTER TABLE `help`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `hgbackpacks`
 --
 ALTER TABLE `hgbackpacks`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `houses`
 --
 ALTER TABLE `houses`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3942;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `house_closet`
 --
 ALTER TABLE `house_closet`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `impoundpoints`
 --
 ALTER TABLE `impoundpoints`
   MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `ip_bans`
 --
 ALTER TABLE `ip_bans`
   MODIFY `bid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `jobs`
 --
 ALTER TABLE `jobs`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `jobstuff`
 --
 ALTER TABLE `jobstuff`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `jurisdictions`
 --
 ALTER TABLE `jurisdictions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `kills`
 --
 ALTER TABLE `kills`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `letters`
 --
 ALTER TABLE `letters`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `lockers`
 --
 ALTER TABLE `lockers`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `lotto`
 --
 ALTER TABLE `lotto`
   MODIFY `tid` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `mailboxes`
 --
 ALTER TABLE `mailboxes`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `mdc`
 --
 ALTER TABLE `mdc`
   MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `nation_queue`
 --
 ALTER TABLE `nation_queue`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `parking_meters`
 --
 ALTER TABLE `parking_meters`
   MODIFY `MeterID` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `payphones`
 --
 ALTER TABLE `payphones`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `phone_contacts`
 --
 ALTER TABLE `phone_contacts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `plants`
 --
 ALTER TABLE `plants`
   MODIFY `plantID` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `rentedcars`
 --
 ALTER TABLE `rentedcars`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `rflteams`
 --
 ALTER TABLE `rflteams`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `safes`
 --
 ALTER TABLE `safes`
   MODIFY `safeDBID` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `shop_orders`
 --
 ALTER TABLE `shop_orders`
   MODIFY `id` int(12) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `sms`
 --
 ALTER TABLE `sms`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `speed_cameras`
 --
 ALTER TABLE `speed_cameras`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `staffbans`
 --
 ALTER TABLE `staffbans`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `text_labels`
 --
 ALTER TABLE `text_labels`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `tokens_call`
 --
 ALTER TABLE `tokens_call`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `tokens_report`
 --
 ALTER TABLE `tokens_report`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `tokens_request`
 --
 ALTER TABLE `tokens_request`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `tokens_wd`
 --
 ALTER TABLE `tokens_wd`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `toys`
 --
 ALTER TABLE `toys`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `turfs`
 --
 ALTER TABLE `turfs`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `vehicles`
 --
 ALTER TABLE `vehicles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- Tablo için AUTO_INCREMENT değeri `watchdog_reports`
 --
 ALTER TABLE `watchdog_reports`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 DELIMITER $$
 --
 -- Olaylar
@@ -14569,6 +14641,7 @@ CREATE DEFINER=`ngrp`@`127.0.0.1` EVENT `VIP Expiration` ON SCHEDULE EVERY 1 HOU
 CREATE DEFINER=`ngrp`@`127.0.0.1` EVENT `Watchdog Points Expiration` ON SCHEDULE EVERY 1 DAY STARTS '2014-02-11 12:11:14' ON COMPLETION PRESERVE ENABLE DO UPDATE `nonrppoints` SET `active` = '0' WHERE `active` = '1' AND `expiration` < UNIX_TIMESTAMP()$$
 
 DELIMITER ;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

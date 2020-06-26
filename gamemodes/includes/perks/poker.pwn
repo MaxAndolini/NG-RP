@@ -35,7 +35,7 @@
 	* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 hook OnPlayerDisconnect(playerid, reason) {
 
@@ -686,7 +686,7 @@ DestroyPokerTable(tableid)
 }
 
 // Note: 0, 1 should be the hand, the rest are community cards.
-AnaylzePokerHand(playerid, Hand[])
+AnaylzePokerHand(playerid, const Hand[])
 {
 	new pokerArray[7];
 	for(new i = 0; i < sizeof(pokerArray); i++) {

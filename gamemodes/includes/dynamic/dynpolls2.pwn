@@ -12,7 +12,7 @@ ALTER TABLE `accounts` ADD `PollKeyA` VARCHAR(128) NOT NULL AFTER `GuardsGiven`,
 	Documentation: https://docs.google.com/document/d/1emwrE9iCG4ZomJZ5s_BskzHcSBQXlJ7nnRIkR8ChpXs/
 */
 
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 #define MIN_POLL_OPTIONS			(2) // No point having a poll for 1 option.
 #define DEFAULT_POLL_OPTIONS		(4)

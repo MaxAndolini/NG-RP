@@ -69,8 +69,6 @@ Optional plugins:
 	Incognito - Streamer.
 	Me - sscanf2, fixes2, Whirlpool.
 */
-#if defined _inc_y_text
-	#undef _inc_y_text
-#endif
 
-#include "..\YSI_Players\y_text"
+#error Use `#include <YSI_Players\y_text>`
+

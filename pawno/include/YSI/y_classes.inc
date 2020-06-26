@@ -69,8 +69,6 @@ Optional plugins:
 	Incognito - Streamer.
 	Me - sscanf2, fixes2, Whirlpool.
 */
-#if defined _inc_y_classes
-	#undef _inc_y_classes
-#endif
 
-#include "..\YSI_Visual\y_classes"
+#error Use `#include <YSI_Visual\y_classes>`
+

@@ -1,15 +1,3 @@
-#if defined _inc_y_hooks
-	#undef _inc_y_hooks
-#endif
-
-// Multiple includes!
-#include "..\YSI_Internal\y_unique"
-
-#if defined _INC_y_hooks
-	#endinput
-#endif
-#define _INC_y_hooks
-
 /**
  * <library name="y_hooks">
  * <section>
@@ -93,31 +81,47 @@ Optional plugins:
 	Me - sscanf2, fixes2, Whirlpool.
 */
 
-#if defined YSI_TESTS
-	#define _Y_HOOKS_STATIC
-#else
-	#define _Y_HOOKS_STATIC static
+#if defined _inc_y_hooks
+	#undef _inc_y_hooks
 #endif
 
-#include "y_hooks/macros"
+#if !defined _Y_UNIQUE_INCLUDED
+	#tryinclude "..\YSI_Coding\y_unique\y_unique_entry"
+#endif
+#if !defined _Y_UNIQUE_INCLUDED
+	#tryinclude "YSI_Coding\y_unique\y_unique_entry"
+#endif
+#if !defined _Y_UNIQUE_INCLUDED
+	#tryinclude "YSI\YSI_Coding\y_unique\y_unique_entry"
+#endif
+#if !defined _Y_UNIQUE_INCLUDED
+	#tryinclude <YSI_Coding\y_unique\y_unique_entry>
+#endif
+#if !defined _Y_UNIQUE_INCLUDED
+	#tryinclude <YSI\YSI_Coding\y_unique\y_unique_entry>
+#endif
+#if defined _Y_UNIQUE_INCLUDED
+	#undef _Y_UNIQUE_INCLUDED
+#else
+	#error Did you use `YSI/y_hooks` instead of `YSI\y_hooks`?
+#endif
 
-#include "..\YSI_Internal\y_unique"
-#include "..\YSI_Core\y_cell"
-#include "..\YSI_Core\y_utils"
-#include "..\YSI_Storage\y_amx"
-#include "..\YSI_Core\y_als"
-
-#include "..\YSI_Internal\y_cgen"
-
-#include "..\YSI_Internal\y_thirdpartyinclude"
-//asm"
-
-#include "y_hooks/impl"
-
-#if defined YSI_TESTS
-	#include "..\YSI_Core\y_testing"
-	#include "y_hooks/tests"
-	// Get some new IDs.
-	//#include "..\YSI_Internal\y_unique"
+#if !defined _INC_y_hooks
+	#tryinclude "y_hooks\y_hooks_entry"
+#endif
+#if !defined _INC_y_hooks
+	#tryinclude "YSI_Coding\y_hooks\y_hooks_entry"
+#endif
+#if !defined _INC_y_hooks
+	#tryinclude "YSI\YSI_Coding\y_hooks\y_hooks_entry"
+#endif
+#if !defined _INC_y_hooks
+	#tryinclude <YSI_Coding\y_hooks\y_hooks_entry>
+#endif
+#if !defined _INC_y_hooks
+	#tryinclude <YSI\YSI_Coding\y_hooks\y_hooks_entry>
+#endif
+#if !defined _INC_y_hooks
+	#error Could not find y_hooks
 #endif
 

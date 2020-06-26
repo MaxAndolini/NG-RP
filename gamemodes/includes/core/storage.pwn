@@ -35,7 +35,7 @@
 	* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 stock ShowStorageEquipDialog(playerid)
 {
@@ -1705,15 +1705,12 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
     return 1;
 }*/
 
-CMD:inv(playerid, params[]) {
-	return cmd_inventory(playerid, params);
-}
-
 CMD:inventory(playerid, params[])
 {
 	if(gPlayerLogged{playerid} != 0) ShowInventory(playerid, playerid);
 	return 1;
 }
+alias:inventory("inv")
 
 CMD:mytokens(playerid, params[])
 {

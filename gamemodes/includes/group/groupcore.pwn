@@ -34,7 +34,7 @@
 	* NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 	* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 Group_DisbandGroup(iGroupID) {
 
@@ -264,7 +264,7 @@ public SaveGroup(iGroupID) {
 	return 1;
 }
 
-stock SendGroupMessage(iGroupType, color, string[], allegiance = 0)
+stock SendGroupMessage(iGroupType, color, const string[], allegiance = 0)
 {
 	new iGroupID;
 	foreach(new i : Player)
@@ -280,7 +280,7 @@ stock SendGroupMessage(iGroupType, color, string[], allegiance = 0)
 	}
 }
 
-stock SendMedicMessage(color, string[])
+stock SendMedicMessage(color, const string[])
 {
 	foreach(new i : Player)
 	{
@@ -291,7 +291,7 @@ stock SendMedicMessage(color, string[])
 	}
 }
 
-stock SendDivisionMessage(member, division, color, string[])
+stock SendDivisionMessage(member, division, color, const string[])
 {
 	foreach(new i : Player)
 	{
@@ -392,7 +392,7 @@ stock IsMDCPermitted(playerid)
 	return 0;
 }
 
-stock GetPlayerGroupInfo(targetid, rank[], division[], employer[])
+stock GetPlayerGroupInfo(targetid, const rank[], const division[], const employer[])
 {
 	new
 		iGroupID = PlayerInfo[targetid][pMember],
@@ -740,7 +740,7 @@ Group_DisplayDialog(iPlayerID, iGroupID) {
 	return ShowPlayerDialogEx(iPlayerID, DIALOG_EDITGROUP, DIALOG_STYLE_LIST, szTitle, szDialog, "Select", "Cancel");
 }
 
-stock CrateLog(groupid, string[])
+stock CrateLog(groupid, const string[])
 {
 	new month, day, year, file[32];
 	getdate(year, month, day);
@@ -748,7 +748,7 @@ stock CrateLog(groupid, string[])
 	return Log(file, string);
 }
 
-stock GroupLog(groupid, string[])
+stock GroupLog(groupid, const string[])
 {
 	new month, day, year, file[32];
 	getdate(year, month, day);
@@ -756,7 +756,7 @@ stock GroupLog(groupid, string[])
 	return Log(file, string);
 }
 
-stock GroupPayLog(groupid, string[])
+stock GroupPayLog(groupid, const string[])
 {
 	new month, day, year, file[32];
 	getdate(year, month, day);
@@ -764,7 +764,7 @@ stock GroupPayLog(groupid, string[])
 	return Log(file, string);
 }
 
-stock GroupLogEx(groupid, string[], type = 0) {
+stock GroupLogEx(groupid, const string[], type = 0) {
 
 	new month, day, year, file[32];
 	getdate(year, month, day);
@@ -810,7 +810,7 @@ hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 
 			if(areaid[0] != INVALID_STREAMER_ID) {
 				for(new i; i < MAX_GROUP_LOCKERS; ++i) {
-					if(areaid[0] == arrGroupLockers[PlayerInfo[playerid][pMember]][i][g_iLockerAreaID]) cmd_locker(playerid, "");
+					if(areaid[0] == arrGroupLockers[PlayerInfo[playerid][pMember]][i][g_iLockerAreaID]) PC_EmulateCommand(playerid, "/locker");
 				}
 			}
 		}
@@ -2696,7 +2696,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 			}
 		}
 		case G_LOCKER_DRUGS: {
-			if(!response) return DeletePVar(playerid, "GSafe_Opt"), cmd_locker(playerid, "");
+			if(!response) return DeletePVar(playerid, "GSafe_Opt"), PC_EmulateCommand(playerid, "/locker");
 			else {
 
 				SetPVarInt(playerid, "GLocker_SID", listitem);
@@ -2705,7 +2705,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 			}
 		}
 		/*case G_LOCKER_INGREDIENTS: {
-			if(!response) return DeletePVar(playerid, "GSafe_Opt"), cmd_locker(playerid, "");
+			if(!response) return DeletePVar(playerid, "GSafe_Opt"), PC_EmulateCommand(playerid, "/locker");
 			else {
 
 				SetPVarInt(playerid, "GLocker_SID", listitem);
@@ -2718,7 +2718,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 		{
 			if(!response)
 			{
-				return cmd_locker(playerid, "");
+				return PC_EmulateCommand(playerid, "/locker");
 			}
 			switch(listitem)
 			{
@@ -2752,7 +2752,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 			{
 				DeletePVar(playerid, "GSafe_Action");
 				DeletePVar(playerid, "GSafe_Opt");
-				return cmd_locker(playerid, "");
+				return PC_EmulateCommand(playerid, "/locker");
 			}
 			if(response)
 			{
@@ -2857,7 +2857,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 									DeletePVar(playerid, "GSafe_Opt");
 									SaveGroup(iGroupID);
 
-									cmd_locker(playerid, "");
+									PC_EmulateCommand(playerid, "/locker");
 
 								}
 								else return ShowPlayerDialogEx(playerid, DIALOG_GROUP_SACTIONEXEC, DIALOG_STYLE_INPUT, "Gang Safe", "The amount specified exceeds that that you have on you.\nPlease input another amount.", "Input", "Cancel");
@@ -2876,7 +2876,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 									DeletePVar(playerid, "GSafe_Opt");
 									SaveGroup(iGroupID);
 
-									cmd_locker(playerid, "");
+									PC_EmulateCommand(playerid, "/locker");
 								}
 								else return ShowPlayerDialogEx(playerid, DIALOG_GROUP_SACTIONTYPE, DIALOG_STYLE_INPUT, "Gang Safe", "The amount specified exceeds that in the safe.\nPlease input another amount.", "Input", "Cancel");
 							}
@@ -2900,7 +2900,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 									format(szMiscArray, sizeof(szMiscArray), "UPDATE `groups` SET `%s` = '%d' WHERE `id` = '%d'", DS_Ingredients_GetSQLName(iIngredientID), arrGroupData[iGroupID][g_iIngredients][iIngredientID], iGroupID + 1);
 									mysql_tquery(MainPipeline, szMiscArray, false, "OnQueryFinish", "i", SENDDATA_THREAD);
 
-									cmd_locker(playerid, "");
+									PC_EmulateCommand(playerid, "/locker");
 								}
 								else return ShowPlayerDialogEx(playerid, DIALOG_GROUP_SACTIONEXEC, DIALOG_STYLE_INPUT, "Gang Safe", "The amount specified exceeds that that you have on you.\nPlease input another amount.", "Input", "Cancel");
 							}
@@ -2920,7 +2920,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 									format(szMiscArray, sizeof(szMiscArray), "UPDATE `groups` SET `%s` = '%d' WHERE `id` = '%d'", DS_Ingredients_GetSQLName(iIngredientID), arrGroupData[iGroupID][g_iIngredients][iIngredientID], iGroupID + 1);
 									mysql_tquery(MainPipeline, szMiscArray, false, "OnQueryFinish", "i", SENDDATA_THREAD);
 
-									cmd_locker(playerid, "");
+									PC_EmulateCommand(playerid, "/locker");
 								}
 								else return ShowPlayerDialogEx(playerid, DIALOG_GROUP_SACTIONTYPE, DIALOG_STYLE_INPUT, "Gang Safe", "The amount specified exceeds that in the safe.\nPlease input another amount.", "Input", "Cancel");
 							}
@@ -2984,7 +2984,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 
 			if(!response) {
 				DeletePVar(playerid, "GLGunTake");
-				return cmd_locker(playerid, "");
+				return PC_EmulateCommand(playerid, "/locker");
 			}
 
 			switch(listitem) {
@@ -3011,7 +3011,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 
 			if(!response) {
 				DeletePVar(playerid, "GLGunTake");
-				return cmd_locker(playerid, "");
+				return PC_EmulateCommand(playerid, "/locker");
 			}
 
 			if(!IsValidDynamicObject(arrGCrateData[iCrateID][gcr_iObject])) return SendClientMessageEx(playerid, COLOR_GRAD2, "Invalid crate ID.");
@@ -3098,7 +3098,7 @@ public OnVehicleSirenStateChange(playerid, vehicleid, newstate)
     return 1;
 }
 
-stock EditDV(playerid, iDvSlotID, params[], name[], Float:value, &slot)
+stock EditDV(playerid, iDvSlotID, params[], const name[], Float:value, &slot)
 {
 	new string[128];
 	format(string, sizeof(string), "%s has edited DV Slot %d - %s.", GetPlayerNameEx(playerid), iDvSlotID, params);
@@ -3552,7 +3552,7 @@ CMD:gwithdraw(playerid, params[])
 		format( string, sizeof( string ), "You have withdrawn $%d from the group vault.", amount );
 		SendClientMessageEx( playerid, COLOR_WHITE, string );
 		format(string,sizeof(string),"{AA3333}AdmWarning{FFFF00}: %s has withdrawn $%s of the group money from their vault, reason: %s.", GetPlayerNameEx(playerid), number_format(amount), reason);
-		ABroadCast( COLOR_YELLOW, string, 2);
+		ABroadCast(COLOR_YELLOW, string, 2);
  		format(string,sizeof(string),"%s(%d) has withdrawn $%s of the group money from %s's vault, reason: %s.",GetPlayerNameEx(playerid), GetPlayerSQLId(playerid), number_format(amount),arrGroupData[iGroupID][g_szGroupName],reason);
 		Log("logs/rpspecial.log", string);
 	}
@@ -3927,7 +3927,7 @@ CMD:dvrespawnall(playerid, params[])
 	return 1;
 }
 
-CMD:freedvrespawn(playerid, params[]) return cmd_dvrespawn(playerid, "1");
+CMD:freedvrespawn(playerid, params[]) return PC_EmulateCommand(playerid, "/dvrespawn 1");
 CMD:dvrespawn(playerid, params[])
 {
 	new szString[128],
@@ -3948,7 +3948,7 @@ CMD:dvrespawn(playerid, params[])
 					}
 			    }
 			}
-			format(szString, sizeof(szString), "** Respawning all dynamic group vehicles%s...",(strval(params) == 1)?(" at no charge"):(""));
+			format(szString, sizeof(szString), "** Respawning all dynamic group vehicles%s...", (strval(params) == 1) ? (" at no charge") : (""));
 			foreach(new i : Player)
 			{
 				if(PlayerInfo[i][pMember] == iGroupID)
@@ -5368,10 +5368,6 @@ CMD:m(playerid, params[]) {
 	return 1;
 }
 
-CMD:radio(playerid, params[]) {
-	return cmd_r(playerid, params);
-}
-
 CMD:r(playerid, params[]) {
 	if(PlayerTied[playerid] != 0 || PlayerCuffed[playerid] != 0 || PlayerInfo[playerid][pJailTime] > 0) return SendClientMessageEx(playerid, COLOR_GRAD2, "You cannot do this at this time.");
 	if(PlayerInfo[playerid][pJailTime] && strfind(PlayerInfo[playerid][pPrisonReason], "[OOC]", true) != -1) return SendClientMessageEx(playerid, COLOR_GREY, "OOC prisoners are restricted to only speak in /b");
@@ -5415,11 +5411,7 @@ CMD:r(playerid, params[]) {
 	else return SendClientMessageEx(playerid, COLOR_GREY, "You are not in a group.");
 	return 1;
 }
-
-CMD:int(playerid, params[])
-{
-	return cmd_international(playerid, params);
-}
+alias:r("radio")
 
 CMD:togint(playerid, params[]) {
 
@@ -5468,6 +5460,7 @@ CMD:international(playerid, params[])
 	else return SendClientMessageEx(playerid, COLOR_GREY, "You're not in a group!");
 	return 1;
 }
+alias:international("int")
 
 CMD:togdept(playerid, params[])
 {
@@ -5707,7 +5700,6 @@ public HitmanTrace(playerid, iTargetID) {
 	return 1;
 }
 
-CMD:f(playerid, params[]) return cmd_g(playerid, params);
 CMD:g(playerid, params[])
 {
 
@@ -5731,6 +5723,7 @@ CMD:g(playerid, params[])
 	else SendClientMessageEx(playerid, COLOR_GREY, "You cannot use this command.");
 	return 1;
 }
+alias:g("f")
 
 CMD:togfam(playerid, params[])
 {
@@ -6393,7 +6386,6 @@ CMD:families(playerid, params[])
 	return 1;
 }
 
-//CMD:families(playerid, params[]) return cmd_orgs(playerid, params);
 CMD:orgs(playerid, params[])
 {
 	szMiscArray[0] = 0;
@@ -6412,6 +6404,7 @@ CMD:orgs(playerid, params[])
 	}
 	return 1;
 }
+//alias:orgs("families")
 
 CMD:clothes(playerid, params[])
 {

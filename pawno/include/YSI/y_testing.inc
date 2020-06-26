@@ -69,8 +69,6 @@ Optional plugins:
 	Incognito - Streamer.
 	Me - sscanf2, fixes2, Whirlpool.
 */
-#if defined _inc_y_testing
-	#undef _inc_y_testing
-#endif
 
-#include "..\YSI_Core\y_testing"
+#error Use `#include <YSI_Core\y_testing>`
+

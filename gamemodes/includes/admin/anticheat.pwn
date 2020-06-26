@@ -29,7 +29,7 @@ stock ExecuteHackerAction( playerid, weaponid )
 	GetWeaponName( weaponid, WeaponName, sizeof( WeaponName ) );
 
 	format( String, sizeof( String ), "{AA3333}AdmWarning{FFFF00}: %s (ID %d) may possibly be weapon hacking (%s).", GetPlayerNameEx(playerid), playerid, WeaponName );
-	ABroadCast( COLOR_YELLOW, String, 2 );
+	ABroadCast(COLOR_YELLOW, String, 2);
 	format(String, sizeof(String), "%s(%d) (ID %d) may possibly be weapon hacking (%s)", GetPlayerNameEx(playerid), GetPlayerSQLId(playerid), playerid, WeaponName);
 	Log("logs/hack.log", String);
 
@@ -186,7 +186,7 @@ public LoginCheckEx(i)
 	return true;
 }
 
-stock CheckServerAd(szInput[]) {
+stock CheckServerAd(const szInput[]) {
 
 	new
 		iCount,

@@ -35,8 +35,6 @@
 	* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-CMD:hm(playerid, params[]) return cmd_helmet(playerid, params);
-
 CMD:helmet(playerid, params[])
 {
     if(!IsABike(GetPlayerVehicleID(playerid)))
@@ -79,8 +77,7 @@ CMD:helmet(playerid, params[])
     }
     return 1;
 }
-
-CMD:chm(playerid, params[]) return cmd_checkhelmet(playerid, params);
+alias:helmet("hm")
 
 CMD:checkhelmet(playerid, params[])
 {
@@ -110,3 +107,4 @@ CMD:checkhelmet(playerid, params[])
     else { SendClientMessageEx(playerid, COLOR_GREY, "You are not around that player!"); }
     return 1;
 }
+alias:checkhelmet("chm")

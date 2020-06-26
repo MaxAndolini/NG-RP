@@ -43,7 +43,7 @@
    		This module will control the driving school (LV), and any other's created afterwards.
         Module created by Connor.
 */
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 #define DIALOG_DSVEH_CAUTION 6941
 #define DIALOG_DSVEH_RULES 6942
 #define DIALOG_DSVEH_TESTBASE 6943

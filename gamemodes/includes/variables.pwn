@@ -426,7 +426,7 @@ new briefcaselimit[] = { 500000, 100, 100, 50000 };
 new servernumber, betaserver;
 new textdrawscount;
 
-new hour, minuite, second;
+new hour, minuite, seconid;
 
 new InsidePlane[MAX_PLAYERS];
 new InsideMainMenu[MAX_PLAYERS char];
@@ -2479,7 +2479,7 @@ new const gMainZones[][MAIN_ZONES] = {  // Majority of names and area coordinate
 	{"San Andreas",                 {-10000.00,-10000.00,-242.90,10000.00,10000.00,900.00}}
 };
 
-stock GetPlayer2DZone(playerid, zone[], len) //Credits to Cueball, Betamaster, Mabako, and Simon (for finetuning).
+stock GetPlayer2DZone(playerid, const zone[], len) //Credits to Cueball, Betamaster, Mabako, and Simon (for finetuning).
 {
 	new Float:x, Float:y, Float:z;
 	GetPlayerPos(playerid, x, y, z);
@@ -2507,7 +2507,7 @@ stock GetPlayer2DTurf(playerid) //Jingles
 	return 369;
 }
 
-stock GetPlayer3DZone(playerid, zone[], len) //Credits to Cueball, Betamaster, Mabako, and Simon (for finetuning).
+stock GetPlayer3DZone(playerid, const zone[], len) //Credits to Cueball, Betamaster, Mabako, and Simon (for finetuning).
 {
 	new Float:x, Float:y, Float:z;
 	GetPlayerPos(playerid, x, y, z);
@@ -2521,7 +2521,7 @@ stock GetPlayer3DZone(playerid, zone[], len) //Credits to Cueball, Betamaster, M
 	return 0;
 }
 
-stock Get3DZone(Float:x, Float:y, Float:z, zone[], len) //Credits to Cueball, Betamaster, Mabako, and Simon (for finetuning).
+stock Get3DZone(Float:x, Float:y, Float:z, const zone[], len) //Credits to Cueball, Betamaster, Mabako, and Simon (for finetuning).
 {
  	for(new i = 0; i != sizeof(gSAZones); i++ )
  	{
@@ -2533,7 +2533,7 @@ stock Get3DZone(Float:x, Float:y, Float:z, zone[], len) //Credits to Cueball, Be
 	return 0;
 }
 
-stock IsPlayerInZone(playerid, zone[]) //Credits to Cueball, Betamaster, Mabako, and Simon (for finetuning).
+stock IsPlayerInZone(playerid, const zone[]) //Credits to Cueball, Betamaster, Mabako, and Simon (for finetuning).
 {
 	new TmpZone[MAX_ZONE_NAME];
 	GetPlayer3DZone(playerid, TmpZone, sizeof(TmpZone));
@@ -2545,7 +2545,7 @@ stock IsPlayerInZone(playerid, zone[]) //Credits to Cueball, Betamaster, Mabako,
 	return 0;
 }
 
-stock GetPlayerMainZone(playerid, zone[], len)
+stock GetPlayerMainZone(playerid, const zone[], len)
 {
 	new Float:x, Float:y, Float:z;
 	GetPlayerPos(playerid, x, y, z);
@@ -2559,7 +2559,7 @@ stock GetPlayerMainZone(playerid, zone[], len)
 	return 0;
 }
 
-stock Get2DMainZone(Float:x, Float:y, zone[], len)
+stock Get2DMainZone(Float:x, Float:y, const zone[], len)
 {
  	for(new i = 0; i != sizeof(gMainZones); i++ )
  	{

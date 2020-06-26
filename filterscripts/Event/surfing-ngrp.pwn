@@ -44,13 +44,14 @@
  
  */
 
+#define 	YSI_NO_HEAP_MALLOC
  
 // ------------------------- [Includes] ---------------------------
 #include 	<a_samp>
-#include    <zcmd>
 #include    <streamer>
-#include    <YSI\y_iterate>
-#include 	<YSI\y_timers>
+#include 	<YSI_Data\y_iterate>
+#include 	<YSI_Coding\y_timers>
+#include 	<Pawn.CMD>
 // ------------------------- [Defines] ---------------------------- 
 #define 	MAX_EVENT_PLAYERS		15
 #define 	MAX_PLAYER_SURFBOARD	100+MAX_EVENT_PLAYERS // Limited for now

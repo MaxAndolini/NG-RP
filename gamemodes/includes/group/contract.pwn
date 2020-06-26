@@ -35,7 +35,7 @@
 	* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 forward PickUpC4(playerid);
 public PickUpC4(playerid)
@@ -458,10 +458,6 @@ CMD:ranks(playerid, params[])
 	return 1;
 }
 
-CMD:plantcarbomb(playerid, params[]) {
-	return cmd_pcb(playerid, params);
-}
-
 CMD:pcb(playerid, params[])
 {
 	if (IsAHitman(playerid))
@@ -512,10 +508,7 @@ CMD:pcb(playerid, params[])
 	}
 	return 1;
 }
-
-CMD:plantbomb(playerid, params[]) {
-	return cmd_pb(playerid, params);
-}
+alias:pcb("plantcarbomb")
 
 CMD:pb(playerid, params[])
 {
@@ -555,10 +548,7 @@ CMD:pb(playerid, params[])
 	}
 	return 1;
 }
-
-CMD:pub(playerid, params[]) {
-	return cmd_pickupbomb(playerid, params);
-}
+alias:pb("plantbomb")
 
 CMD:pickupbomb(playerid, params[])
 {
@@ -596,6 +586,7 @@ CMD:pickupbomb(playerid, params[])
 	}
 	return 1;
 }
+alias:pickupbomb("pub")
 
 CMD:myc4(playerid, params[])
 {

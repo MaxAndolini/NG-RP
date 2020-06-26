@@ -69,8 +69,6 @@ Optional plugins:
 	Incognito - Streamer.
 	Me - sscanf2, fixes2, Whirlpool.
 */
-#if defined _inc_y_bitmap
-	#undef _inc_y_bitmap
-#endif
 
-#include "..\YSI_Storage\y_bitmap"
+#error Use `#include <YSI_Storage\y_bitmap>`
+

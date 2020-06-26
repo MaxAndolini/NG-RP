@@ -1,5 +1,5 @@
 #include <a_samp>
-#include <zcmd>
+#include <Pawn.CMD>
 
 new szMiscArray[512],
 	previousQuestion = -1,

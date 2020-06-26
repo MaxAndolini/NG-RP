@@ -10,8 +10,8 @@
 #include <a_samp>
 #include <sscanf2>
 #include <xFireworks>
-#include <zcmd>
-#include <YSI\y_iterate>
+#include <YSI_Data\y_iterate>
+#include <Pawn.CMD>
 #include <streamer>
 
 new explosions[] = {0,2,4,5,6,7,8,9,10,13};

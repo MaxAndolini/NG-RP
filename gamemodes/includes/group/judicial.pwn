@@ -64,7 +64,7 @@ stock JudgeOnlineCheck()
 
 // Created by Bohemoth
 
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 forward OfflineWarranting(index);
 public OfflineWarranting(index)
@@ -437,7 +437,7 @@ CMD:reversejudgement(playerid, params[])
 
 CMD:commute(playerid, params[])
 {
-	cmd_pardon(playerid, "");
+	PC_EmulateCommand(playerid, "/pardon");
 	SendClientMessageEx(playerid, COLOR_GRAD1, "You can also use /pardon.");
 	return 1;
 }

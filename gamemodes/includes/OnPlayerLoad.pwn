@@ -625,7 +625,7 @@ public OnPlayerLoad(playerid)
 		new name[MAX_PLAYER_NAME];
 		GetPlayerName(playerid, name, sizeof(name));
 		format(string, sizeof(string), "{AA3333}AdmWarning{FFFF00}: %s has attempted to log in with Admin Level %d.", GetPlayerNameEx(playerid), PlayerInfo[playerid][pAdmin]);
-		ABroadCast( COLOR_YELLOW, string, 4 );
+		ABroadCast(COLOR_YELLOW, string, 4);
 		format(string, sizeof(string), "%s(%d) has attempted to log in with Admin Level %d.", name, GetPlayerSQLId(playerid), PlayerInfo[playerid][pAdmin]);
 		Log("logs/security.log", string);
 		PlayerInfo[playerid][pAdmin] = 0;

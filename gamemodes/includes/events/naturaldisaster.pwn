@@ -79,7 +79,7 @@ new const gLocalZones[][SAZONE_MAIN] = {
 	{"Willowfield",                 {2541.70,-2059.20,-89.00,2703.50,-1941.40,110.90}}
 };
 
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 #define TYPE_EARTHQUAKE 0
 #define TYPE_SANDSTORM 1

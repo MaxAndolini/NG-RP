@@ -42,7 +42,7 @@ CMD:motd(playerid, params[])
 		if(isnull(params)) return SendClientMessageEx(playerid, COLOR_GREY, "USAGE: /motd [message]");
 		new string[128];
     	format(string, sizeof(string), "AdmCmd: %s has changed the global motd to: %s.", GetPlayerNameEx(playerid), params);
-		ABroadCast( COLOR_LIGHTRED, string, 4);
+		ABroadCast(COLOR_LIGHTRED, string, 4);
 		format(GlobalMOTD, sizeof(GlobalMOTD), "%s", params);
 		SendClientMessageEx(playerid, COLOR_WHITE, "You've adjusted the Global MOTD.");
 		g_mysql_SaveMOTD();
@@ -58,7 +58,7 @@ CMD:amotd(playerid, params[])
 		new string[128];
 		format(AdminMOTD, sizeof(AdminMOTD), "%s", params);
 		format(string, sizeof(string), "AdmCmd: %s has changed the admin motd to: %s.", GetPlayerNameEx(playerid), params);
-		ABroadCast( COLOR_LIGHTRED, string, 4);
+		ABroadCast(COLOR_LIGHTRED, string, 4);
 		SendClientMessageEx(playerid, COLOR_WHITE, "You've adjusted the Admin MOTD.");
 		g_mysql_SaveMOTD();
 		//IRC_SetChannelTopic(BotID[0], IRC_CHANNEL_ADMIN, AdminMOTD);
@@ -74,7 +74,7 @@ CMD:vipmotd(playerid, params[])
 		new string[128];
 		format(VIPMOTD, sizeof(VIPMOTD), "%s", params);
 		format(string, sizeof(string), "AdmCmd: %s has changed the VIP motd to: %s.", GetPlayerNameEx(playerid), params);
-		ABroadCast( COLOR_LIGHTRED, string, 4);
+		ABroadCast(COLOR_LIGHTRED, string, 4);
 		SendClientMessageEx(playerid, COLOR_WHITE, "You've adjusted the VIP MOTD.");
 		g_mysql_SaveMOTD();
 	}
@@ -91,7 +91,7 @@ CMD:advisormotd(playerid, params[])
 		if(PlayerInfo[playerid][pAdmin] >= 4 || PlayerInfo[playerid][pASM] >= 1 || PlayerInfo[playerid][pPR] > 0)
 		{
 			format(string, sizeof(string), "AdmCmd: %s has changed the Advisor motd to: %s.", GetPlayerNameEx(playerid), params);
-			ABroadCast( COLOR_LIGHTRED, string, 4);
+			ABroadCast(COLOR_LIGHTRED, string, 4);
 		}
 		else if(PlayerInfo[playerid][pHelper] >= 4)
 		{
@@ -114,7 +114,7 @@ CMD:pmotd(playerid, params[])
 		{
 		    format(pMOTD, sizeof(pMOTD), "");
 		    format(string, sizeof(string), "AdmCmd: %s has turned off the Global MOTD", GetPlayerNameEx(playerid));
-			ABroadCast( COLOR_LIGHTRED, string, 4);
+			ABroadCast(COLOR_LIGHTRED, string, 4);
 
 			SendClientMessageEx(playerid, COLOR_WHITE, "You've adjusted the pMOTD.");
 			g_mysql_SaveMOTD();
@@ -123,7 +123,7 @@ CMD:pmotd(playerid, params[])
 		format(pMOTD, sizeof(pMOTD), "%s", params);
 
 		format(string, sizeof(string), "AdmCmd: %s has changed the global motd to: %s.", GetPlayerNameEx(playerid), params);
-		ABroadCast( COLOR_LIGHTRED, string, 4);
+		ABroadCast(COLOR_LIGHTRED, string, 4);
 
 		SendClientMessageEx(playerid, COLOR_WHITE, "You've adjusted the pMOTD.");
 		g_mysql_SaveMOTD();

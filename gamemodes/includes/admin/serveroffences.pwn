@@ -35,7 +35,7 @@
 	* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 CMD:prison(playerid, params[])
 {
@@ -121,7 +121,7 @@ CMD:dprison(playerid, params[])
 	return 1;
 }
 
-PrisonPlayer(playerid, giveplayerid, reason[], time=0, silent=0, custom=0)
+PrisonPlayer(playerid, giveplayerid, const reason[], time=0, silent=0, custom=0)
 {
 	new string[128], shortreason[5], jailtime, twarn, warn, fine, nonrp;
 	new rand = random(sizeof(OOCPrisonSpawns));

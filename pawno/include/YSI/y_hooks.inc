@@ -69,8 +69,6 @@ Optional plugins:
 	Incognito - Streamer.
 	Me - sscanf2, fixes2, Whirlpool.
 */
-#if defined _inc_y_hooks
-	#undef _inc_y_hooks
-#endif
 
-#include "..\YSI_Coding\y_hooks"
+#error Use `#include <YSI_Coding\y_hooks>`
+

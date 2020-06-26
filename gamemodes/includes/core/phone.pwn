@@ -213,10 +213,6 @@ CMD:number(playerid, params[]) {
 	return 1;
 }
 
-CMD:tempnum(playerid, params[]) {
-	return cmd_tempnumber(playerid, params);
-}
-
 CMD:tempnumber(playerid, params[]){
 	if (PlayerInfo[playerid][pMember] != INVALID_GROUP_ID && PlayerInfo[playerid][pRank] >= arrGroupData[PlayerInfo[playerid][pMember]][gTempNum] || IsAHitman(playerid)) {
         new num;
@@ -245,6 +241,7 @@ CMD:tempnumber(playerid, params[]){
 	} else SendClientMessageEx(playerid, COLOR_GREY, "You do not have access to this command.");
 	return 1;
 }
+alias:tempnumber("tempnum")
 
 /*
 CMD:ringtone(playerid, params[])
@@ -505,16 +502,6 @@ CMD:call(playerid, params[])
 	return 1;
 }
 
-CMD:t(playerid, params[])
-{
-	return cmd_sms(playerid, params);
-}
-
-CMD:txt(playerid, params[])
-{
-	return cmd_sms(playerid, params);
-}
-
 CMD:sms(playerid, params[])
 {
 	if(gPlayerLogged{playerid} == 0) return SendClientMessageEx(playerid, COLOR_GREY, "   You haven't logged in yet!");
@@ -635,10 +622,7 @@ CMD:sms(playerid, params[])
 	SendClientMessageEx(playerid, COLOR_GRAD2, "  Message delivery failed...");
 	return 1;
 }
-
-CMD:p(playerid, params[]) {
-	return cmd_pickup(playerid, params);
-}
+alias:sms("t", "txt")
 
 CMD:pickup(playerid, params[])
 {
@@ -698,10 +682,7 @@ CMD:pickup(playerid, params[])
 	}
 	return 1;
 }
-
-CMD:h(playerid, params[]) {
-	return cmd_hangup(playerid, params);
-}
+alias:pickup("p")
 
 CMD:hangup(playerid,params[])
 {
@@ -714,7 +695,7 @@ CMD:hangup(playerid,params[])
 	if(GetPVarType(playerid, "Has911Call")) {
 
 		if(GetPVarType(playerid, "PayPhone")) TogglePlayerControllable(playerid, true);
-		cmd_cancelcall(playerid, "");
+		PC_EmulateCommand(playerid, "/cancelcall");
 	}
 	new caller = Mobile[playerid];
 	if((IsPlayerConnected(caller)/* && caller != INVALID_PLAYER_ID*/))
@@ -796,6 +777,7 @@ CMD:hangup(playerid,params[])
 	SendClientMessageEx(playerid,  COLOR_GRAD2, "   Your phone is in your pocket.");
 	return 1;
 }
+alias:hangup("h")
 
 FetchContact(iReceiverID, iCallerNumber) {
 

@@ -619,7 +619,7 @@ task ProductionUpdate[300000]()
 task MoneyUpdate[1000]()
 {
 	new minuitet=minuite;
-	gettime(hour,minuite,second);
+	gettime(hour, minuite, seconid);
 	FixHour(hour);
 	hour = shifthour;
 
@@ -985,7 +985,8 @@ foreach(new i : Player)
 		// alerttimer - Merged by Jingles
 		if(AlertTime[i] != 0) AlertTime[i]--;
 
-		new Float:playerArmour = GetArmour(i, playerArmour);
+		new Float:playerArmour;
+		GetArmour(i, playerArmour);
         // playertabbedloop - Merged by Jingles
         new
             iTick = gettime() - 1;

@@ -37,7 +37,7 @@
  *  Created by Emmet on November 3, 2012 @ 9:19 AM
 */
 
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 #if defined walkstyle_included
 	#endinput
@@ -112,7 +112,7 @@ stock SetWalkingKey(key)
 	return 1;
 }
 
-stock AddWalkingStyle(animlib[], animname[], Float:fDelta = 4.0, loop = 1, lockx = 1, locky = 1, freeze = 1, time = 1)
+stock AddWalkingStyle(const animlib[], const animname[], Float:fDelta = 4.0, loop = 1, lockx = 1, locky = 1, freeze = 1, time = 1)
 {
 	new id;
 	for (new i = 1; i < sizeof(WalkingStyles); i ++)

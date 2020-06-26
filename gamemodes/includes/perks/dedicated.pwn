@@ -38,9 +38,9 @@
 /** Austin's DP system **/
 
 
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
-SendDedicatedMessage(color, string[])
+SendDedicatedMessage(color, const string[])
 {
 	foreach(new i : Player) 
 	{
@@ -344,7 +344,7 @@ CMD:dpplate(playerid, params[])
     			    format(string, sizeof(string), "{2FC660}DEDICATED");
    			    	format(PlayerVehicleInfo[playerid][d][pvPlate], 32, "%s", string);
     			    SendClientMessageEx(playerid, COLOR_WHITE, "Your vehicle will now appear with the Dedicated Player Plate, parking your vehicle momentarily...");
-					cmd_park(playerid, ""); 
+					PC_EmulateCommand(playerid, "/park"); 
 	            }
 	            else if(strcmp(params, "superdp", true) == 0)
 	            {
@@ -352,13 +352,13 @@ CMD:dpplate(playerid, params[])
                     format(string, sizeof(string), "{2FC660}SUPERDP");
 					format(PlayerVehicleInfo[playerid][d][pvPlate], 32, "%s", string);
     			    SendClientMessageEx(playerid, COLOR_WHITE, "Your vehicle will now appear with the Super Dedicated Player Plate.");
-					cmd_park(playerid, ""); 
+					PC_EmulateCommand(playerid, "/park"); 
 	            }
 	            else if(strcmp(params, "remove", true) == 0)
 	            {
 					PlayerVehicleInfo[playerid][d][pvPlate] = 0;
     			    SendClientMessageEx(playerid, COLOR_WHITE, "Your vehicle will now appear with the default plate.");
-					cmd_park(playerid, "");
+					PC_EmulateCommand(playerid, "/park");
 	            }
 	            else
 	            {

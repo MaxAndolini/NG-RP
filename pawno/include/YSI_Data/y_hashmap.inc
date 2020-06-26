@@ -1,8 +1,3 @@
-#if defined _INC_y_hashmap
-	#endinput
-#endif
-#define _INC_y_hashmap
-
 /**
  * <library name="y_hashmap">
  * <section>
@@ -104,19 +99,22 @@ Optional plugins:
 	Me - sscanf2, fixes2, Whirlpool.
 */
 
-#include "..\YSI_Internal\y_compilerdata"
-#include "..\YSI_Internal\y_thirdpartyinclude"
-#include "..\YSI_Internal\y_version"
-#include "..\YSI_Core\y_utils"
-#include "..\YSI_Storage\y_amx"
-#include "..\YSI_Coding\y_stringhash"
-#include "..\YSI_Internal\y_shortfunc"
-
-#include "y_hashmap/impl"
-
-// The hashmap tests are vast.  Only include them when explicitly requested.
-#if defined YSI_TESTS && defined YSI_HASHMAP_TESTS
-	#include "..\YSI_Core\y_testing"
-	#include "y_hashmap/tests"
+#if !defined _INC_y_hashmap
+	#tryinclude "y_hashmap\y_hashmap_entry"
+#endif
+#if !defined _INC_y_hashmap
+	#tryinclude "YSI_Core\y_hashmap\y_hashmap_entry"
+#endif
+#if !defined _INC_y_hashmap
+	#tryinclude "YSI\YSI_Core\y_hashmap\y_hashmap_entry"
+#endif
+#if !defined _INC_y_hashmap
+	#tryinclude <YSI_Core\y_hashmap\y_hashmap_entry>
+#endif
+#if !defined _INC_y_hashmap
+	#tryinclude <YSI\YSI_Core\y_hashmap\y_hashmap_entry>
+#endif
+#if !defined _INC_y_hashmap
+	#error Could not find y_hashmap
 #endif
 

@@ -48,7 +48,7 @@ stock IsAdminLevel(playerid, level, warning = 1) {
 	return 0;
 }
 
-stock ABroadCast(hColor, szMessage[], iLevel, bool: bUndercover = false, bool: Discord = true)
+stock ABroadCast(hColor, const szMessage[], iLevel, bool: bUndercover = false, bool: Discord = true)
 {
 	foreach(new i : Player) {
 		if(PlayerInfo[i][pAdmin] >= iLevel && (bUndercover || !PlayerInfo[i][pTogReports])) {
@@ -64,7 +64,7 @@ stock ABroadCast(hColor, szMessage[], iLevel, bool: bUndercover = false, bool: D
 	return 1;
 }
 
-stock ShopTechBroadCast(color,string[])
+stock ShopTechBroadCast(color, const string[])
 {
 	foreach(new i : Player)
 	{
@@ -92,16 +92,17 @@ stock Player_KillCheckPoint(playerid) {
 
 stock GetAdminRankName(i)
 {
+	new rank[64];
 	switch(i)
 	{
-		case 2: format(szMiscArray, sizeof(szMiscArray), "Junior Administrator");
-		case 3: format(szMiscArray, sizeof(szMiscArray), "General Administrator");
-		case 4: format(szMiscArray, sizeof(szMiscArray), "Senior Administrator");
-		case 1337: format(szMiscArray, sizeof(szMiscArray), "Head Administrator");
-		case 99999: format(szMiscArray, sizeof(szMiscArray), "Executive Administrator");
-		default: format(szMiscArray, sizeof(szMiscArray), "Undefined Administrator (%i)", i);
+		case 2: rank = "Junior Administrator";
+		case 3: rank = "General Administrator";
+		case 4: rank = "Senior Administrator";
+		case 1337: rank = "Head Administrator";
+		case 99999: rank = "Executive Administrator";
+		default: format(rank, sizeof(rank), "Undefined Administrator (%i)", i);
 	}
-	return szMiscArray;
+	return rank;
 }
 
 stock StaffAccountCheck(playerid, ip[])
@@ -112,25 +113,26 @@ stock StaffAccountCheck(playerid, ip[])
 
 stock GetStaffRank(playerid)
 {
+	new rank[64];
 	if(PlayerInfo[playerid][pSEC] > 0)
 	{
 		switch(PlayerInfo[playerid][pSEC])
 		{
-			case 1: szMiscArray = "{00FA9A}Regular Coordinator{FFFFFF}";
-			case 2: szMiscArray = "{00FA9A}Senior Coordinator{FFFFFF}";
-			case 3: szMiscArray = "{00FA9A}Assistant Chairman{FFFFFF}";
-			case 4: szMiscArray = "{00FA9A}Deputy Chairman{FFFFFF}";
-			case 5: szMiscArray = "{00FA9A}Chairman{FFFFFF}";
+			case 1: rank = "{00FA9A}Regular Coordinator{FFFFFF}";
+			case 2: rank = "{00FA9A}Senior Coordinator{FFFFFF}";
+			case 3: rank = "{00FA9A}Assistant Chairman{FFFFFF}";
+			case 4: rank = "{00FA9A}Deputy Chairman{FFFFFF}";
+			case 5: rank = "{00FA9A}Chairman{FFFFFF}";
 		}
 	}
 	if(PlayerInfo[playerid][pWatchdog] > 0)
 	{
 		switch(PlayerInfo[playerid][pWatchdog])
 		{
-			case 1: szMiscArray = "{2267F0}Watchdog{FFFFFF}";
-			case 2: szMiscArray = "{2267F0}Senior Watchdog{FFFFFF}";
-			case 3: szMiscArray = "{2267F0}RP Specialist{FFFFFF}";
-			case 4: szMiscArray = "{2267F0}Director of RP Improvement{FFFFFF}";
+			case 1: rank = "{2267F0}Watchdog{FFFFFF}";
+			case 2: rank = "{2267F0}Senior Watchdog{FFFFFF}";
+			case 3: rank = "{2267F0}RP Specialist{FFFFFF}";
+			case 4: rank = "{2267F0}Director of RP Improvement{FFFFFF}";
 		}
 	}
 
@@ -138,10 +140,10 @@ stock GetStaffRank(playerid)
 	{
 		switch(PlayerInfo[playerid][pHelper])
 		{
-			case 1: szMiscArray = "{6495ED}Helper{FFFFFF}";
-			case 2: szMiscArray = "{00FFFF}Community Advisor{FFFFFF}";
-			case 3: szMiscArray = "{00FFFF}Senior Advisor{FFFFFF}";
-			case 4: szMiscArray = "{00FFFF}Chief Advisor{FFFFFF}";
+			case 1: rank = "{6495ED}Helper{FFFFFF}";
+			case 2: rank = "{00FFFF}Community Advisor{FFFFFF}";
+			case 3: rank = "{00FFFF}Senior Advisor{FFFFFF}";
+			case 4: rank = "{00FFFF}Chief Advisor{FFFFFF}";
 		}
 	}
 
@@ -149,23 +151,23 @@ stock GetStaffRank(playerid)
 	{
 		switch(PlayerInfo[playerid][pSMod])
 		{
-			case 0: szMiscArray = "{FFFF00}Server Moderator{FFFFFF}";
-			case 1: szMiscArray = "{FFFF00}Senior Server Moderator{FFFFFF}";
+			case 0: rank = "{FFFF00}Server Moderator{FFFFFF}";
+			case 1: rank = "{FFFF00}Senior Server Moderator{FFFFFF}";
 		}
 	}
 	if(PlayerInfo[playerid][pAdmin] > 1)
 	{
 		switch(PlayerInfo[playerid][pAdmin])
 		{
-			case 2: szMiscArray = "{00FF00}Junior Administrator{FFFFFF}";
-			case 3: szMiscArray = "{00FF00}General Administrator{FFFFFF}";
-			case 4: szMiscArray = "{F4A460}Senior Administrator{FFFFFF}";
-			case 1337: szMiscArray = "{FF0000}Head Administrator{FFFFFF}";
-			case 99999: szMiscArray = "{298EFF}Executive Administrator{FFFFFF}";
-			default: format(szMiscArray, sizeof(szMiscArray), "Undefined Administrator (%d)", PlayerInfo[playerid][pAdmin]);
+			case 2: rank = "{00FF00}Junior Administrator{FFFFFF}";
+			case 3: rank = "{00FF00}General Administrator{FFFFFF}";
+			case 4: rank = "{F4A460}Senior Administrator{FFFFFF}";
+			case 1337: rank = "{FF0000}Head Administrator{FFFFFF}";
+			case 99999: rank = "{298EFF}Executive Administrator{FFFFFF}";
+			default: format(rank, sizeof(rank), "Undefined Administrator (%d)", PlayerInfo[playerid][pAdmin]);
 		}
 	}
-	return szMiscArray;
+	return rank;
 }
 
 CMD:resetvw(playerid, params[])
@@ -1419,7 +1421,7 @@ CMD:paused(playerid, params[]) {
     	new
 			szMessage[42 + MAX_PLAYER_NAME];
 
-	    SendClientMessageEx(playerid,COLOR_WHITE,"Listing all paused players...");
+	    SendClientMessageEx(playerid, COLOR_WHITE, "Listing all paused players...");
 	    foreach(new i : Player)
 	    {
 			if(playerTabbed[i] != 0) {
@@ -1442,7 +1444,7 @@ CMD:afk(playerid, params[]) {
     	new
 			szMessage[36 + MAX_PLAYER_NAME];
 
-	    SendClientMessageEx(playerid,COLOR_WHITE,"Listing all AFK players...");
+	    SendClientMessageEx(playerid, COLOR_WHITE, "Listing all AFK players...");
 	    foreach(new i : Player)
 	    {
 			if(playerAFK[i] != 0 && playerAFK[i] > 60) {
@@ -1898,10 +1900,6 @@ CMD:apark(playerid, params[]) {
 	return 1;
 }
 
-CMD:a(playerid, params[]) {
-	return cmd_admin(playerid, params);
-}
-
 CMD:admin(playerid, params[])  {
 	if(PlayerInfo[playerid][pAdmin] >= 2) {
 		if(!isnull(params)) {
@@ -1925,10 +1923,7 @@ CMD:admin(playerid, params[])  {
 	}
 	return 1;
 }
-
-CMD:ha(playerid, params[]) {
-	return cmd_headadmin(playerid, params);
-}
+alias:admin("a")
 
 CMD:headadmin(playerid, params[])  {
 	if(PlayerInfo[playerid][pAdmin] >= 1337) {
@@ -1954,6 +1949,7 @@ CMD:headadmin(playerid, params[])  {
 	else SendClientMessageEx(playerid, COLOR_GRAD1, "You are not authorized to use that command.");
 	return 1;
 }
+alias:headadmin("ha")
 
 CMD:staff(playerid, params[]) {
 	if((PlayerInfo[playerid][pHelper] >= 2 || PlayerInfo[playerid][pAdmin] >= 1 || PlayerInfo[playerid][pVIPMod] || PlayerInfo[playerid][pWatchdog] >= 1) && PlayerInfo[playerid][pToggledChats][15] == 0) {
@@ -2130,11 +2126,7 @@ CMD:reloadpvehicles(playerid, params[])
 
 	return 1;
 }
-
-CMD:reloadpveh(playerid, params[])
-{
-	return cmd_reloadpvehicles(playerid, params);
-}
+alias:reloadpvehicles("reloadpveh")
 
 CMD:unloadpvehicles(playerid, params[])
 {
@@ -2527,10 +2519,6 @@ CMD:ipwhitelist(playerid, params[])
 	return 1;
 }
 
-CMD:hosp(playerid, params[]) {
-	return cmd_hospital(playerid, params);
-}
-
 CMD:hospital(playerid, params[])
 {
 	if(PlayerInfo[playerid][pAdmin] >= 2)
@@ -2565,6 +2553,7 @@ CMD:hospital(playerid, params[])
 	}
 	return 1;
 }
+alias:hospital("hosp")
 
 CMD:revive(playerid, params[])
 {
@@ -3396,10 +3385,6 @@ CMD:rcabuse(playerid, params[]) {
 	return 1;
 }
 
-CMD:calc(playerid, params[]) {
-	return cmd_calculate(playerid, params);
-}
-
 CMD:calculate(playerid, params[])
 {
 	new string[128], method[20], value1, value2;
@@ -3420,7 +3405,7 @@ CMD:calculate(playerid, params[])
 	{
 		if(value2 == 0)
 		{
-			SendClientMessageEx(playerid,COLOR_WHITE,"The world will implode in 10 seconds - you divided by zero, idiot!");
+			SendClientMessageEx(playerid, COLOR_WHITE, "The world will implode in 10 seconds - you divided by zero, idiot!");
 			return 1;
 		}
 		new sum = value1/value2;
@@ -3441,6 +3426,7 @@ CMD:calculate(playerid, params[])
 	}
 	return 1;
 }
+alias:calculate("calc")
 
 CMD:suspend(playerid, params[])
 {
@@ -5302,18 +5288,11 @@ CMD:removemoderator(playerid, params[])
 	return 1;
 }
 
-CMD:ahelp(playerid, params[]) {
-	return cmd_ah(playerid, params);
-}
-
 CMD:ah(playerid, params[]) {
 	if(PlayerInfo[playerid][pAdmin] >= 1) Help_ListCat(playerid, DIALOG_HELPCATADMIN);
 	return 1;
 }
-
-CMD:oahelp(playerid, params[]) {
-	return cmd_oah(playerid, params);
-}
+alias:ah("ahelp")
 
 CMD:oah(playerid, params[])
 {
@@ -5436,6 +5415,7 @@ CMD:oah(playerid, params[])
 	if ( PlayerInfo[playerid][pAdmin] >= 1 || PlayerInfo[playerid][pHelper] >= 1) SendClientMessageEx(playerid, COLOR_GREEN,"_______________________________________");
 	return 1;
 }
+alias:oah("oahelp")
 
 CMD:nrn(playerid, params[])
 {
@@ -5460,7 +5440,7 @@ CMD:nrn(playerid, params[])
 					SendClientMessageEx(i, COLOR_YELLOW, string);
 				}
 			}
-			ABroadCast( COLOR_YELLOW, string, 2);
+			ABroadCast(COLOR_YELLOW, string, 2);
 			ShowPlayerDialogEx(giveplayerid, DIALOG_NAMECHANGE2, DIALOG_STYLE_INPUT, "Free name change","This is a roleplay server where you must have a name in this format: Firstname_Lastname.\nFor example: John_Smith or Jimmy_Johnson\n\nAn admin has offered you to change your name to the correct format for free. Please enter your desired name below.\n\nNote: If you press cancel you will be kicked from the server.", "Change", "Cancel" );
 		}
 	}
@@ -5691,9 +5671,6 @@ CMD:undercover(playerid, params[])
 	return true;
 }
 
-
-CMD:qs(playerid, params[]) return cmd_quickstats(playerid, params);
-
 CMD:quickstats(playerid, params[])
 {
 	new string[128], Float: health, Float: armor;
@@ -5710,6 +5687,7 @@ CMD:quickstats(playerid, params[])
 	SendClientMessageEx(playerid, COLOR_GREEN, "--------------------------------------------------------------------------------------------------------------------");
 	return 1;
 }
+alias:quickstats("qs")
 
 CMD:fps(playerid, params[])
 {
@@ -5908,14 +5886,14 @@ CMD:pausespec(playerid, params[])
      		SpecTimer = 0;
       		new sString[41 + MAX_PLAYER_NAME];
 			format( sString, sizeof( sString ), "AdmCmd: %s has paused the special timer.", GetPlayerNameEx(playerid));
-			ABroadCast( COLOR_LIGHTRED, sString, 1338 );
+			ABroadCast(COLOR_LIGHTRED, sString, 1338);
 		}
 		else
 		{
   			SpecTimer = 1;
 	    	new sString[41 + MAX_PLAYER_NAME];
     		format( sString, sizeof( sString ), "AdmCmd: %s has enabled the special timer.", GetPlayerNameEx(playerid));
-			ABroadCast( COLOR_LIGHTRED, sString, 1338);
+			ABroadCast(COLOR_LIGHTRED, sString, 1338);
 		}
 	}
 	return 1;
@@ -6079,15 +6057,12 @@ CMD:myangle(playerid, params[])
     return 1;
 }
 
-CMD:kcp(playerid, params[]) {
-	return cmd_killcheckpoint(playerid, params);
-}
-
 CMD:killcheckpoint(playerid, params[]) {
 
 	Player_KillCheckPoint(playerid);
 	return 1;
 }
+alias:killcheckpoint("kcp")
 
 CMD:flipcoin(playerid, params[]) {
 
@@ -6097,7 +6072,7 @@ CMD:flipcoin(playerid, params[]) {
     switch(random(200)) {
         case 0 .. 98: format(szMessage, sizeof(szMessage), "* %s flips a coin that lands on heads.", GetPlayerNameEx(playerid));
 		case 100 .. 198: format(szMessage, sizeof(szMessage), "* %s flips a coin that lands on tails.", GetPlayerNameEx(playerid));
-		default: cmd_flipcoin(playerid, params);
+		default: PC_EmulateCommand(playerid, "/flipcoin");
     }
     return ProxDetector(5.0, playerid, szMessage, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
 }
@@ -6133,8 +6108,7 @@ CMD:randomnumber(playerid, params[])
     ProxDetector(9.0, playerid, szMiscArray, COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE,COLOR_PURPLE);
 	return 1;
 }
-
-CMD:randnum(playerid, params[]) return cmd_randomnumber(playerid, params);
+alias:randomnumber("randnum")
 
 CMD:card(playerid, params[]) {
 

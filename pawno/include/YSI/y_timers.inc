@@ -69,8 +69,6 @@ Optional plugins:
 	Incognito - Streamer.
 	Me - sscanf2, fixes2, Whirlpool.
 */
-#if defined _inc_y_timers
-	#undef _inc_y_timers
-#endif
 
-#include "..\YSI_Coding\y_timers"
+#error Use `#include <YSI_Coding\y_timers>`
+

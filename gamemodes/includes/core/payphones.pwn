@@ -36,7 +36,7 @@
 	* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include <YSI\y_hooks>
+#include <YSI_Coding\y_hooks>
 
 hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 
@@ -65,7 +65,7 @@ hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys) {
 			if(arrPayPhoneData[i][pp_iCallerID] != INVALID_PLAYER_ID) {
 				
 				SetPVarInt(playerid, "PayPhone", i); 
-				cmd_pickup(playerid, "");
+				PC_EmulateCommand(playerid, "/pickup");
 				return 1;
 			}
 			PayPhone_Menu(playerid, i);
@@ -85,7 +85,8 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 			if(!response || isnull(inputtext)) return DeletePVar(playerid, "PayPhone"), 1;
 			if(strval(inputtext) == PlayerInfo[playerid][pPnumber]) return DeletePVar(playerid, "PayPhone"), SendClientMessageEx(playerid, COLOR_GRAD1, "You shouldn't call yourself, dumbo.");
 			if(strval(inputtext) == 0) return DeletePVar(playerid, "PayPhone"), SendClientMessageEx(playerid, COLOR_GRAD1, "You shouldn't call 0, weirdo.");
-			cmd_call(playerid, inputtext);
+			format(szMiscArray, sizeof(szMiscArray), "/call %s", inputtext);
+			PC_EmulateCommand(playerid, szMiscArray);
 			return 1;
 		}
 		case DIALOG_PAYPHONE_ADMIN: {
@@ -105,7 +106,7 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 	return 0;
 }
 
-GetPhoneZone(id, zone[], len) {
+GetPhoneZone(id, const zone[], len) {
 
 	new Float:x, Float:y, Float:z;
 	GetDynamicObjectPos(arrPayPhoneData[id][pp_iObjectID], x, y, z);

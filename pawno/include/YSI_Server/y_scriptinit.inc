@@ -1,8 +1,3 @@
-#if defined _INC_y_scriptinit
-	#endinput
-#endif
-#define _INC_y_scriptinit
-
 /**
  * <library name="y_scriptinit">
  * <section>
@@ -20,6 +15,10 @@
  *  1.0
  * </library>
  *//** *//*
+	
+	Now also provides OnCodeInit, which comes before OnScriptInit and should
+	mostly be used for @emit code generation and other assembly related stuff
+	(since it is called by the JIT if that exists).
 Legal:
 	Version: MPL 1.1
 	
@@ -91,277 +90,22 @@ Optional plugins:
 	Me - sscanf2, fixes2, Whirlpool.
 */
 
-/*
-
-     ad88888ba                                              
-    d8"     "8b              ,d                             
-    Y8,                      88                             
-    `Y8aaaaa,    ,adPPYba, MM88MMM 88       88 8b,dPPYba,   
-      `"""""8b, a8P_____88   88    88       88 88P'    "8a  
-            `8b 8PP"""""""   88    88       88 88       d8  
-    Y8a     a8P "8b,   ,aa   88,   "8a,   ,a88 88b,   ,a8"  
-     "Y88888P"   `"Ybbd8"'   "Y888  `"YbbdP'Y8 88`YbbdP"'   
-                                               88           
-                                               88           
-
-*/
-
-#include <a_samp>
-
-#include "..\YSI_Internal\y_natives"
-
-forward _ScriptInit_FixState();
-
-#if !defined CHAIN_ORDER
-	#define CHAIN_ORDER() 0
+#if !defined _INC_y_core
+	#tryinclude "..\YSI_Core\y_core\y_core_entry"
 #endif
-
-forward @CO_ScriptInit();
-
-public @CO_ScriptInit()
-{
-	return CHAIN_ORDER() + 1;
-}
-
-#undef CHAIN_ORDER
-#define CHAIN_ORDER @CO_ScriptInit
-
-#define SCRIPT_INIT_FORWARD:%0(%1); \
-	forward ScriptInit_%0(%1); \
-	public ScriptInit_%0(%1) <_ALS : _ALS_x0, _ALS : _ALS_x1> { return 1; } \
-	public ScriptInit_%0(%1) <> { return 1; }
-
-stock
-	bool:YSI_FILTERSCRIPT = false;
-
-/*
-
-    88             88          
-    88             ""   ,d     
-    88                  88     
-    88 8b,dPPYba,  88 MM88MMM  
-    88 88P'   `"8a 88   88     
-    88 88       88 88   88     
-    88 88       88 88   88,    
-    88 88       88 88   "Y888  
-
-*/
-
-#if defined _DEBUG
-	#if _DEBUG > 0
-		// Dump the final assembly of this script so we can inspect it.
-		#define DEBUG_MAYBE_DUMP(%0) DisasmDump(%0)
-	#endif
+#if !defined _INC_y_core
+	#tryinclude "YSI_Core\y_core\y_core_entry"
 #endif
-#if !defined DEBUG_MAYBE_DUMP
-	#define DEBUG_MAYBE_DUMP(%0);
+#if !defined _INC_y_core
+	#tryinclude "YSI\YSI_Core\y_core\y_core_entry"
 #endif
-
-/*-------------------------------------------------------------------------*//**
- * <transition keep="true" target="_script_init_fix_state : true"/>
- * <transition keep="true" target="_ALS : _ALS_go"/>
- *//*------------------------------------------------------------------------**/
-
-public OnFilterScriptInit()
-{
-	YSI_FILTERSCRIPT = true;
-	state _script_init_fix_state : true;
-	state _ALS : _ALS_go;
-	// Dump the final assembly of this script so we can inspect it.
-	DEBUG_MAYBE_DUMP("YSI_PRE_INIT.asm");
-	#if defined ScriptInit_OnScriptInit
-		ScriptInit_OnScriptInit();
-	#endif
-	// Dump the final assembly of this script so we can inspect it.
-	DEBUG_MAYBE_DUMP("YSI_POST_INIT.asm");
-	#if defined YSI_LOCK_MODE
-		#if defined FILTERSCRIPT
-			if (strlen(YSI_gLockData[5]) !=
-				floatround(floatlog(_LOCK_LEN_0 + 1), floatround_ceil) + 1 +
-				floatround(floatlog(_LOCK_LEN_1 + 1), floatround_ceil) + 1 +
-				floatround(floatlog(_LOCK_LEN_2 + 1), floatround_ceil) + 1 +
-				floatround(floatlog(_LOCK_LEN_3 + 1), floatround_ceil))
-			{
-				y_lock 6;
-			}
-		#else
-			new
-				str[16];
-			format(str, sizeof (str), "%c%c%c%c%c%c%c%c%c%c%c", '%', 'd', '.', '%', 'd', '.', '%', 'd', '.', '%', 'd');
-			format(str, sizeof (str), str, _LOCK_IP_0, _LOCK_IP_1, _LOCK_IP_2, _LOCK_IP_3);
-			if (strlen(YSI_gLockData[5]) != strlen(str))
-			{
-				y_lock 7;
-			}
-		#endif
-	#endif
-	ScriptInit_OnFilterScriptInit();
-	return 1;
-}
-
-/*-------------------------------------------------------------------------*//**
- * <transition keep="true" target="_script_init_fix_state : false"/>
- * <transition keep="true" target="_ALS : _ALS_go"/>
- *//*------------------------------------------------------------------------**/
-
-public OnGameModeInit()
-{
-	state _ALS : _ALS_go;
-	if (!YSI_FILTERSCRIPT)
-	{
-		state _script_init_fix_state : false;
-		// Dump the final assembly of this script so we can inspect it.
-		DEBUG_MAYBE_DUMP("YSI_PRE_INIT.asm");
-		#if defined ScriptInit_OnScriptInit
-			ScriptInit_OnScriptInit();
-		#endif
-		// Dump the final assembly of this script so we can inspect it.
-		DEBUG_MAYBE_DUMP("YSI_POST_INIT.asm");
-		#if defined YSI_LOCK_MODE
-			if (YSI_gLockData[
-				floatround(floatlog(_LOCK_LEN_0 + 1), floatround_ceil) + 1 +
-				floatround(floatlog(_LOCK_LEN_1 + 1), floatround_ceil) + 1 +
-				floatround(floatlog(_LOCK_LEN_2 + 1), floatround_ceil) +
-				floatround(floatlog(_LOCK_LEN_3 + 1), floatround_ceil)] == '\0'
-			 || YSI_gLockData[
-				floatround(floatlog(_LOCK_LEN_0 + 1), floatround_ceil) + 1 +
-				floatround(floatlog(_LOCK_LEN_1 + 1), floatround_ceil) + 1 +
-				floatround(floatlog(_LOCK_LEN_2 + 1), floatround_ceil) + 1 +
-				floatround(floatlog(_LOCK_LEN_3 + 1), floatround_ceil) + 1] == '\0')
-			{
-				y_lock 8;
-			}
-		#endif
-	}
-	ScriptInit_OnGameModeInit();
-	return 1;
-}
-
-/*
-
-    88888888888             88          
-    88                      ""   ,d     
-    88                           88     
-    88aaaaa     8b,     ,d8 88 MM88MMM  
-    88"""""      `Y8, ,8P'  88   88     
-    88             )888(    88   88     
-    88           ,d8" "8b,  88   88,    
-    88888888888 8P'     `Y8 88   "Y888  
-
-*/
-
-public OnFilterScriptExit()
-{
-	ScriptInit_OnFilterScriptExit();
-	if (YSI_FILTERSCRIPT)
-	{
-		ScriptInit_OnScriptExit();
-	}
-	return 1;
-}
-
-public OnGameModeExit()
-{
-	ScriptInit_OnGameModeExit();
-	if (!YSI_FILTERSCRIPT)
-	{
-		ScriptInit_OnScriptExit();
-	}
-	return 1;
-}
-
-/*
-
-    88888888888                                                                      88            
-    88                                                                               88            
-    88                                                                               88            
-    88aaaaa  ,adPPYba,  8b,dPPYba, 8b      db      d8 ,adPPYYba, 8b,dPPYba,  ,adPPYb,88 ,adPPYba,  
-    88""""" a8"     "8a 88P'   "Y8 `8b    d88b    d8' ""     `Y8 88P'   "Y8 a8"    `Y88 I8[    ""  
-    88      8b       d8 88          `8b  d8'`8b  d8'  ,adPPPPP88 88         8b       88  `"Y8ba,   
-    88      "8a,   ,a8" 88           `8bd8'  `8bd8'   88,    ,88 88         "8a,   ,d88 aa    ]8I  
-    88       `"YbbdP"'  88             YP      YP     `"8bbdP"Y8 88          `"8bbdP"Y8 `"YbbdP"'  
-
-*/
-
-#if defined ScriptInit_OnScriptInit
-	forward ScriptInit_OnScriptInit();
+#if !defined _INC_y_core
+	#tryinclude <YSI_Core\y_core\y_core_entry>
 #endif
-#if defined _ALS_OnScriptInit
-	#undef OnScriptInit
-#else
-	#define _ALS_OnScriptInit
+#if !defined _INC_y_core
+	#tryinclude <YSI\YSI_Core\y_core\y_core_entry>
 #endif
-#define OnScriptInit ScriptInit_OnScriptInit
-
-SCRIPT_INIT_FORWARD:OnFilterScriptInit();
-#if defined _ALS_OnFilterScriptInit
-	#undef OnFilterScriptInit
-#else
-	#define _ALS_OnFilterScriptInit
+#if !defined _INC_y_core
+	#error Could not find y_scriptinit
 #endif
-#define OnFilterScriptInit(%0) ScriptInit_OnFilterScriptInit(%0) <_ALS : _ALS_go>
-
-SCRIPT_INIT_FORWARD:OnGameModeInit();
-#if defined _ALS_OnGameModeInit
-	#undef OnGameModeInit
-#else
-	#define _ALS_OnGameModeInit
-#endif
-#define OnGameModeInit(%0) ScriptInit_OnGameModeInit(%0) <_ALS : _ALS_go>
-
-SCRIPT_INIT_FORWARD:OnFilterScriptExit();
-#if defined _ALS_OnFilterScriptExit
-	#undef OnFilterScriptExit
-#else
-	#define _ALS_OnFilterScriptExit
-#endif
-#define OnFilterScriptExit(%0) ScriptInit_OnFilterScriptExit(%0) <_ALS : _ALS_go>
-
-SCRIPT_INIT_FORWARD:OnGameModeExit();
-#if defined _ALS_OnGameModeExit
-	#undef OnGameModeExit
-#else
-	#define _ALS_OnGameModeExit
-#endif
-#define OnGameModeExit(%0) ScriptInit_OnGameModeExit(%0) <_ALS : _ALS_go>
-
-SCRIPT_INIT_FORWARD:OnScriptExit();
-#if defined _ALS_OnScriptExit
-	#undef OnScriptExit
-#else
-	#define _ALS_OnScriptExit
-#endif
-#define OnScriptExit(%0) ScriptInit_OnScriptExit(%0) <_ALS : _ALS_go>
-
-/*
-
-     ad88888ba  88                                      88                                             
-    d8"     "8b 88                        ,d            88                                             
-    Y8,         88                        88            88                                             
-    `Y8aaaaa,   88,dPPYba,  88       88 MM88MMM ,adPPYb,88  ,adPPYba,  8b      db      d8 8b,dPPYba,   
-      `"""""8b, 88P'    "8a 88       88   88   a8"    `Y88 a8"     "8a `8b    d88b    d8' 88P'   `"8a  
-            `8b 88       88 88       88   88   8b       88 8b       d8  `8b  d8'`8b  d8'  88       88  
-    Y8a     a8P 88       88 "8a,   ,a88   88,  "8a,   ,d88 "8a,   ,a8"   `8bd8'  `8bd8'   88       88  
-     "Y88888P"  88       88  `"YbbdP'Y8   "Y888 `"8bbdP"Y8  `"YbbdP"'      YP      YP     88       88 
-
-*/
-
-// I'm not quite sure what causes it, but there seems to be a bug in the
-// compiler somewhere which messes up the "ysi_debug" automaton and the
-// "YSI_FILTERSCRIPT" variable :(.
-public _ScriptInit_FixState() <_script_init_fix_state : true>
-{
-}
-
-public _ScriptInit_FixState() <_script_init_fix_state : false>
-{
-}
-
-static stock _ScriptInit_IncludeStates() <_ALS : _ALS_x0, _ALS : _ALS_x1, _ALS : _ALS_x2, _ALS : _ALS_x3>
-{
-}
-
-static stock _ScriptInit_IncludeStates() <_ALS : _ALS_go>
-{
-}
 

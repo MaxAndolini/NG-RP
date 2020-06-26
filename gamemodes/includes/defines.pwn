@@ -67,6 +67,7 @@ native IsValidVehicle(vehicleid);
 #define			INVALID_SAMP_ID				65535
 #define			SAMP_WEB					"sampweb.ng-gaming.net"
 #define			CP_WEB						"cp.ng-gaming.net"
+#define			DOWNLOAD_WEB				"http://www.ng-gaming.net/downloads/03DL/models"
 			/*  ---------------- TIMERS ----------------- */
 #define			TYPE_TPMATRUNTIMER 			1
 #define			TYPE_TPDRUGRUNTIMER 		2

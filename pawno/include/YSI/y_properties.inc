@@ -69,8 +69,6 @@ Optional plugins:
 	Incognito - Streamer.
 	Me - sscanf2, fixes2, Whirlpool.
 */
-#if defined _inc_y_properties
-	#undef _inc_y_properties
-#endif
 
-#include "..\YSI_Visual\y_properties"
+#error Use `#include <YSI_Visual\y_properties>`
+

@@ -149,11 +149,6 @@ DestroyVLPTextDraws(playerid) {
 		PlayerTextDrawShow(playerid, VLPTextDraws[playerid][i]);
 }*/
 
-CMD:pickvehicle(playerid, params[])
-{
-	return cmd_pickveh(playerid, params);
-}
-
 CMD:pickveh(playerid, params[])
 {
 	/*
@@ -252,6 +247,8 @@ CMD:pickveh(playerid, params[])
 	SendClientMessageEx(playerid, COLOR_WHITE, "Please do not report about this being disabled, we are testing something.");
 	return 1;
 }
+alias:pickveh("pickvehicle")
+
 CMD:cracktrunk(playerid, params[])
 {
 	/*
